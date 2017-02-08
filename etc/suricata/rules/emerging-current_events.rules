@@ -5198,3 +5198,11 @@ alert udp $HOME_NET any -> any 53 (msg:"ET CURRENT_EVENTS DNS Request to NilePhi
 
 alert http $EXTERNAL_NET any -> $HOME_NET any (msg:"ET CURRENT_EVENTS Fake AV Phone Scam Landing Feb 2"; flow:from_server,established; content:"200"; http_stat_code; content:"Content-Type|3a 20|text/html"; http_header; file_data; content:"<title> Microsoft Official Support <"; fast_pattern; nocase; content:"var stroka"; nocase; distance:0; content:"wM/8AAEQgADQCgAwEiAAIRAQMRAf/dAAQACv/EAT8AAAEFAQEBAQEBAAAAAAAAAAMAAQIE"; distance:0; classtype:trojan-activity; sid:2023869; rev:2;)
 
+alert http $EXTERNAL_NET any -> $HOME_NET any (msg:"ET CURRENT_EVENTS Terror EK Landing M1 Feb 07 2016 M1"; flow:established,from_server; file_data; content:"value"; nocase; pcre:"/^\s*=\s*[\x27\x22](?:sh(?:ell(?:32)?)?|exec)=6wLrBej5\x2f\x2f/Rsi"; content:"6wLrBej5"; fast_pattern:only; classtype:trojan-activity; sid:2023878; rev:2;)
+
+alert http $EXTERNAL_NET any -> $HOME_NET any (msg:"ET CURRENT_EVENTS Terror EK Landing M1 Feb 07 2016 M2"; flow:established,from_server; file_data; content:"EB02EB05E8F9FFFFFF"; nocase; fast_pattern:only; pcre:"/(?:value=[\x22\x27](?:sh(?:ell(?:32)?)?|exec)=|unescape\(EscapeHexString\(.)EB02EB05E8F9FFFFFF/si"; classtype:trojan-activity; sid:2023879; rev:2;)
+
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"ET CURRENT_EVENTS Possible Successful Craigslist Phishing Domain Feb 07 2017"; flow:to_server,established; content:"POST"; http_method; content:"craigslist.org"; http_header; fast_pattern; content:!"craigslist.org|0d 0a|"; http_header; pcre:"/^Host\x3a[^\r\n]+craigslist\.org[^\r\n]{20,}\r\n/Hmi"; classtype:trojan-activity; sid:2023880; rev:2;)
+
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"ET CURRENT_EVENTS Possible Craigslist Phishing Domain Feb 07 2017"; flow:to_server,established; content:"POST"; http_method; content:"craigslist.org"; http_header; fast_pattern; content:!"craigslist.org|0d 0a|"; http_header; pcre:"/^Host\x3a[^\r\n]+craigslist\.org[^\r\n]{20,}\r\n/Hmi"; classtype:trojan-activity; sid:2023881; rev:2;)
+

@@ -1,0 +1,52 @@
+#!/bin/bash
+
+### BEGIN INIT INFO
+# Provides:          Snort
+# Required-Start:    $local_fs $network $named $time $syslog
+# Required-Stop:     $local_fs $network $named $time $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Description:       Snort IDS
+### END INIT INFO
+
+PIDFILE='/var/log/snort/snort_eth0.pid'
+INTERFACE=eth0
+
+start() {
+  if [ -s $PIDFILE ]; then
+  	PID=`cat $PIDFILE`
+	echo "Snort is already running (PID='$PID')"
+  else
+	echo 'Starting service…' >&2
+	snort -c /etc/snort/snort.conf -D -i $INTERFACE
+  	echo 'Service started' >&2
+  fi
+}
+
+stop() {
+  if [ -s $PIDFILE ]; then
+  	PID=`cat $PIDFILE`
+	echo 'Stopping service…' >&2
+	kill -15 $PID
+	rm $PIDFILE
+	echo 'Service stopped' >&2
+  else 
+	echo "Snort is not running"
+  fi
+}
+
+case "$1" in
+  start)
+    start
+    ;;
+  stop)
+    stop
+    ;;
+  restart)
+    stop
+    sleep 5
+    start
+    ;;
+  *)
+    echo "Usage: $0 {start <interface>|stop|restart}"
+esac

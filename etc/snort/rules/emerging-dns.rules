@@ -36,7 +36,7 @@
 #
 #
 
-# This Ruleset is EmergingThreats Open optimized for suricata-1.3.
+# This Ruleset is EmergingThreats Open optimized for snort-2.9.0.
 
 #alert udp any 53 -> $DNS_SERVERS any (msg:"ET DNS Excessive DNS Responses with 1 or more RR's (100+ in 10 seconds) - possible Cache Poisoning Attempt"; byte_test:2,>,0,6; byte_test:2,>,0,10; threshold: type both, track by_src, count 100, seconds 10; reference:url,doc.emergingthreats.net/bin/view/Main/2008446; classtype:bad-unknown; sid:2008446; rev:9;)
 
@@ -102,17 +102,17 @@ alert udp $HOME_NET any -> $EXTERNAL_NET 53 (msg:"ET DNS Query to a .tk domain -
 
 alert udp $HOME_NET any -> $EXTERNAL_NET 53 (msg:"ET DNS DNS Query to a Suspicious *.vv.cc domain"; content:"|01 00 00 01 00 00 00 00 00 00|"; depth:10; offset:2; content:"|02|vv|02|cc|00|"; fast_pattern; nocase; distance:0; classtype:bad-unknown; sid:2012826; rev:1;)
 
-alert udp $HOME_NET any -> $EXTERNAL_NET 53 (msg:"ET DNS DNS Query for a Suspicious *.ae.am domain"; content:"|01 00 00 01 00 00 00 00 00 00|"; depth:10; offset:2; content:"|02|ae|02|am"; fast_pattern; classtype:bad-unknown; sid:2012900; rev:3;)
+alert udp $HOME_NET any -> $EXTERNAL_NET 53 (msg:"ET DNS DNS Query for a Suspicious *.ae.am domain"; content:"|01 00 00 01 00 00 00 00 00 00|"; depth:10; offset:2; content:"|02|ae|02|am"; fast_pattern:only; classtype:bad-unknown; sid:2012900; rev:1;)
 
 alert udp $HOME_NET any -> $EXTERNAL_NET 53 (msg:"ET DNS Query for a Suspicious *.noc.su domain"; content:"|01 00 00 01 00 00 00 00 00 00|"; depth:10; offset:2; content:"|03|noc|02|su"; fast_pattern:only; classtype:bad-unknown; sid:2012901; rev:2;)
 
-alert udp $HOME_NET any -> $EXTERNAL_NET 53 (msg:"ET DNS DNS Query for a Suspicious *.be.ma domain"; content:"|01 00 00 01 00 00 00 00 00 00|"; depth:10; offset:2; content:"|02|be|02|ma"; fast_pattern; distance:0; classtype:bad-unknown; sid:2012902; rev:3;)
+alert udp $HOME_NET any -> $EXTERNAL_NET 53 (msg:"ET DNS DNS Query for a Suspicious *.be.ma domain"; content:"|01 00 00 01 00 00 00 00 00 00|"; depth:10; offset:2; content:"|02|be|02|ma"; fast_pattern; distance:0;  classtype:bad-unknown; sid:2012902; rev:2;)
 
-alert udp $HOME_NET any -> $EXTERNAL_NET 53 (msg:"ET DNS DNS Query for a Suspicious *.qc.cx domain"; content:"|01 00 00 01 00 00 00 00 00 00|"; depth:10; offset:2; content:"|02|qc|02|cx"; fast_pattern; classtype:bad-unknown; sid:2012903; rev:3;)
+alert udp $HOME_NET any -> $EXTERNAL_NET 53 (msg:"ET DNS DNS Query for a Suspicious *.qc.cx domain"; content:"|01 00 00 01 00 00 00 00 00 00|"; depth:10; offset:2; content:"|02|qc|02|cx"; fast_pattern:only; classtype:bad-unknown; sid:2012903; rev:1;)
 
-alert udp $HOME_NET any -> $EXTERNAL_NET 53 (msg:"ET DNS DNS Query for a Suspicious *.co.tv domain"; content:"|01 00 00 01 00 00 00 00 00 00|"; depth:10; offset:2; content:"|02|co|02|tv"; fast_pattern; classtype:bad-unknown; sid:2012956; rev:3;)
+alert udp $HOME_NET any -> $EXTERNAL_NET 53 (msg:"ET DNS DNS Query for a Suspicious *.co.tv domain"; content:"|01 00 00 01 00 00 00 00 00 00|"; depth:10; offset:2; content:"|02|co|02|tv"; fast_pattern:only; classtype:bad-unknown; sid:2012956; rev:2;)
 
-alert udp $HOME_NET any -> $EXTERNAL_NET 53 (msg:"ET DNS DNS Query for Illegal Drug Sales Site (SilkRoad)"; content:"|01 00 00 01 00 00 00 00 00 00|"; depth:10; offset:2; content:"|10|ianxz6zefk72ulzz|05|onion"; classtype:policy-violation; sid:2013016; rev:2;)
+alert udp $HOME_NET any -> $EXTERNAL_NET 53 (msg:"ET DNS DNS Query for Illegal Drug Sales Site (SilkRoad)"; content:"|01 00 00 01 00 00 00 00 00 00|"; depth:10; offset:2; content:"|10|ianxz6zefk72ulzz|05|onion"; fast_pattern:only; classtype:policy-violation; sid:2013016; rev:1;)
 
 alert udp $HOME_NET any -> $EXTERNAL_NET 53 (msg:"ET DNS DNS Query for Suspicious .co.be Domain"; content:"|01 00 00 01 00 00 00 00 00 00|"; depth:10; offset:2; content:"|02|co|02|be"; fast_pattern; nocase; distance:0; classtype:bad-unknown; sid:2013124; rev:3;)
 

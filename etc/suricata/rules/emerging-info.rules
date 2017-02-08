@@ -850,3 +850,5 @@ alert http $EXTERNAL_NET any -> $HOME_NET any (msg:"ET INFO Lock Emoji In Title 
 
 alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"ET INFO Windows Update/Microsoft FP Flowbit"; flow:established,to_server; content:".windowsupdate.com|0d 0a|"; http_header; pcre:"/\.windowsupdate\.com\r?$/Hmi"; flowbits:set,ET.INFO.WindowsUpdate; flowbits:noalert; classtype:trojan-activity; sid:2023818; rev:2;)
 
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"ET INFO HTTP Request to a *.top domain"; flow:to_server,established; content:".top"; nocase; fast_pattern; http_header; content:"|0d 0a|"; http_header; within:8; pcre:"/^Host\x3a[^\r\n]+?\.top(\x3a\d{1,5})?\r$/Hmi"; threshold:type limit, track by_src, count 1, seconds 30; reference:url,www.symantec.com/connect/blogs/shady-tld-research-gdn-and-our-2016-wrap; reference:url,www.spamhaus.org/statistics/tlds/; classtype:bad-unknown; sid:2023882; rev:2;)
+

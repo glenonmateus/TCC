@@ -1,0 +1,17 @@
+-- XenServer --
+
+Logar na máquina via ssh. Depois, como root, executar o comando abaixo para colocar a interface no modo promisc.
+
+# ifconfig <interface> promisc
+
+Caso, por algum motivo, queira remover ela do modo promisc execute o comando abaixo.
+
+# ifconfig <interface> -promisc
+
+-- XenCenter --
+
+Adicionar a nova interface na VM 
+
+Network > Add Interface
+
+Ao final do processo reinicie a VM 
