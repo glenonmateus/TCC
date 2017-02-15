@@ -62,3 +62,5 @@ alert tcp $EXTERNAL_NET any -> $HOME_NET [23,2323,3323,4323] (msg:"ET TELNET bus
 
 alert tcp $EXTERNAL_NET any -> $HOME_NET [23,2323,3323,4323] (msg:"ET TELNET busybox ECCHI hackers - Possible Brute Force Attack"; flow:to_server,established; content:"ECCHI"; flowbits:isset,ET.telnet.busybox; threshold: type limit, count 1, track by_src, seconds 30; reference:url,lists.emergingthreats.net/pipermail/emerging-sigs/2016-August/027524.html; classtype:attempted-admin; sid:2023304; rev:1;)
 
+alert tcp $EXTERNAL_NET any -> $HOME_NET [23,2323,3323,4323] (msg:"ET TELNET busybox MEMES Hackers - Possible Brute Force Attack"; flow:to_server,established; content:"MEMES"; flowbits:isset,ET.telnet.busybox; threshold: type limit, count 1, track by_src, seconds 30; reference:url,lists.emergingthreats.net/pipermail/emerging-sigs/2016-August/027524.html; classtype:attempted-admin; sid:2023901; rev:1;)
+

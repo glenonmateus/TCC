@@ -1112,7 +1112,7 @@ alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"ET POLICY eBook Generator Us
 
 alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:"ET POLICY Cisco IOS Self Signed Certificate Served to External Host"; flow:established,to_client; content:"IOS-Self-Signed-Certificate-"; classtype:misc-activity; sid:2014617; rev:2;)
 
-alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"ET POLICY Outdated Windows Flash Version IE"; flow:established,to_server; content:"x-flash-version|3a 20|"; http_header; content:!"24,0,0,194|0d 0a|"; distance:0; within:12; http_header; content:"MSIE "; http_header; pcre:"/^User-Agent\x3a[^\r\n]+?MSIE\s/Hm"; threshold: type limit, count 1, seconds 60, track by_src; reference:url,www.adobe.com/software/flash/about/; classtype:policy-violation; sid:2014726; rev:90;)
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"ET POLICY Outdated Windows Flash Version IE"; flow:established,to_server; content:"x-flash-version|3a 20|"; http_header; content:!"24,0,0,221|0d 0a|"; distance:0; within:12; http_header; content:"MSIE "; http_header; pcre:"/^User-Agent\x3a[^\r\n]+?MSIE\s/Hm"; threshold: type limit, count 1, seconds 60, track by_src; reference:url,www.adobe.com/software/flash/about/; classtype:policy-violation; sid:2014726; rev:91;)
 
 alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"ET POLICY Internal Host Getting External IP Address - ip2city.asp"; flow:established,to_server; content:"/ip2city.asp"; http_uri; classtype:misc-activity; sid:2014761; rev:2;)
 

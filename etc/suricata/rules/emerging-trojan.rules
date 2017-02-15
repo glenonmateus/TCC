@@ -7346,7 +7346,7 @@ alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"ET TROJAN Downeks Checkin"; 
 
 alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"ET TROJAN Downeks Checkin 2"; flow:to_server,established; urilen:>107; content:"GET"; http_method; content:"/setup/"; http_uri; fast_pattern:only; content:"Host|3a|"; http_header; depth:5; content:!"User-Agent|3a|"; http_header; content:!"Accept"; http_header; content:!"Referer|3a|"; http_header; pcre:"/\/setup\/[a-zA-Z0-9!-]{100,}$/U"; reference:url,pwc.blogs.com/cyber_security_updates/2015/04/attacks-against-israeli-palestinian-interests.html; classtype:trojan-activity; sid:2021029; rev:2;)
 
-alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"ET TROJAN BePush/Kilim CnC Beacon"; flow:established,to_server; content:"GET"; http_method; content:".php?type="; http_uri; fast_pattern:only; content:!"Accept-"; http_header; content:!"Referer|3a|"; http_header; content:!"Mozilla|2f|"; http_header; pcre:"/\.php\?type=(?:update_hash|js|key|arsiv_(?:hash|link))$/U"; reference:md5,dad57ec2d5d99b725acc726b0a644c00; reference:url,seclists.org/fulldisclosure/2015/Jan/131; classtype:trojan-activity; sid:2021030; rev:3;)
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"ET TROJAN BePush/Kilim CnC Beacon"; flow:established,to_server; content:"GET"; http_method; content:".php?type="; http_uri; fast_pattern:only; content:!"Accept-"; http_header; content:!"Referer|3a|"; http_header; content:!"Mozilla|2f|"; http_header; content:!"threatseeker.com|0d 0a|"; pcre:"/\.php\?type=(?:update_hash|js|key|arsiv_(?:hash|link))$/U"; reference:md5,dad57ec2d5d99b725acc726b0a644c00; reference:url,seclists.org/fulldisclosure/2015/Jan/131; classtype:trojan-activity; sid:2021030; rev:4;)
 
 alert tcp $EXTERNAL_NET 443 -> $HOME_NET any (msg:"ET TROJAN Malicious SSL Cert (KINS C2)"; flow:established,from_server; content:"|55 04 03|"; content:"|0f|terriblekira.su"; distance:1; within:16; reference:md5,f752cfdc6aa1d3eac013201357ada0f6; classtype:trojan-activity; sid:2021031; rev:1;)
 
@@ -10306,8 +10306,6 @@ alert tcp $HOME_NET any -> $EXTERNAL_NET any (msg:"ET TROJAN KeyBoy CnC Beacon";
 
 alert tls $EXTERNAL_NET any -> $HOME_NET any (msg:"ET TROJAN ABUSE.CH SSL Blacklist Malicious SSL Certificate Detected (Chthonic CnC)"; flow:established,from_server; content:"|55 04 03|"; content:"|0f|res1allenia.com"; distance:1; within:16; reference:url,sslbl.abuse.ch; classtype:trojan-activity; sid:2023528; rev:2;)
 
-alert tls $EXTERNAL_NET any -> $HOME_NET any (msg:"ET TROJAN ABUSE.CH SSL Blacklist Malicious SSL Certificate Detected (Malware CnC)"; flow:established,from_server; content:"|55 04 03|"; content:"|0e|publicstats.tk"; distance:1; within:15; reference:url,sslbl.abuse.ch; classtype:trojan-activity; sid:2023529; rev:2;)
-
 alert tls $EXTERNAL_NET any -> $HOME_NET any (msg:"ET TROJAN ABUSE.CH SSL Blacklist Malicious SSL Certificate Detected (Chthonic MITM)"; flow:established,from_server; content:"|55 04 03|"; content:"|0e|digtheromb.com"; distance:1; within:15; reference:url,sslbl.abuse.ch; classtype:trojan-activity; sid:2023530; rev:2;)
 
 alert tls $EXTERNAL_NET 443 -> $HOME_NET any (msg:"ET TROJAN Observed Malicious SSL Cert (FlokiBot CnC)"; flow:established,from_server; content:"|16|"; content:"|0b|"; content:"|55 04 03|"; distance:0; content:"|08|uspal.cf"; distance:1; within:9; reference:md5,3ddf657800e60a57b884b87e1e8a987c; classtype:trojan-activity; sid:2023536; rev:3;)
@@ -10717,4 +10715,36 @@ alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"ET TROJAN JS/Nemucod request
 alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"ET TROJAN Possible iKittens OSX MacDownloader CNC Beacon"; flow:established,to_server; urilen:14; content:"GET"; http_method; content:"/Servermac.php"; depth:14; http_uri; fast_pattern; content:!"Referer|3a|"; http_header; reference:url,iranthreats.github.io/resources/macdownloader-macos-malware/; classtype:trojan-activity; sid:2023876; rev:2;)
 
 alert udp $HOME_NET any -> any 53 (msg:"ET TROJAN iKittens OSX MacDownloader DNS Lookup (officialswebsites .info)"; content:"|01 00 00 01 00 00 00 00 00 00|"; depth:10; offset:2; content:"|11|officialswebsites|04|info|00|"; nocase; distance:0; fast_pattern; reference:url,iranthreats.github.io/resources/macdownloader-macos-malware/; classtype:trojan-activity; sid:2023877; rev:1;)
+
+alert udp $HOME_NET any -> any 53 (msg:"ET TROJAN Banker.Win32.Alreay DNS Lookup (tradeboard .mefound .com)"; content:"|01 00 00 01 00 00 00 00 00 00|"; depth:10; offset:2; content:"|0a|tradeboard|07|mefound|03|com|00|"; nocase; distance:0; fast_pattern; reference:url,niebezpiecznik.pl/post/jak-przeprowadzono-atak-na-knf-i-polskie-banki-oraz-kto-jeszcze-byl-na-celowniku-przestepcow/; classtype:trojan-activity; sid:2023884; rev:1;)
+
+alert udp $HOME_NET any -> any 53 (msg:"ET TROJAN Banker.Win32.Alreay DNS Lookup (movis-es .ignorelist .com)"; content:"|01 00 00 01 00 00 00 00 00 00|"; depth:10; offset:2; content:"|08|movis-es|0a|ignorelist|03|com|00|"; nocase; distance:0; fast_pattern; reference:url,niebezpiecznik.pl/post/jak-przeprowadzono-atak-na-knf-i-polskie-banki-oraz-kto-jeszcze-byl-na-celowniku-przestepcow/; classtype:trojan-activity; sid:2023885; rev:1;)
+
+alert udp $HOME_NET any -> any 53 (msg:"ET TROJAN Banker.Win32.Alreay DNS Lookup (exbonus .mrbasic .com)"; content:"|01 00 00 01 00 00 00 00 00 00|"; depth:10; offset:2; content:"|07|exbonus|07|mrbasic|03|com|00|"; nocase; distance:0; fast_pattern; reference:url,niebezpiecznik.pl/post/jak-przeprowadzono-atak-na-knf-i-polskie-banki-oraz-kto-jeszcze-byl-na-celowniku-przestepcow/; classtype:trojan-activity; sid:2023886; rev:1;)
+
+alert udp $HOME_NET any -> any 53 (msg:"ET TROJAN Spora Ransomware DNS Query"; content:"|01 00 00 01 00 00 00 00 00 00|"; depth:10; offset:2; content:"|05|spora|03|biz|00|"; nocase; distance:0; fast_pattern; reference:url,www.bleepingcomputer.com/news/security/spora-ransomware-works-offline-has-the-most-sophisticated-payment-site-as-of-yet/; reference:md5,41de296c5bcfc24fc0f16b1e997d9aa5; classtype:trojan-activity; sid:2023887; rev:1;)
+
+alert udp $HOME_NET any -> any 53 (msg:"ET TROJAN Qadars CnC DNS Lookup (bst2bgxin81a.org)"; content:"|01 00 00 01 00 00 00 00 00 00|"; depth:10; offset:2; content:"|0c|bst2bgxin81a|03|org|00|"; fast_pattern; distance:0; nocase; classtype:trojan-activity; sid:2023893; rev:1;)
+
+alert udp $HOME_NET any -> any 53 (msg:"ET TROJAN Qadars CnC DNS Lookup (websecuranalityc.com)"; content:"|01 00 00 01 00 00 00 00 00 00|"; depth:10; offset:2; content:"|10|websecuranalityc|03|com|00|"; fast_pattern; distance:0; nocase; classtype:trojan-activity; sid:2023894; rev:1;)
+
+alert udp $HOME_NET any -> any 53 (msg:"ET TROJAN Qadars CnC DNS Lookup (liveskansys.com)"; content:"|01 00 00 01 00 00 00 00 00 00|"; depth:10; offset:2; content:"|0b|liveskansys|03|com|00|"; fast_pattern; distance:0; nocase; classtype:trojan-activity; sid:2023895; rev:1;)
+
+alert udp $HOME_NET any -> any 53 (msg:"ET TROJAN Possible Pegasus Related DNS Lookup (iusacell-movil .com.mx)"; content:"|01 00 00 01 00 00 00 00 00 00|"; depth:10; offset:2; content:"|0e|iusacell-movil|03|com|02|mx|00|"; nocase; distance:0; fast_pattern; reference:url,citizenlab.org/2016/08/million-dollar-dissident-iphone-zero-day-nso-group-uae/; reference:url,citizenlab.org/2017/02/bittersweet-nso-mexico-spyware/; classtype:trojan-activity; sid:2023898; rev:1;)
+
+alert udp $HOME_NET any -> any 53 (msg:"ET TROJAN Possible Pegasus Related DNS Lookup (smsmensaje .mx)"; content:"|01 00 00 01 00 00 00 00 00 00|"; depth:10; offset:2; content:"|0a|smsmensaje|02|mx|00|"; nocase; distance:0; fast_pattern; reference:url,citizenlab.org/2016/08/million-dollar-dissident-iphone-zero-day-nso-group-uae/; reference:url,citizenlab.org/2017/02/bittersweet-nso-mexico-spyware/; classtype:trojan-activity; sid:2023899; rev:1;)
+
+alert tls $EXTERNAL_NET any -> $HOME_NET any (msg:"ET TROJAN Unknown Malicious SSL Cert 1"; flow:established,from_server; content:"|55 04 03|"; content:"|14|giftshop.mefound.com"; distance:1; within:21; classtype:trojan-activity; sid:2023902; rev:2;)
+
+alert tls $EXTERNAL_NET any -> $HOME_NET any (msg:"ET TROJAN Unknown Malicious SSL Cert 2"; flow:established,from_server; content:"|55 04 03|"; content:"|14|estimate.mefound.com"; distance:1; within:21; classtype:trojan-activity; sid:2023903; rev:2;)
+
+alert tls $EXTERNAL_NET any -> $HOME_NET any (msg:"ET TROJAN Unknown Malicious SSL Cert 3"; flow:established,from_server; content:"|55 04 03|"; content:"|16|tradeboard.mefound.com"; distance:1; within:23; classtype:trojan-activity; sid:2023904; rev:2;)
+
+alert tls $EXTERNAL_NET any -> $HOME_NET any (msg:"ET TROJAN Unknown Malicious SSL Cert 4"; flow:established,from_server; content:"|55 04 03|"; content:"|1c|referenceblog.ignorelist.com"; distance:1; within:29; classtype:trojan-activity; sid:2023905; rev:2;)
+
+alert tls $EXTERNAL_NET any -> $HOME_NET any (msg:"ET TROJAN Unknown Malicious SSL Cert 5"; flow:established,from_server; content:"|07|Makeups"; content:"|55 04 03|"; distance:0; content:"|12|www.ignorelist.com"; distance:1; within:19; classtype:trojan-activity; sid:2023906; rev:2;)
+
+alert tls $EXTERNAL_NET any -> $HOME_NET any (msg:"ET TROJAN Unknown Malicious SSL Cert 6"; flow:established,from_server; content:"|55 04 03|"; content:"|15|latest.ignorelist.com"; distance:1; within:22; classtype:trojan-activity; sid:2023907; rev:2;)
+
+alert tls $EXTERNAL_NET any -> $HOME_NET any (msg:"ET TROJAN Unknown Malicious SSL Cert 7"; flow:established,from_server; content:"|55 04 03|"; content:"|15|tipnews.longmusic.com"; distance:1; within:22; classtype:trojan-activity; sid:2023908; rev:2;)
 

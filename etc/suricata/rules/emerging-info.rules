@@ -840,7 +840,7 @@ alert http $EXTERNAL_NET any -> $HOME_NET any (msg:"ET INFO Unconfigured nginx A
 
 alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"ET INFO IE7UA No Cookie No Referer"; flow:to_server,established; content:"GET"; http_method; content:"User-Agent|3a 20|Mozilla/4.0 (compatible|3b| MSIE 7.0|3b|"; http_header; fast_pattern:36,10; content:!"Referer|3a|"; http_header; content:!"|0d 0a|Cookie|3a|"; flowbits:set,et.IE7.NoRef.NoCookie; flowbits:noalert; classtype:bad-unknown; sid:2023670; rev:2;)
 
-alert http $EXTERNAL_NET any -> $HOME_NET any (msg:"ET INFO MP4 in HTTP Flowbit Set"; flow:from_server,established; file_data; content:"|00 00 00 1C|"; within:4; flowbits:set,ET.mp4.in.http; flowbits:noalert; classtype:not-suspicious; sid:2023713; rev:2;)
+alert http $EXTERNAL_NET any -> $HOME_NET any (msg:"ET INFO MP4 in HTTP Flowbit Set"; flow:from_server,established; file_data; content:"|66 74 79 70 6D|"; offset:4; depth:5; content:"mp4"; within:12; flowbits:set,ET.mp4.in.http; flowbits:noalert; classtype:not-suspicious; sid:2023713; rev:3;)
 
 alert http $EXTERNAL_NET any -> $HOME_NET any (msg:"ET INFO ATF file in HTTP Flowbit Set"; flow:from_server,established; file_data; content:"|41 54 46|"; within:3; flowbits:set,ET.atf.in.http; flowbits:noalert; classtype:not-suspicious; sid:2023714; rev:2;)
 
@@ -851,4 +851,8 @@ alert http $EXTERNAL_NET any -> $HOME_NET any (msg:"ET INFO Lock Emoji In Title 
 alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"ET INFO Windows Update/Microsoft FP Flowbit"; flow:established,to_server; content:".windowsupdate.com|0d 0a|"; http_header; pcre:"/\.windowsupdate\.com\r?$/Hmi"; flowbits:set,ET.INFO.WindowsUpdate; flowbits:noalert; classtype:trojan-activity; sid:2023818; rev:2;)
 
 alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"ET INFO HTTP Request to a *.top domain"; flow:to_server,established; content:".top"; nocase; fast_pattern; http_header; content:"|0d 0a|"; http_header; within:8; pcre:"/^Host\x3a[^\r\n]+?\.top(\x3a\d{1,5})?\r$/Hmi"; threshold:type limit, track by_src, count 1, seconds 30; reference:url,www.symantec.com/connect/blogs/shady-tld-research-gdn-and-our-2016-wrap; reference:url,www.spamhaus.org/statistics/tlds/; classtype:bad-unknown; sid:2023882; rev:2;)
+
+alert http $EXTERNAL_NET any -> $HOME_NET any (msg:"ET INFO MP4 in HTTP Flowbit Set M2"; flow:from_server,established; file_data; content:"|66 74 79 70 69 73 6f 6d|"; offset:4; depth:8; flowbits:set,ET.mp4.in.http; flowbits:noalert; classtype:not-suspicious; sid:2023892; rev:2;)
+
+alert http $EXTERNAL_NET any -> $HOME_NET any (msg:"ET INFO MP4 in HTTP Flowbit Set M3"; flow:from_server,established; file_data; content:"|66 74 79 70 71 74 20 20|"; offset:4; depth:8; flowbits:set,ET.mp4.in.http; flowbits:noalert; classtype:not-suspicious; sid:2023900; rev:2;)
 

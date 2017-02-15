@@ -4518,5 +4518,9 @@
 
 #alert tcp $HOME_NET any -> $EXTERNAL_NET any (msg:"ET DELETED Unknown Potentially Malicious Traffic 1"; flow:established,to_server; content:"285d7b6cf94d8fdc657edaa73c2f07f3"; classtype:trojan-activity; sid:2023339; rev:3;)
 
+#alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg:"ET DELETED ABUSE.CH SSL Blacklist Malicious SSL Certificate Detected (Malware CnC)"; flow:established,from_server; content:"|55 04 03|"; content:"|0e|publicstats.tk"; distance:1; within:15; reference:url,sslbl.abuse.ch; classtype:trojan-activity; sid:2023529; rev:2;)
+
 #alert udp $HOME_NET any -> any 53 (msg:"ET DELETED Ransomware CrypMIC Payment Onion Domain"; content:"|01 00 00 01 00 00 00 00 00 00|"; depth:10; offset:2; content:"|10|j24ojpexpgaorlxj"; fast_pattern; distance:0; nocase; classtype:trojan-activity; sid:2023738; rev:2;)
+
+#alert tcp $HOME_NET any -> $EXTERNAL_NET $HTTP_PORTS (msg:"ET DELETED Possible Craigslist Phishing Domain Feb 07 2017"; flow:to_server,established; content:"POST"; http_method; content:"craigslist.org"; http_header; fast_pattern; content:!"craigslist.org|0d 0a|"; http_header; pcre:"/^Host\x3a[^\r\n]+craigslist\.org[^\r\n]{20,}\r\n/Hmi"; classtype:trojan-activity; sid:2023881; rev:2;)
 
