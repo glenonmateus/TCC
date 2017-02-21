@@ -856,3 +856,5 @@ alert tcp $EXTERNAL_NET $HTTP_PORTS -> $HOME_NET any (msg:"ET INFO MP4 in HTTP F
 
 alert tcp $EXTERNAL_NET $HTTP_PORTS -> $HOME_NET any (msg:"ET INFO MP4 in HTTP Flowbit Set M3"; flow:from_server,established; file_data; content:"|66 74 79 70 71 74 20 20|"; offset:4; depth:8; flowbits:set,ET.mp4.in.http; flowbits:noalert; classtype:not-suspicious; sid:2023900; rev:1;)
 
+alert tcp any any -> any [139,445] (msg:"ET INFO Potentially unsafe SMBv1 protocol in use"; flow:established,to_server; content:"|FF|SMB"; offset:4; depth:4; threshold: type limit, count 1, track by_src, seconds 1200; reference:url,www.us-cert.gov/ncas/current-activity/2017/01/16/SMB-Security-Best-Practices; reference:url,blogs.technet.microsoft.com/filecab/2016/09/16/stop-using-smb1/; classtype:not-suspicious; sid:2023997; rev:1;)
+

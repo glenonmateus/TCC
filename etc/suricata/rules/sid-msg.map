@@ -20717,7 +20717,7 @@
 2023811 || ET TROJAN Downeks Variant CnC Beacon || url,researchcenter.paloaltonetworks.com/2017/01/unit42-downeks-and-quasar-rat-used-in-recent-targeted-attacks-against-governments/ || md5,31cf042e91de7492c86e1ad02dc9eaec
 2023812 || ET TROJAN Possible DustySky PoisonIvy CnC Beacon || url,researchcenter.paloaltonetworks.com/2017/01/unit42-downeks-and-quasar-rat-used-in-recent-targeted-attacks-against-governments/ || md5,2cd8c27bdc88ebba3e36114a1b55cef6
 2023813 || ET TROJAN DustySky QuasarRAT CnC Beacon || url,researchcenter.paloaltonetworks.com/2017/01/unit42-downeks-and-quasar-rat-used-in-recent-targeted-attacks-against-governments/ || md5,a19d4ff89a3f699a6f8237a7905e80e1
-2023814 || ET TROJAN CryptoShield 1.0 Ransomware Checkin || md5,ef815146b802cfd6a5fb67d1f9267745
+2023814 || ET TROJAN CryptoShield Ransomware Checkin || md5,ef815146b802cfd6a5fb67d1f9267745
 2023815 || ET TROJAN Shafttt MySQL Bruteforce Bot CnC Beacon || md5,cb4ab17468984f1b292adac9f745cb2b
 2023816 || ET TROJAN WSF/JS Downloader Jan 30 2017 M1 || md5,852cbd70766feb96923a79b210e94646
 2023817 || ET CURRENT_EVENTS EITest SocEng Inject Jan 15 2017 EXE Download || url,blog.brillantit.com/exposing-eitest-campaign || url,www.proofpoint.com/us/threat-insight/post/EITest-Nabbing-Chrome-Users-Chrome-Font-Social-Engineering-Scheme
@@ -20812,6 +20812,102 @@
 2023906 || ET TROJAN Unknown Malicious SSL Cert 5
 2023907 || ET TROJAN Unknown Malicious SSL Cert 6
 2023908 || ET TROJAN Unknown Malicious SSL Cert 7
+2023909 || ET TROJAN Miniduke variant C&C activity || url,www.f-secure.com/static/doc/labs_global/Whitepapers/cosmicduke_whitepaper.pdf || md5,8bbc55ec1a7e86cb21d3cda5ccb43e1e
+2023910 || ET TROJAN CosmicDuke Exfiltrating Data via FTP STOR || md5,5080bc705217c614b9cbf67a679979a8
+2023911 || ET TROJAN Miniduke variant FTP upload || url,www.f-secure.com/static/doc/labs_global/Whitepapers/cosmicduke_whitepaper.pdf || md5,e175be029dd2b78c059278a567b3ada1
+2023912 || ET TROJAN APT28 SEDNIT Variant CnC Beacon 1 || md5,c2988e3e4f70d5901b234ff1c1363dcc
+2023913 || ET TROJAN APT28 SEDNIT Variant CnC Beacon 2 || md5,c2988e3e4f70d5901b234ff1c1363dcc
+2023914 || ET TROJAN APT28 SEDNIT Variant CnC Beacon 3 || md5,c2988e3e4f70d5901b234ff1c1363dcc
+2023915 || ET TROJAN APT28 SEDNIT Variant CnC Beacon 4 || md5,c2988e3e4f70d5901b234ff1c1363dcc
+2023916 || ET TROJAN APT28 Uploader Variant CnC Beacon
+2023917 || ET TROJAN APT28 Uploader Variant Fake Request to Google
+2023918 || ET TROJAN MiniDuke CnC Beacon (string1_slide_1_1) || url,www.us-cert.gov/security-publications/GRIZZLY-STEPPE-Russian-Malicious-Cyber-Activity
+2023919 || ET TROJAN MiniDuke CnC Beacon (string1_slide_1_2) || url,www.us-cert.gov/security-publications/GRIZZLY-STEPPE-Russian-Malicious-Cyber-Activity
+2023920 || ET TROJAN MiniDuke CnC Beacon (string1_slide_2_1) || url,www.us-cert.gov/security-publications/GRIZZLY-STEPPE-Russian-Malicious-Cyber-Activity
+2023921 || ET TROJAN MiniDuke CnC Beacon (string1_slide_2_2) || url,www.us-cert.gov/security-publications/GRIZZLY-STEPPE-Russian-Malicious-Cyber-Activity
+2023922 || ET TROJAN MiniDuke CnC Beacon (string1_slide_3_1) || url,www.us-cert.gov/security-publications/GRIZZLY-STEPPE-Russian-Malicious-Cyber-Activity
+2023923 || ET TROJAN MiniDuke CnC Beacon (string1_slide_3_2) || url,www.us-cert.gov/security-publications/GRIZZLY-STEPPE-Russian-Malicious-Cyber-Activity
+2023924 || ET TROJAN MiniDuke CnC Beacon (string2_slide_1_1) || url,www.us-cert.gov/security-publications/GRIZZLY-STEPPE-Russian-Malicious-Cyber-Activity
+2023925 || ET TROJAN MiniDuke CnC Beacon (string2_slide_1_2) || url,www.us-cert.gov/security-publications/GRIZZLY-STEPPE-Russian-Malicious-Cyber-Activity
+2023926 || ET TROJAN MiniDuke CnC Beacon (string2_slide_2_1) || url,www.us-cert.gov/security-publications/GRIZZLY-STEPPE-Russian-Malicious-Cyber-Activity
+2023927 || ET TROJAN MiniDuke CnC Beacon (string2_slide_2_2) || md5,www.us-cert.gov/security-publications/GRIZZLY-STEPPE-Russian-Malicious-Cyber-Activity
+2023928 || ET TROJAN MiniDuke CnC Beacon (string2_slide_3_1) || md5,www.us-cert.gov/security-publications/GRIZZLY-STEPPE-Russian-Malicious-Cyber-Activity
+2023929 || ET TROJAN MiniDuke CnC Beacon (string2_slide_3_2) || url,www.us-cert.gov/security-publications/GRIZZLY-STEPPE-Russian-Malicious-Cyber-Activity
+2023930 || ET TROJAN Miniduke Variant CnC Beacon via WebDAV || url,www.us-cert.gov/security-publications/GRIZZLY-STEPPE-Russian-Malicious-Cyber-Activity || md5,f3459924f8b657359cb0bd0984a1d0fa
+2023931 || ET TROJAN APT29 Cache_DLL SSL Cert || url,www.us-cert.gov/security-publications/GRIZZLY-STEPPE-Russian-Malicious-Cyber-Activity || md5,8f154d23ac2071d7f179959aaba37ad5
+2023932 || ET TROJAN Qadars CnC DNS Lookup (zkdef09i7ola.net)
+2023933 || ET MOBILE_MALWARE Trojan-Spy.AndroidOS.Femas.b CnC Beacon || url,securelist.com/blog/incidents/77562/breaking-the-weakest-link-of-the-strongest-chain/ || md5,4ddf3ff57db24513a16eacb99ad07675 || md5,d6ef9b0cdb49b56c53da3433e30f3fd6
+2023934 || ET MOBILE_MALWARE Trojan-Spy.AndroidOS.Femas.b Apps List Exfil || url,securelist.com/blog/incidents/77562/breaking-the-weakest-link-of-the-strongest-chain/ || md5,4ddf3ff57db24513a16eacb99ad07675
+2023935 || ET MOBILE_MALWARE Trojan-Spy.AndroidOS.Femas.b DNS Lookup || url,securelist.com/blog/incidents/77562/breaking-the-weakest-link-of-the-strongest-chain/
+2023936 || ET MOBILE_MALWARE Trojan-Spy.AndroidOS.Femas.b DNS Lookup || url,securelist.com/blog/incidents/77562/breaking-the-weakest-link-of-the-strongest-chain/
+2023937 || ET MOBILE_MALWARE Trojan-Spy.AndroidOS.Femas.b DNS Lookup || url,securelist.com/blog/incidents/77562/breaking-the-weakest-link-of-the-strongest-chain/
+2023938 || ET MOBILE_MALWARE Trojan-Spy.AndroidOS.Femas.b DNS Lookup || url,securelist.com/blog/incidents/77562/breaking-the-weakest-link-of-the-strongest-chain/
+2023939 || ET MOBILE_MALWARE Trojan-Spy.AndroidOS.Femas.b DNS Lookup || url,securelist.com/blog/incidents/77562/breaking-the-weakest-link-of-the-strongest-chain/
+2023940 || ET TROJAN MAGICHOUND.MPK Activity via IRC || md5,ece5b62a4ed4e88dab4f1b5451f54794
+2023941 || ET TROJAN Possibly Malicious Base64 Unicode WebClient DownloadString M1 || md5,97454efcab28e64ac5400e63780af764
+2023942 || ET TROJAN Possibly Malicious Base64 Unicode WebClient DownloadString M2 || md5,97454efcab28e64ac5400e63780af764
+2023943 || ET TROJAN Possibly Malicious Base64 Unicode WebClient DownloadString M3 || md5,97454efcab28e64ac5400e63780af764
+2023944 || ET TROJAN Possibly Malicious Double Base64 Unicode Net.ServicePointManager M1 || md5,97454efcab28e64ac5400e63780af764
+2023945 || ET TROJAN Possibly Malicious Double Base64 Unicode Net.ServicePointManager M2 || md5,97454efcab28e64ac5400e63780af764
+2023946 || ET TROJAN Possibly Malicious Double Base64 Unicode Net.ServicePointManager M3 || md5,97454efcab28e64ac5400e63780af764
+2023947 || ET TROJAN Possible Malicious PowerSploit PowerShell Script Observed over HTTP || url,github.com/PowerShellMafia/PowerSploit/blob/master/CodeExecution/Invoke-ReflectivePEInjection.ps1
+2023948 || ET TROJAN MAGICHOUND.FETCH Retrieving Malicious PowerShell || url,researchcenter.paloaltonetworks.com/2017/01/unit42-second-wave-shamoon-2-attacks-identified/ || md5,97454efcab28e64ac5400e63780af764
+2023949 || ET TROJAN Likely MAGICHOUND.FETCH Receiving PowerSploit PowerShell over HTTP || url,github.com/PowerShellMafia/PowerSploit/blob/master/CodeExecution/Invoke-ReflectivePEInjection.ps1
+2023950 || ET TROJAN MAGICHOUND.RETRIEVER CnC Beacon || url,researchcenter.paloaltonetworks.com/2017/02/unit42-magic-hound-campaign-attacks-saudi-targets/ || md5,012f79570f720b997b9ef4ef327dd2da
+2023951 || ET TROJAN MAGICHOUND.FETCH CnC Beacon || url,researchcenter.paloaltonetworks.com/2017/02/unit42-magic-hound-campaign-attacks-saudi-targets/ || md5,012f79570f720b997b9ef4ef327dd2da
+2023952 || ET TROJAN MAGICHOUND.FETCH SSL Cert || url,researchcenter.paloaltonetworks.com/2017/02/unit42-magic-hound-campaign-attacks-saudi-targets/
+2023953 || ET TROJAN MAGICHOUND-related DNS Lookup (chrome-up .date) || url,researchcenter.paloaltonetworks.com/2017/02/unit42-magic-hound-campaign-attacks-saudi-targets/
+2023954 || ET TROJAN MAGICHOUND-related DNS Lookup (timezone .live) || url,researchcenter.paloaltonetworks.com/2017/02/unit42-magic-hound-campaign-attacks-saudi-targets/
+2023955 || ET TROJAN MAGICHOUND-related DNS Lookup (servicesystem .serveirc.com) || url,researchcenter.paloaltonetworks.com/2017/02/unit42-magic-hound-campaign-attacks-saudi-targets/
+2023956 || ET TROJAN MAGICHOUND-related DNS Lookup (analytics-google .org) || url,researchcenter.paloaltonetworks.com/2017/02/unit42-magic-hound-campaign-attacks-saudi-targets/
+2023957 || ET TROJAN MAGICHOUND-related DNS Lookup (com-adm .in) || url,researchcenter.paloaltonetworks.com/2017/02/unit42-magic-hound-campaign-attacks-saudi-targets/
+2023958 || ET TROJAN MAGICHOUND-related DNS Lookup (microsoftexplorerservices .cloud) || url,researchcenter.paloaltonetworks.com/2017/02/unit42-magic-hound-campaign-attacks-saudi-targets/
+2023959 || ET TROJAN MAGICHOUND-related DNS Lookup (msservice .site) || url,researchcenter.paloaltonetworks.com/2017/02/unit42-magic-hound-campaign-attacks-saudi-targets/
+2023960 || ET TROJAN MAGICHOUND-related DNS Lookup (com-ho .me) || url,researchcenter.paloaltonetworks.com/2017/02/unit42-magic-hound-campaign-attacks-saudi-targets/
+2023961 || ET TROJAN MAGICHOUND-related DNS Lookup (ntg-sa .com) || url,researchcenter.paloaltonetworks.com/2017/02/unit42-magic-hound-campaign-attacks-saudi-targets/
+2023962 || ET TROJAN MAGICHOUND-related DNS Lookup (briefl .ink) || url,researchcenter.paloaltonetworks.com/2017/02/unit42-magic-hound-campaign-attacks-saudi-targets/
+2023963 || ET TROJAN MAGICHOUND.LEASH IRC CnC Beacon || url,researchcenter.paloaltonetworks.com/2017/02/unit42-magic-hound-campaign-attacks-saudi-targets/ || md5,3c8a142d2e3b84fb0d210250af77cc9b
+2023964 || ET CURRENT_EVENTS Successful WeTransfer Phish Oct 04 2016
+2023965 || ET TROJAN CozyCar CnC Beacon || url,www.us-cert.gov/security-publications/GRIZZLY-STEPPE-Russian-Malicious-Cyber-Activity
+2023966 || ET TROJAN CozyCar V2 CnC Beacon || url,www.us-cert.gov/security-publications/GRIZZLY-STEPPE-Russian-Malicious-Cyber-Activity
+2023967 || ET TROJAN APT29 Implant8 - Evil Twitter Callback || url,www.us-cert.gov/security-publications/GRIZZLY-STEPPE-Russian-Malicious-Cyber-Activity
+2023968 || ET TROJAN ShellCrew.APT StreamEx DNS Lookup 1 || url,www.cylance.com/shell-crew-variants-continue-to-fly-under-big-avs-radar
+2023969 || ET TROJAN ShellCrew.APT StreamEx DNS Lookup 2 || url,www.cylance.com/shell-crew-variants-continue-to-fly-under-big-avs-radar
+2023970 || ET TROJAN ShellCrew.APT StreamEx DNS Lookup 3 || url,www.cylance.com/shell-crew-variants-continue-to-fly-under-big-avs-radar
+2023971 || ET TROJAN ShellCrew.APT StreamEx DNS Lookup 4 || url,www.cylance.com/shell-crew-variants-continue-to-fly-under-big-avs-radar
+2023972 || ET TROJAN ShellCrew.APT StreamEx DNS Lookup 5 || url,www.cylance.com/shell-crew-variants-continue-to-fly-under-big-avs-radar
+2023973 || ET TROJAN ShellCrew.APT StreamEx DNS Lookup 6 || url,www.cylance.com/shell-crew-variants-continue-to-fly-under-big-avs-radar
+2023974 || ET TROJAN ShellCrew.APT StreamEx DNS Lookup 7 || url,www.cylance.com/shell-crew-variants-continue-to-fly-under-big-avs-radar
+2023975 || ET TROJAN ShellCrew.APT StreamEx DNS Lookup 8 || url,www.cylance.com/shell-crew-variants-continue-to-fly-under-big-avs-radar
+2023976 || ET TROJAN ShellCrew.APT StreamEx DNS Lookup 9 || url,www.cylance.com/shell-crew-variants-continue-to-fly-under-big-avs-radar
+2023977 || ET TROJAN ShellCrew.APT StreamEx DNS Lookup 10 || url,www.cylance.com/shell-crew-variants-continue-to-fly-under-big-avs-radar
+2023978 || ET TROJAN ShellCrew.APT StreamEx DNS Lookup 11 || url,www.cylance.com/shell-crew-variants-continue-to-fly-under-big-avs-radar
+2023979 || ET TROJAN ShellCrew.APT StreamEx DNS Lookup 12 || url,www.cylance.com/shell-crew-variants-continue-to-fly-under-big-avs-radar
+2023980 || ET TROJAN ShellCrew.APT StreamEx DNS Lookup 13 || url,www.cylance.com/shell-crew-variants-continue-to-fly-under-big-avs-radar
+2023981 || ET TROJAN ShellCrew.APT StreamEx DNS Lookup 14 || url,www.cylance.com/shell-crew-variants-continue-to-fly-under-big-avs-radar
+2023982 || ET TROJAN ShellCrew.APT StreamEx DNS Lookup 15 || url,www.cylance.com/shell-crew-variants-continue-to-fly-under-big-avs-radar
+2023983 || ET TROJAN ShellCrew.APT StreamEx DNS Lookup 16 || url,www.cylance.com/shell-crew-variants-continue-to-fly-under-big-avs-radar
+2023984 || ET TROJAN ShellCrew.APT StreamEx DNS Lookup 17 || url,www.cylance.com/shell-crew-variants-continue-to-fly-under-big-avs-radar
+2023985 || ET TROJAN ShellCrew.APT StreamEx DNS Lookup 18 || url,www.cylance.com/shell-crew-variants-continue-to-fly-under-big-avs-radar
+2023986 || ET TROJAN ShellCrew.APT StreamEx DNS Lookup 19 || url,www.cylance.com/shell-crew-variants-continue-to-fly-under-big-avs-radar
+2023987 || ET TROJAN ShellCrew.APT StreamEx DNS Lookup 20 || url,www.cylance.com/shell-crew-variants-continue-to-fly-under-big-avs-radar
+2023988 || ET TROJAN ShellCrew.APT StreamEx DNS Lookup 21 || url,www.cylance.com/shell-crew-variants-continue-to-fly-under-big-avs-radar
+2023989 || ET TROJAN ShellCrew.APT StreamEx DNS Lookup 22 || url,www.cylance.com/shell-crew-variants-continue-to-fly-under-big-avs-radar
+2023990 || ET TROJAN ShellCrew.APT StreamEx DNS Lookup 23 || url,www.cylance.com/shell-crew-variants-continue-to-fly-under-big-avs-radar
+2023991 || ET TROJAN ShellCrew.APT StreamEx DNS Lookup 24 || url,www.cylance.com/shell-crew-variants-continue-to-fly-under-big-avs-radar
+2023992 || ET TROJAN ShellCrew.APT StreamEx DNS Lookup 25 || url,www.cylance.com/shell-crew-variants-continue-to-fly-under-big-avs-radar
+2023993 || ET TROJAN ShellCrew.APT StreamEx DNS Lookup 26 || url,www.cylance.com/shell-crew-variants-continue-to-fly-under-big-avs-radar
+2023994 || ET TROJAN ShellCrew.APT StreamEx DNS Lookup 27 || url,www.cylance.com/shell-crew-variants-continue-to-fly-under-big-avs-radar
+2023995 || ET EXPLOIT TP-LINK DNS Change GET Request (DNSChanger EK) || url,www.xexexe.cz/2015/02/bruteforcing-tp-link-routers-with.html
+2023996 || ET EXPLOIT TP-LINK Password Change GET Request (DNSChanger EK) || url,www.xexexe.cz/2015/02/bruteforcing-tp-link-routers-with.html
+2023997 || ET INFO Potentially unsafe SMBv1 protocol in use || url,blogs.technet.microsoft.com/filecab/2016/09/16/stop-using-smb1/ || url,www.us-cert.gov/ncas/current-activity/2017/01/16/SMB-Security-Best-Practices
+2023998 || ET TROJAN ABUSE.CH Ransomware Domain Detected (TorrentLocker C2) || url,ransomwaretracker.abuse.ch
+2023999 || ET CURRENT_EVENTS Successful Apple Account Phish Feb 17 2017
+2024000 || ET CURRENT_EVENTS Successful iCloud (CN) Phish Feb 17 2017
+2024001 || ET CURRENT_EVENTS Successful California Bank & Trust Phish Feb 17 2017
+2024002 || ET CURRENT_EVENTS Successful Banco Itau (BR) Mobile Phish Feb 17 2017
+2024003 || ET CURRENT_EVENTS Possible Phishing Verified by Visa title over non SSL Feb 17 2017
+2024004 || ET TROJAN APT29 Implant8 - MAL_REFERER || url,www.us-cert.gov/security-publications/GRIZZLY-STEPPE-Russian-Malicious-Cyber-Activity
 2100110 || GPL DELETED netbus getinfo || arachnids,403
 2100116 || GPL TROJAN BackOrifice access || arachnids,399
 2100139 || GPL WEB_SERVER WEB-IIS Remote IIS Server Name spoof attempt loopback IP || cve,2005-2678
@@ -22675,6 +22771,16 @@
 2404036 || ET CNC Shadowserver Reported CnC Server IP group 37 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
 2404037 || ET CNC Shadowserver Reported CnC Server IP group 38 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
 2404038 || ET CNC Shadowserver Reported CnC Server IP group 39 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
+2404039 || ET CNC Shadowserver Reported CnC Server IP group 40 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
+2404040 || ET CNC Shadowserver Reported CnC Server IP group 41 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
+2404041 || ET CNC Shadowserver Reported CnC Server IP group 42 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
+2404042 || ET CNC Shadowserver Reported CnC Server IP group 43 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
+2404043 || ET CNC Shadowserver Reported CnC Server IP group 44 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
+2404044 || ET CNC Shadowserver Reported CnC Server IP group 45 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
+2404045 || ET CNC Shadowserver Reported CnC Server IP group 46 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
+2404046 || ET CNC Shadowserver Reported CnC Server IP group 47 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
+2404047 || ET CNC Shadowserver Reported CnC Server IP group 48 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
+2404048 || ET CNC Shadowserver Reported CnC Server group 49 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
 2404150 || ET CNC Zeus Tracker Reported CnC Server group 1 || url,zeustracker.abuse.ch || url,doc.emergingthreats.net/bin/view/Main/BotCC
 2404151 || ET CNC Zeus Tracker Reported CnC Server group 2 || url,zeustracker.abuse.ch || url,doc.emergingthreats.net/bin/view/Main/BotCC
 2404152 || ET CNC Zeus Tracker Reported CnC Server group 3 || url,zeustracker.abuse.ch || url,doc.emergingthreats.net/bin/view/Main/BotCC
@@ -22931,27 +23037,51 @@
 2405001 || ET CNC Shadowserver Reported CnC Server Port 80 Group 1 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
 2405002 || ET CNC Shadowserver Reported CnC Server Port 81 Group 1 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
 2405003 || ET CNC Shadowserver Reported CnC Server Port 443 Group 1 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
-2405004 || ET CNC Shadowserver Reported CnC Server Port 1337 Group 1 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
-2405005 || ET CNC Shadowserver Reported CnC Server Port 2319 Group 1 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
-2405006 || ET CNC Shadowserver Reported CnC Server Port 4042 Group 1 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
-2405007 || ET CNC Shadowserver Reported CnC Server Port 4244 Group 1 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
-2405008 || ET CNC Shadowserver Reported CnC Server Port 6556 Group 1 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
-2405009 || ET CNC Shadowserver Reported CnC Server Port 6662 Group 1 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
-2405010 || ET CNC Shadowserver Reported CnC Server Port 6665 Group 1 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
-2405011 || ET CNC Shadowserver Reported CnC Server Port 6666 Group 1 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
-2405012 || ET CNC Shadowserver Reported CnC Server Port 6667 Group 1 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
-2405013 || ET CNC Shadowserver Reported CnC Server Port 6667 Group 2 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
-2405014 || ET CNC Shadowserver Reported CnC Server Port 6668 Group 1 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
-2405015 || ET CNC Shadowserver Reported CnC Server Port 6669 Group 1 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
-2405016 || ET CNC Shadowserver Reported CnC Server Port 6768 Group 1 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
-2405017 || ET CNC Shadowserver Reported CnC Server Port 7000 Group 1 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
-2405018 || ET CNC Shadowserver Reported CnC Server Port 8585 Group 1 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
-2405019 || ET CNC Shadowserver Reported CnC Server Port 9000 Group 1 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
-2405020 || ET CNC Shadowserver Reported CnC Server Port 10324 Group 1 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
-2405021 || ET CNC Shadowserver Reported CnC Server Port 11830 Group 1 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
-2405022 || ET CNC Shadowserver Reported CnC Server Port 13001 Group 1 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
-2405023 || ET CNC Shadowserver Reported CnC Server Port 19899 Group 1 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
-2405024 || ET CNC Shadowserver Reported CnC Server Port 33333 Group 1 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
+2405004 || ET CNC Shadowserver Reported CnC Server Port 1023 Group 1 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
+2405005 || ET CNC Shadowserver Reported CnC Server Port 1337 Group 1 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
+2405006 || ET CNC Shadowserver Reported CnC Server Port 2319 Group 1 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
+2405007 || ET CNC Shadowserver Reported CnC Server Port 3303 Group 1 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
+2405008 || ET CNC Shadowserver Reported CnC Server Port 3306 Group 1 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
+2405009 || ET CNC Shadowserver Reported CnC Server Port 3993 Group 1 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
+2405010 || ET CNC Shadowserver Reported CnC Server Port 4042 Group 1 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
+2405011 || ET CNC Shadowserver Reported CnC Server Port 4244 Group 1 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
+2405012 || ET CNC Shadowserver Reported CnC Server Port 4318 Group 1 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
+2405013 || ET CNC Shadowserver Reported CnC Server Port 4492 Group 1 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
+2405014 || ET CNC Shadowserver Reported CnC Server Port 4676 Group 1 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
+2405015 || ET CNC Shadowserver Reported CnC Server Port 6556 Group 1 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
+2405016 || ET CNC Shadowserver Reported CnC Server Port 6567 Group 1 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
+2405017 || ET CNC Shadowserver Reported CnC Server Port 6660 Group 1 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
+2405018 || ET CNC Shadowserver Reported CnC Server Port 6662 Group 1 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
+2405019 || ET CNC Shadowserver Reported CnC Server Port 6663 Group 1 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
+2405020 || ET CNC Shadowserver Reported CnC Server Port 6664 Group 1 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
+2405021 || ET CNC Shadowserver Reported CnC Server Port 6665 Group 1 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
+2405022 || ET CNC Shadowserver Reported CnC Server Port 6666 Group 1 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
+2405023 || ET CNC Shadowserver Reported CnC Server Port 6667 Group 1 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
+2405024 || ET CNC Shadowserver Reported CnC Server Port 6667 Group 2 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
+2405025 || ET CNC Shadowserver Reported CnC Server Port 6667 Group 3 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
+2405026 || ET CNC Shadowserver Reported CnC Server Port 6667 Group 4 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
+2405027 || ET CNC Shadowserver Reported CnC Server Port 6667 Group 5 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
+2405028 || ET CNC Shadowserver Reported CnC Server Port 6667 Group 6 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
+2405029 || ET CNC Shadowserver Reported CnC Server Port 6667 Group 7 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
+2405030 || ET CNC Shadowserver Reported CnC Server Port 6667 Group 8 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
+2405031 || ET CNC Shadowserver Reported CnC Server Port 6667 Group 9 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
+2405032 || ET CNC Shadowserver Reported CnC Server Port 6667 Group 10 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
+2405033 || ET CNC Shadowserver Reported CnC Server Port 6668 Group 1 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
+2405034 || ET CNC Shadowserver Reported CnC Server Port 6669 Group 1 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
+2405035 || ET CNC Shadowserver Reported CnC Server Port 6764 Group 1 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
+2405036 || ET CNC Shadowserver Reported CnC Server Port 6768 Group 1 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
+2405037 || ET CNC Shadowserver Reported CnC Server Port 7000 Group 1 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
+2405038 || ET CNC Shadowserver Reported CnC Server Port 7100 Group 1 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
+2405039 || ET CNC Shadowserver Reported CnC Server Port 7770 Group 1 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
+2405040 || ET CNC Shadowserver Reported CnC Server Port 8080 Group 1 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
+2405041 || ET CNC Shadowserver Reported CnC Server Port 8089 Group 1 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
+2405042 || ET CNC Shadowserver Reported CnC Server Port 8585 Group 1 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
+2405043 || ET CNC Shadowserver Reported CnC Server Port 9000 Group 1 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
+2405044 || ET CNC Shadowserver Reported CnC Server Port 10324 Group 1 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
+2405045 || ET CNC Shadowserver Reported CnC Server Port 11830 Group 1 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
+2405046 || ET CNC Shadowserver Reported CnC Server Port 13001 Group 1 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
+2405047 || ET CNC Shadowserver Reported CnC Server Port 19899 Group 1 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
+2405048 || ET CNC Shadowserver Reported CnC Server Port 33333 Group 1 || url,www.shadowserver.org || url,doc.emergingthreats.net/bin/view/Main/BotCC
 2500000 || ET COMPROMISED Known Compromised or Hostile Host Traffic group 1 || url,doc.emergingthreats.net/bin/view/Main/CompromisedHosts
 2500002 || ET COMPROMISED Known Compromised or Hostile Host Traffic group 2 || url,doc.emergingthreats.net/bin/view/Main/CompromisedHosts
 2500004 || ET COMPROMISED Known Compromised or Hostile Host Traffic group 3 || url,doc.emergingthreats.net/bin/view/Main/CompromisedHosts
@@ -22994,7 +23124,6 @@
 2500078 || ET COMPROMISED Known Compromised or Hostile Host Traffic group 40 || url,doc.emergingthreats.net/bin/view/Main/CompromisedHosts
 2500080 || ET COMPROMISED Known Compromised or Hostile Host Traffic group 41 || url,doc.emergingthreats.net/bin/view/Main/CompromisedHosts
 2500082 || ET COMPROMISED Known Compromised or Hostile Host Traffic group 42 || url,doc.emergingthreats.net/bin/view/Main/CompromisedHosts
-2500084 || ET COMPROMISED Known Compromised or Hostile Host Traffic group 43 || url,doc.emergingthreats.net/bin/view/Main/CompromisedHosts
 2520000 || ET TOR Known Tor Exit Node Traffic group 1 || url,doc.emergingthreats.net/bin/view/Main/TorRules
 2520002 || ET TOR Known Tor Exit Node Traffic group 2 || url,doc.emergingthreats.net/bin/view/Main/TorRules
 2520004 || ET TOR Known Tor Exit Node Traffic group 3 || url,doc.emergingthreats.net/bin/view/Main/TorRules
@@ -23074,8 +23203,6 @@
 2520152 || ET TOR Known Tor Exit Node Traffic group 77 || url,doc.emergingthreats.net/bin/view/Main/TorRules
 2520154 || ET TOR Known Tor Exit Node Traffic group 78 || url,doc.emergingthreats.net/bin/view/Main/TorRules
 2520156 || ET TOR Known Tor Exit Node Traffic group 79 || url,doc.emergingthreats.net/bin/view/Main/TorRules
-2520158 || ET TOR Known Tor Exit Node Traffic group 80 || url,doc.emergingthreats.net/bin/view/Main/TorRules
-2520160 || ET TOR Known Tor Exit Node Traffic group 81 || url,doc.emergingthreats.net/bin/view/Main/TorRules
 2522000 || ET TOR Known Tor Relay/Router (Not Exit) Node Traffic group 1 || url,doc.emergingthreats.net/bin/view/Main/TorRules
 2522002 || ET TOR Known Tor Relay/Router (Not Exit) Node Traffic group 2 || url,doc.emergingthreats.net/bin/view/Main/TorRules
 2522004 || ET TOR Known Tor Relay/Router (Not Exit) Node Traffic group 3 || url,doc.emergingthreats.net/bin/view/Main/TorRules
@@ -23783,10 +23910,6 @@
 2523408 || ET TOR Known Tor Relay/Router (Not Exit) Node Traffic group 705 || url,doc.emergingthreats.net/bin/view/Main/TorRules
 2523410 || ET TOR Known Tor Relay/Router (Not Exit) Node Traffic group 706 || url,doc.emergingthreats.net/bin/view/Main/TorRules
 2523412 || ET TOR Known Tor Relay/Router (Not Exit) Node Traffic group 707 || url,doc.emergingthreats.net/bin/view/Main/TorRules
-2523414 || ET TOR Known Tor Relay/Router (Not Exit) Node Traffic group 708 || url,doc.emergingthreats.net/bin/view/Main/TorRules
-2523416 || ET TOR Known Tor Relay/Router (Not Exit) Node Traffic group 709 || url,doc.emergingthreats.net/bin/view/Main/TorRules
-2523418 || ET TOR Known Tor Relay/Router (Not Exit) Node Traffic group 710 || url,doc.emergingthreats.net/bin/view/Main/TorRules
-2523420 || ET TOR Known Tor Relay/Router (Not Exit) Node Traffic group 711 || url,doc.emergingthreats.net/bin/view/Main/TorRules
 100000102 || GPL DELETED Halocon Denial of Service Empty UDP Packet || bugtraq,12281
 100000103 || GPL DELETED Breed Game Server Denial of Service Empty UDP Packet || bugtraq,12262
 100000104 || GPL DELETED Amp II 3D Game Server Denial of Service Empty UDP Packet || bugtraq,12192
