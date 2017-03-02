@@ -17,19 +17,31 @@ start() {
   	PID=`cat $PIDFILE`
 	echo "Snort is already running (PID='$PID')"
   else
-	echo 'Starting service…' >&2
+	echo 'Starting service ...' >&2
 	snort -c /etc/snort/snort.conf -D -i $INTERFACE
   	echo 'Service started' >&2
+  	IDSTOOLSID=$(ps aux | grep idstools | cut -d' ' -f5)
+  	if [ -z $IDSTOOLSID ]; then
+		echo 'Starting idstools ...' >&2
+        	su - snort -c "idstools-u2json @/etc/u2json.conf &" >/dev/null 2>&1	
+  		echo 'Service started' >&2
+  	fi
   fi
 }
 
 stop() {
   if [ -s $PIDFILE ]; then
   	PID=`cat $PIDFILE`
-	echo 'Stopping service…' >&2
+	echo 'Stopping service ...' >&2
 	kill -15 $PID
 	rm $PIDFILE
 	echo 'Service stopped' >&2
+  	IDSTOOLSID=$(ps aux | grep idstools | cut -d' ' -f5)
+  	if [ ! -z $IDSTOOLSID ]; then 
+		echo 'Stopping idstools ...' >&2		
+		kill -15 $IDSTOOLSID
+		echo 'Idstools stopped' >&2		
+  	fi
   else 
 	echo "Snort is not running"
   fi
