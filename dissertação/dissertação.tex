@@ -475,11 +475,10 @@ contribuirão para a evolução do \abnTeX.
 \subsection{Exploração de Vulnerabilidades}
 \subsection{Varredura de Redes}
 \subsection{Força Bruta}
-\subsection{Web - Desfiguração de páginas}
+\subsection{Desfiguração de páginas}
 \subsection{Negação de Serviços}
 \subsection{Worm}
 \subsection{Trojan}
-\subsection{Botnet}
 \subsection{Fraudes - Direitos Autorais}
 % ----------------------------------------------------------
 \chapter{Sistemas de Detecção e Prevenção de Intrusão}
@@ -497,10 +496,30 @@ Descrever os testes realizados
 Resultados
 
 Comparação entre as soluções - Definir métricas de comparação
+
+No ambiente de teste foi usado uma máquina Dell com 134G de memória RAM e 40 núcleos. Nele foi instalado o XenServer \cite{xenserver} versão 7, sistema operacional \textit{opensource} da Citrix voltado para virtualização. No primeiro momento, foi instalado uma máquina virtual que seria usada como base para instalações de outras máquinas, caso fosse necessário, usando o recurso de \textit{snapshot} do sistema. O uso desse recurso foi necessário para criar um ambiente igual para os IDSs.
+
+Foi alocado 8 GB de memória RAM, 4 processadores e 100 GB de espaço em disco para o \textit{snapshot}. Posteriormente criaram-se três máquinas virtuais, duas usadas para instalação dos IDSs (Suricata e Snort) e a terceira para instalação das ferramentas usadas para simular ataques a rede. Optou-se pela instalação do sistema Kali \cite{kalilinux} para geração de ataques pois nele existe várias ferramentas nativas para testes de penetração e auditoria de segurança.
+
+Para coleta das informações de uso de recurso de hardware como memória e processamento das máquinas com os IDSs foi usado o \textit{daemon} Collectd \cite{collectd}.
+
+Figura \ref{infra-ambiente}
+
+Nas máquinas que estão rodando os IDSs foram instalados um \textit{daemon} chamado \textit{collectd} para coleta de informações de uso de recurso como memória e processamento.
+
+\begin{figure}
+	\centering 
+	\includegraphics[scale=.7]{imagens/infra.png}
+	\caption{Infraestrutura do Ambiente de teste}
+	\label{infra-ambiente}
+\end{figure}
+
 \section{Métricas de Comparação}
-\subsection{Consumo dos Recursos de Hardware (Memória, Processamento)}
-\subsection{Taxa de Detecção}
-\subsection{Número de Falsos Positivos/Negativos}
+Consumo dos Recursos de Hardware (Memória, Processamento)
+
+Taxa de Detecção
+
+Número de Falsos Positivos/Negativos
 % ----------------------------------------------------------
 \chapter{Considerações Finais}
 % ----------------------------------------------------------
@@ -591,7 +610,7 @@ Comparação entre as soluções - Definir métricas de comparação
 % ----------------------------------------------------------
 % Referências bibliográficas
 % ----------------------------------------------------------
-\bibliography{abntex2-modelo-references}
+\bibliography{dissertacao}
 
 % ----------------------------------------------------------
 % Glossário
