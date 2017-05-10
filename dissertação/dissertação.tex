@@ -58,7 +58,10 @@
 \usepackage{graphicx}			% Inclusão de gráficos
 \usepackage{microtype} 			% para melhorias de justificação
 % ---
-		
+
+%\graphicspath{{D:/LATEX/Reports@IIT/figures/}}
+\graphicspath{{./imagens/}}
+
 % ---
 % Pacotes adicionais, usados apenas no âmbito do Modelo Canônico do abnteX2
 % ---
@@ -95,23 +98,22 @@
 % ---
 % Informações de dados para CAPA e FOLHA DE ROSTO
 % ---
-\titulo{Modelo Canônico de\\ Trabalho Acadêmico com \abnTeX}
-\autor{Equipe \abnTeX}
+\titulo{Análise de IDPSs}
+\autor{Glenon Mateus Barbosa Araújo}
 \local{Brasil}
-\data{2015, v-1.9.5}
-\orientador{Lauro César Araujo}
-\coorientador{Equipe \abnTeX}
+\data{\the\year}
+\orientador{Dr. Roberto Samarone dos Santos Araújo}
+%\coorientador{}
 \instituicao{%
-  Universidade do Brasil -- UBr
+  Universidade Federal do Pará -- UFPA
   \par
-  Faculdade de Arquitetura da Informação
+  Faculdade de Computação
   \par
-  Programa de Pós-Graduação}
-\tipotrabalho{Tese (Doutorado)}
+  Bacharelado em Ciência da Computação}
+\tipotrabalho{Trabalho de Conclusão de Curso}
 % O preambulo deve conter o tipo do trabalho, o objetivo, 
 % o nome da instituição e a área de concentração 
-\preambulo{Modelo canônico de trabalho monográfico acadêmico em conformidade com
-as normas ABNT apresentado à comunidade de usuários \LaTeX.}
+\preambulo{Trabalho de Conclusão de Curso submetida a graduação em Ciência da Computação da UFPA}
 % ---
 
 
@@ -222,13 +224,13 @@ as normas ABNT apresentado à comunidade de usuários \LaTeX.}
 	\imprimirdata.}\\
 	
 	\hspace{0.5cm}
-		1. Palavra-chave1.
-		2. Palavra-chave2.
-		2. Palavra-chave3.
+		1. Suricata.
+		2. Snort.
+		3. IDPS.
 		I. Orientador.
-		II. Universidade xxx.
-		III. Faculdade de xxx.
-		IV. Título 			
+		II. Universidade Federal do Pará.
+		III. Faculdade de Computação.
+		IV. Análise de IDPSs
 	\end{minipage}}
 	\end{center}
 \end{fichacatalografica}
@@ -295,8 +297,8 @@ Zootecnia, Universidade de São Paulo, São Paulo, 2011.
    Trabalho aprovado. \imprimirlocal, 24 de novembro de 2012:
 
    \assinatura{\textbf{\imprimirorientador} \\ Orientador} 
-   \assinatura{\textbf{Professor} \\ Convidado 1}
-   \assinatura{\textbf{Professor} \\ Convidado 2}
+   %\assinatura{\textbf{Professor} \\ Convidado 1}
+   %\assinatura{\textbf{Professor} \\ Convidado 2}
    %\assinatura{\textbf{Professor} \\ Convidado 3}
    %\assinatura{\textbf{Professor} \\ Convidado 4}
       
@@ -318,8 +320,7 @@ Zootecnia, Universidade de São Paulo, São Paulo, 2011.
    \vspace*{\fill}
    \centering
    \noindent
-   \textit{ Este trabalho é dedicado às crianças adultas que,\\
-   quando pequenas, sonharam em se tornar cientistas.} \vspace*{\fill}
+   \textit{•} \vspace*{\fill}
 \end{dedicatoria}
 % ---
 
@@ -327,22 +328,6 @@ Zootecnia, Universidade de São Paulo, São Paulo, 2011.
 % Agradecimentos
 % ---
 \begin{agradecimentos}
-Os agradecimentos principais são direcionados à Gerald Weber, Miguel Frasson,
-Leslie H. Watter, Bruno Parente Lima, Flávio de Vasconcellos Corrêa, Otavio Real
-Salvador, Renato Machnievscz\footnote{Os nomes dos integrantes do primeiro
-projeto abn\TeX\ foram extraídos de
-\url{http://codigolivre.org.br/projects/abntex/}} e todos aqueles que
-contribuíram para que a produção de trabalhos acadêmicos conforme
-as normas ABNT com \LaTeX\ fosse possível.
-
-Agradecimentos especiais são direcionados ao Centro de Pesquisa em Arquitetura
-da Informação\footnote{\url{http://www.cpai.unb.br/}} da Universidade de
-Brasília (CPAI), ao grupo de usuários
-\emph{latex-br}\footnote{\url{http://groups.google.com/group/latex-br}} e aos
-novos voluntários do grupo
-\emph{\abnTeX}\footnote{\url{http://groups.google.com/group/abntex2} e
-\url{http://www.abntex.net.br/}}~que contribuíram e que ainda
-contribuirão para a evolução do \abnTeX.
 
 \end{agradecimentos}
 % ---
@@ -353,11 +338,7 @@ contribuirão para a evolução do \abnTeX.
 \begin{epigrafe}
     \vspace*{\fill}
 	\begin{flushright}
-		\textit{``Não vos amoldeis às estruturas deste mundo, \\
-		mas transformai-vos pela renovação da mente, \\
-		a fim de distinguir qual é a vontade de Deus: \\
-		o que é bom, o que Lhe é agradável, o que é perfeito.\\
-		(Bíblia Sagrada, Romanos 12, 2)}
+		\textit{•}
 	\end{flushright}
 \end{epigrafe}
 % ---
@@ -369,48 +350,20 @@ contribuirão para a evolução do \abnTeX.
 % resumo em português
 \setlength{\absparsep}{18pt} % ajusta o espaçamento dos parágrafos do resumo
 \begin{resumo}
- Segundo a \citeonline[3.1-3.2]{NBR6028:2003}, o resumo deve ressaltar o
- objetivo, o método, os resultados e as conclusões do documento. A ordem e a extensão
- destes itens dependem do tipo de resumo (informativo ou indicativo) e do
- tratamento que cada item recebe no documento original. O resumo deve ser
- precedido da referência do documento, com exceção do resumo inserido no
- próprio documento. (\ldots) As palavras-chave devem figurar logo abaixo do
- resumo, antecedidas da expressão Palavras-chave:, separadas entre si por
- ponto e finalizadas também por ponto.
 
- \textbf{Palavras-chave}: latex. abntex. editoração de texto.
+ \textbf{Palavras-chave}: Segurança, Suricata, Snort, Sistema de Detecção de Intrusão, Sistema de Prevenção de Intrusão, IDS, IPS.
 \end{resumo}
 
 % resumo em inglês
 \begin{resumo}[Abstract]
  \begin{otherlanguage*}{english}
-   This is the english abstract.
 
    \vspace{\onelineskip}
  
    \noindent 
-   \textbf{Keywords}: latex. abntex. text editoration.
+   \textbf{Keywords}: Security, Suricata, Snort, Intrusion Detection System, Intrusion Prevention System, IDS, IPS.
  \end{otherlanguage*}
 \end{resumo}
-
-% resumo em francês 
-%\begin{resumo}[Résumé]
-% \begin{otherlanguage*}{french}
-%    Il s'agit d'un résumé en français.
- 
- %  \textbf{Mots-clés}: latex. abntex. publication de textes.
-% \end{otherlanguage*}
-%\end{resumo}
-
-% resumo em espanhol
-%\begin{resumo}[Resumen]
-% \begin{otherlanguage*}{spanish}
-%   Este es el resumen en español.
-  
-%   \textbf{Palabras clave}: latex. abntex. publicación de textos.
-% \end{otherlanguage*}
-%\end{resumo}
-% ---
 
 % ---
 % inserir lista de ilustrações
@@ -432,20 +385,20 @@ contribuirão para a evolução do \abnTeX.
 % inserir lista de abreviaturas e siglas
 % ---
 \begin{siglas}
-  \item[ABNT] Associação Brasileira de Normas Técnicas
-  \item[abnTeX] ABsurdas Normas para TeX
+  \item[IDS] \textit{Intrusion Detection System}
+  \item[IPS] \textit{Intrusion Prevention System}
 \end{siglas}
 % ---
 
 % ---
 % inserir lista de símbolos
 % ---
-\begin{simbolos}
-  \item[$ \Gamma $] Letra grega Gama
-  \item[$ \Lambda $] Lambda
-  \item[$ \zeta $] Letra grega minúscula zeta
-  \item[$ \in $] Pertence
-\end{simbolos}
+%\begin{simbolos}
+%  \item[$ \Gamma $] Letra grega Gama
+%  \item[$ \Lambda $] Lambda
+%  \item[$ \zeta $] Letra grega minúscula zeta
+%  \item[$ \in $] Pertence
+%\end{simbolos}
 % ---
 
 % ---
@@ -487,31 +440,46 @@ contribuirão para a evolução do \abnTeX.
 \section{Suricata}
 % ----------------------------------------------------------
 \chapter{Detecção de Intrusão em um Cenário Real}
-Avaliação das ferramentas em um ambiente prático
+%Avaliação das ferramentas em um ambiente prático
+%Descrever o ambiente, regras, etc
+%Descrever os testes realizados
+%Resultados
+%Comparação entre as soluções - Definir métricas de comparação
 
-Descrever o ambiente, regras, etc
+No ambiente de teste foi usado uma máquina Dell com 134G de memória RAM e 40 núcleos. Usou-se XenServer \cite{xenserver} versão 7, sistema operacional \textit{opensource} da Citrix voltado para virtualização. Foram testados outros SOs porém somente o XenServer possuía, na época da instalação do ambiente, \textit{firmware} da placa de rede do \textit{host} compatível e que funcionava com instabilidade. Outro fator que pesou na escolha do SO foi a experiência que tinha com a plataforma.
 
-Descrever os testes realizados
+No primeiro momento, foi instalado uma máquina virtual que seria usada como base para instalações de outras máquinas usando o recurso de \textit{snapshot} do sistema. O uso desse recurso foi necessário para criar um ambiente igual para os IDSs.
 
-Resultados
+Foi alocado 8 GB de memória RAM, 4 processadores e 100 GB de espaço em disco para o \textit{snapshot}. Esses valores foram definidos com base em um estudo \cite{mikelococo} que considerava vários fatos, como largura da rede, localização do IDS e versão e tipo do capturador de tráfego para dimensionar os recursos, aplicado especificamente ao Snort. A mesma regra foi aplicada ao Suricata.
 
-Comparação entre as soluções - Definir métricas de comparação
+\begin{table}
+ \centering
+ \begin{tabular}{|c|c|c|c|c|}
+ \hline
+  & último & min & méd & máx \\
+ \hline
+ média & 29,34 Mbps & 0 bps & 5,45 Mbps & 107,25 Mbps \\
+ \hline
+ \end{tabular}
+ \caption{Estatística do trafego da rede selecionada para teste}
+ \label{tabela-tráfego}
+\end{table}
 
-No ambiente de teste foi usado uma máquina Dell com 134G de memória RAM e 40 núcleos. Nele foi instalado o XenServer \cite{xenserver} versão 7, sistema operacional \textit{opensource} da Citrix voltado para virtualização. No primeiro momento, foi instalado uma máquina virtual que seria usada como base para instalações de outras máquinas, caso fosse necessário, usando o recurso de \textit{snapshot} do sistema. O uso desse recurso foi necessário para criar um ambiente igual para os IDSs.
-
-Foi alocado 8 GB de memória RAM, 4 processadores e 100 GB de espaço em disco para o \textit{snapshot}. Posteriormente criaram-se três máquinas virtuais, duas usadas para instalação dos IDSs (Suricata e Snort) e a terceira para instalação das ferramentas usadas para simular ataques a rede. Optou-se pela instalação do sistema Kali \cite{kalilinux} para geração de ataques pois nele existe várias ferramentas nativas para testes de penetração e auditoria de segurança.
+Posteriormente criou-se três máquinas virtuais, duas usadas para instalação dos IDSs (Suricata e Snort) e a terceira para instalação das ferramentas usadas para simular ataques a rede. Optou-se pela instalação do sistema Kali \cite{kalilinux} para geração de ataques pois nele existe várias ferramentas nativas para testes de penetração e auditoria de segurança.
 
 Para coleta das informações de uso de recurso de hardware como memória e processamento das máquinas com os IDSs foi usado o \textit{daemon} Collectd \cite{collectd}.
 
+
+
 Figura \ref{infra-ambiente}
 
-Nas máquinas que estão rodando os IDSs foram instalados um \textit{daemon} chamado \textit{collectd} para coleta de informações de uso de recurso como memória e processamento.
+Tabela \ref{tabela-tráfego}
 
 \begin{figure}
-	\centering 
-	\includegraphics[scale=.7]{imagens/infra.png}
-	\caption{Infraestrutura do Ambiente de teste}
-	\label{infra-ambiente}
+ \centering 
+ \includegraphics[scale=.7]{infra.png}
+ \caption{Infraestrutura do Ambiente de teste}
+ \label{infra-ambiente}
 \end{figure}
 
 \section{Métricas de Comparação}
