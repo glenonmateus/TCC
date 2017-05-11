@@ -452,6 +452,10 @@ No primeiro momento, foi instalado uma máquina virtual que seria usada como bas
 
 Foi alocado 8 GB de memória RAM, 4 processadores e 100 GB de espaço em disco para o \textit{snapshot}. Esses valores foram definidos com base em um estudo \cite{mikelococo} que considerava vários fatos, como largura da rede, localização do IDS e versão e tipo do capturador de tráfego para dimensionar os recursos, aplicado especificamente ao Snort. A mesma regra foi aplicada ao Suricata.
 
+A rede selecionada para ser monitorada tem os valores especificados na tabela \ref{tabela-tráfego}. Podemos verificar que seu pico de trafego chega a 107,25 Mbps em um determinado período do dia, valores considerados ideais para o experimento, inclusive para tentar validar os recursos alocados. 
+
+Para o \textit{host} conseguir pegar o pacotes destinados a rede selecionada foi necessário uma configuração de espelhamento que consiste na copia dos pacotes que saem pela porta dessa rede no \textit{switch} para a porta conectada no \textit{host}. A interface de rede do \textit{host} precisou ser configurado no modo promisc.
+
 \begin{table}
  \centering
  \begin{tabular}{|c|c|c|c|c|}
@@ -466,14 +470,10 @@ Foi alocado 8 GB de memória RAM, 4 processadores e 100 GB de espaço em disco p
 \end{table}
 
 Posteriormente criou-se três máquinas virtuais, duas usadas para instalação dos IDSs (Suricata e Snort) e a terceira para instalação das ferramentas usadas para simular ataques a rede. Optou-se pela instalação do sistema Kali \cite{kalilinux} para geração de ataques pois nele existe várias ferramentas nativas para testes de penetração e auditoria de segurança.
-
-Para coleta das informações de uso de recurso de hardware como memória e processamento das máquinas com os IDSs foi usado o \textit{daemon} Collectd \cite{collectd}.
-
-
+ 
+Para coleta das informações de uso de recurso de hardware como memória, processamento e I/O das máquinas com os IDSs foi usado o \textit{daemon} Collectd \cite{collectd}. Outra opção para esse fim é a utilização de um servidor de monitoramento com o \textit{Zabbix} \cite{zabbix}. A ideia de usar duas ferramentas para analise é fazer um comparativo e validar as informações coletadas.
 
 Figura \ref{infra-ambiente}
-
-Tabela \ref{tabela-tráfego}
 
 \begin{figure}
  \centering 
@@ -505,7 +505,7 @@ Número de Falsos Positivos/Negativos
 % ----------------------------------------------------------
 % PARTE
 % ----------------------------------------------------------
-\part{Referenciais teóricos}
+%\part{Referenciais teóricos}
 % ----------------------------------------------------------
 
 % ---
@@ -518,9 +518,9 @@ Número de Falsos Positivos/Negativos
 %\section{Aliquam vestibulum fringilla lorem}
 % ---
 
-\lipsum[1]
+%\lipsum[1]
 
-\lipsum[2-3]
+%\lipsum[2-3]
 
 % ----------------------------------------------------------
 % PARTE
