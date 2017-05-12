@@ -440,13 +440,19 @@ Zootecnia, Universidade de São Paulo, São Paulo, 2011.
 \section{Suricata}
 % ----------------------------------------------------------
 \chapter{Detecção de Intrusão em um Cenário Real}
+
 %Avaliação das ferramentas em um ambiente prático
 %Descrever o ambiente, regras, etc
 %Descrever os testes realizados
 %Resultados
 %Comparação entre as soluções - Definir métricas de comparação
 
-No ambiente de teste foi usado uma máquina Dell com 134G de memória RAM e 40 núcleos. Usou-se XenServer \cite{xenserver} versão 7, sistema operacional \textit{opensource} da Citrix voltado para virtualização. Foram testados outros SOs porém somente o XenServer possuía, na época da instalação do ambiente, \textit{firmware} da placa de rede do \textit{host} compatível e que funcionava com instabilidade. Outro fator que pesou na escolha do SO foi a experiência que tinha com a plataforma.
+%- Em cada capitulo adicionar um texto introdutório
+%- Adicionar o seguinte texto:
+%Este capítulo esta organizado da seguinte forma: A proxima seção
+%aprensenta .... A Seção XY apresenta...
+
+No ambiente de teste foi usado uma máquina Dell com 134G de memória RAM e 40 núcleos. Usou-se XenServer \cite{xenserver} versão 7, sistema operacional (SO) \textit{opensource} da Citrix voltado para virtualização. Foram testados outros SOs porém somente o XenServer possuía, na época da instalação do ambiente, \textit{firmware} da placa de rede do \textit{host} compatível e que funcionava com instabilidade. Outro fator que pesou na escolha do SO foi a experiência que tinha com a plataforma.
 
 No primeiro momento, foi instalado uma máquina virtual que seria usada como base para instalações de outras máquinas usando o recurso de \textit{snapshot} do sistema. O uso desse recurso foi necessário para criar um ambiente igual para os IDSs.
 
@@ -473,14 +479,6 @@ Posteriormente criou-se três máquinas virtuais, duas usadas para instalação 
  
 Para coleta das informações de uso de recurso de hardware como memória, processamento e I/O das máquinas com os IDSs foi usado o \textit{daemon} Collectd \cite{collectd}. Outra opção para esse fim é a utilização de um servidor de monitoramento com o \textit{Zabbix} \cite{zabbix}. A ideia de usar duas ferramentas para analise é fazer um comparativo e validar as informações coletadas.
 
-obs: 
-\begin{itemize}
-\item Descrever as configurações do suricata e snort
-\item Descrever a base de regras escolhida e porque (estatísticas do CERT.br)
-\end{itemize}
-
-
-
 Figura \ref{infra-ambiente}
 
 \begin{figure}
@@ -490,11 +488,13 @@ Figura \ref{infra-ambiente}
  \label{infra-ambiente}
 \end{figure}
 
+\section{Cenário de Testes}
+\section{Infraestrutura definida para testes}
+\section{Testes Realizados}
+\section{Resultados}
 \section{Métricas de Comparação}
 %Consumo dos Recursos de Hardware (Memória, Processamento)
-
 %Taxa de Detecção
-
 %Número de Falsos Positivos/Negativos
 % ----------------------------------------------------------
 \chapter{Considerações Finais}
