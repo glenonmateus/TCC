@@ -14,13 +14,10 @@
 \usepackage{color}	
 \usepackage{graphicx}
 \usepackage{microtype}
-
 \graphicspath{{./imagens/}}
-
-\usepackage{lipsum}				% para geração de dummy text
+\usepackage{lipsum}			
 \usepackage[brazilian,hyperpageref]{backref}	 
 \usepackage[alf]{abntex2cite}	
-
 \renewcommand{\backrefpagesname}{Citado na(s) página(s):~}
 \renewcommand{\backref}{}
 \renewcommand*{\backrefalt}[4]{
@@ -31,7 +28,6 @@
 	\else
 		Citado #1 vezes nas páginas #2.%
 	\fi}%
-
 \titulo{Análise de IDPSs}
 \autor{Glenon Mateus Barbosa Araújo}
 \local{Brasil}
@@ -69,10 +65,8 @@
 \begin{document}
 \selectlanguage{brazil}
 \frenchspacing 
-
 \imprimircapa
 \imprimirfolhaderosto*
-
 \begin{fichacatalografica}
 	\sffamily
 	\vspace*{\fill}
@@ -80,18 +74,13 @@
 	\fbox{\begin{minipage}[c][8cm]{13.5cm}	
 	\small
 	\imprimirautor
-	
 	\hspace{0.5cm} \imprimirtitulo  / \imprimirautor. --
 	\imprimirlocal, \imprimirdata-
-	
 	\hspace{0.5cm} \pageref{LastPage} p. : il. (algumas color.) ; 30 cm.\\
-	
 	\hspace{0.5cm} \imprimirorientadorRotulo~\imprimirorientador\\
-	
 	\hspace{0.5cm}
 	\parbox[t]{\textwidth}{\imprimirtipotrabalho~--~\imprimirinstituicao,
 	\imprimirdata.}\\
-	
 	\hspace{0.5cm}
 		1. Suricata.
 		2. Snort.
@@ -103,18 +92,14 @@
 	\end{minipage}}
 	\end{center}
 \end{fichacatalografica}
-
 \begin{errata}
 Elemento opcional da \citeonline[4.2.1.2]{NBR14724:2011}. Exemplo:
-
 \vspace{\onelineskip}
-
 FERRIGNO, C. R. A. \textbf{Tratamento de neoplasias ósseas apendiculares com
 reimplantação de enxerto ósseo autólogo autoclavado associado ao plasma
 rico em plaquetas}: estudo crítico na cirurgia de preservação de membro em
 cães. 2011. 128 f. Tese (Livre-Docência) - Faculdade de Medicina Veterinária e
 Zootecnia, Universidade de São Paulo, São Paulo, 2011.
-
 \begin{table}[htb]
 \center
 \footnotesize
@@ -126,14 +111,10 @@ Zootecnia, Universidade de São Paulo, São Paulo, 2011.
    \hline
 \end{tabular}
 \end{table}
-
 \end{errata}
-
 \begin{folhadeaprovacao}
-
   \begin{center}
     {\ABNTEXchapterfont\large\imprimirautor}
-
     \vspace*{\fill}\vspace*{\fill}
     \begin{center}
       \ABNTEXchapterfont\bfseries\Large\imprimirtitulo
@@ -148,7 +129,6 @@ Zootecnia, Universidade de São Paulo, São Paulo, 2011.
    \end{center}
         
    Trabalho aprovado. \imprimirlocal, 24 de novembro de 2012:
-
    \assinatura{\textbf{\imprimirorientador} \\ Orientador} 
    %\assinatura{\textbf{Professor} \\ Convidado 1}
    %\assinatura{\textbf{Professor} \\ Convidado 2}
@@ -171,7 +151,6 @@ Zootecnia, Universidade de São Paulo, São Paulo, 2011.
    \textit{•} \vspace*{\fill}
 \end{dedicatoria}
 \begin{agradecimentos}
-
 \end{agradecimentos}
 \begin{epigrafe}
     \vspace*{\fill}
@@ -179,22 +158,18 @@ Zootecnia, Universidade de São Paulo, São Paulo, 2011.
 		\textit{•}
 	\end{flushright}
 \end{epigrafe}
-\setlength{\absparsep}{18pt} % ajusta o espaçamento dos parágrafos do resumo
+\setlength{\absparsep}{18pt} 
 \begin{resumo}
-
  \textbf{Palavras-chave}: Segurança, Suricata, Snort, Sistema de Detecção de Intrusão, Sistema de Prevenção de Intrusão, IDS, IPS.
 \end{resumo}
-
 \begin{resumo}[Abstract]
  \begin{otherlanguage*}{english}
-
    \vspace{\onelineskip}
  
    \noindent 
    \textbf{Keywords}: Security, Suricata, Snort, Intrusion Detection System, Intrusion Prevention System, IDS, IPS.
  \end{otherlanguage*}
 \end{resumo}
-
 \pdfbookmark[0]{\listfigurename}{lof}
 \listoffigures*
 \cleardoublepage
@@ -231,15 +206,15 @@ Zootecnia, Universidade de São Paulo, São Paulo, 2011.
 \section{Suricata}
 \chapter{Detecção de Intrusão em um Cenário Real}
 %- Em cada capitulo adicionar um texto introdutório
-%- Adicionar o seguinte texto:
-Este capítulo esta organizado da seguinte forma: A próxima seção apresenta o cenário de testes, que fala das caracter
-%Este capítulo esta organizado da seguinte forma: A proxima seção
-%aprensenta .... A Seção XY apresenta...
-\section{Cenário de Testes}
+
+Este capítulo esta organizado da seguinte forma: A próxima seção apresenta o cenário de testes, descrevendo características gerais da rede selecionada para os teste. Na seção \ref{sec:infraestrutura} será abordado a infraestrutura usada para os testes, ferramentas utilizadas e as configurações feitas. Na seção \ref{sec:testes} será descrito os testes realizados com suas respectivas justificativas. Na seção \ref{sec:resultados} será apresentado os resultados esperados e obtidos, problemas encontrados e a comparação das ferramentas e por último, na seção \ref{sec:conclusão}, uma breve conclusão.
+
+\section{Cenário de Testes} \label{sec:cenário}
 %Descrever o cenário. Ex: Uma rede com XXX usuários; Os usuários utilizam
 %diferentes ferramentas,...
 %Adicionar gráficos de utilização da rede
-A rede selecionada para ser monitorada tem os valores especificados na tabela \ref{tabela-tráfego}. Podemos verificar que seu pico de trafego chega a 107,25 Mbps em um determinado período do dia, valores considerados ideais para o experimento, inclusive para tentar validar os recursos alocados.
+
+A rede selecionada para ser monitorada tem os valores especificados na tabela \ref{tab:tráfego}. Podemos verificar que seu pico de trafego chega a 107,25 Mbps em um determinado período do dia, valores considerados ideais para o experimento, inclusive para tentar validar os recursos alocados.
 
 \begin{table}
  \centering
@@ -251,49 +226,53 @@ A rede selecionada para ser monitorada tem os valores especificados na tabela \r
  \hline
  \end{tabular}
  \caption{Estatística do trafego da rede selecionada para teste}
- \label{tabela-tráfego}
+ \label{tab:tráfego}
 \end{table}
-\section{Infraestrutura definida para testes}
+
+\section{Infraestrutura definida para testes} \label{sec:infraestrutura}
 %Descrever o que foi utilizado:
 %Ex: Equipamentos - Servidores, ....
 %    Configuração
 %    Ferramentas - Snort (referenciar capítulo), ...
-No ambiente de teste foi usado uma máquina Dell com 134G de memória RAM e 40 núcleos. Usou-se XenServer \cite{xenserver} versão 7, sistema operacional (SO) \textit{opensource} da Citrix voltado para virtualização. Foram testados outros SOs porém somente o XenServer possuía, na época da instalação do ambiente, \textit{firmware} da placa de rede do \textit{host} compatível e que funcionava com instabilidade. Outro fator que pesou na escolha do SO foi a experiência que tinha com a plataforma.
 
-No primeiro momento, foi instalado uma máquina virtual que seria usada como base para instalações de outras máquinas usando o recurso de \textit{snapshot} do sistema. O uso desse recurso foi necessário para criar um ambiente igual para os IDSs.
+No ambiente de teste foi usado uma máquina Dell com 134G de memória RAM e 40 núcleos. Usou-se XenServer \cite{xenserver} versão 7, sistema operacional (SO) \textit{opensource} da Citrix voltado para virtualização. Foram testados outros SOs porém somente o XenServer possuía, na época da instalação do ambiente, \textit{firmware} da placa de rede do \textit{host} compatível e que funcionava com instabilidade. Outro fator que pesou na escolha do SO foi a experiência que tinha com a plataforma e por existir uma interface para gerencia chamada XenCenter que roda no Windows. Uma alternativa \textit{opensource} desse software é o OpenXenManager \cite{openxenmanager}.
 
-Foi alocado 8 GB de memória RAM, 4 processadores e 100 GB de espaço em disco para o \textit{snapshot}. Esses valores foram definidos com base em um estudo \cite{mikelococo} que considerava vários fatos, como largura da rede, localização do IDS e versão e tipo do capturador de tráfego para dimensionar os recursos, aplicado especificamente ao Snort. A mesma regra foi aplicada ao Suricata.
+No primeiro momento, foi instalado uma máquina virtual com o sistema operacional Debian 7.11 \textit{codename} Wheezy \cite{debianwheezy}, uma distribuição linux com uma proposta de ser totalmente livre, usada como base para instalação de outras máquinas utilizando o recurso de \textit{snapshot}, uma cópia de uma máquina virtual rodando em um certo momento, do XenServer. O uso desse recurso foi necessário para criar um ambiente igual para os IDSs.
+
+Foi alocado 8 GB de memória RAM, 4 processadores e 100 GB de espaço em disco para o \textit{snapshot}. Esses valores foram definidos com base em um estudo \cite{mikelococo} que considerava vários fatores, como largura da rede, localização do IDS e versão e tipo do capturador de tráfego para dimensionar os recursos, aplicado especificamente ao Snort. A mesma regra foi aplicada ao Suricata.
 
 Para o \textit{host} conseguir pegar o pacotes destinados a rede selecionada foi necessário uma configuração de espelhamento que consiste na copia dos pacotes que saem pela porta dessa rede no \textit{switch} para a porta conectada no \textit{host}. A interface de rede do \textit{host} precisou ser configurado no modo promisc.
 
 Posteriormente criou-se três máquinas virtuais, duas usadas para instalação dos IDSs (Suricata e Snort) e a terceira para instalação das ferramentas usadas para simular ataques a rede. Optou-se pela instalação do sistema Kali \cite{kalilinux} para geração de ataques pois nele existe várias ferramentas nativas para testes de penetração e auditoria de segurança.
- 
+
 Para coleta das informações de uso de recurso de hardware como memória, processamento e I/O das máquinas com os IDSs foi usado o \textit{daemon} Collectd \cite{collectd}. Outra opção para esse fim é a utilização de um servidor de monitoramento com o \textit{Zabbix} \cite{zabbix}. A ideia de usar duas ferramentas para analise é fazer um comparativo e validar as informações coletadas.
+
+%Para coleta das informações de uso de recurso de hardware como memória, processamento e I/O das máquinas com os IDSs optou-se por duas ferramentas, o \textit{daemon} Collectd \cite{collectd} e o Zabbix. O intuito de usar duas ferramentas para o mesmo fim é fazer um comparativo e validar as informações coletadas.
 
 \begin{figure}
  \centering
- \includegraphics[scale=.7]{infra.png}
+ \includegraphics[scale=.6]{infra.png}
  \caption{Infraestrutura do ambiente de teste}
  \label{infra-ambiente}
 \end{figure}
-\section{Testes Realizados}
+
+\section{Testes Realizados} \label{sec:testes}
 %Quais os testes realizados com justificativa ?
 %Descrição dos testes. Quais os testes foram realizados ?
-\section{Resultados}
+\section{Resultados} \label{sec:resultados}
 %Resultados esperados e obtidos
 %Quais os resultados dos testes ??
 %Comparação das ferramentas
 %Problemas encontrados
-\section{Conclusão}
+\section{Conclusão} \label{sec:conclusão}
 \section{Métricas de Comparação}
 %Consumo dos Recursos de Hardware (Memória, Processamento)
 %Taxa de Detecção
 %Número de Falsos Positivos/Negativos
-% ----------------------------------------------------------
-\chapter{Considerações Finais}
+\chapter{Considerações Finais} \label{considerações}
 \phantompart
 \postextual
-\bibliography{dissertacao}
+\bibliography{bib/dissertacao}
 \phantompart
 \printindex
 \end{document}
