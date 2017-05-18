@@ -204,6 +204,7 @@ Zootecnia, Universidade de São Paulo, São Paulo, 2011.
 \section{Tipos de IDS/IPS}
 \section{Snort}
 \section{Suricata}
+
 \chapter{Detecção de Intrusão em um Cenário Real}
 %- Em cada capitulo adicionar um texto introdutório
 
@@ -214,20 +215,7 @@ Este capítulo esta organizado da seguinte forma: A próxima seção apresenta o
 %diferentes ferramentas,...
 %Adicionar gráficos de utilização da rede
 
-A rede selecionada para ser monitorada tem os valores especificados na tabela \ref{tab:tráfego}. Podemos verificar que seu pico de trafego chega a 107,25 Mbps em um determinado período do dia, valores considerados ideais para o experimento, inclusive para tentar validar os recursos alocados.
-
-\begin{table}
- \centering
- \begin{tabular}{|c|c|c|c|c|}
- \hline
-  & último & min & méd & máx \\
- \hline
- média & 29,34 Mbps & 0 bps & 5,45 Mbps & 107,25 Mbps \\
- \hline
- \end{tabular}
- \caption{Estatística do trafego da rede selecionada para teste}
- \label{tab:tráfego}
-\end{table}
+A rede selecionada para ser monitorada tem os valores especificados na tabela. Podemos verificar que em um determinado período do dia o pico de trafego chega a 107,25 Mbps, valores considerados ideais para o experimento, inclusive para tentar validar os recursos alocados.
 
 \section{Infraestrutura definida para testes} \label{sec:infraestrutura}
 %Descrever o que foi utilizado:
@@ -249,11 +237,11 @@ Para coleta das informações de uso de recurso de hardware como memória, proce
 
 %Para coleta das informações de uso de recurso de hardware como memória, processamento e I/O das máquinas com os IDSs optou-se por duas ferramentas, o \textit{daemon} Collectd \cite{collectd} e o Zabbix. O intuito de usar duas ferramentas para o mesmo fim é fazer um comparativo e validar as informações coletadas.
 
-\begin{figure}
+\begin{figure}{!htp}
  \centering
  \includegraphics[scale=.6]{infra.png}
  \caption{Infraestrutura do ambiente de teste}
- \label{infra-ambiente}
+ \label{fig:infra-ambiente}
 \end{figure}
 
 \section{Testes Realizados} \label{sec:testes}
