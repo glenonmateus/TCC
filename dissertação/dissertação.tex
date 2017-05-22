@@ -219,7 +219,14 @@ Este capítulo esta organizado da seguinte forma: A próxima seção apresenta o
 %diferentes ferramentas,...
 %Adicionar gráficos de utilização da rede
 
-A rede selecionada para ser monitorada tem os valores especificados na tabela. Podemos verificar que em um determinado período do dia o pico de trafego chega a 107,25 Mbps, valores considerados ideais para o experimento, inclusive para tentar validar os recursos alocados.
+A rede selecionada para ser monitorada tem os valores especificados na tabela. Podemos verificar que em um determinado período do dia o pico de trafego chega a 107,25 Mbps, valores considerados ideais para o experimento, inclusive para tentar validar os recursos alocados. Figura \ref{fig:ilc}
+
+\begin{figure}[!htp]
+ \centering
+ \includegraphics[scale=.6]{ILC-editado.png}
+ \caption{Estatística da rede usada para os testes}
+ \label{fig:ilc}
+\end{figure}
 
 \section{Infraestrutura definida para testes} \label{sec:infraestrutura}
 %Descrever o que foi utilizado:
@@ -235,7 +242,7 @@ Foi alocado 8 MB memória RAM, 4 processadores e 100 Gigabytes(GB) de espaço em
 
 Para o \textit{host} conseguir pegar o pacotes destinados a rede selecionada foi necessário uma configuração de espelhamento que consiste na copia dos pacotes que saem pela porta dessa rede no \textit{switch} para a porta conectada no \textit{host}. A interface de rede do \textit{host} precisou ser configurado no modo promisc.
 
-Posteriormente criou-se três máquinas virtuais, duas usadas para instalação dos IDSs (Suricata e Snort) e a terceira para instalação das ferramentas usadas para simular ataques a rede. Optou-se pela instalação do sistema Kali \cite{kalilinux} para geração de ataques pois nele existe várias ferramentas nativas para testes de penetração e auditoria de segurança.
+Posteriormente criou-se três máquinas virtuais, duas usadas para instalação dos IDSs (Suricata e Snort) e a terceira para instalação das ferramentas usadas para simular ataques a rede. Optou-se pela instalação do sistema Kali \cite{kalilinux} para geração de ataques pois nele existe várias ferramentas nativas para testes de penetração e auditoria de segurança. A infraestrutura pode ser visualizada na Figura \ref{fig:infra-ambiente}.
 
 Para coleta das informações de uso de recurso de hardware como memória, processamento e I/O das máquinas com os IDSs foi usado o \textit{daemon} Collectd \cite{collectd}. Outra opção para esse fim é a utilização de um servidor de monitoramento com o \textit{Zabbix} \cite{zabbix}. A ideia de usar duas ferramentas para analise é fazer um comparativo e validar as informações coletadas.
 
