@@ -179,6 +179,10 @@ Zootecnia, Universidade de São Paulo, São Paulo, 2011.
 \begin{siglas}
   \item[IDS] \textit{Intrusion Detection System}
   \item[IPS] \textit{Intrusion Prevention System}
+  \item[MB] \textit{Megabytes}
+  \item[GB] \textit{Gigabytes}
+  \item[SO] \textit{Sistema Operacional}
+  \item[JSON] \textit{JavaScript Object Notation}
 \end{siglas}
 \pdfbookmark[0]{\contentsname}{toc}
 \tableofcontents*
@@ -223,11 +227,11 @@ A rede selecionada para ser monitorada tem os valores especificados na tabela. P
 %    Configuração
 %    Ferramentas - Snort (referenciar capítulo), ...
 
-No ambiente de teste foi usado uma máquina Dell com 134G de memória RAM e 40 núcleos. Usou-se XenServer \cite{xenserver} versão 7, sistema operacional (SO) \textit{opensource} da Citrix voltado para virtualização. Foram testados outros SOs porém somente o XenServer possuía, na época da instalação do ambiente, \textit{firmware} da placa de rede do \textit{host} compatível e que funcionava com instabilidade. Outro fator que pesou na escolha do SO foi a experiência que tinha com a plataforma e por existir uma interface para gerencia chamada XenCenter que roda no Windows. Uma alternativa \textit{opensource} desse software é o OpenXenManager \cite{openxenmanager}.
+No ambiente de teste foi usado uma máquina Dell com 134 Megabytes (MB) de memória RAM e 40 núcleos. Usou-se XenServer \cite{xenserver} versão 7, sistema operacional (SO) \textit{opensource} da Citrix voltado para virtualização. Foram testados outros SOs porém somente o XenServer possuía, na época da instalação do ambiente, \textit{firmware} da placa de rede do \textit{host} compatível e que funcionava com instabilidade. Outro fator que pesou na escolha do SO foi a experiência que tinha com a plataforma e por existir uma interface para gerencia chamada XenCenter que roda no Windows. Uma alternativa \textit{opensource} desse software é o OpenXenManager \cite{openxenmanager}.
 
 No primeiro momento, foi instalado uma máquina virtual com o sistema operacional Debian 7.11 \textit{codename} Wheezy \cite{debianwheezy}, uma distribuição linux com uma proposta de ser totalmente livre, usada como base para instalação de outras máquinas utilizando o recurso de \textit{snapshot}, uma cópia de uma máquina virtual rodando em um certo momento, do XenServer. O uso desse recurso foi necessário para criar um ambiente igual para os IDSs.
 
-Foi alocado 8 Megabytes(MB) memória RAM, 4 processadores e 100 Gigabytes(GB) de espaço em disco para o \textit{snapshot}. Esses valores foram definidos com base em um estudo \cite{mikelococo} que considerava vários fatores, como largura da rede, localização do IDS e versão e tipo do capturador de tráfego para dimensionar os recursos, aplicado especificamente ao Snort. A mesma regra foi aplicada ao Suricata.
+Foi alocado 8 MB memória RAM, 4 processadores e 100 Gigabytes(GB) de espaço em disco para o \textit{snapshot}. Esses valores foram definidos com base em um estudo \cite{mikelococo} que considerava vários fatores, como largura da rede, localização do IDS e versão e tipo do capturador de tráfego para dimensionar os recursos, aplicado especificamente ao Snort. A mesma regra foi aplicada ao Suricata.
 
 Para o \textit{host} conseguir pegar o pacotes destinados a rede selecionada foi necessário uma configuração de espelhamento que consiste na copia dos pacotes que saem pela porta dessa rede no \textit{switch} para a porta conectada no \textit{host}. A interface de rede do \textit{host} precisou ser configurado no modo promisc.
 
@@ -235,10 +239,9 @@ Posteriormente criou-se três máquinas virtuais, duas usadas para instalação 
 
 Para coleta das informações de uso de recurso de hardware como memória, processamento e I/O das máquinas com os IDSs foi usado o \textit{daemon} Collectd \cite{collectd}. Outra opção para esse fim é a utilização de um servidor de monitoramento com o \textit{Zabbix} \cite{zabbix}. A ideia de usar duas ferramentas para analise é fazer um comparativo e validar as informações coletadas.
 
-O formato usado para facilitar a análise do logs foi JSON, um formato simples, leve e de fácil leitura. O Motor de Saída do Suricata já tem suporte a esse tipo de formato o que não acontece no Snort. Para tal, usou-se o IDSTools \cite{py-idstools}, uma coleção de bibliotecas na linguagem \textit{python} que trabalha para auxiliar o IDS, compatível com as ferramentas estudas.
+O formato usado para facilitar a análise do logs foi JavaScript Object Notation (JSON), um formato simples, leve e de fácil leitura. O Motor de Saída do Suricata já tem suporte a esse tipo de formato o que não acontece no Snort. Para tal, usou-se o IDSTools \cite{py-idstools}, uma coleção de bibliotecas na linguagem \textit{python} que trabalha para auxiliar o IDS, compatível com as ferramentas estudas.
 
-Dentre os utilitário presentes nessa coleção, temos o idstools-u2json, que converte, de forma continua, arquivo no formato unified2, um dos tipos de saída disponível no Snort, para o formato JSON.
-
+Dentre os utilitários presentes nessa coleção, temos o idstools-u2json, que converte, de forma continua, arquivo no formato unified2, um dos tipos de saída disponível no Snort, para o formato JSON.
 
 \begin{figure}[!htp]
  \centering
