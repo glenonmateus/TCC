@@ -223,14 +223,7 @@ A rede selecionada para ser monitorada tem os valores especificados na tabela. P
 
 Em um primeiro momento, selecionou-se uma rede
 
-\begin{figure}[!htp]
- \centering
- \includegraphics[scale=.6]{ILC-editado.png}
- \caption{Estatística da rede usada para os testes}
- \label{fig:ilc}
-\end{figure}
-
-\section{Infraestrutura definida para testes} \label{sec:infraestrutura}
+\section{Infraestrutura Definida para Testes} \label{sec:infraestrutura}
 %Descrever o que foi utilizado:
 %Ex: Equipamentos - Servidores, ....
 %    Configuração
@@ -244,19 +237,26 @@ Foi alocado 8 MB memória RAM, 4 processadores e 100 Gigabytes(GB) de espaço em
 
 Para o \textit{host} conseguir pegar o pacotes destinados a rede selecionada foi necessário uma configuração de espelhamento que consiste na copia dos pacotes que saem pela porta dessa rede no \textit{switch} para a porta conectada no \textit{host}. A interface de rede do \textit{host} precisou ser configurado no modo \textit{promisc}.
 
-Posteriormente criou-se três máquinas virtuais, duas usadas para instalação dos IDSs (Suricata e Snort) e a terceira para instalação das ferramentas usadas para simular ataques a rede. Optou-se pela instalação do sistema Kali \cite{kalilinux} para geração de ataques pois nele existe várias ferramentas nativas para testes de penetração e auditoria de segurança. A infraestrutura pode ser visualizada na Figura \ref{fig:infra-ambiente}.
-
-Para coleta das informações de uso de recurso de hardware como memória, processamento e I/O das máquinas com os IDSs foi usado o \textit{daemon} Collectd \cite{collectd}. Outra opção para esse fim é a utilização de um servidor de monitoramento com o Zabbix \cite{zabbix}. A ideia de usar duas ferramentas para analise é fazer um comparativo e validar as informações coletadas.
-
-O formato usado para facilitar a análise do \textit{logs} foi JavaScript Object Notation (JSON), um formato simples, leve e de fácil leitura. O Motor de Saída do Suricata já tem suporte a esse tipo de formato o que não acontece no Snort. Para tal, usou-se o IDSTools \cite{py-idstools}, uma coleção de bibliotecas na linguagem \textit{python} que trabalha para auxiliar o IDS, compatível com as ferramentas estudas. Dentre os utilitários presentes nessa coleção, temos o idstools-u2json, que converte, de forma continua, arquivo no formato unified2, uma das saídas disponível no Snort, para o formato JSON.
-
-Para analisar os \textit{logs}
+Posteriormente criou-se três máquinas virtuais, duas usadas para instalação dos IDSs (Suricata e Snort) e a terceira para instalação das ferramentas usadas para simular ataques a rede. Optou-se pela instalação do sistema Kali Linux \cite{kalilinux} para geração de ataques pois nele existe várias ferramentas nativas para testes de penetração e auditoria de segurança. A infraestrutura pode ser visualizada na Figura \ref{fig:infra-ambiente}.
 
 \begin{figure}[!htp]
  \centering
  \includegraphics[scale=.6]{infra.png}
  \caption{Infraestrutura do ambiente de teste}
  \label{fig:infra-ambiente}
+\end{figure}
+
+Para coleta das informações de uso de recurso de hardware como memória, processamento e I/O das máquinas com os IDSs foi usado o \textit{daemon} Collectd \cite{collectd}. Outra opção para esse fim é a utilização de um servidor de monitoramento com o Zabbix \cite{zabbix}. A ideia de usar duas ferramentas para analise é fazer um comparativo e validar as informações coletadas.
+
+O formato usado para facilitar a análise do \textit{logs} foi JavaScript Object Notation (JSON), um formato simples, leve e de fácil leitura. O Motor de Saída do Suricata já tem suporte a esse tipo de formato o que não acontece no Snort. Para tal, usou-se o IDSTools \cite{py-idstools}, uma coleção de bibliotecas na linguagem \textit{python} que trabalha para auxiliar o IDS, compatível com as ferramentas estudas. Dentre os utilitários presentes nessa coleção, temos o idstools-u2json, que converte, de forma continua, arquivo no formato unified2, uma das saídas disponível no Snort, para o formato JSON.
+
+Para analisar os \textit{logs}, usou-se uma infraestrutura que combina três ferramentas, o Kibana \cite{kibana}, uma plataforma de análise e visualização desenhada para trabalhar com os índices do Elasticsearch \cite{elasticsearch}, a grosso modo, podemos dizer que ela é uma interface gráfica para o Elasticsearch. O Elasticsearch, um motor de busca e análise altamente escalável, capaz de armazenar, buscar e analisar uma grande quantidade de dados em tempo próximo ao real. Por ultimo, o Logstach \cite{logstach}, um motor de coleta de dados em tempo real, unificando os dados de diferentes fontes dinamicamente, normalizando-os nos destinos escolhidos (Figura \ref{fig:logstach}). Dessa forma centralizou-se os \textit{logs}, facilitando a visualização das ocorrências dos IDSs. 
+
+\begin{figure}[!htp]
+ \centering
+ \includegraphics[scale=.4]{logstach.png}
+ \caption{Busca e união dos dados de diferentes fontes}
+ \label{fig:logstach}
 \end{figure}
 
 \section{Testes Realizados} \label{sec:testes}
