@@ -263,6 +263,13 @@ Para analisar os \textit{logs}, usou-se uma infraestrutura que combina três fer
 %Quais os testes realizados com justificativa ?
 %Descrição dos testes. Quais os testes foram realizados ?
 \subsection{NMAP} \label{sec:nmap}
+
+nmap -F 200.239.82.0/24
+
+No primeiro teste de Scan, usou-se o parâmetro -F, habilitando a modo \textit{fast} do Nmap \cite{nmap}. Nesse modo, são verificadas apenas a portas descritas no arquivo nmap-services, por padrão, existem 27372 portas descritas nesse arquivo. Isso é muito mais rápido que verificar todas as 65535 portas existentes em um \textit{host}.
+
+nmap -sV 200.239.82.0/24
+
 \subsection{Pytbull} \label{sec:pytbull}
 \subsection{Metasploit Framework} \label{sec:metasploit}
 \section{Resultados} \label{sec:resultados}
