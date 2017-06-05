@@ -262,11 +262,15 @@ Para analisar os \textit{logs}, usou-se uma infraestrutura que combina três fer
 \section{Testes Realizados} \label{sec:testes}
 %Quais os testes realizados com justificativa ?
 %Descrição dos testes. Quais os testes foram realizados ?
+Os testes realizados são simulações de passos que uma pessoa má intencionada iria tomar para alguma tentativa de invasão, entende-se por invasão, qualquer tipo de violação e alteração não autorizada de um serviço ou \textit{host}.
+
+O passo inicial seria um estudo do alvo por engenharia social, analisando as pessoas que trabalharam no organização, enviando spam e phishing na tentativa de capturar dados como senhas de acesso. Posteriormente, verificando os serviços que o alvo oferece e observando (sniffando) a rede, a procura de alguma senha desprotegida (não criptografada).  
+
 \subsection{NMAP} \label{sec:nmap}
 
 nmap -F 200.239.82.0/24
 
-No primeiro teste de Scan, usou-se o parâmetro -F, habilitando a modo \textit{fast} do Nmap \cite{nmap}. Nesse modo, são verificadas apenas a portas descritas no arquivo nmap-services, por padrão, existem 27372 portas descritas nesse arquivo. Isso é muito mais rápido que verificar todas as 65535 portas existentes em um \textit{host}.
+No primeiro teste de Scan, usou-se o parâmetro -F, habilitando a modo \textit{fast} do Nmap \cite{nmap}. Nesse modo, são verificadas apenas a portas especificadas no arquivo nmap-services, que por padrão, são descritas 27372 portas descritas nesse arquivo. Isso é muito mais rápido que verificar todas as 65535 portas existentes em um \textit{host}. Nesse teste nenhum IDs conseguiu detectar os \textit{scan} na rede.
 
 nmap -sV 200.239.82.0/24
 
