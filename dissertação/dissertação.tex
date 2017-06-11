@@ -259,13 +259,6 @@ Para analisar os \textit{logs}, usou-se uma infraestrutura que combina três fer
  \label{fig:logstach}
 \end{figure}
 
-\section{Testes Realizados} \label{sec:testes}
-%Quais os testes realizados com justificativa ?
-%Descrição dos testes. Quais os testes foram realizados ?
-Os testes realizados são simulações de passos que uma pessoa má intencionada iria tomar para alguma tentativa de invasão, entende-se por invasão, qualquer tipo de violação e alteração não autorizada de um serviço ou \textit{host}.
-
-O passo inicial seria um estudo do alvo por engenharia social, analisando as pessoas que trabalharam no organização, enviando spam e phishing na tentativa de capturar dados como senhas de acesso. Posteriormente, verificando os serviços que o alvo oferece e observando (\textit{sniffando}) a rede, a procura de alguma senha desprotegida (não criptografada).  
-
 \subsection{Nmap} \label{sec:nmap}
 
 O Nmap é uma ferramente de código aberto utilizada para auditoria de segurança e descoberta de rede. A ferramenta é capaz de determinar quais \textit{hosts} estão disponíveis na rede, quais serviços cada \textit{host} está oferecendo, incluindo nome e versão da aplicação, o sistema operacional usado, dentre outras características.  
@@ -276,7 +269,24 @@ Diversos parametros podem ser utilizados com o Nmap, posibilitando realizar varr
 
 Na execução do Nmap, o que não for opção ou argumento da opção é considerado especificação do \textit{host} alvo. O alvo pode ser um ou vários, usando uma notação de intervalo por hífen ou uma lista separada por vírgula. Os \textit{hosts} alvos também podem ser definidos em arquivos.
 
-O resultado do Nmap é uma tabela de portas e seus estados. As portas podem assumir o estado aberto (\textit{open}), filtrado (\textit{filtered}), fechado (\textit{closed}) ou não-filtrado (\textit{unfilterd}). As portas classificadas como \textit{open} significa que existe alguma aplicação escutando conexões. No estado \textit{filtered}, há um obstáculo na rede (firewall) que impossibilita que o Nmap determine se a porta está aberta ou fechada. As portas \textit{closed} não possuem uma aplicação escutando nelas. Por fim, são classificadas como \textit{unfilterd} quando elas respondem porém o Nmap não consegue determinar se estão fechadas ou abertas \cite{nmap}. 
+O resultado do Nmap é uma tabela de portas e seus estados. As portas podem assumir os estados aberto (\textit{open}), filtrado (\textit{filtered}), fechado (\textit{closed}) ou não-filtrado (\textit{unfilterd}). As portas classificadas como \textit{open} significa que existe alguma aplicação escutando conexões. No estado \textit{filtered}, há um obstáculo na rede (firewall) que impossibilita que o Nmap determine se a porta está aberta ou fechada. As portas \textit{closed} não possuem uma aplicação escutando nelas. Por fim, são classificadas como \textit{unfilterd} quando elas respondem porém o Nmap não consegue determinar se estão fechadas ou abertas \cite{nmap}. A Figura \ref{fig:nmap} mostra um exemplo de saída do Nmap.
+
+\begin{figure}[!htp]
+ \centering
+ \includegraphics[scale=.7]{nmap.png}
+ \caption{Exemplo de saída do Nmap}
+ \label{fig:nmap}
+\end{figure}
+
+\subsection{Pytbull} \label{sec:pytbull}
+\subsection{Metasploit Framework} \label{sec:metasploit}
+
+\section{Testes Realizados} \label{sec:testes}
+%Quais os testes realizados com justificativa ?
+%Descrição dos testes. Quais os testes foram realizados ?
+Os testes realizados são simulações de passos que uma pessoa má intencionada iria tomar para alguma tentativa de invasão, entende-se por invasão, qualquer tipo de violação e alteração não autorizada de um serviço ou \textit{host}.
+
+O passo inicial seria um estudo do alvo por engenharia social, analisando as pessoas que trabalharam no organização, enviando spam e phishing na tentativa de capturar dados como senhas de acesso. Posteriormente, verificando os serviços que o alvo oferece e observando (\textit{sniffando}) a rede, a procura de alguma senha desprotegida (não criptografada).  
 
 No primeiro teste de Scan, usou-se o parâmetro -F, habilitando a modo \textit{fast} do Nmap. Nesse modo, são verificadas apenas a portas especificadas no arquivo nmap-services, na instalação padrão esse arquivo vem com 27372 portas descritas. Isso é muito mais rápido que verificar todas as 65535 portas possíveis em um \textit{host}.
 
@@ -284,8 +294,6 @@ nmap -F 200.239.82.0/24
 
 nmap -sV 200.239.82.0/24
 
-\subsection{Pytbull} \label{sec:pytbull}
-\subsection{Metasploit Framework} \label{sec:metasploit}
 \section{Resultados} \label{sec:resultados}
 %Resultados esperados e obtidos
 %Quais os resultados dos testes ??
