@@ -269,30 +269,42 @@ Diversos parametros podem ser utilizados com o Nmap, posibilitando realizar varr
 
 Na execução do Nmap, o que não for opção ou argumento da opção é considerado especificação do \textit{host} alvo. O alvo pode ser um ou vários, usando uma notação de intervalo por hífen ou uma lista separada por vírgula. Os \textit{hosts} alvos também podem ser definidos em arquivos.
 
-O resultado do Nmap é uma tabela de portas e seus estados. As portas podem assumir os estados aberto (\textit{open}), filtrado (\textit{filtered}), fechado (\textit{closed}) ou não-filtrado (\textit{unfilterd}). As portas classificadas como \textit{open} significa que existe alguma aplicação escutando conexões. No estado \textit{filtered}, há um obstáculo na rede (firewall) que impossibilita que o Nmap determine se a porta está aberta ou fechada. As portas \textit{closed} não possuem uma aplicação escutando nelas. Por fim, são classificadas como \textit{unfilterd} quando elas respondem porém o Nmap não consegue determinar se estão fechadas ou abertas \cite{nmap}. A Figura \ref{fig:nmap} mostra um exemplo de saída do Nmap.
+O resultado do Nmap é uma tabela de portas e seus estados (Figura \ref{fig:nmap}). As portas podem assumir quatro estados, temos:
+
+\begin{itemize}
+ \item \textbf{aberto} (\textit{open}): significa que existe alguma aplicação escutando conexões;
+ \item \textbf{filtrado} (\textit{filtered}): há um obstáculo na rede (firewall) que impossibilita que o Nmap determine se a porta está aberta ou fechada; 
+ \item \textbf{fechado} (\textit{closed}): não possuem uma aplicação escutando nelas; 
+ \item \textbf{não-filtrado} (\textit{unfilterd}): quando elas respondem porém o Nmap não consegue determinar se estão fechadas ou abertas \cite{nmap}.
+ \end{itemize}
 
 \begin{figure}[!htp]
  \centering
- \includegraphics[scale=.7]{nmap.png}
+ \includegraphics[scale=.5]{nmap.png}
  \caption{Exemplo de saída do Nmap}
  \label{fig:nmap}
 \end{figure}
 
-\subsection{Pytbull} \label{sec:pytbull}
 \subsection{Metasploit Framework} \label{sec:metasploit}
 
+Metasploit é um \textit{framework} de código aberto cujo principio básico é desenvolver e executar \textit{exploit} contra alvos remotos, fornecendo uma lista de vulnerabilidades.
+
+
+\subsection{Pytbull} \label{sec:pytbull}
 \section{Testes Realizados} \label{sec:testes}
 %Quais os testes realizados com justificativa ?
 %Descrição dos testes. Quais os testes foram realizados ?
 Os testes realizados são simulações de passos que uma pessoa má intencionada iria tomar para alguma tentativa de invasão, entende-se por invasão, qualquer tipo de violação e alteração não autorizada de um serviço ou \textit{host}.
 
-O passo inicial seria um estudo do alvo por engenharia social, analisando as pessoas que trabalharam no organização, enviando spam e phishing na tentativa de capturar dados como senhas de acesso. Posteriormente, verificando os serviços que o alvo oferece e observando (\textit{sniffando}) a rede, a procura de alguma senha desprotegida (não criptografada).  
+O passo inicial seria um estudo do alvo por engenharia social, analisando as pessoas que trabalharam no organização, enviando spam e phishing na tentativa de capturar dados como senhas de acesso. Posteriormente, verificando os serviços que o alvo oferece e observando (\textit{sniffando}) a rede, a procura de alguma senha desprotegida (não criptografada). Esse passo inicial não será aplicados nos testes pois seria impossível o IDS detectar.
 
-No primeiro teste de Scan, usou-se o parâmetro -F, habilitando a modo \textit{fast} do Nmap. Nesse modo, são verificadas apenas a portas especificadas no arquivo nmap-services, na instalação padrão esse arquivo vem com 27372 portas descritas. Isso é muito mais rápido que verificar todas as 65535 portas possíveis em um \textit{host}.
+O passo seguinte seria um estudo e mapeamento da rede, a procura de um \textit{host} vulnerável. A ferramenta escolhida para essa finalidade é o Nmap \ref{sec:nmap}. No primeiro teste de Scan, usou-se o parâmetro -F, habilitando a modo \textit{fast} do Nmap. Nesse modo, são verificadas apenas a portas especificadas no arquivo nmap-services, na instalação padrão esse arquivo vem com 27372 portas descritas. Isso é muito mais rápido que verificar todas as 65535 portas possíveis em um \textit{host}.
 
 nmap -F 200.239.82.0/24
 
 nmap -sV 200.239.82.0/24
+
+De posse de um alvo, a pessoa má intencionada irá rodar um scan de vulnerabilidade, em busca de brejas já conhecidas, e que, geralmente por descuido do administrador, não foi fechada. Para esses testes usou-se o \textit{framework} Metasploit \ref{sec:metasploit} nativo do sistema operacional Kali Linux.
 
 \section{Resultados} \label{sec:resultados}
 %Resultados esperados e obtidos
