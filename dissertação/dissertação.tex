@@ -287,9 +287,33 @@ O resultado do Nmap é uma tabela de portas e seus estados (Figura \ref{fig:nmap
 
 \subsection{Metasploit Framework} \label{sec:metasploit}
 
-O Metasploit é um \textit{framework} de código aberto cujo principio básico é desenvolver e executar \textit{exploit} contra alvos remotos e fornecer uma lista de vulnerabilidades existentes no alvo. É uma ferramenta que combina diversos \textit{exploits} dentro de um local e fácil utilização, ideal para levantamento de segurança de serviços e servidores \cite{metasploit:yash}.  
+O Metasploit é um \textit{framework} de código aberto cujo principio básico é desenvolver e executar \textit{exploit} contra alvos remotos e fornecer uma lista de vulnerabilidades existentes no alvo. É uma ferramenta que combina diversos \textit{exploits} e payloads dentro de um local, ideal para levantamento de segurança de serviços e testes de penetração \cite{metasploit:yash}.  
 
+O Metasploit possui uma biblioteca divida em três partes, a arquitetura é mostrada com mais detalhes na figura \ref{fig:arqmetasploit}, temos:
 
+\begin{itemize}
+ \item \textbf{Rex}: É a biblioteca fundamental, a maioria das tarefas executadas pelo \textit{framework} usaram essa biblioteca;
+ \item \textbf{MSF Core}: É o \textit{framework} em si, possui, por exemplo, gerenciador de módulos e a base de dados;
+ \item \textbf{MSF Base}: Guarda os módulos, sejam eles, \textit{exploit}, \textit{encoders} (ferramentas usadas para desenvolver o \textit{payloads}) e os \textit{payloads}. Além disso, são guardadas informações de configuração e sessões criadas pelos \textit{exploits}.
+\end{itemize}
+
+Os módulos são divididos da seguinte maneira:
+
+\begin{itemize}
+ \item \textbf{Payload}: São código executados no alvo remotamente;
+ \item \textbf{Exploit}: Explora \textit{bug} ou vulnerabilidade existente em aplicações do alvo;
+ \item \textbf{Módulos Auxiliares}: Usado para escanear as vulnerabilidades e executar várias tarefas. 
+ \item \textbf{Encoder}: Codifica o \textit{payload} para evitar qualquer tipo de detecção pelo anti vírus;
+\end{itemize}
+
+\textbf{Interface}: Disponibiliza a parte gráfica para o usuário;
+
+\begin{figure}[!htp]
+ \centering
+ \includegraphics[scale=.6]{metasploit_arquitetura.png}
+ \caption{Arquitetura do Metasploit}
+ \label{fig:arqmetasploit}
+\end{figure}
 
 \subsection{Pytbull} \label{sec:pytbull}
 \section{Testes Realizados} \label{sec:testes}
