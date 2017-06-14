@@ -289,22 +289,9 @@ O resultado do Nmap é uma tabela de portas e seus estados (Figura \ref{fig:nmap
 
 O Metasploit é um \textit{framework} de código aberto cujo principio básico é desenvolver e executar \textit{exploit} contra alvos remotos e fornecer uma lista de vulnerabilidades existentes no alvo. É uma ferramenta que combina diversos \textit{exploits} e payloads dentro de um local, ideal para levantamento de segurança de serviços e testes de penetração \cite{metasploit:yash}.  
 
-O Metasploit possui uma biblioteca divida em três partes, a arquitetura é mostrada com mais detalhes na figura \ref{fig:arqmetasploit}, temos:
+O Metasploit possui uma biblioteca divida em três partes: \textbf{Rex}: É a biblioteca fundamental, a maioria das tarefas executadas pelo \textit{framework} usaram essa biblioteca; \textbf{MSF Core}: É o \textit{framework} em si, possui, por exemplo, gerenciador de módulos e a base de dados; \textbf{MSF Base}: Guarda os módulos, sejam eles, \textit{exploit}, \textit{encoders} (ferramentas usadas para desenvolver o \textit{payloads}) e os \textit{payloads}. Além disso, são guardadas informações de configuração e sessões criadas pelos \textit{exploits}. A arquitetura é mostrada com mais detalhes na figura \ref{fig:arqmetasploit}. 
 
-\begin{itemize}
- \item \textbf{Rex}: É a biblioteca fundamental, a maioria das tarefas executadas pelo \textit{framework} usaram essa biblioteca;
- \item \textbf{MSF Core}: É o \textit{framework} em si, possui, por exemplo, gerenciador de módulos e a base de dados;
- \item \textbf{MSF Base}: Guarda os módulos, sejam eles, \textit{exploit}, \textit{encoders} (ferramentas usadas para desenvolver o \textit{payloads}) e os \textit{payloads}. Além disso, são guardadas informações de configuração e sessões criadas pelos \textit{exploits}.
-\end{itemize}
-
-Os módulos são divididos da seguinte maneira:
-
-\begin{itemize}
- \item \textbf{Payload}: São código executados no alvo remotamente;
- \item \textbf{Exploit}: Explora \textit{bug} ou vulnerabilidade existente em aplicações do alvo;
- \item \textbf{Módulos Auxiliares}: Usado para escanear as vulnerabilidades e executar várias tarefas. 
- \item \textbf{Encoder}: Codifica o \textit{payload} para evitar qualquer tipo de detecção pelo anti vírus;
-\end{itemize}
+Os módulos são divididos da seguinte maneira: \textbf{Payload}: São código executados no alvo remotamente; \textbf{Exploit}: Explora \textit{bugs} ou vulnerabilidade existente em aplicações do alvo; \textbf{Módulos Auxiliares}: Usado para escanear as vulnerabilidades e executar várias tarefas; \textbf{Encoder}: Codifica o \textit{payload} para evitar qualquer tipo de detecção pelo anti vírus.
 
 \textbf{Interface}: Disponibiliza a parte gráfica para o usuário;
 
@@ -316,6 +303,20 @@ Os módulos são divididos da seguinte maneira:
 \end{figure}
 
 \subsection{Pytbull} \label{sec:pytbull}
+
+O Pytbull é um \textit{framework} para teste de IDS/IPS, capaz de determinar a capacidade de detecção e bloqueio do IDS/IPS, além de fazer uma comparação entre diversas soluções e verifica as configurações.
+
+O \textit{framework} Pytbull possui cerca de 300 testes agrupados em 11 módulos: \textbf{badTraffic}: Pacotes não compatíveis com a RFC são enviados para o servidor para testar como os pacotes são processados; \textbf{bruteForce}: Testa a capacidade do IDS/IPS de rastrear ataques de força bruta; \textbf{clientSideAttacks}: Usa um \textit{shell} reverso para fornecer ao servidor instruções para baixar arquivos maliciosos; \textbf{denialOfService}: Testa a capacidade do IDS/IPS de proteger contra tentativas de DoS; \textbf{evasionTechniques}: Testa a capacidade do IDS/IPS de detectar técnicas de evasão; \textbf{fragmentedPackets}: Várias cargas úteis fragmentadas são enviadas ao servidor para testar sua capacidade de recomposição e detectar os ataques; \textbf{ipReputation}: Testa a capacidade do servidor detectar tráfego de servidores com reputação baixa; \textbf{normalUsage}: Cargas úteis que correspondem a uso normal; \textbf{pcapReplay}: Permite reproduzir arquivos pcap; \textbf{shellCodes}: Envia \textit{shellcodes} para o servidor na porta 21/ftp testando a capacidade de detectar/bloquear o mesmo;  \textbf{testRules}: Testa a base de assinaturas configuradas no servidor IDS/IPS.
+
+Existe basicamente 5 tipos de testes: \textbf{socket}: Abre um \textit{socket} em uma porta e envia o \textit{payload} para o alvo remoto na porta especificada; \textbf{command}: Envia um comando para alvo remoto com a função python subprocess.call(); \textbf{scapy}: Envia cargas úteis especificas baseadas na sintaxe de Scapy; \textbf{client side attacks}: Usa um \textit{shell} reverso no alvo remoto e envia comandos para serem processados no servidor; \textbf{pcap replay}: Permite reproduzir tráfego com base em arquivos de pcap.
+
+\begin{figure}
+ \centering
+ \includegraphics[scale=.4]{arquitetura_pytbull.png}
+ \caption{Arquitetura do \textit{framework} Pytbull}
+ \label{fig:pytbull}
+\end{figure}
+
 \section{Testes Realizados} \label{sec:testes}
 %Quais os testes realizados com justificativa ?
 %Descrição dos testes. Quais os testes foram realizados ?
