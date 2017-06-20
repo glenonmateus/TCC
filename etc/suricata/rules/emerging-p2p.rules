@@ -9,7 +9,7 @@
 #  as follows:
 #
 #*************************************************************
-#  Copyright (c) 2003-2016, Emerging Threats
+#  Copyright (c) 2003-2017, Emerging Threats
 #  All rights reserved.
 #
 #  Redistribution and use in source and binary forms, with or without modification, are permitted provided that the
@@ -38,11 +38,11 @@
 
 # This Ruleset is EmergingThreats Open optimized for suricata-1.3.
 
-alert http $HOME_NET any -> $EXTERNAL_NET $HTTP_PORTS (msg:"ET P2P ABC Torrent User-Agent (ABC/ABC-3.1.0)"; flow:to_server,established; content:"|0d 0a|User-Agent|3a| ABC/ABC"; nocase; reference:url,pingpong-abc.sourceforge.net; reference:url,doc.emergingthreats.net/bin/view/Main/2003475; classtype:trojan-activity; sid:2003475; rev:8;)
+#alert http $HOME_NET any -> $EXTERNAL_NET $HTTP_PORTS (msg:"ET P2P ABC Torrent User-Agent (ABC/ABC-3.1.0)"; flow:to_server,established; content:"|0d 0a|User-Agent|3a| ABC/ABC"; nocase; reference:url,pingpong-abc.sourceforge.net; reference:url,doc.emergingthreats.net/bin/view/Main/2003475; classtype:trojan-activity; sid:2003475; rev:8;)
 
 alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"ET P2P Ares traffic"; flow:established,to_server; content:"|0d 0a|User-Agent|3a| Ares"; reference:url,www.aresgalaxy.org; reference:url,doc.emergingthreats.net/bin/view/Main/2001059; classtype:policy-violation; sid:2001059; rev:9;)
 
-alert udp $HOME_NET any -> $EXTERNAL_NET any (msg:"ET P2P Ares over UDP"; content:"Ares "; offset:36; depth:7; threshold: type limit, count 1, seconds 300, track by_src; reference:url,doc.emergingthreats.net/bin/view/Main/2003437; classtype:policy-violation; sid:2003437; rev:8;)
+#alert udp $HOME_NET any -> $EXTERNAL_NET any (msg:"ET P2P Ares over UDP"; content:"Ares "; offset:36; depth:7; threshold: type limit, count 1, seconds 300, track by_src; reference:url,doc.emergingthreats.net/bin/view/Main/2003437; classtype:policy-violation; sid:2003437; rev:8;)
 
 alert tcp $HOME_NET 1024: -> $EXTERNAL_NET 1024: (msg:"ET P2P Ares Server Connection"; flow:established,to_server; dsize:<70; content:"r|be|bloop|00|dV"; content:"Ares|00 0a|"; distance:16; reference:url,aresgalaxy.sourceforge.net; reference:url,doc.emergingthreats.net/bin/view/Main/2008591; classtype:policy-violation; sid:2008591; rev:3;)
 
@@ -90,19 +90,19 @@ alert tcp any any -> any 4660:4799 (msg:"ET P2P ed2k request part"; flow: to_ser
 
 alert tcp any any -> any 4660:4799 (msg:"ET P2P ed2k file request answer"; flow: to_server,established; content:"|e3|"; offset: 1; content:"|00 00 00 59|"; distance: 2; within: 4; reference:url,www.giac.org/practical/GCIH/Ian_Gosling_GCIH.pdf; reference:url,doc.emergingthreats.net/bin/view/Main/2000333; classtype:policy-violation; sid:2000333; rev:11;)
 
-alert tcp $HOME_NET any -> $EXTERNAL_NET 4660:4799 (msg:"ET P2P eDonkey File Status"; flow: to_server,established; content:"|e3 14|"; depth: 2; reference:url,www.edonkey.com; reference:url,doc.emergingthreats.net/bin/view/Main/2001296; classtype:policy-violation; sid:2001296; rev:9;)
+#alert tcp $HOME_NET any -> $EXTERNAL_NET 4660:4799 (msg:"ET P2P eDonkey File Status"; flow: to_server,established; content:"|e3 14|"; depth: 2; reference:url,www.edonkey.com; reference:url,doc.emergingthreats.net/bin/view/Main/2001296; classtype:policy-violation; sid:2001296; rev:9;)
 
-alert tcp $HOME_NET any -> $EXTERNAL_NET 4660:4799 (msg:"ET P2P eDonkey File Status Request"; flow: to_server,established; content:"|e3 11|"; depth: 2; reference:url,www.edonkey.com; reference:url,doc.emergingthreats.net/bin/view/Main/2001297; classtype:policy-violation; sid:2001297; rev:10;)
+#alert tcp $HOME_NET any -> $EXTERNAL_NET 4660:4799 (msg:"ET P2P eDonkey File Status Request"; flow: to_server,established; content:"|e3 11|"; depth: 2; reference:url,www.edonkey.com; reference:url,doc.emergingthreats.net/bin/view/Main/2001297; classtype:policy-violation; sid:2001297; rev:10;)
 
 alert udp $HOME_NET any -> $EXTERNAL_NET 4660:4799 (msg:"ET P2P eDonkey Server Status Request"; content:"|e3 96|"; depth: 2; reference:url,www.edonkey.com; reference:url,doc.emergingthreats.net/bin/view/Main/2001298; classtype:policy-violation; sid:2001298; rev:9;)
 
-alert udp $HOME_NET 4660:4799 -> $EXTERNAL_NET any (msg:"ET P2P eDonkey Server Status"; content:"|e3 97|"; depth: 2; reference:url,www.edonkey.com; reference:url,doc.emergingthreats.net/bin/view/Main/2001299; classtype:policy-violation; sid:2001299; rev:9;)
+#alert udp $HOME_NET 4660:4799 -> $EXTERNAL_NET any (msg:"ET P2P eDonkey Server Status"; content:"|e3 97|"; depth: 2; reference:url,www.edonkey.com; reference:url,doc.emergingthreats.net/bin/view/Main/2001299; classtype:policy-violation; sid:2001299; rev:9;)
 
-alert udp $HOME_NET 1024:65535 -> $EXTERNAL_NET 1024:65535 (msg:"ET P2P Edonkey IP Request"; dsize:4; content:"|e3 1b|"; depth:2; flowbits:set,BEedk.ip.requestect; flowbits:noalert; reference:url,www.giac.org/certified_professionals/practicals/gcih/0446.php; reference:url,doc.emergingthreats.net/bin/view/Main/2003308; classtype:policy-violation; sid:2003308; rev:4;)
+#alert udp $HOME_NET 1024:65535 -> $EXTERNAL_NET 1024:65535 (msg:"ET P2P Edonkey IP Request"; dsize:4; content:"|e3 1b|"; depth:2; flowbits:set,BEedk.ip.requestect; flowbits:noalert; reference:url,www.giac.org/certified_professionals/practicals/gcih/0446.php; reference:url,doc.emergingthreats.net/bin/view/Main/2003308; classtype:policy-violation; sid:2003308; rev:4;)
 
-alert udp $EXTERNAL_NET 1024:65535 -> $HOME_NET 1024:65535 (msg:"ET P2P Edonkey IP Reply"; flowbits:isset,BEedk.ip.requestect; dsize:<20; content:"|e3 1c|"; depth:2; reference:url,www.giac.org/certified_professionals/practicals/gcih/0446.php; reference:url,doc.emergingthreats.net/bin/view/Main/2003309; classtype:policy-violation; sid:2003309; rev:4;)
+#alert udp $EXTERNAL_NET 1024:65535 -> $HOME_NET 1024:65535 (msg:"ET P2P Edonkey IP Reply"; flowbits:isset,BEedk.ip.requestect; dsize:<20; content:"|e3 1c|"; depth:2; reference:url,www.giac.org/certified_professionals/practicals/gcih/0446.php; reference:url,doc.emergingthreats.net/bin/view/Main/2003309; classtype:policy-violation; sid:2003309; rev:4;)
 
-alert udp $EXTERNAL_NET 1024:65535 -> $HOME_NET 1024:65535 (msg:"ET P2P Edonkey IP Query End"; dsize:<20; content:"|e3 1d|"; depth:2; reference:url,www.giac.org/certified_professionals/practicals/gcih/0446.php; reference:url,doc.emergingthreats.net/bin/view/Main/2003316; classtype:policy-violation; sid:2003316; rev:3;)
+#alert udp $EXTERNAL_NET 1024:65535 -> $HOME_NET 1024:65535 (msg:"ET P2P Edonkey IP Query End"; dsize:<20; content:"|e3 1d|"; depth:2; reference:url,www.giac.org/certified_professionals/practicals/gcih/0446.php; reference:url,doc.emergingthreats.net/bin/view/Main/2003316; classtype:policy-violation; sid:2003316; rev:3;)
 
 #alert udp $HOME_NET 1024:65535 -> $EXTERNAL_NET 1024:65535 (msg:"ET P2P Edonkey Publicize File"; dsize:>15; content:"|e3 0c|"; depth:2; reference:url,www.giac.org/certified_professionals/practicals/gcih/0446.php; reference:url,doc.emergingthreats.net/bin/view/Main/2003310; classtype:policy-violation; sid:2003310; rev:4;)
 
@@ -110,11 +110,11 @@ alert udp $EXTERNAL_NET 1024:65535 -> $HOME_NET 1024:65535 (msg:"ET P2P Edonkey 
 
 alert udp $HOME_NET 1024:65535 -> $EXTERNAL_NET 1024:65535 (msg:"ET P2P Edonkey Connect Request"; dsize:25; content:"|e3 0a|"; depth:2; reference:url,www.giac.org/certified_professionals/practicals/gcih/0446.php; reference:url,doc.emergingthreats.net/bin/view/Main/2003312; classtype:policy-violation; sid:2003312; rev:3;)
 
-alert udp $HOME_NET 1024:65535 -> $EXTERNAL_NET 1024:65535 (msg:"ET P2P Edonkey Search Request (by file hash)"; dsize:19; content:"|e3 0e 14|"; depth:3; reference:url,www.giac.org/certified_professionals/practicals/gcih/0446.php; reference:url,doc.emergingthreats.net/bin/view/Main/2003314; classtype:policy-violation; sid:2003314; rev:3;)
+#alert udp $HOME_NET 1024:65535 -> $EXTERNAL_NET 1024:65535 (msg:"ET P2P Edonkey Search Request (by file hash)"; dsize:19; content:"|e3 0e 14|"; depth:3; reference:url,www.giac.org/certified_professionals/practicals/gcih/0446.php; reference:url,doc.emergingthreats.net/bin/view/Main/2003314; classtype:policy-violation; sid:2003314; rev:3;)
 
 #alert udp $EXTERNAL_NET 1024:65535 -> $HOME_NET 1024:65535 (msg:"ET P2P Edonkey Search Reply"; dsize:>200; content:"|e3 0f|"; depth:2; reference:url,www.giac.org/certified_professionals/practicals/gcih/0446.php; reference:url,doc.emergingthreats.net/bin/view/Main/2003315; classtype:policy-violation; sid:2003315; rev:4;)
 
-alert udp $HOME_NET 1024:65535 -> $EXTERNAL_NET 1024:65535 (msg:"ET P2P Edonkey Get Sources Request (by hash)"; dsize:19; content:"|e3 9a|"; depth:2; reference:url,www.giac.org/certified_professionals/practicals/gcih/0446.php; reference:url,doc.emergingthreats.net/bin/view/Main/2003318; classtype:policy-violation; sid:2003318; rev:3;)
+#alert udp $HOME_NET 1024:65535 -> $EXTERNAL_NET 1024:65535 (msg:"ET P2P Edonkey Get Sources Request (by hash)"; dsize:19; content:"|e3 9a|"; depth:2; reference:url,www.giac.org/certified_professionals/practicals/gcih/0446.php; reference:url,doc.emergingthreats.net/bin/view/Main/2003318; classtype:policy-violation; sid:2003318; rev:3;)
 
 alert udp $HOME_NET 1024:65535 -> $EXTERNAL_NET 1024:65535 (msg:"ET P2P Edonkey Search Request (search by name)"; dsize:>5; content:"|e3 98|"; depth:2; content:"|01|"; within:3; reference:url,www.giac.org/certified_professionals/practicals/gcih/0446.php; reference:url,doc.emergingthreats.net/bin/view/Main/2003319; classtype:policy-violation; sid:2003319; rev:3;)
 
@@ -122,15 +122,15 @@ alert udp $HOME_NET 1024:65535 -> $EXTERNAL_NET 1024:65535 (msg:"ET P2P Edonkey 
 
 #alert tcp $EXTERNAL_NET 1024:65535 -> $HOME_NET 4660:4799 (msg:"ET P2P Edonkey Server List"; flow:established; dsize:>12; content:"|e3|"; depth:1; content:"|32|"; distance:4; within:5; reference:url,www.giac.org/certified_professionals/practicals/gcih/0446.php; reference:url,doc.emergingthreats.net/bin/view/Main/2003322; classtype:policy-violation; sid:2003322; rev:4;)
 
-alert tcp $HOME_NET 4660:4799 -> $EXTERNAL_NET 1024:65535 (msg:"ET P2P Edonkey Client to Server Hello"; flow:established; dsize:>5; content:"|e3|"; offset:1; content:"|01|"; distance:4; within:5; content:"|02 01 00 01|"; distance:26; reference:url,www.giac.org/certified_professionals/practicals/gcih/0446.php; reference:url,doc.emergingthreats.net/bin/view/Main/2003323; classtype:policy-violation; sid:2003323; rev:4;)
+#alert tcp $HOME_NET 4660:4799 -> $EXTERNAL_NET 1024:65535 (msg:"ET P2P Edonkey Client to Server Hello"; flow:established; dsize:>5; content:"|e3|"; offset:1; content:"|01|"; distance:4; within:5; content:"|02 01 00 01|"; distance:26; reference:url,www.giac.org/certified_professionals/practicals/gcih/0446.php; reference:url,doc.emergingthreats.net/bin/view/Main/2003323; classtype:policy-violation; sid:2003323; rev:4;)
 
-alert tcp $EXTERNAL_NET 1024:65535 -> $HOME_NET 4660:4799 (msg:"ET P2P Edonkey Server Status"; flow:established; dsize:14; content:"|e3 09 00 00 00 34|"; depth:6; reference:url,www.giac.org/certified_professionals/practicals/gcih/0446.php; reference:url,doc.emergingthreats.net/bin/view/Main/2003324; classtype:policy-violation; sid:2003324; rev:3;)
+#alert tcp $EXTERNAL_NET 1024:65535 -> $HOME_NET 4660:4799 (msg:"ET P2P Edonkey Server Status"; flow:established; dsize:14; content:"|e3 09 00 00 00 34|"; depth:6; reference:url,www.giac.org/certified_professionals/practicals/gcih/0446.php; reference:url,doc.emergingthreats.net/bin/view/Main/2003324; classtype:policy-violation; sid:2003324; rev:3;)
 
 alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"ET P2P Bittorrent P2P Client User-Agent (Enhanced CTorrent 3.x)"; flow:to_server,established; content:"Enhanced-CTorrent"; http_user_agent; reference:url,www.rahul.net/dholmes/ctorrent; reference:url,doc.emergingthreats.net/2011703; classtype:policy-violation; sid:2011703; rev:6;)
 
 alert http $HOME_NET any -> $EXTERNAL_NET $HTTP_PORTS (msg:"ET P2P Bittorrent P2P Client User-Agent (FDM 3.x)"; flow:to_server,established; content:"FDM 3."; http_user_agent; depth:6; reference:url,www.freedownloadmanager.org; reference:url,doc.emergingthreats.net/2011712; classtype:policy-violation; sid:2011712; rev:6;)
 
-alert tcp $EXTERNAL_NET 443 -> $HOME_NET any (msg:"ET P2P MS Foldershare Login Detected"; flow:established,to_client; content:"|0b|FolderShare|30 81 9f 30|"; nocase; offset:392; depth:18; reference:url,www.foldershare.com; reference:url,doc.emergingthreats.net/bin/view/Main/2002673; classtype:policy-violation; sid:2002673; rev:9;)
+#alert tcp $EXTERNAL_NET 443 -> $HOME_NET any (msg:"ET P2P MS Foldershare Login Detected"; flow:established,to_client; content:"|0b|FolderShare|30 81 9f 30|"; nocase; offset:392; depth:18; reference:url,www.foldershare.com; reference:url,doc.emergingthreats.net/bin/view/Main/2002673; classtype:policy-violation; sid:2002673; rev:9;)
 
 alert tcp $HOME_NET any -> $EXTERNAL_NET any (msg:"ET P2P Gnutella Connect"; flow: established,to_server; content:"GNUTELLA CONNECT/"; nocase; depth:17; reference:url,www.gnutella.com; reference:url,doc.emergingthreats.net/bin/view/Main/2001664; classtype:policy-violation; sid:2001664; rev:7;)
 
@@ -170,7 +170,7 @@ alert udp $HOME_NET any -> $EXTERNAL_NET 8247 (msg:"ET P2P Octoshape P2P streami
 
 alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"ET P2P Bittorrent P2P Client User-Agent (Opera/10.x)"; flow:to_server,established; content:"Opera BitTorrent, Opera/"; http_user_agent; reference:url,www.opera.com; reference:url,doc.emergingthreats.net/2011701; classtype:policy-violation; sid:2011701; rev:6;)
 
-alert udp any any -> any any (msg:"ET P2P Overnet (Edonkey) Server Announce"; content:"|00 00 02 03 00 6c 6f 63|"; offset: 36; content:"|00 62 63 70 3a 2f 2f|"; distance: 1; reference:url,www.overnet.com; reference:url,doc.emergingthreats.net/bin/view/Main/2000335; classtype:policy-violation; sid:2000335; rev:9;)
+#alert udp any any -> any any (msg:"ET P2P Overnet (Edonkey) Server Announce"; content:"|00 00 02 03 00 6c 6f 63|"; offset: 36; content:"|00 62 63 70 3a 2f 2f|"; distance: 1; reference:url,www.overnet.com; reference:url,doc.emergingthreats.net/bin/view/Main/2000335; classtype:policy-violation; sid:2000335; rev:9;)
 
 alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"ET P2P Pando Client User-Agent Detected (Mozilla/4.0 (Windows U) Pando/1.xx)"; flow:established,to_server; content:" Pando/"; http_header; fast_pattern; content:"User-Agent|3a| Mozilla/4.0 (Windows|3b| U) Pando/"; http_header; reference:url,doc.emergingthreats.net/bin/view/Main/2008625; classtype:policy-violation; sid:2008625; rev:6;)
 

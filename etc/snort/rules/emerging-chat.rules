@@ -9,7 +9,7 @@
 #  as follows:
 #
 #*************************************************************
-#  Copyright (c) 2003-2016, Emerging Threats
+#  Copyright (c) 2003-2017, Emerging Threats
 #  All rights reserved.
 #
 #  Redistribution and use in source and binary forms, with or without modification, are permitted provided that the
@@ -88,13 +88,13 @@ alert tcp $HOME_NET any -> $EXTERNAL_NET 5222 (msg:"ET CHAT Google Talk (Jabber)
 
 alert tcp $HOME_NET any -> $EXTERNAL_NET 5222 (msg:"ET CHAT Google IM traffic Jabber client sign-on"; flow:to_server; content:"gmail.com"; nocase; content:"jabber.org"; nocase; content:"version="; reference:url,www.google.com/talk; reference:url,doc.emergingthreats.net/2002334; classtype:policy-violation; sid:2002334; rev:5;)
 
-alert tcp $HOME_NET any <> $EXTERNAL_NET any (msg:"ET CHAT MSN file transfer request"; flow: established; content:"MSG "; depth: 4; content:"Content-Type|3A|"; nocase; distance: 0; content:"text/x-msmsgsinvite"; fast_pattern:only; content:"Application-Name|3A|"; content:"File Transfer"; nocase; distance: 0; reference:url,doc.emergingthreats.net/2001241; classtype:policy-violation; sid:2001241; rev:8;)
+#alert tcp $HOME_NET any <> $EXTERNAL_NET any (msg:"ET CHAT MSN file transfer request"; flow: established; content:"MSG "; depth: 4; content:"Content-Type|3A|"; nocase; distance: 0; content:"text/x-msmsgsinvite"; fast_pattern:only; content:"Application-Name|3A|"; content:"File Transfer"; nocase; distance: 0; reference:url,doc.emergingthreats.net/2001241; classtype:policy-violation; sid:2001241; rev:8;)
 
-alert tcp $HOME_NET any <> $EXTERNAL_NET any (msg:"ET CHAT MSN file transfer accept"; flow: established; content:"MSG "; depth: 4; content:"Content-Type|3A|"; nocase; content:"text/x-msmsgsinvite"; fast_pattern:only; content:"Invitation-Command|3A|"; content:"ACCEPT"; distance: 1; reference:url,doc.emergingthreats.net/2001242; classtype:policy-violation; sid:2001242; rev:8;)
+#alert tcp $HOME_NET any <> $EXTERNAL_NET any (msg:"ET CHAT MSN file transfer accept"; flow: established; content:"MSG "; depth: 4; content:"Content-Type|3A|"; nocase; content:"text/x-msmsgsinvite"; fast_pattern:only; content:"Invitation-Command|3A|"; content:"ACCEPT"; distance: 1; reference:url,doc.emergingthreats.net/2001242; classtype:policy-violation; sid:2001242; rev:8;)
 
-alert tcp $HOME_NET any <> $EXTERNAL_NET any (msg:"ET CHAT MSN file transfer reject"; flow: established; content:"MSG "; depth: 4; content:"Content-Type|3A|"; nocase; content:"text/x-msmsgsinvite"; fast_pattern:only; content:"Invitation-Command|3A|"; content:"CANCEL"; distance: 0; content:"Cancel-Code|3A|"; nocase; content:"REJECT"; nocase; distance: 0; reference:url,doc.emergingthreats.net/2001243; classtype:policy-violation; sid:2001243; rev:9;)
+#alert tcp $HOME_NET any <> $EXTERNAL_NET any (msg:"ET CHAT MSN file transfer reject"; flow: established; content:"MSG "; depth: 4; content:"Content-Type|3A|"; nocase; content:"text/x-msmsgsinvite"; fast_pattern:only; content:"Invitation-Command|3A|"; content:"CANCEL"; distance: 0; content:"Cancel-Code|3A|"; nocase; content:"REJECT"; nocase; distance: 0; reference:url,doc.emergingthreats.net/2001243; classtype:policy-violation; sid:2001243; rev:9;)
 
-alert tcp $HOME_NET any -> $EXTERNAL_NET $HTTP_PORTS (msg:"ET CHAT MSN IM Poll via HTTP"; flow: established,to_server; content:"/gateway/gateway.dll?Action=poll&SessionID="; http_uri; nocase; threshold: type limit, track by_src, count 10, seconds 3600; reference:url,doc.emergingthreats.net/2001682; classtype:policy-violation; sid:2001682; rev:9;)
+#alert tcp $HOME_NET any -> $EXTERNAL_NET $HTTP_PORTS (msg:"ET CHAT MSN IM Poll via HTTP"; flow: established,to_server; content:"/gateway/gateway.dll?Action=poll&SessionID="; http_uri; nocase; threshold: type limit, track by_src, count 10, seconds 3600; reference:url,doc.emergingthreats.net/2001682; classtype:policy-violation; sid:2001682; rev:9;)
 
 alert tcp $HOME_NET any -> $EXTERNAL_NET any (msg:"ET CHAT MSN status change"; flow:established,to_server; content:"CHG "; depth:55; reference:url,doc.emergingthreats.net/2002192; classtype:policy-violation; sid:2002192; rev:4;)
 

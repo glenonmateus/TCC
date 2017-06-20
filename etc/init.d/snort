@@ -9,8 +9,27 @@
 # Description:       Snort IDS
 ### END INIT INFO
 
-PIDFILE='/var/log/snort/snort_eth0.pid'
-INTERFACE=eth0
+INTERFACE=eth1
+PIDFILE='/var/log/snort/snort_'$INTERFACE'.pid'
+
+start_u2json() {
+	PID=$(pgrep idstools-u2json)
+	if [ -z $PID ];
+	then
+		echo "Starting u2json ..."
+		su - snort -c "idstools-u2json @/etc/snort/u2json.conf &"
+		echo "Service u2json started"
+	fi
+}
+
+stop_u2json() {
+	PID=$(pgrep idstools-u2json)
+	if [ -n $PID ];
+	then
+		echo "Stopping u2json ..."
+		kill -15 "$PID"		
+	fi
+}
 
 start() {
   if [ -s $PIDFILE ]; then
@@ -20,12 +39,7 @@ start() {
 	echo 'Starting service ...' >&2
 	snort -c /etc/snort/snort.conf -D -i $INTERFACE
   	echo 'Service started' >&2
-  	IDSTOOLSID=$(ps aux | grep idstools | cut -d' ' -f5)
-  	if [ -z $IDSTOOLSID ]; then
-		echo 'Starting idstools ...' >&2
-        	su - snort -c "idstools-u2json @/etc/u2json.conf &" >/dev/null 2>&1	
-  		echo 'Service started' >&2
-  	fi
+	start_u2json
   fi
 }
 
@@ -36,12 +50,7 @@ stop() {
 	kill -15 $PID
 	rm $PIDFILE
 	echo 'Service stopped' >&2
-  	IDSTOOLSID=$(ps aux | grep idstools | cut -d' ' -f5)
-  	if [ ! -z $IDSTOOLSID ]; then 
-		echo 'Stopping idstools ...' >&2		
-		kill -15 $IDSTOOLSID
-		echo 'Idstools stopped' >&2		
-  	fi
+	stop_u2json
   else 
 	echo "Snort is not running"
   fi
@@ -60,5 +69,5 @@ case "$1" in
     start
     ;;
   *)
-    echo "Usage: $0 {start <interface>|stop|restart}"
+    echo "Usage: $0 {start | stop | restart}"
 esac

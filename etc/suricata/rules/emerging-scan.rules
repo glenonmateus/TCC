@@ -9,7 +9,7 @@
 #  as follows:
 #
 #*************************************************************
-#  Copyright (c) 2003-2016, Emerging Threats
+#  Copyright (c) 2003-2017, Emerging Threats
 #  All rights reserved.
 #
 #  Redistribution and use in source and binary forms, with or without modification, are permitted provided that the
@@ -74,7 +74,7 @@ alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS $HTTP_PORTS (msg:"ET SCAN Possible 
 
 alert http $EXTERNAL_NET any -> $HTTP_SERVERS $HTTP_PORTS (msg:"ET SCAN DavTest WebDav Vulnerability Scanner Default User Agent Detected"; flow:established,to_server; content:"|0d 0a|User-Agent|3a| DAV.pm/v"; reference:url,www.darknet.org.uk/2010/04/davtest-webdav-vulerability-scanning-scanner-tool/; reference:url,code.google.com/p/davtest/; reference:url,doc.emergingthreats.net/2011089; classtype:attempted-recon; sid:2011089; rev:3;)
 
-alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:"ET SCAN ICMP Delphi, Likely Precursor to Scan"; itype:8; icode:0; content:"Pinging from Delphi code written"; reference:url,www.koders.com/delphi/fid942A4EAF946B244BD3CD9BC83FEAAC35BA1F38AB.aspx; reference:url,doc.emergingthreats.net/2010681; classtype:misc-activity; sid:2010681; rev:2;)
+alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:"ET SCAN ICMP Delphi Likely Precursor to Scan"; itype:8; icode:0; content:"Pinging from Delphi code written"; reference:url,www.koders.com/delphi/fid942A4EAF946B244BD3CD9BC83FEAAC35BA1F38AB.aspx; reference:url,doc.emergingthreats.net/2010681; classtype:misc-activity; sid:2010681; rev:3;)
 
 alert http $EXTERNAL_NET any -> $HOME_NET $HTTP_PORTS (msg:"ET SCAN DirBuster Web App Scan in Progress"; flow:to_server,established; content:"|0d 0a|User-Agent|3a| DirBuster"; reference:url,owasp.org; reference:url,doc.emergingthreats.net/2008186; classtype:web-application-attack; sid:2008186; rev:4;)
 
@@ -138,7 +138,7 @@ alert tcp $EXTERNAL_NET any -> $SQL_SERVERS 3306 (msg:"ET SCAN MYSQL 4.1 brute f
 
 alert tcp $HOME_NET 3306 -> any any (msg:"ET SCAN Non-Allowed Host Tried to Connect to MySQL Server"; flow:from_server,established; content:"|6A 04|Host|20 27|"; depth:70; content:"|27 20|is not allowed to connect to this MySQL server"; distance:0; reference:url,www.cyberciti.biz/tips/how-do-i-enable-remote-access-to-mysql-database-server.html; reference:url,doc.emergingthreats.net/2010493; classtype:attempted-recon; sid:2010493; rev:2;)
 
-alert tcp $HOME_NET 3306 -> $EXTERNAL_NET any (msg:"ET SCAN Multiple MySQL Login Failures, Possible Brute Force Attempt"; flow:from_server,established; dsize:<251; byte_test:1,<,0xfb,0,little; content:"|ff 15 04 23 32 38 30 30 30|"; offset:4; threshold: type threshold, track by_src, count 5, seconds 120; reference:url,doc.emergingthreats.net/2010494; classtype:attempted-recon; sid:2010494; rev:3;)
+alert tcp $HOME_NET 3306 -> $EXTERNAL_NET any (msg:"ET SCAN Multiple MySQL Login Failures Possible Brute Force Attempt"; flow:from_server,established; dsize:<251; byte_test:1,<,0xfb,0,little; content:"|ff 15 04 23 32 38 30 30 30|"; offset:4; threshold: type threshold, track by_src, count 5, seconds 120; reference:url,doc.emergingthreats.net/2010494; classtype:attempted-recon; sid:2010494; rev:4;)
 
 alert http $EXTERNAL_NET any -> $HTTP_SERVERS $HTTP_PORTS (msg:"ET SCAN Mini MySqlatOr SQL Injection Scanner"; flow:to_server,established; content:"|0d 0a|User-Agent|3a| prog.CustomCrawler"; offset:60; reference:url,www.scrt.ch/pages_en/minimysqlator.html; reference:url,doc.emergingthreats.net/2008729; classtype:attempted-recon; sid:2008729; rev:5;)
 
@@ -178,17 +178,17 @@ alert http $EXTERNAL_NET any -> $HTTP_SERVERS $HTTP_PORTS (msg:"ET SCAN Netspark
 
 alert http $EXTERNAL_NET any -> $HTTP_SERVERS $HTTP_PORTS (msg:"ET SCAN Netsparker Scan in Progress"; flow:to_server,established; uricontent:"/Netsparker-"; threshold:type limit,track by_src,count 1,seconds 60; reference:url,www.mavitunasecurity.com/communityedition/; reference:url,doc.emergingthreats.net/2011030; classtype:attempted-recon; sid:2011030; rev:5;)
 
-alert tcp $HOME_NET any -> any 445 (msg:"ET SCAN Behavioral Unusual Port 445 traffic, Potential Scan or Infection"; flow:to_server; flags: S,12; threshold: type both, track by_src, count 70 , seconds 60; reference:url,doc.emergingthreats.net/2001569; classtype:misc-activity; sid:2001569; rev:14;)
+alert tcp $HOME_NET any -> any 445 (msg:"ET SCAN Behavioral Unusual Port 445 traffic Potential Scan or Infection"; flow:to_server; flags: S,12; threshold: type both, track by_src, count 70 , seconds 60; reference:url,doc.emergingthreats.net/2001569; classtype:misc-activity; sid:2001569; rev:15;)
 
-alert tcp $HOME_NET any -> any 139 (msg:"ET SCAN Behavioral Unusual Port 139 traffic, Potential Scan or Infection"; flow:to_server; flags: S,12; threshold: type both, track by_src, count 70 , seconds 60; reference:url,doc.emergingthreats.net/2001579; classtype:misc-activity; sid:2001579; rev:14;)
+alert tcp $HOME_NET any -> any 139 (msg:"ET SCAN Behavioral Unusual Port 139 traffic Potential Scan or Infection"; flow:to_server; flags: S,12; threshold: type both, track by_src, count 70 , seconds 60; reference:url,doc.emergingthreats.net/2001579; classtype:misc-activity; sid:2001579; rev:15;)
 
-alert tcp $HOME_NET any -> any 137 (msg:"ET SCAN Behavioral Unusual Port 137 traffic, Potential Scan or Infection"; flow:to_server; flags: S,12; threshold: type both, track by_src, count 70 , seconds 60; reference:url,doc.emergingthreats.net/2001580; classtype:misc-activity; sid:2001580; rev:14;)
+alert tcp $HOME_NET any -> any 137 (msg:"ET SCAN Behavioral Unusual Port 137 traffic Potential Scan or Infection"; flow:to_server; flags: S,12; threshold: type both, track by_src, count 70 , seconds 60; reference:url,doc.emergingthreats.net/2001580; classtype:misc-activity; sid:2001580; rev:15;)
 
-alert tcp $HOME_NET any -> any 135 (msg:"ET SCAN Behavioral Unusual Port 135 traffic, Potential Scan or Infection"; flow:to_server; flags: S,12; threshold: type both, track by_src, count 70 , seconds 60; reference:url,doc.emergingthreats.net/2001581; classtype:misc-activity; sid:2001581; rev:14;)
+alert tcp $HOME_NET any -> any 135 (msg:"ET SCAN Behavioral Unusual Port 135 traffic Potential Scan or Infection"; flow:to_server; flags: S,12; threshold: type both, track by_src, count 70 , seconds 60; reference:url,doc.emergingthreats.net/2001581; classtype:misc-activity; sid:2001581; rev:15;)
 
-alert tcp $HOME_NET any -> any 1434 (msg:"ET SCAN Behavioral Unusual Port 1434 traffic, Potential Scan or Infection"; flow:to_server; flags: S,12; threshold: type both, track by_src, count 40 , seconds 60; reference:url,doc.emergingthreats.net/2001582; classtype:misc-activity; sid:2001582; rev:14;)
+alert tcp $HOME_NET any -> any 1434 (msg:"ET SCAN Behavioral Unusual Port 1434 traffic Potential Scan or Infection"; flow:to_server; flags: S,12; threshold: type both, track by_src, count 40 , seconds 60; reference:url,doc.emergingthreats.net/2001582; classtype:misc-activity; sid:2001582; rev:15;)
 
-alert tcp $HOME_NET any -> any 1433 (msg:"ET SCAN Behavioral Unusual Port 1433 traffic, Potential Scan or Infection"; flow:to_server; flags: S,12; threshold: type both, track by_src, count 40 , seconds 60; reference:url,doc.emergingthreats.net/2001583; classtype:misc-activity; sid:2001583; rev:15;)
+alert tcp $HOME_NET any -> any 1433 (msg:"ET SCAN Behavioral Unusual Port 1433 traffic Potential Scan or Infection"; flow:to_server; flags: S,12; threshold: type both, track by_src, count 40 , seconds 60; reference:url,doc.emergingthreats.net/2001583; classtype:misc-activity; sid:2001583; rev:16;)
 
 #alert udp $HOME_NET 137 -> $EXTERNAL_NET any (msg:"ET SCAN Multiple NBTStat Query Responses to External Destination, Possible Automated Windows Network Enumeration"; content:"|20 43 4b 41 41 41 41 41 41 41 41 41 41 41 41 41 41 41 41 41 41 41 41 41 41 41 41 41 41 41 41 41 41 00 00 21|"; depth:55; threshold: type threshold, track by_dst, count 10, seconds 60; reference:url,technet.microsoft.com/en-us/library/cc940106.aspx; reference:url,doc.emergingthreats.net/2009767; classtype:attempted-recon; sid:2009767; rev:4;)
 
@@ -206,9 +206,9 @@ alert http $EXTERNAL_NET any -> $HOME_NET any (msg:"ET SCAN Paros Proxy Scanner 
 
 alert http $EXTERNAL_NET any -> $HOME_NET any (msg:"ET SCAN Pavuk User Agent Detected - Website Mirroring Tool for Off-line Analysis"; flow:established,to_server; content:"pavuk"; http_user_agent; nocase; reference:url,pavuk.sourceforge.net/about.html; reference:url,doc.emergingthreats.net/2009827; classtype:attempted-recon; sid:2009827; rev:4;)
 
-alert http $EXTERNAL_NET any -> $HOME_NET $HTTP_PORTS (msg:"ET SCAN ProxyReconBot CONNECT method to Mail"; flow:established,to_server; content:"CONNECT "; depth:8; content:"|3A|25 HTTP/"; within:200; reference:url,doc.emergingthreats.net/2003869; classtype:misc-attack; sid:2003869; rev:7;)
+alert http $EXTERNAL_NET any -> $HOME_NET $HTTP_PORTS (msg:"ET SCAN ProxyReconBot CONNECT method to Mail"; flow:established,to_server; content:"CONNECT "; depth:8; content:"|3A|25 HTTP/"; within:200; reference:url,doc.emergingthreats.net/2003869; classtype:misc-attack; sid:2003869; rev:8;)
 
-alert http $EXTERNAL_NET any -> $HOME_NET $HTTP_PORTS (msg:"ET SCAN ProxyReconBot POST method to Mail"; flow:established,to_server; content:"POST "; depth:5; content:"|3A|25 HTTP/"; within:200; reference:url,doc.emergingthreats.net/2003870; classtype:misc-attack; sid:2003870; rev:7;)
+#alert http $EXTERNAL_NET any -> $HOME_NET $HTTP_PORTS (msg:"ET SCAN ProxyReconBot POST method to Mail"; flow:established,to_server; content:"POST "; depth:5; content:"|3A|25 HTTP/"; within:200; reference:url,doc.emergingthreats.net/2003870; classtype:misc-attack; sid:2003870; rev:7;)
 
 alert http $EXTERNAL_NET any -> $HTTP_SERVERS $HTTP_PORTS (msg:"ET SCAN SQLBrute SQL Scan Detected"; flow:to_server,established; content:"AND not exists (select * from master..sysdatabases)"; offset:60; depth:60; reference:url,www.justinclarke.com/archives/2006/03/sqlbrute.html; reference:url,www.darknet.org.uk/2007/06/sqlbrute-sql-injection-brute-force-tool/; reference:url,doc.emergingthreats.net/2009477; classtype:attempted-recon; sid:2009477; rev:3;)
 
@@ -270,7 +270,7 @@ alert http $EXTERNAL_NET any -> $HOME_NET any (msg:"ET SCAN Suspicious User-Agen
 
 #alert tcp $HOME_NET any -> $EXTERNAL_NET 23 (msg:"ET SCAN Behavioral Unusually fast outbound Telnet Connections, Potential Scan or Brute Force"; flow:to_server; flags: S,12; threshold: type both, track by_src, count 30, seconds 60; reference:url,www.rapid7.com/nexpose-faq-answer2.htm; reference:url,doc.emergingthreats.net/2008230; classtype:misc-activity; sid:2008230; rev:3;)
 
-alert tcp $EXTERNAL_NET any -> $HOME_NET 3389 (msg:"ET SCAN Behavioral Unusually fast Terminal Server Traffic, Potential Scan or Infection (Inbound)"; flow:to_server; flags: S,12; threshold: type both, track by_src, count 20, seconds 360; reference:url,doc.emergingthreats.net/2001972; classtype:network-scan; sid:2001972; rev:19;)
+alert tcp $EXTERNAL_NET any -> $HOME_NET 3389 (msg:"ET SCAN Behavioral Unusually fast Terminal Server Traffic Potential Scan or Infection (Inbound)"; flow:to_server; flags: S,12; threshold: type both, track by_src, count 20, seconds 360; reference:url,doc.emergingthreats.net/2001972; classtype:network-scan; sid:2001972; rev:20;)
 
 alert http $EXTERNAL_NET any -> $HTTP_SERVERS any (msg:"ET SCAN Toata Scanner User-Agent Detected"; flow:to_server,established; content:"User-Agent|3a| Toata dragostea "; http_header; threshold: type limit, count 1, seconds 60, track by_src; reference:url,isc.sans.org/diary.html?storyid=5599; reference:url,doc.emergingthreats.net/2009159; classtype:attempted-recon; sid:2009159; rev:7;)
 
@@ -288,11 +288,11 @@ alert http $EXTERNAL_NET any -> $HOME_NET $HTTP_PORTS (msg:"ET SCAN Tomcat uploa
 
 alert http $EXTERNAL_NET any -> $HOME_NET any (msg:"ET SCAN Tomcat Web Application Manager scanning"; flow:established,to_server; content:"GET"; http_method; content:"/manager/html"; nocase; fast_pattern; http_uri; content:"User-Agent|3a| Mozilla/3.0 (compatible|3b| Indy Library)|0d 0a|"; http_header; content:"|0d 0a|Authorization|3a| Basic"; http_header; reference:url,doc.emergingthreats.net/2010019; classtype:attempted-recon; sid:2010019; rev:8;)
 
-alert http $EXTERNAL_NET any -> $HTTP_SERVERS any (msg:"ET SCAN Suspicious User-Agent Containing SQL Inject/ion, Likely SQL Injection Scanner"; flow:established,to_server; content:"SQL"; nocase; depth:200; http_user_agent; content:"Inject"; nocase; distance:0; http_user_agent; reference:url,www.owasp.org/index.php/SQL_Injection; reference:url,doc.emergingthreats.net/2010087; classtype:attempted-recon; sid:2010087; rev:6;)
+alert http $EXTERNAL_NET any -> $HTTP_SERVERS any (msg:"ET SCAN Suspicious User-Agent Containing SQL Inject/ion Likely SQL Injection Scanner"; flow:established,to_server; content:"SQL"; nocase; depth:200; http_user_agent; content:"Inject"; nocase; distance:0; http_user_agent; reference:url,www.owasp.org/index.php/SQL_Injection; reference:url,doc.emergingthreats.net/2010087; classtype:attempted-recon; sid:2010087; rev:7;)
 
-alert http $EXTERNAL_NET any -> $HTTP_SERVERS any (msg:"ET SCAN Suspicious User-Agent Containing Web Scan/er, Likely Web Scanner"; flow:established,to_server; content:"web"; nocase; depth:200; http_user_agent; content:"scan"; nocase; distance:0; http_user_agent; reference:url,doc.emergingthreats.net/2010088; classtype:attempted-recon; sid:2010088; rev:5;)
+alert http $EXTERNAL_NET any -> $HTTP_SERVERS any (msg:"ET SCAN Suspicious User-Agent Containing Web Scan/er Likely Web Scanner"; flow:established,to_server; content:"web"; nocase; depth:200; http_user_agent; content:"scan"; nocase; distance:0; http_user_agent; reference:url,doc.emergingthreats.net/2010088; classtype:attempted-recon; sid:2010088; rev:6;)
 
-alert http $EXTERNAL_NET any -> $HTTP_SERVERS any (msg:"ET SCAN Suspicious User-Agent Containing Security Scan/ner, Likely Scan"; flow:established,to_server; content:"security"; nocase; http_user_agent; content:"scan"; nocase; distance:0; http_user_agent; reference:url,doc.emergingthreats.net/2010089; classtype:attempted-recon; sid:2010089; rev:5;)
+alert http $EXTERNAL_NET any -> $HTTP_SERVERS any (msg:"ET SCAN Suspicious User-Agent Containing Security Scan/ner Likely Scan"; flow:established,to_server; content:"security"; nocase; http_user_agent; content:"scan"; nocase; distance:0; http_user_agent; reference:url,doc.emergingthreats.net/2010089; classtype:attempted-recon; sid:2010089; rev:6;)
 
 alert tcp $HOME_NET any -> $HOME_NET 2555 (msg:"ET SCAN Internal to Internal UPnP Request tcp port 2555"; flow:established,to_server; content:"GET "; depth:4; content:"/upnp/"; nocase; pcre:"/\/upnp\/[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{16}\//i"; reference:url,www.upnp-hacks.org/upnp.html; reference:url,doc.emergingthreats.net/2008092; classtype:attempted-recon; sid:2008092; rev:3;)
 
@@ -342,13 +342,165 @@ alert icmp $HOME_NET any -> $EXTERNAL_NET any (msg:"ET SCAN Port Unreachable Res
 
 alert http $EXTERNAL_NET any -> $HOME_NET any (msg:"ET SCAN ZmEu exploit scanner"; flow:established,to_server; content:"Made by ZmEu"; http_user_agent; depth:12; threshold: type limit, track by_src, seconds 180, count 1; reference:url,doc.emergingthreats.net/2010715; classtype:web-application-attack; sid:2010715; rev:9;)
 
-alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:"ET SCAN ICMP @hello request, Likely Precursor to Scan"; itype:8; icode:0; content:"@hello ???"; reference:url,doc.emergingthreats.net/2010641; classtype:misc-activity; sid:2010641; rev:2;)
+alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:"ET SCAN ICMP @hello request Likely Precursor to Scan"; itype:8; icode:0; content:"@hello ???"; reference:url,doc.emergingthreats.net/2010641; classtype:misc-activity; sid:2010641; rev:3;)
 
 #alert http $EXTERNAL_NET any -> $HTTP_SERVERS any (msg:"ET SCAN Possible jBroFuzz Fuzzer Detected"; flow:to_server,established; content:"Host|3a| localhost"; fast_pattern; http_header; content:"User-Agent|3a| Mozilla/5.0 (Windows|3b| U|3b| Windows NT 5.1|3b| en-GB|3b| rv|3b|1.8.1.1) Gecko/20061204 Firefox/2.0.0.1"; http_header; threshold: type threshold, track by_src, count 3, seconds 6; reference:url,www.owasp.org/index.php/Category%3aOWASP_JBroFuzz; reference:url,doc.emergingthreats.net/2009476; classtype:attempted-recon; sid:2009476; rev:8;)
 
 alert udp $EXTERNAL_NET any -> $HOME_NET 5060 (msg:"ET SCAN SIP erase_registrations/add registrations attempt"; content:"REGISTER "; depth:9; content:"User-Agent|3a| Hacker"; reference:url,www.hackingvoip.com/sec_tools.html; reference:url,doc.emergingthreats.net/2008640; classtype:attempted-recon; sid:2008640; rev:5;)
 
 alert udp $EXTERNAL_NET any -> $HOME_NET 5060 (msg:"ET SCAN sipscan probe"; content:"sip|3a|thisisthecanary@"; content:"sip|3a|test@"; offset:30; depth:70; reference:url,www.hackingvoip.com/sec_tools.html; reference:url,doc.emergingthreats.net/2008641; classtype:attempted-recon; sid:2008641; rev:4;)
+
+alert http $EXTERNAL_NET any -> $HOME_NET any (msg:"ET SCAN Hydra User-Agent"; flow: established,to_server; content:"User-Agent|3A| Mozilla/4.0 (Hydra)"; nocase; http_header; fast_pattern:23,8; threshold: type limit, track by_src,count 1, seconds 60; reference:url,freeworld.thc.org/thc-hydra; classtype:attempted-recon; sid:2011497; rev:4;)
+
+alert http $HTTP_SERVERS any -> $EXTERNAL_NET any (msg:"ET SCAN w3af Scan Remote File Include Retrieval"; flow:established,to_server; content:"/w3af/remoteFileInclude.html"; http_uri; nocase; content:"Host|3A| w3af.sourceforge.net"; http_header; nocase; reference:url,w3af.sourceforge.net; classtype:web-application-activity; sid:2011389; rev:5;)
+
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"ET SCAN Nikto Scan Remote File Include Retrieval"; flow:established,to_server; content:"/rfiinc.txt"; http_uri; content:"Host|3A| cirt.net|0d 0a|"; http_header; nocase; reference:url,cirt.net/nikto2; classtype:web-application-activity; sid:2011390; rev:4;)
+
+#alert tcp any any -> any any (msg:"ET SCAN Malformed Packet SYN FIN"; flags:SF; classtype:bad-unknown; sid:2011367; rev:2;)
+
+#alert tcp any any -> any any (msg:"ET SCAN Malformed Packet SYN RST"; flags:SR; classtype:bad-unknown; sid:2011368; rev:2;)
+
+alert http $EXTERNAL_NET any -> $HTTP_SERVERS $HTTP_PORTS (msg:"ET SCAN Inspathx Path Disclosure Scanner User-Agent Detected"; flow:established,to_server; content:"User-Agent|3A| inspath [path disclosure finder"; http_header; threshold:type limit, count 1, seconds 30, track by_src; reference:url,code.google.com/p/inspathx/; reference:url,www.darknet.org.uk/2010/09/inspathx-tool-for-finding-path-disclosure-vulnerabilities/; classtype:attempted-recon; sid:2011808; rev:3;)
+
+alert http $EXTERNAL_NET any -> $HTTP_SERVERS $HTTP_PORTS (msg:"ET SCAN Inspathx Path Disclosure Scan"; flow:established,to_server; content:"GET"; http_method; content:"varhttp|3A|/"; http_uri; nocase; content:"wwwhttp|3A|/"; http_uri; nocase; content:"htmlhttp|3A|/"; http_uri; nocase; threshold:type limit, count 1, seconds 30, track by_src; reference:url,code.google.com/p/inspathx/; reference:url,www.darknet.org.uk/2010/09/inspathx-tool-for-finding-path-disclosure-vulnerabilities/; classtype:attempted-recon; sid:2011809; rev:5;)
+
+alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg:"ET SCAN Medusa User-Agent"; flow: established,to_server; content:"User-Agent|3A| Teh Forest Lobster"; fast_pattern:10,20; nocase; http_header; threshold: type limit, track by_src,count 1, seconds 60; reference:url,www.foofus.net/~jmk/medusa/medusa.html; classtype:attempted-recon; sid:2011887; rev:2;)
+
+alert tcp $EXTERNAL_NET any -> $HOME_NET $HTTP_PORTS (msg:"ET SCAN DirBuster Scan in Progress"; flow:established,to_server; content:"/thereIsNoWayThat-You-CanBeThere"; nocase; http_uri; threshold: type limit, track by_src,count 1, seconds 60; reference:url,www.owasp.org/index.php/Category%3aOWASP_DirBuster_Project; classtype:attempted-recon; sid:2011914; rev:1;)
+
+alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg:"ET SCAN DotDotPwn User-Agent"; flow:established,to_server; content:"User-Agent|3A| DotDotPwn"; nocase; http_header; threshold:type limit, track by_src,count 1, seconds 60; reference:url,dotdotpwn.sectester.net; classtype:attempted-recon; sid:2011915; rev:2;)
+
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"ET SCAN Havij SQL Injection Tool User-Agent Outbound"; flow:established,to_server; content:"|29| Havij|0d 0a|Connection|3a| "; http_header; reference:url,itsecteam.com/en/projects/project1.htm; classtype:web-application-attack; sid:2011924; rev:2;)
+
+alert tcp $EXTERNAL_NET any -> $HOME_NET $HTTP_PORTS (msg:"ET SCAN Metasploit WMAP GET len 0 and type"; flow:established,to_server; content:"GET"; http_method; content:"|0d 0a|Content-Type|3A| text/plain|0d 0a|Content-Length|3A| 0|0d 0a|"; http_header; threshold: type limit, track by_src,count 1,seconds 60; classtype:attempted-recon; sid:2011974; rev:3;)
+
+alert tcp $EXTERNAL_NET any -> $HOME_NET $HTTP_PORTS (msg:"ET SCAN RatProxy in-use"; flow:established,to_server; content:"X-Ratproxy-Loop|3A| "; threshold: type limit, track by_src,count 1, seconds 60; classtype:attempted-recon; sid:2011975; rev:2;)
+
+alert tcp $EXTERNAL_NET any -> $HOME_NET $HTTP_PORTS (msg:"ET SCAN Goatzapszu Header from unknown Scanning Tool"; flow:established,to_server; content:"Goatzapszu|3a|"; nocase; http_header; classtype:attempted-recon; sid:2012077; rev:2;)
+
+alert udp $EXTERNAL_NET any -> $HOME_NET 5060 (msg:"ET SCAN Modified Sipvicious Sundayddr Scanner (sipsscuser)"; content:"From|3A 20 22|sipsscuser|22|"; threshold: type limit, count 1, seconds 60, track by_src; reference:url,code.google.com/p/sipvicious/; reference:url,blog.sipvicious.org/; reference:url,honeynet.org.au/?q=sunday_scanner; classtype:attempted-recon; sid:2012204; rev:3;)
+
+alert http $EXTERNAL_NET any -> $HOME_NET any (msg:"ET SCAN Havij SQL Injection Tool User-Agent Inbound"; flow:established,to_server; content:"|29| Havij|0d 0a|Connection|3a| "; http_header; reference:url,itsecteam.com/en/projects/project1.htm; classtype:web-application-attack; sid:2012606; rev:3;)
+
+alert http $EXTERNAL_NET any -> $HOME_NET any (msg:"ET SCAN OpenVAS User-Agent Inbound"; flow:established,to_server; content:"User-Agent|3A| "; http_header; content:"OpenVAS"; fast_pattern; http_header; within:100; reference:url,openvas.org; classtype:attempted-recon; sid:2012726; rev:4;)
+
+alert http $EXTERNAL_NET any -> $HTTP_SERVERS any (msg:"ET SCAN Possible SQLMAP Scan"; flow:established,to_server; content:"UNION ALL SELECT NULL, NULL, NULL, NULL"; http_uri; content:"-- AND"; http_uri; detection_filter:track by_dst, count 4, seconds 20; reference:url,sqlmap.sourceforge.net; reference:url,www.darknet.org.uk/2011/04/sqlmap-0-9-released-automatic-blind-sql-injection-tool/; classtype:attempted-recon; sid:2012754; rev:2;)
+
+#alert http $EXTERNAL_NET any -> $HTTP_SERVERS any (msg:"ET SCAN Possible SQLMAP Scan"; flow:established,to_server; content:" AND "; http_uri; content:"AND ("; http_uri; pcre:"/\x20AND\x20[0-9]{6}\x3D[0-9]{4}/U"; detection_filter:track by_dst, count 4, seconds 20; reference:url,sqlmap.sourceforge.net; reference:url,www.darknet.org.uk/2011/04/sqlmap-0-9-released-automatic-blind-sql-injection-tool/; classtype:attempted-recon; sid:2012755; rev:4;)
+
+alert http $EXTERNAL_NET any -> $HOME_NET any (msg:"ET SCAN ZmEu Scanner User-Agent Inbound"; flow:established,to_server; content:"ZmEu"; http_user_agent; depth:4; classtype:trojan-activity; sid:2012936; rev:3;)
+
+alert http $EXTERNAL_NET any -> $HOME_NET any (msg:"ET SCAN Internal Dummy Connection User-Agent Inbound"; flow:established,to_server; content:"(internal dummy connection)"; http_user_agent; classtype:trojan-activity; sid:2012937; rev:3;)
+
+alert http $EXTERNAL_NET any -> $HOME_NET any (msg:"ET SCAN Potential muieblackcat scanner double-URI and HTTP library"; flow:established,to_server; content:"GET //"; depth:6; fast_pattern; content:"HTTP/1.1|0d 0a|Accept|3a| */*|0d 0a|Accept-Language|3a| en-us|0d 0a|Accept-Encoding|3a| gzip, deflate|0d 0a|Host|3a| "; http_header; content:"|0d 0a|Connection|3a| Close|0d 0a 0d 0a|"; http_header; distance:0; classtype:attempted-recon; sid:2013116; rev:5;)
+
+alert http any any -> $HTTP_SERVERS any (msg:"ET SCAN DominoHunter Security Scan in Progress"; flow:established,to_server; content:"User-Agent|3a| DominoHunter"; nocase; http_header; reference:url,packetstormsecurity.org/files/31653/DominoHunter-0.92.zip.html; classtype:web-application-attack; sid:2013171; rev:2;)
+
+alert http $EXTERNAL_NET any -> $HTTP_SERVERS any (msg:"ET SCAN Vega Web Application Scan"; flow:established,to_server; content:"Vega/"; http_header; pcre:"/User-Agent\x3A[^\r\n]+Vega\x2F/H"; threshold: type limit, track by_src, count 5, seconds 40; reference:url,www.subgraph.com/products.html; reference:url,www.darknet.org.uk/2011/07/vega-open-source-cross-platform-web-application-security-assessment-platform/; classtype:attempted-recon; sid:2013249; rev:3;)
+
+alert ftp any any -> $HOME_NET any (msg:"ET SCAN Nessus FTP Scan detected (ftp_anonymous.nasl)"; flow:to_server,established; content:"pass nessus@"; depth:12; nocase; reference:url,www.nessus.org/plugins/index.php?view=single&id=10079; reference:url,osvdb.org/show/osvdb/69; classtype:attempted-recon; sid:2013263; rev:3;)
+
+alert ftp $EXTERNAL_NET any -> $HOME_NET any (msg:"ET SCAN Nessus FTP Scan detected (ftp_writeable_directories.nasl)"; flow:to_server,established; content:"MKD"; nocase; depth:3; content:"Nessus"; nocase; reference:url,www.nessus.org/plugins/index.php?view=single&id=19782; reference:url,osvdb.org/show/osvdb/76; classtype:attempted-recon; sid:2013264; rev:2;)
+
+alert http $EXTERNAL_NET any -> $HTTP_SERVERS any (msg:"ET SCAN libwww-perl GET to // with specific HTTP header ordering without libwww-perl User-Agent"; flow:established,to_server; content:"GET //"; fast_pattern; depth:6; content:"HTTP/1.1|0d 0a|TE|3a| deflate,gzip|3b|q=0.3|0d 0a|Connection|3a| TE, close|0d 0a|Host|3a| "; content:"User-Agent|3a| "; within:100; content:!"libwww-perl/"; http_header; pcre:"/^TE\x3a deflate,gzip\x3bq=0\.3\r\nHost\x3a[^\r\n]+\r\nUser-Agent\x3a[^\r\n]+\r\n$/H";threshold:type threshold, track by_dst, count 10,seconds 20; classtype:attempted-recon; sid:2013416; rev:8;)
+
+alert http $EXTERNAL_NET any -> $HOME_NET any (msg:"ET SCAN Kingcope KillApache.pl Apache mod_deflate DoS attempt"; flow:established,to_server; content:"Range|3a|bytes=0-,5-0,5-1,5-2,5-3,5-4,5-5,5-6,5-7,5-8,5-9,5-10,5-11,5-12,5-13,5-14"; http_header; reference:url,seclists.org/fulldisclosure/2011/Aug/175; classtype:attempted-dos; sid:2013472; rev:4;)
+
+alert http $EXTERNAL_NET any -> $HOME_NET any (msg:"ET SCAN Apache mod_deflate DoS via many multiple byte Range values"; flow:established,to_server; content:"Range|3a|"; nocase; content:"bytes="; nocase; distance:0; isdataat:10,relative; content:","; within:11; isdataat:10,relative; content:","; within:11; isdataat:10,relative; content:","; within:11; isdataat:70,relative; content:!"|0d 0a|"; within:12; pcre:"/Range\x3a\s?bytes=[-0-9,\x20]{100}/iH"; reference:url,seclists.org/fulldisclosure/2011/Aug/175; classtype:attempted-dos; sid:2013473; rev:5;)
+
+alert tcp $HOME_NET any -> $EXTERNAL_NET 3389 (msg:"ET SCAN Behavioral Unusually fast Terminal Server Traffic Potential Scan or Infection (Outbound)"; flow:to_server; flags: S,12; threshold: type both, track by_src, count 20, seconds 360; reference:url,threatpost.com/en_us/blogs/new-worm-morto-using-rdp-infect-windows-pcs-082811; classtype:misc-activity; sid:2013479; rev:5;)
+
+alert http $EXTERNAL_NET any -> $HOME_NET any (msg:"ET SCAN McAfee/Foundstone Scanner Web Scan"; flow:established,to_server; content:"User-Agent|3A| Mozilla/5.0 (Windows|3B| Windows NT 6.1|3B| en-US)|0D 0A|"; http_header; fast_pattern:20,20; content:"|0D 0A|Accept-Encoding|3A| text|0D 0A|"; http_header; threshold: type both, count 2, seconds 120, track by_src; reference:url,www.mcafee.com/us/products/vulnerability-manager.aspx; classtype:attempted-recon; sid:2013492; rev:4;)
+
+alert http $EXTERNAL_NET any -> $HTTP_SERVERS any (msg:"ET SCAN NMAP SQL Spider Scan"; flow:established,to_server; content:"GET"; http_method; content:" OR sqlspider"; http_uri; reference:url,nmap.org/nsedoc/scripts/sql-injection.html; classtype:web-application-attack; sid:2013778; rev:2;)
+
+alert http $EXTERNAL_NET any -> $HOME_NET any (msg:"ET SCAN Positive Technologies XSpider Security Scanner User-Agent (PTX)"; flow:to_server,established; content:"PTX|0d 0a|"; http_header; fast_pattern:only; pcre:"/^User-Agent\x3a[^\n]+PTX\r$/Hm"; reference:url,www.securitylab.ru/forum/forum16/topic26800/; classtype:attempted-recon; sid:2013779; rev:4;)
+
+alert http $EXTERNAL_NET any -> $HTTP_SERVERS any (msg:"ET SCAN Apache mod_proxy Reverse Proxy Exposure 1"; flow:established,to_server; content:"GET @"; depth:5; content:"@"; http_uri; reference:url,www.contextis.com/research/blog/reverseproxybypass/; reference:url,mail-archives.apache.org/mod_mbox/httpd-announce/201110.mbox/%3C20111005141541.GA7696@redhat.com%3E; classtype:attempted-recon; sid:2013791; rev:2;)
+
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS $HTTP_PORTS (msg:"ET SCAN Apache mod_proxy Reverse Proxy Exposure 2"; flow:established,to_server; content:"GET|20 3a|@"; depth:6; content:"|3a|@"; http_uri; reference:url,www.contextis.com/research/blog/reverseproxybypass/; reference:url,mail-archives.apache.org/mod_mbox/httpd-announce/201110.mbox/%3C20111005141541.GA7696@redhat.com%3E; classtype:attempted-recon; sid:2013792; rev:3;)
+
+alert http $EXTERNAL_NET any -> $HTTP_SERVERS any (msg:"ET SCAN Gootkit Scanner User-Agent Inbound"; flow:established,to_server; content:"Gootkit auto-rooter scanner"; http_header; classtype:web-application-attack; sid:2014022; rev:2;)
+
+alert http $EXTERNAL_NET any -> $HOME_NET any (msg:"ET SCAN FHScan core User-Agent Detect"; flow:to_server,established; content:"FHScan Core 1."; http_user_agent; reference:url,www.tarasco.org/security/FHScan_Fast_HTTP_Vulnerability_Scanner/index.html; classtype:attempted-recon; sid:2014541; rev:5;)
+
+alert http $EXTERNAL_NET any -> $HOME_NET any (msg:"ET SCAN Arachni Scanner Web Scan"; flow:established,to_server; content:"Arachni/"; http_header; pcre:"/User-Agent\x3a[^\r\n]+Arachni\/v?\d\.\d\.\d$/iH"; threshold: type limit, track by_src, count 1, seconds 300; reference:url,arachni-scanner.com; reference:url,github.com/Zapotek/arachni; classtype:attempted-recon; sid:2014869; rev:5;)
+
+#alert tcp [184.154.42.194,50.116.22.209,69.64.43.135,69.64.43.137,69.64.43.142,216.17.107.104,216.17.102.194,216.17.106.90,216.17.107.174,64.6.100.124,46.17.98.214] any -> $HOME_NET any (msg:"ET SCAN critical.io Scan"; threshold: type limit, track by_src, seconds 3600, count 1; reference:url,critical.io/; classtype:network-scan; sid:2014893; rev:5;)
+
+alert http $EXTERNAL_NET any -> $HTTP_SERVERS any (msg:"ET SCAN w3af User-Agent 2"; flow:established,to_server; content:"w3af.sf.net"; http_header; fast_pattern:only; pcre:"/^User-Agent\x3a[^\r\n]+?w3af\.sf\.net/Hmi"; classtype:attempted-recon; sid:2015484; rev:2;)
+
+alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS $HTTP_PORTS (msg:"ET SCAN HTExploit Method"; flow:established,to_server; dsize:>6; content:"POTATO "; depth:7; reference:url,www.mkit.com.ar/labs/htexploit/download.php; classtype:trojan-activity; sid:2015552; rev:2;)
+
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"ET SCAN Brutus Scan Outbound"; flow:established,to_server; content:"Brutus/AET"; http_user_agent; classtype:attempted-recon; sid:2015702; rev:3;)
+
+alert udp $EXTERNAL_NET any -> $HOME_NET [137,138,139,445] (msg:"ET SCAN Nessus Netbios Scanning"; content:"n|00|e|00|s|00|s|00|u|00|s"; fast_pattern:only; reference:url,www.tenable.com/products/nessus/nessus-product-overview; classtype:attempted-recon; sid:2015754; rev:2;)
+
+alert http $EXTERNAL_NET any -> $HTTP_SERVERS any (msg:"ET SCAN SFTP/FTP Password Exposure via sftp-config.json"; flow:to_server,established; content:"/sftp-config.json"; fast_pattern:only; http_uri; reference:url,blog.sucuri.net/2012/11/psa-sftpftp-password-exposure-via-sftp-config-json.html; classtype:attempted-recon; sid:2015940; rev:2;)
+
+alert tcp $EXTERNAL_NET any -> $SQL_SERVERS 3306 (msg:"ET SCAN MYSQL MySQL Remote FAST Account Password Cracking"; flow:to_server,established; content:"|11|"; offset:3; depth:4; threshold:type both,track by_src,count 100,seconds 1; reference:url,www.securityfocus.com/archive/1/524927/30/0/threaded; classtype:protocol-command-decode; sid:2015986; rev:5;)
+
+alert http $EXTERNAL_NET any -> $HTTP_SERVERS any (msg:"ET SCAN JCE Joomla Scanner"; flow:established,to_server; content:"User-Agent|3a| BOT/0.1 (BOT for JCE)"; http_header; classtype:web-application-attack; sid:2016032; rev:3;)
+
+alert http $EXTERNAL_NET any -> $HTTP_SERVERS any (msg:"ET SCAN Simple Slowloris Flooder"; flow:established,to_server; content:"POST"; http_method; content:"Content-length|3A| 5235|0D 0A|"; http_header; content:!"User-Agent|3a|"; http_header; threshold:type limit, track by_src, count 1, seconds 300; reference:url,www.imperva.com/docs/HII_Denial_of_Service_Attacks-Trends_Techniques_and_Technologies.pdf; classtype:web-application-attack; sid:2016033; rev:4;)
+
+alert http $EXTERNAL_NET any -> $HOME_NET any (msg:"ET SCAN GET with HTML tag in start of URI seen with PHPMyAdmin scanning"; flow:established,to_server; content:"<title>"; http_uri; depth:7; content:"GET"; http_method; classtype:web-application-attack; sid:2016222; rev:2;)
+
+#alert tcp 188.95.234.6 any -> $HOME_NET [22,443] (msg:"ET SCAN Non-Malicious SSH/SSL Scanner on the run"; threshold: type limit, track by_src, seconds 60, count 1; reference:url,pki.net.in.tum.de/node/21; reference:url,isc.sans.edu/diary/SSH%2bscans%2bfrom%2b188.95.234.6/15532; classtype:network-scan; sid:2016763; rev:7;)
+
+#alert http $EXTERNAL_NET any -> $HTTP_SERVERS any (msg:"ET SCAN Arachni Web Scan"; flow:established,to_server; content:"/Arachni-"; http_uri; threshold: type limit, track by_src, seconds 60, count 1; reference:url,www.arachni-scanner.com/; classtype:attempted-recon; sid:2017142; rev:2;)
+
+alert tcp $EXTERNAL_NET any -> $HOME_NET 5060 (msg:"ET SCAN SipCLI VOIP Scan - TCP"; flow:established,to_server; content:"|0D 0A|User-Agent|3A 20|sipcli/"; fast_pattern:only; threshold: type limit, count 1, seconds 60, track by_src; reference:url,www.yasinkaplan.com/SipCli/; classtype:attempted-recon; sid:2017161; rev:1;)
+
+alert udp $EXTERNAL_NET any -> $HOME_NET 5060 (msg:"ET SCAN SipCLI VOIP Scan"; content:"|0D 0A|User-Agent|3A 20|sipcli/"; fast_pattern:only; threshold: type limit, count 1, seconds 60, track by_src; reference:url,www.yasinkaplan.com/SipCli/; classtype:attempted-recon; sid:2017162; rev:2;)
+
+alert http $HOME_NET any -> any any (msg:"ET SCAN NETWORK Outgoing Masscan detected"; flow:established,to_server; content:"masscan/"; depth:8; http_user_agent; reference:url,blog.erratasec.com/2013/10/that-dlink-bug-masscan.html; reference:url,blog.erratasec.com/2013/09/masscan-entire-internet-in-3-minutes.html; classtype:network-scan; sid:2017615; rev:4;)
+
+alert http any any -> $HOME_NET any (msg:"ET SCAN NETWORK Incoming Masscan detected"; flow:established,to_server; content:"masscan/"; depth:8; http_user_agent; reference:url,blog.erratasec.com/2013/10/that-dlink-bug-masscan.html; reference:url,blog.erratasec.com/2013/09/masscan-entire-internet-in-3-minutes.html; classtype:network-scan; sid:2017616; rev:4;)
+
+alert http $EXTERNAL_NET any -> $HOME_NET any (msg:"ET SCAN FOCA uri"; flow:established,to_server; content:"GET"; http_method; content:"/*F0C4~1*/foca.aspx?aspxerrorpath=/"; http_uri; fast_pattern:only; content:!"Referer|3a 20|"; http_header; content:!"Accept|3a 20|"; http_header; content:!"Connection|3a 20|"; http_header; reference:url,blog.bannasties.com/2013/08/vulnerability-scans/; classtype:attempted-recon; sid:2017950; rev:3;)
+
+alert tcp $EXTERNAL_NET any -> $HOME_NET $HTTP_PORTS (msg:"ET SCAN NMAP SIP Version Detect OPTIONS Scan"; flow:established,to_server; content:"OPTIONS sip|3A|nm SIP/"; depth:19; classtype:attempted-recon; sid:2018317; rev:1;)
+
+alert tcp $EXTERNAL_NET any -> $HOME_NET 5060:5061 (msg:"ET SCAN NMAP SIP Version Detection Script Activity"; content:"Via|3A| SIP/2.0/TCP nm"; content:"From|3A| <sip|3A|nm@nm"; within:150; fast_pattern; classtype:attempted-recon; sid:2018318; rev:1;)
+
+alert udp $EXTERNAL_NET 10000: -> $HOME_NET 10000: (msg:"ET SCAN NMAP OS Detection Probe"; dsize:300; content:"CCCCCCCCCCCCCCCCCCCC"; fast_pattern:only; content:"CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC"; depth:255; content:"CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC"; within:45; classtype:attempted-recon; sid:2018489; rev:3;)
+
+alert http $EXTERNAL_NET any -> $HTTP_SERVERS any (msg:"ET SCAN Possible WordPress xmlrpc.php wp.getUsersBlogs Flowbit Set"; flow:established,to_server; content:"/xmlrpc.php"; http_uri; nocase; fast_pattern:only; flowbits:set,ET.XMLRPC.PHP; flowbits:noalert; reference:url,isc.sans.edu/diary/+WordPress+brute+force+attack+via+wp.getUsersBlogs/18427; classtype:attempted-admin; sid:2018754; rev:3;)
+
+alert http $HTTP_SERVERS any -> $EXTERNAL_NET any (msg:"ET SCAN Possible WordPress xmlrpc.php BruteForce in Progress - Response"; flow:established,from_server; flowbits:isset,ET.XMLRPC.PHP; file_data; content:"<name>faultCode</name>"; content:"<int>403</int>"; content:"<string>Incorrect username or password.</string>"; threshold:type both, track by_src, count 5, seconds 120; reference:url,isc.sans.edu/diary/+WordPress+brute+force+attack+via+wp.getUsersBlogs/18427; classtype:attempted-admin; sid:2018755; rev:5;)
+
+alert http $EXTERNAL_NET any -> $HOME_NET any (msg:"ET SCAN Internet Scanning Project HTTP scan"; flow:established,to_server; content:"User-Agent|3a 20|research-scanner/"; http_header; content:"internetscanningproject.org"; distance:0; http_header; reference:url,www.internetscanningproject.org; classtype:attempted-recon; sid:2018782; rev:2;)
+
+alert http $EXTERNAL_NET any -> $HOME_NET any (msg:"ET SCAN Chroot-apache0day Unknown Web Scanner User Agent"; flow:established,to_server; content:"chroot-apach0day"; nocase; http_user_agent; depth:16; reference:url,isc.sans.edu/forums/diary/Interesting+HTTP+User+Agent+chroot-apach0day+/18453; classtype:attempted-recon; sid:2018800; rev:4;)
+
+alert ssh $EXTERNAL_NET any -> $HOME_NET any (msg:"ET SCAN SSH BruteForce Tool with fake PUTTY version"; flow:established,to_server; ssh.softwareversion:"PUTTY"; threshold: type limit, track by_src, count 1, seconds 30; classtype:network-scan; sid:2019876; rev:4;)
+
+alert http $EXTERNAL_NET any -> $HOME_NET any (msg:"ET SCAN Acunetix Accept HTTP Header detected scan in progress"; flow:established,to_server; content:"Accept|3a 20|acunetix"; http_header; threshold: type limit, count 1, seconds 60, track by_src; reference:url,www.acunetix.com/; classtype:attempted-recon; sid:2019963; rev:2;)
+
+alert tcp any any -> $HOME_NET 1720 (msg:"ET SCAN H.323 Scanning device"; flow:established,to_server; content:"|40 04 00 63 00 69 00 73 00 63 00 6f|"; fast_pattern; offset:55; depth:12; threshold: type limit, track by_src, count 1, seconds 60; reference:url,videonationsltd.co.uk/2014/11/h-323-cisco-spam-calls/; classtype:network-scan; sid:2020853; rev:2;)
+
+alert tcp any any -> $HOME_NET any (msg:"ET SCAN Nmap NSE Heartbleed Request"; flow:established,to_server; content:"|18 03|"; depth:2; byte_test:1,<,4,2; content:"|01|"; offset:5; depth:1; byte_test:2,>,2,3; byte_test:2,>,200,6; content:"|40 00|Nmap ssl-heartbleed"; fast_pattern:2,19; classtype:attempted-recon; sid:2021023; rev:1;)
+
+alert tcp $HOME_NET any -> any any (msg:"ET SCAN Nmap NSE Heartbleed Response"; flow:established,from_server; content:"|18 03|"; depth:2; byte_test:1,<,4,2; byte_test:2,>,200,3; content:"|40 00|Nmap ssl-heartbleed"; fast_pattern:2,19; classtype:attempted-recon; sid:2021024; rev:1;)
+
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"ET SCAN Xenu Link Sleuth Scanner Outbound"; flow:to_server,established; content:"GET"; http_method; content:"Xenu Link Sleuth"; http_user_agent; fast_pattern:only; classtype:attempted-recon; sid:2021058; rev:3;)
+
+alert http $EXTERNAL_NET any -> $HOME_NET any (msg:"ET SCAN abdullkarem Wordpress PHP Scanner"; flow:established,to_server; content:"GET"; http_method; content:".php?"; nocase; http_uri; content:"&php"; nocase; http_uri; distance:0; content:"&wphp"; nocase; http_uri; distance:0; content:"&abdullkarem="; nocase; http_uri; fast_pattern; distance:0; content:"|20|HTTP/1.0|0d 0a|Host|3a 20|"; classtype:web-application-attack; sid:2021949; rev:2;)
+
+alert http $EXTERNAL_NET any -> $HTTP_SERVERS any (msg:"ET SCAN Possible Scanning for Vulnerable JBoss"; flow:established,to_server; content:"POST"; http_method; content:"/invoker/"; http_uri; depth:9; content:"servlet/"; http_uri; content:"Content-Type|3a 20|application/x-java-serialized-object|3b 0d 0a|"; http_header; content:"org.jboss.invocation.MarshalledValue"; http_client_body; reference:url,blog.imperva.com/2015/12/zero-day-attack-strikes-again-java-zero-day-vulnerability-cve-2015-4852-tracked-by-imperva.html; classtype:web-application-attack; sid:2022240; rev:2;)
+
+alert http $EXTERNAL_NET any -> $HOME_NET any (msg:"ET SCAN COMMIX Command injection scan attempt"; flow:to_server,established; content:"|55 73 65 72 2d 41 67 65 6e 74 3a 20 63 6f 6d 6d 69 78|"; fast_pattern:only; http_header; threshold: type limit, count 1, seconds 60, track by_src; reference:url,github.com/stasinopoulos/commix/blob/master/README.md; classtype:web-application-activity; sid:2022243; rev:2;)
+
+alert tcp $EXTERNAL_NET any -> $HOME_NET 6379 (msg:"ET SCAN Redis SSH Key Overwrite Probing"; flow:to_server,established; content:"*"; depth:1; content:"config"; content:"set"; distance:0; content:"dir"; distance:0; content:"/.ssh"; distance:0; isdataat:!5,relative; reference:url,antirez.com/news/96; classtype:misc-attack; sid:2023510; rev:2;)
+
+alert http $EXTERNAL_NET any -> $HOME_NET any (msg:"ET SCAN Acunetix scan in progress acunetix_wvs_security_test in http_uri"; flow:established,to_server; content:"acunetix_wvs_security_test"; http_uri; fast_pattern:only; threshold: type limit, count 1, seconds 60, track by_src; reference:url,www.acunetix.com/; classtype:web-application-attack; sid:2023687; rev:2;)
+
+alert http $EXTERNAL_NET any -> $HOME_NET any (msg:"ET SCAN Acunetix scan in progress acunetix variable in http_uri"; flow:established,to_server; content:"|24|acunetix"; http_uri; fast_pattern:only; threshold: type limit, count 1, seconds 60, track by_src; reference:url,www.acunetix.com/; classtype:web-application-attack; sid:2023688; rev:2;)
+
+alert tcp $EXTERNAL_NET any -> $HOME_NET !3389 (msg:"ET SCAN MS Terminal Server Traffic on Non-standard Port"; flow:to_server,established; content:"|03 00 00|"; depth:3; content:"|e0 00 00 00 00 00|"; offset:5; depth:6; content:"Cookie|3a| mstshash="; fast_pattern; classtype:attempted-recon; sid:2023753; rev:2;)
+
+alert http $HOME_NET any -> any any (msg:"ET SCAN Possible Nmap User-Agent Observed"; flow:to_server,established; content:"|20|Nmap"; http_user_agent; fast_pattern; classtype:web-application-attack; sid:2024364; rev:3;)
 
 #alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:"GPL SCAN Broadscan Smurf Scanner"; dsize:4; icmp_id:0; icmp_seq:0; itype:8; classtype:attempted-recon; sid:2100478; rev:4;)
 
@@ -443,154 +595,4 @@ alert http $EXTERNAL_NET any -> $HTTP_SERVERS any (msg:"GPL SCAN nessus 2.x 404 
 #alert udp $EXTERNAL_NET any -> $HOME_NET any (msg:"GPL SCAN rusers query UDP"; content:"|00 01 86 A2|"; depth:4; offset:12; content:"|00 00 00 02|"; within:4; distance:4; content:"|00 00 00 00|"; depth:4; offset:4; reference:cve,1999-0626; classtype:attempted-recon; sid:2100612; rev:7;)
 
 #alert udp $EXTERNAL_NET any -> $HOME_NET any (msg:"GPL SCAN Webtrends Scanner UDP Probe"; content:"|0A|help|0A|quite|0A|"; classtype:attempted-recon; sid:2100637; rev:4;)
-
-alert http $EXTERNAL_NET any -> $HOME_NET any (msg:"ET SCAN Hydra User-Agent"; flow: established,to_server; content:"User-Agent|3A| Mozilla/4.0 (Hydra)"; nocase; http_header; fast_pattern:23,8; threshold: type limit, track by_src,count 1, seconds 60; reference:url,freeworld.thc.org/thc-hydra; classtype:attempted-recon; sid:2011497; rev:4;)
-
-alert http $HTTP_SERVERS any -> $EXTERNAL_NET any (msg:"ET SCAN w3af Scan Remote File Include Retrieval"; flow:established,to_server; content:"/w3af/remoteFileInclude.html"; http_uri; nocase; content:"Host|3A| w3af.sourceforge.net"; http_header; nocase; reference:url,w3af.sourceforge.net; classtype:web-application-activity; sid:2011389; rev:5;)
-
-alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"ET SCAN Nikto Scan Remote File Include Retrieval"; flow:established,to_server; content:"/rfiinc.txt"; http_uri; content:"Host|3A| cirt.net|0d 0a|"; http_header; nocase; reference:url,cirt.net/nikto2; classtype:web-application-activity; sid:2011390; rev:4;)
-
-#alert tcp any any -> any any (msg:"ET SCAN Malformed Packet SYN FIN"; flags:SF; classtype:bad-unknown; sid:2011367; rev:2;)
-
-#alert tcp any any -> any any (msg:"ET SCAN Malformed Packet SYN RST"; flags:SR; classtype:bad-unknown; sid:2011368; rev:2;)
-
-alert http $EXTERNAL_NET any -> $HTTP_SERVERS $HTTP_PORTS (msg:"ET SCAN Inspathx Path Disclosure Scanner User-Agent Detected"; flow:established,to_server; content:"User-Agent|3A| inspath [path disclosure finder"; http_header; threshold:type limit, count 1, seconds 30, track by_src; reference:url,code.google.com/p/inspathx/; reference:url,www.darknet.org.uk/2010/09/inspathx-tool-for-finding-path-disclosure-vulnerabilities/; classtype:attempted-recon; sid:2011808; rev:3;)
-
-alert http $EXTERNAL_NET any -> $HTTP_SERVERS $HTTP_PORTS (msg:"ET SCAN Inspathx Path Disclosure Scan"; flow:established,to_server; content:"GET"; http_method; content:"varhttp|3A|/"; http_uri; nocase; content:"wwwhttp|3A|/"; http_uri; nocase; content:"htmlhttp|3A|/"; http_uri; nocase; threshold:type limit, count 1, seconds 30, track by_src; reference:url,code.google.com/p/inspathx/; reference:url,www.darknet.org.uk/2010/09/inspathx-tool-for-finding-path-disclosure-vulnerabilities/; classtype:attempted-recon; sid:2011809; rev:5;)
-
-alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg:"ET SCAN Medusa User-Agent"; flow: established,to_server; content:"User-Agent|3A| Teh Forest Lobster"; fast_pattern:10,20; nocase; http_header; threshold: type limit, track by_src,count 1, seconds 60; reference:url,www.foofus.net/~jmk/medusa/medusa.html; classtype:attempted-recon; sid:2011887; rev:2;)
-
-alert tcp $EXTERNAL_NET any -> $HOME_NET $HTTP_PORTS (msg:"ET SCAN DirBuster Scan in Progress"; flow:established,to_server; content:"/thereIsNoWayThat-You-CanBeThere"; nocase; http_uri; threshold: type limit, track by_src,count 1, seconds 60; reference:url,www.owasp.org/index.php/Category%3aOWASP_DirBuster_Project; classtype:attempted-recon; sid:2011914; rev:1;)
-
-alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg:"ET SCAN DotDotPwn User-Agent"; flow:established,to_server; content:"User-Agent|3A| DotDotPwn"; nocase; http_header; threshold:type limit, track by_src,count 1, seconds 60; reference:url,dotdotpwn.sectester.net; classtype:attempted-recon; sid:2011915; rev:2;)
-
-alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"ET SCAN Havij SQL Injection Tool User-Agent Outbound"; flow:established,to_server; content:"|29| Havij|0d 0a|Connection|3a| "; http_header; reference:url,itsecteam.com/en/projects/project1.htm; classtype:web-application-attack; sid:2011924; rev:2;)
-
-alert tcp $EXTERNAL_NET any -> $HOME_NET $HTTP_PORTS (msg:"ET SCAN Metasploit WMAP GET len 0 and type"; flow:established,to_server; content:"GET"; http_method; content:"|0d 0a|Content-Type|3A| text/plain|0d 0a|Content-Length|3A| 0|0d 0a|"; http_header; threshold: type limit, track by_src,count 1,seconds 60; classtype:attempted-recon; sid:2011974; rev:3;)
-
-alert tcp $EXTERNAL_NET any -> $HOME_NET $HTTP_PORTS (msg:"ET SCAN RatProxy in-use"; flow:established,to_server; content:"X-Ratproxy-Loop|3A| "; threshold: type limit, track by_src,count 1, seconds 60; classtype:attempted-recon; sid:2011975; rev:2;)
-
-alert tcp $EXTERNAL_NET any -> $HOME_NET $HTTP_PORTS (msg:"ET SCAN Goatzapszu Header from unknown Scanning Tool"; flow:established,to_server; content:"Goatzapszu|3a|"; nocase; http_header; classtype:attempted-recon; sid:2012077; rev:2;)
-
-alert udp $EXTERNAL_NET any -> $HOME_NET 5060 (msg:"ET SCAN Modified Sipvicious Sundayddr Scanner (sipsscuser)"; content:"From|3A 20 22|sipsscuser|22|"; threshold: type limit, count 1, seconds 60, track by_src; reference:url,code.google.com/p/sipvicious/; reference:url,blog.sipvicious.org/; reference:url,honeynet.org.au/?q=sunday_scanner; classtype:attempted-recon; sid:2012204; rev:3;)
-
-alert http $EXTERNAL_NET any -> $HOME_NET any (msg:"ET SCAN Havij SQL Injection Tool User-Agent Inbound"; flow:established,to_server; content:"|29| Havij|0d 0a|Connection|3a| "; http_header; reference:url,itsecteam.com/en/projects/project1.htm; classtype:web-application-attack; sid:2012606; rev:3;)
-
-alert http $EXTERNAL_NET any -> $HOME_NET any (msg:"ET SCAN OpenVAS User-Agent Inbound"; flow:established,to_server; content:"User-Agent|3A| "; http_header; content:"OpenVAS"; fast_pattern; http_header; within:100; reference:url,openvas.org; classtype:attempted-recon; sid:2012726; rev:4;)
-
-alert http $EXTERNAL_NET any -> $HTTP_SERVERS any (msg:"ET SCAN Possible SQLMAP Scan"; flow:established,to_server; content:"UNION ALL SELECT NULL, NULL, NULL, NULL"; http_uri; content:"-- AND"; http_uri; detection_filter:track by_dst, count 4, seconds 20; reference:url,sqlmap.sourceforge.net; reference:url,www.darknet.org.uk/2011/04/sqlmap-0-9-released-automatic-blind-sql-injection-tool/; classtype:attempted-recon; sid:2012754; rev:2;)
-
-#alert http $EXTERNAL_NET any -> $HTTP_SERVERS any (msg:"ET SCAN Possible SQLMAP Scan"; flow:established,to_server; content:" AND "; http_uri; content:"AND ("; http_uri; pcre:"/\x20AND\x20[0-9]{6}\x3D[0-9]{4}/U"; detection_filter:track by_dst, count 4, seconds 20; reference:url,sqlmap.sourceforge.net; reference:url,www.darknet.org.uk/2011/04/sqlmap-0-9-released-automatic-blind-sql-injection-tool/; classtype:attempted-recon; sid:2012755; rev:4;)
-
-alert http $EXTERNAL_NET any -> $HOME_NET any (msg:"ET SCAN ZmEu Scanner User-Agent Inbound"; flow:established,to_server; content:"ZmEu"; http_user_agent; depth:4; classtype:trojan-activity; sid:2012936; rev:3;)
-
-alert http $EXTERNAL_NET any -> $HOME_NET any (msg:"ET SCAN Internal Dummy Connection User-Agent Inbound"; flow:established,to_server; content:"(internal dummy connection)"; http_user_agent; classtype:trojan-activity; sid:2012937; rev:3;)
-
-alert http $EXTERNAL_NET any -> $HOME_NET any (msg:"ET SCAN Potential muieblackcat scanner double-URI and HTTP library"; flow:established,to_server; content:"GET //"; depth:6; fast_pattern; content:"HTTP/1.1|0d 0a|Accept|3a| */*|0d 0a|Accept-Language|3a| en-us|0d 0a|Accept-Encoding|3a| gzip, deflate|0d 0a|Host|3a| "; http_header; content:"|0d 0a|Connection|3a| Close|0d 0a 0d 0a|"; http_header; distance:0; classtype:attempted-recon; sid:2013116; rev:5;)
-
-alert http any any -> $HTTP_SERVERS any (msg:"ET SCAN DominoHunter Security Scan in Progress"; flow:established,to_server; content:"User-Agent|3a| DominoHunter"; nocase; http_header; reference:url,packetstormsecurity.org/files/31653/DominoHunter-0.92.zip.html; classtype:web-application-attack; sid:2013171; rev:2;)
-
-alert http $EXTERNAL_NET any -> $HTTP_SERVERS any (msg:"ET SCAN Vega Web Application Scan"; flow:established,to_server; content:"Vega/"; http_header; pcre:"/User-Agent\x3A[^\r\n]+Vega\x2F/H"; threshold: type limit, track by_src, count 5, seconds 40; reference:url,www.subgraph.com/products.html; reference:url,www.darknet.org.uk/2011/07/vega-open-source-cross-platform-web-application-security-assessment-platform/; classtype:attempted-recon; sid:2013249; rev:3;)
-
-alert ftp any any -> $HOME_NET any (msg:"ET SCAN Nessus FTP Scan detected (ftp_anonymous.nasl)"; flow:to_server,established; content:"pass nessus@"; depth:12; nocase; reference:url,www.nessus.org/plugins/index.php?view=single&id=10079; reference:url,osvdb.org/show/osvdb/69; classtype:attempted-recon; sid:2013263; rev:3;)
-
-alert ftp $EXTERNAL_NET any -> $HOME_NET any (msg:"ET SCAN Nessus FTP Scan detected (ftp_writeable_directories.nasl)"; flow:to_server,established; content:"MKD"; nocase; depth:3; content:"Nessus"; nocase; reference:url,www.nessus.org/plugins/index.php?view=single&id=19782; reference:url,osvdb.org/show/osvdb/76; classtype:attempted-recon; sid:2013264; rev:2;)
-
-alert http $EXTERNAL_NET any -> $HTTP_SERVERS any (msg:"ET SCAN libwww-perl GET to // with specific HTTP header ordering without libwww-perl User-Agent"; flow:established,to_server; content:"GET //"; fast_pattern; depth:6; content:"HTTP/1.1|0d 0a|TE|3a| deflate,gzip|3b|q=0.3|0d 0a|Connection|3a| TE, close|0d 0a|Host|3a| "; content:"User-Agent|3a| "; within:100; content:!"libwww-perl/"; http_header; pcre:"/^TE\x3a deflate,gzip\x3bq=0\.3\r\nHost\x3a[^\r\n]+\r\nUser-Agent\x3a[^\r\n]+\r\n$/H";threshold:type threshold, track by_dst, count 10,seconds 20; classtype:attempted-recon; sid:2013416; rev:8;)
-
-alert http $EXTERNAL_NET any -> $HOME_NET any (msg:"ET SCAN Kingcope KillApache.pl Apache mod_deflate DoS attempt"; flow:established,to_server; content:"Range|3a|bytes=0-,5-0,5-1,5-2,5-3,5-4,5-5,5-6,5-7,5-8,5-9,5-10,5-11,5-12,5-13,5-14"; http_header; reference:url,seclists.org/fulldisclosure/2011/Aug/175; classtype:attempted-dos; sid:2013472; rev:4;)
-
-alert http $EXTERNAL_NET any -> $HOME_NET any (msg:"ET SCAN Apache mod_deflate DoS via many multiple byte Range values"; flow:established,to_server; content:"Range|3a|"; nocase; content:"bytes="; nocase; distance:0; isdataat:10,relative; content:","; within:11; isdataat:10,relative; content:","; within:11; isdataat:10,relative; content:","; within:11; isdataat:70,relative; content:!"|0d 0a|"; within:12; pcre:"/Range\x3a\s?bytes=[-0-9,\x20]{100}/iH"; reference:url,seclists.org/fulldisclosure/2011/Aug/175; classtype:attempted-dos; sid:2013473; rev:5;)
-
-alert tcp $HOME_NET any -> $EXTERNAL_NET 3389 (msg:"ET SCAN Behavioral Unusually fast Terminal Server Traffic, Potential Scan or Infection (Outbound)"; flow:to_server; flags: S,12; threshold: type both, track by_src, count 20, seconds 360; reference:url,threatpost.com/en_us/blogs/new-worm-morto-using-rdp-infect-windows-pcs-082811; classtype:misc-activity; sid:2013479; rev:4;)
-
-alert http $EXTERNAL_NET any -> $HOME_NET any (msg:"ET SCAN McAfee/Foundstone Scanner Web Scan"; flow:established,to_server; content:"User-Agent|3A| Mozilla/5.0 (Windows|3B| Windows NT 6.1|3B| en-US)|0D 0A|"; http_header; fast_pattern:20,20; content:"|0D 0A|Accept-Encoding|3A| text|0D 0A|"; http_header; threshold: type both, count 2, seconds 120, track by_src; reference:url,www.mcafee.com/us/products/vulnerability-manager.aspx; classtype:attempted-recon; sid:2013492; rev:4;)
-
-alert http $EXTERNAL_NET any -> $HTTP_SERVERS any (msg:"ET SCAN NMAP SQL Spider Scan"; flow:established,to_server; content:"GET"; http_method; content:" OR sqlspider"; http_uri; reference:url,nmap.org/nsedoc/scripts/sql-injection.html; classtype:web-application-attack; sid:2013778; rev:2;)
-
-alert http $EXTERNAL_NET any -> $HOME_NET any (msg:"ET SCAN Positive Technologies XSpider Security Scanner User-Agent (PTX)"; flow:to_server,established; content:"PTX|0d 0a|"; http_header; fast_pattern:only; pcre:"/^User-Agent\x3a[^\n]+PTX\r$/Hm"; reference:url,www.securitylab.ru/forum/forum16/topic26800/; classtype:attempted-recon; sid:2013779; rev:4;)
-
-alert http $EXTERNAL_NET any -> $HTTP_SERVERS any (msg:"ET SCAN Apache mod_proxy Reverse Proxy Exposure 1"; flow:established,to_server; content:"GET @"; depth:5; content:"@"; http_uri; reference:url,www.contextis.com/research/blog/reverseproxybypass/; reference:url,mail-archives.apache.org/mod_mbox/httpd-announce/201110.mbox/%3C20111005141541.GA7696@redhat.com%3E; classtype:attempted-recon; sid:2013791; rev:2;)
-
-alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS $HTTP_PORTS (msg:"ET SCAN Apache mod_proxy Reverse Proxy Exposure 2"; flow:established,to_server; content:"GET|20 3a|@"; depth:6; content:"|3a|@"; http_uri; reference:url,www.contextis.com/research/blog/reverseproxybypass/; reference:url,mail-archives.apache.org/mod_mbox/httpd-announce/201110.mbox/%3C20111005141541.GA7696@redhat.com%3E; classtype:attempted-recon; sid:2013792; rev:3;)
-
-alert http $EXTERNAL_NET any -> $HTTP_SERVERS any (msg:"ET SCAN Gootkit Scanner User-Agent Inbound"; flow:established,to_server; content:"Gootkit auto-rooter scanner"; http_header; classtype:web-application-attack; sid:2014022; rev:2;)
-
-alert http $EXTERNAL_NET any -> $HOME_NET any (msg:"ET SCAN FHScan core User-Agent Detect"; flow:to_server,established; content:"FHScan Core 1."; http_user_agent; reference:url,www.tarasco.org/security/FHScan_Fast_HTTP_Vulnerability_Scanner/index.html; classtype:attempted-recon; sid:2014541; rev:5;)
-
-alert http $EXTERNAL_NET any -> $HOME_NET any (msg:"ET SCAN Arachni Scanner Web Scan"; flow:established,to_server; content:"Arachni/"; http_header; pcre:"/User-Agent\x3a[^\r\n]+Arachni\/v?\d\.\d\.\d$/iH"; threshold: type limit, track by_src, count 1, seconds 300; reference:url,arachni-scanner.com; reference:url,github.com/Zapotek/arachni; classtype:attempted-recon; sid:2014869; rev:5;)
-
-#alert tcp [184.154.42.194,50.116.22.209,69.64.43.135,69.64.43.137,69.64.43.142,216.17.107.104,216.17.102.194,216.17.106.90,216.17.107.174,64.6.100.124,46.17.98.214] any -> $HOME_NET any (msg:"ET SCAN critical.io Scan"; threshold: type limit, track by_src, seconds 3600, count 1; reference:url,critical.io/; classtype:network-scan; sid:2014893; rev:5;)
-
-alert http $EXTERNAL_NET any -> $HTTP_SERVERS any (msg:"ET SCAN w3af User-Agent 2"; flow:established,to_server; content:"w3af.sf.net"; http_header; fast_pattern:only; pcre:"/^User-Agent\x3a[^\r\n]+?w3af\.sf\.net/Hmi"; classtype:attempted-recon; sid:2015484; rev:2;)
-
-alert tcp $EXTERNAL_NET any -> $HTTP_SERVERS $HTTP_PORTS (msg:"ET SCAN HTExploit Method"; flow:established,to_server; dsize:>6; content:"POTATO "; depth:7; reference:url,www.mkit.com.ar/labs/htexploit/download.php; classtype:trojan-activity; sid:2015552; rev:2;)
-
-alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"ET SCAN Brutus Scan Outbound"; flow:established,to_server; content:"Brutus/AET"; http_user_agent; classtype:attempted-recon; sid:2015702; rev:3;)
-
-alert udp $EXTERNAL_NET any -> $HOME_NET [137,138,139,445] (msg:"ET SCAN Nessus Netbios Scanning"; content:"n|00|e|00|s|00|s|00|u|00|s"; fast_pattern:only; reference:url,www.tenable.com/products/nessus/nessus-product-overview; classtype:attempted-recon; sid:2015754; rev:2;)
-
-alert http $EXTERNAL_NET any -> $HTTP_SERVERS any (msg:"ET SCAN SFTP/FTP Password Exposure via sftp-config.json"; flow:to_server,established; content:"/sftp-config.json"; fast_pattern:only; http_uri; reference:url,blog.sucuri.net/2012/11/psa-sftpftp-password-exposure-via-sftp-config-json.html; classtype:attempted-recon; sid:2015940; rev:2;)
-
-alert tcp $EXTERNAL_NET any -> $SQL_SERVERS 3306 (msg:"ET SCAN MYSQL MySQL Remote FAST Account Password Cracking"; flow:to_server,established; content:"|11|"; offset:3; depth:4; threshold:type both,track by_src,count 100,seconds 1; reference:url,www.securityfocus.com/archive/1/524927/30/0/threaded; classtype:protocol-command-decode; sid:2015986; rev:5;)
-
-alert http $EXTERNAL_NET any -> $HTTP_SERVERS any (msg:"ET SCAN JCE Joomla Scanner"; flow:established,to_server; content:"User-Agent|3a| BOT/0.1 (BOT for JCE)"; http_header; classtype:web-application-attack; sid:2016032; rev:3;)
-
-alert http $EXTERNAL_NET any -> $HTTP_SERVERS any (msg:"ET SCAN Simple Slowloris Flooder"; flow:established,to_server; content:"POST"; http_method; content:"Content-length|3A| 5235|0D 0A|"; http_header; content:!"User-Agent|3a|"; http_header; threshold:type limit, track by_src, count 1, seconds 300; reference:url,www.imperva.com/docs/HII_Denial_of_Service_Attacks-Trends_Techniques_and_Technologies.pdf; classtype:web-application-attack; sid:2016033; rev:4;)
-
-alert http $EXTERNAL_NET any -> $HOME_NET any (msg:"ET SCAN GET with HTML tag in start of URI seen with PHPMyAdmin scanning"; flow:established,to_server; content:"<title>"; http_uri; depth:7; content:"GET"; http_method; classtype:web-application-attack; sid:2016222; rev:2;)
-
-#alert tcp 188.95.234.6 any -> $HOME_NET [22,443] (msg:"ET SCAN Non-Malicious SSH/SSL Scanner on the run"; threshold: type limit, track by_src, seconds 60, count 1; reference:url,pki.net.in.tum.de/node/21; reference:url,isc.sans.edu/diary/SSH%2bscans%2bfrom%2b188.95.234.6/15532; classtype:network-scan; sid:2016763; rev:7;)
-
-#alert http $EXTERNAL_NET any -> $HTTP_SERVERS any (msg:"ET SCAN Arachni Web Scan"; flow:established,to_server; content:"/Arachni-"; http_uri; threshold: type limit, track by_src, seconds 60, count 1; reference:url,www.arachni-scanner.com/; classtype:attempted-recon; sid:2017142; rev:2;)
-
-alert tcp $EXTERNAL_NET any -> $HOME_NET 5060 (msg:"ET SCAN SipCLI VOIP Scan - TCP"; flow:established,to_server; content:"|0D 0A|User-Agent|3A 20|sipcli/"; fast_pattern:only; threshold: type limit, count 1, seconds 60, track by_src; reference:url,www.yasinkaplan.com/SipCli/; classtype:attempted-recon; sid:2017161; rev:1;)
-
-alert udp $EXTERNAL_NET any -> $HOME_NET 5060 (msg:"ET SCAN SipCLI VOIP Scan"; content:"|0D 0A|User-Agent|3A 20|sipcli/"; fast_pattern:only; threshold: type limit, count 1, seconds 60, track by_src; reference:url,www.yasinkaplan.com/SipCli/; classtype:attempted-recon; sid:2017162; rev:2;)
-
-alert http $HOME_NET any -> any any (msg:"ET SCAN NETWORK Outgoing Masscan detected"; flow:established,to_server; content:"masscan/"; depth:8; http_user_agent; reference:url,blog.erratasec.com/2013/10/that-dlink-bug-masscan.html; reference:url,blog.erratasec.com/2013/09/masscan-entire-internet-in-3-minutes.html; classtype:network-scan; sid:2017615; rev:4;)
-
-alert http any any -> $HOME_NET any (msg:"ET SCAN NETWORK Incoming Masscan detected"; flow:established,to_server; content:"masscan/"; depth:8; http_user_agent; reference:url,blog.erratasec.com/2013/10/that-dlink-bug-masscan.html; reference:url,blog.erratasec.com/2013/09/masscan-entire-internet-in-3-minutes.html; classtype:network-scan; sid:2017616; rev:4;)
-
-alert http $EXTERNAL_NET any -> $HOME_NET any (msg:"ET SCAN FOCA uri"; flow:established,to_server; content:"GET"; http_method; content:"/*F0C4~1*/foca.aspx?aspxerrorpath=/"; http_uri; fast_pattern:only; content:!"Referer|3a 20|"; http_header; content:!"Accept|3a 20|"; http_header; content:!"Connection|3a 20|"; http_header; reference:url,blog.bannasties.com/2013/08/vulnerability-scans/; classtype:attempted-recon; sid:2017950; rev:3;)
-
-alert tcp $EXTERNAL_NET any -> $HOME_NET $HTTP_PORTS (msg:"ET SCAN NMAP SIP Version Detect OPTIONS Scan"; flow:established,to_server; content:"OPTIONS sip|3A|nm SIP/"; depth:19; classtype:attempted-recon; sid:2018317; rev:1;)
-
-alert tcp $EXTERNAL_NET any -> $HOME_NET 5060:5061 (msg:"ET SCAN NMAP SIP Version Detection Script Activity"; content:"Via|3A| SIP/2.0/TCP nm"; content:"From|3A| <sip|3A|nm@nm"; within:150; fast_pattern; classtype:attempted-recon; sid:2018318; rev:1;)
-
-alert udp $EXTERNAL_NET 10000: -> $HOME_NET 10000: (msg:"ET SCAN NMAP OS Detection Probe"; dsize:300; content:"CCCCCCCCCCCCCCCCCCCC"; fast_pattern:only; content:"CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC"; depth:255; content:"CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC"; within:45; classtype:attempted-recon; sid:2018489; rev:3;)
-
-alert http $EXTERNAL_NET any -> $HTTP_SERVERS any (msg:"ET SCAN Possible WordPress xmlrpc.php wp.getUsersBlogs Flowbit Set"; flow:established,to_server; content:"/xmlrpc.php"; http_uri; nocase; fast_pattern:only; flowbits:set,ET.XMLRPC.PHP; flowbits:noalert; reference:url,isc.sans.edu/diary/+WordPress+brute+force+attack+via+wp.getUsersBlogs/18427; classtype:attempted-admin; sid:2018754; rev:3;)
-
-alert http $HTTP_SERVERS any -> $EXTERNAL_NET any (msg:"ET SCAN Possible WordPress xmlrpc.php BruteForce in Progress - Response"; flow:established,from_server; flowbits:isset,ET.XMLRPC.PHP; file_data; content:"<name>faultCode</name>"; content:"<int>403</int>"; content:"<string>Incorrect username or password.</string>"; threshold:type both, track by_src, count 5, seconds 120; reference:url,isc.sans.edu/diary/+WordPress+brute+force+attack+via+wp.getUsersBlogs/18427; classtype:attempted-admin; sid:2018755; rev:5;)
-
-alert http $EXTERNAL_NET any -> $HOME_NET any (msg:"ET SCAN Internet Scanning Project HTTP scan"; flow:established,to_server; content:"User-Agent|3a 20|research-scanner/"; http_header; content:"internetscanningproject.org"; distance:0; http_header; reference:url,www.internetscanningproject.org; classtype:attempted-recon; sid:2018782; rev:2;)
-
-alert http $EXTERNAL_NET any -> $HOME_NET any (msg:"ET SCAN Chroot-apache0day Unknown Web Scanner User Agent"; flow:established,to_server; content:"chroot-apach0day"; nocase; http_user_agent; depth:16; reference:url,isc.sans.edu/forums/diary/Interesting+HTTP+User+Agent+chroot-apach0day+/18453; classtype:attempted-recon; sid:2018800; rev:4;)
-
-alert ssh $EXTERNAL_NET any -> $HOME_NET any (msg:"ET SCAN SSH BruteForce Tool with fake PUTTY version"; flow:established,to_server; ssh.softwareversion:"PUTTY"; threshold: type limit, track by_src, count 1, seconds 30; classtype:network-scan; sid:2019876; rev:4;)
-
-alert http $EXTERNAL_NET any -> $HOME_NET any (msg:"ET SCAN Acunetix Accept HTTP Header detected scan in progress"; flow:established,to_server; content:"Accept|3a 20|acunetix"; http_header; threshold: type limit, count 1, seconds 60, track by_src; reference:url,www.acunetix.com/; classtype:attempted-recon; sid:2019963; rev:2;)
-
-alert tcp any any -> $HOME_NET 1720 (msg:"ET SCAN H.323 Scanning device"; flow:established,to_server; content:"|40 04 00 63 00 69 00 73 00 63 00 6f|"; fast_pattern; offset:55; depth:12; threshold: type limit, track by_src, count 1, seconds 60; reference:url,videonationsltd.co.uk/2014/11/h-323-cisco-spam-calls/; classtype:network-scan; sid:2020853; rev:2;)
-
-alert tcp any any -> $HOME_NET any (msg:"ET SCAN Nmap NSE Heartbleed Request"; flow:established,to_server; content:"|18 03|"; depth:2; byte_test:1,<,4,2; content:"|01|"; offset:5; depth:1; byte_test:2,>,2,3; byte_test:2,>,200,6; content:"|40 00|Nmap ssl-heartbleed"; fast_pattern:2,19; classtype:attempted-recon; sid:2021023; rev:1;)
-
-alert tcp $HOME_NET any -> any any (msg:"ET SCAN Nmap NSE Heartbleed Response"; flow:established,from_server; content:"|18 03|"; depth:2; byte_test:1,<,4,2; byte_test:2,>,200,3; content:"|40 00|Nmap ssl-heartbleed"; fast_pattern:2,19; classtype:attempted-recon; sid:2021024; rev:1;)
-
-alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"ET SCAN Xenu Link Sleuth Scanner Outbound"; flow:to_server,established; content:"GET"; http_method; content:"Xenu Link Sleuth"; http_user_agent; fast_pattern:only; classtype:attempted-recon; sid:2021058; rev:3;)
-
-alert http $EXTERNAL_NET any -> $HOME_NET any (msg:"ET SCAN abdullkarem Wordpress PHP Scanner"; flow:established,to_server; content:"GET"; http_method; content:".php?"; nocase; http_uri; content:"&php"; nocase; http_uri; distance:0; content:"&wphp"; nocase; http_uri; distance:0; content:"&abdullkarem="; nocase; http_uri; fast_pattern; distance:0; content:"|20|HTTP/1.0|0d 0a|Host|3a 20|"; classtype:web-application-attack; sid:2021949; rev:2;)
-
-alert http $EXTERNAL_NET any -> $HTTP_SERVERS any (msg:"ET SCAN Possible Scanning for Vulnerable JBoss"; flow:established,to_server; content:"POST"; http_method; content:"/invoker/"; http_uri; depth:9; content:"servlet/"; http_uri; content:"Content-Type|3a 20|application/x-java-serialized-object|3b 0d 0a|"; http_header; content:"org.jboss.invocation.MarshalledValue"; http_client_body; reference:url,blog.imperva.com/2015/12/zero-day-attack-strikes-again-java-zero-day-vulnerability-cve-2015-4852-tracked-by-imperva.html; classtype:web-application-attack; sid:2022240; rev:2;)
-
-alert http $EXTERNAL_NET any -> $HOME_NET any (msg:"ET SCAN COMMIX Command injection scan attempt"; flow:to_server,established; content:"|55 73 65 72 2d 41 67 65 6e 74 3a 20 63 6f 6d 6d 69 78|"; fast_pattern:only; http_header; threshold: type limit, count 1, seconds 60, track by_src; reference:url,github.com/stasinopoulos/commix/blob/master/README.md; classtype:web-application-activity; sid:2022243; rev:2;)
-
-alert tcp $EXTERNAL_NET any -> $HOME_NET 6379 (msg:"ET SCAN Redis SSH Key Overwrite Probing"; flow:to_server,established; content:"*"; depth:1; content:"config"; content:"set"; distance:0; content:"dir"; distance:0; content:"/.ssh"; distance:0; isdataat:!5,relative; reference:url,antirez.com/news/96; classtype:misc-attack; sid:2023510; rev:2;)
-
-alert http $EXTERNAL_NET any -> $HOME_NET any (msg:"ET SCAN Acunetix scan in progress acunetix_wvs_security_test in http_uri"; flow:established,to_server; content:"acunetix_wvs_security_test"; http_uri; fast_pattern:only; threshold: type limit, count 1, seconds 60, track by_src; reference:url,www.acunetix.com/; classtype:web-application-attack; sid:2023687; rev:2;)
-
-alert http $EXTERNAL_NET any -> $HOME_NET any (msg:"ET SCAN Acunetix scan in progress acunetix variable in http_uri"; flow:established,to_server; content:"|24|acunetix"; http_uri; fast_pattern:only; threshold: type limit, count 1, seconds 60, track by_src; reference:url,www.acunetix.com/; classtype:web-application-attack; sid:2023688; rev:2;)
-
-alert tcp $EXTERNAL_NET any -> $HOME_NET !3389 (msg:"ET SCAN MS Terminal Server taffic on Non-standard Port"; flow:to_server,established; content:"|03 00 00|"; depth:3; content:"|e0 00 00 00 00 00|"; offset:5; depth:6; content:"Cookie|3a| mstshash="; fast_pattern; classtype:attempted-recon; sid:2023753; rev:1;)
 

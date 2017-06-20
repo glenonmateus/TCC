@@ -12,11 +12,10 @@
 vars:
   # more specifc is better for alert accuracy and performance
   address-groups:
-    HOME_NET: "[200.239.76.0/24, 200.239.64.0/25, 200.239.64.128/25, 10.15.10.0/24]"
-    EXTERNAL_NET: "!$HOME_NET" # mais preciso e gera menos falso positivo
-
-    HTTP_SERVERS: "[200.239.64.179, 200.239.64.180, 200.239.64.85, 200.239.64.118, 200.239.64.70, 200.239.64.76, 200.239.64.91, 200.239.64.136, 200.239.64.116, 200.239.64.58, 200.239.64.171, 200.239.64.176, 200.239.64.177]"
-    SMTP_SERVERS: "[200.239.64.3, 200.239.64.2, 200.239.64.4]"
+    HOME_NET: "[200.239.0.0/16, 10.0.0.0/8]"
+    EXTERNAL_NET: "!$HOME_NET"
+    HTTP_SERVERS: "[200.239.64.179, 200.239.64.180, 200.239.64.85, 200.239.64.118, 200.239.64.70, 200.239.64.76, 200.239.64.91, 200.239.64.136, 200.239.64.116, 200.239.64.58, 200.239.64.171, 200.239.64.176, 200.239.64.177]" 
+    SMTP_SERVERS: "[200.239.64.3, 200.239.64.2, 200.239.64.4]" 
     SQL_SERVERS: "[200.239.64.179, 200.239.64.180, 200.239.64.95, 200.239.64.116, 200.239.64.62, 200.239.64.90, 200.239.64.122, 200.239.64.49, 200.239.64.109, 200.239.64.239, 200.239.64.225, 200.239.64.22, 200.239.64.216, 200.239.64.33, 200.239.64.71, 200.239.64.235, 200.239.64.156, 200.239.64.171, 200.239.64.176, 200.239.64.177]"
     DNS_SERVERS: "[200.239.64.107, 200.239.64.30, 200.239.64.163, 200.239.64.162]"
     TELNET_SERVERS: "$HOME_NET"
@@ -36,72 +35,69 @@ vars:
     DNP3_PORTS: 20000
     MODBUS_PORTS: 502
 
+
 ##
 ## Step 2: select the rules to enable or disable
 ##
 
 default-rule-path: /etc/suricata/rules
 rule-files:
- - botcc.rules 
- - botcc.portgrouped.rules
- #- ciarmy.rules
+ - botcc.rules
+ - botcc.portgrouped.rules 
+ - ciarmy.rules
  - compromised.rules
- #- drop.rules
- #- dshield.rules
- #- emerging-activex.rules
- #- emerging-attack_response.rules
- #- emerging-chat.rules
- #- emerging-current_events.rules
- #- emerging-deleted.rules 
- #- emerging-dns.rules
+ - drop.rules
+ - dshield.rules
+ - emerging-activex.rules
+ - emerging-attack_response.rules
+ - emerging-chat.rules
+ - emerging-current_events.rules
+ - emerging-dns.rules
  - emerging-dos.rules
  - emerging-exploit.rules
- #- emerging-ftp.rules
- #- emerging-games.rules
- #- emerging-icmp_info.rules
- #- emerging-icmp.rules
- #- emerging-imap.rules
- #- emerging-inappropriate.rules
- #- emerging-info.rules 
+ - emerging-ftp.rules
+ - emerging-games.rules
+ - emerging-icmp_info.rules
+ - emerging-icmp.rules
+ - emerging-imap.rules
+ - emerging-inappropriate.rules
  - emerging-malware.rules
- #- emerging-misc.rules
+ - emerging-misc.rules
  - emerging-mobile_malware.rules
- #- emerging-netbios.rules
+ - emerging-netbios.rules
  - emerging-p2p.rules
- #- emerging-policy.rules
- #- emerging-pop3.rules
- #- emerging-rpc.rules
- #- emerging-scada.rules
+ - emerging-policy.rules
+ - emerging-pop3.rules
+ - emerging-rpc.rules
+ - emerging-scada.rules
  - emerging-scan.rules
- #- emerging-shellcode.rules
- #- emerging-smtp.rules
- #- emerging-snmp.rules
+ - emerging-shellcode.rules
+ - emerging-smtp.rules
+ - emerging-snmp.rules
  - emerging-sql.rules
- #- emerging-telnet.rules
- #- emerging-tftp.rules
+ - emerging-telnet.rules
+ - emerging-tftp.rules
  - emerging-trojan.rules
- #- emerging-user_agents.rules
- #- emerging-voip.rules
+ - emerging-user_agents.rules
+ - emerging-voip.rules
  - emerging-web_client.rules
  - emerging-web_server.rules
  - emerging-web_specific_apps.rules
  - emerging-worm.rules
- #- tor.rules
- #- decoder-events.rules # available in suricata sources under rules dir
- #- stream-events.rules  # available in suricata sources under rules dir
- #- http-events.rules    # available in suricata sources under rules dir
- #- smtp-events.rules    # available in suricata sources under rules dir
- #- dns-events.rules     # available in suricata sources under rules dir
- #- tls-events.rules     # available in suricata sources under rules dir
+ - tor.rules
+# - decoder-events.rules # available in suricata sources under rules dir
+# - stream-events.rules  # available in suricata sources under rules dir
+# - http-events.rules    # available in suricata sources under rules dir
+# - smtp-events.rules    # available in suricata sources under rules dir
+# - dns-events.rules     # available in suricata sources under rules dir
+# - tls-events.rules     # available in suricata sources under rules dir
 # - modbus-events.rules  # available in suricata sources under rules dir
 # - app-layer-events.rules  # available in suricata sources under rules dir
 
-#classification-file: /etc/suricata/classification.config
-#reference-config-file: /etc/suricata/reference.config
-# threshold-file: /etc/suricata/threshold.config
-
 classification-file: /etc/suricata/rules/classification.config
 reference-config-file: /etc/suricata/rules/reference.config
+# threshold-file: /etc/suricata/threshold.config
+
 
 ##
 ## Step 3: select outputs to enable
@@ -126,7 +122,7 @@ outputs:
       enabled: yes
       filename: fast.log
       append: yes
-      filetype: regular # 'regular', 'unix_stream' or 'unix_dgram'
+      #filetype: regular # 'regular', 'unix_stream' or 'unix_dgram'
 
   # Extensible Event Format (nicknamed EVE) event log in JSON format
   - eve-log:
@@ -219,10 +215,10 @@ outputs:
             #md5: [body, subject]
 
         - ssh
-        #- stats:
-            #totals: yes       # stats for all threads merged together
-        #    threads: no       # per thread stats
-        #    deltas: no        # include delta values
+        - stats:
+            totals: yes       # stats for all threads merged together
+            threads: no       # per thread stats
+            deltas: no        # include delta values
         # bi-directional flows
         #- flow
         # uni-directional flows
@@ -493,7 +489,7 @@ logging:
 
 # Linux high speed capture support
 af-packet:
-  - interface: eth1
+  - interface: eth0
     # Number of receive threads. "auto" uses the number of cores
     #threads: auto
     # Default clusterid. AF_PACKET will load balance packets based on flow.
@@ -578,7 +574,7 @@ af-packet:
 
 # Cross platform libpcap capture support
 pcap:
-  - interface: eth1
+  - interface: eth0
     # On Linux, pcap will try to use mmaped capture and will use buffer-size
     # as total of memory used by the ring. So set this to something bigger
     # than 1% of your bandwidth.
@@ -600,8 +596,7 @@ pcap:
     # listening on the same interface.
     #threads: 16
     # set to no to disable promiscuous mode:
-    #promisc: no 
-    promisc: yes 
+    #promisc: no
     # set snaplen, if not set it defaults to MTU if MTU can be known
     # via ioctl call and to full capture if not.
     #snaplen: 1518
@@ -803,17 +798,15 @@ app-layer:
 
          server-config:
 
-           - apache:
-               address: [200.239.64.179, 200.239.64.180, 200.239.64.85, 200.239.64.118, 200.239.64.70, 200.239.64.76, 200.239.64.91, 200.239.64.136, 200.239.64.116]
-               personality: Apache_2
+           #- apache:
+           #    address: [192.168.1.0/24, 127.0.0.0/8, "::1"]
+           #    personality: Apache_2
            #    # Can be specified in kb, mb, gb.  Just a number indicates
            #    # it's in bytes.
-               #request-body-limit: 4096
-               #response-body-limit: 4096
-               request-body-limit: 0
-               response-body-limit: 0
-               double-decode-path: no
-               double-decode-query: no
+           #    request-body-limit: 4096
+           #    response-body-limit: 4096
+           #    double-decode-path: no
+           #    double-decode-query: no
 
            #- iis7:
            #    address:
@@ -842,9 +835,9 @@ asn1-max-frames: 256
 ##
 
 # Run suricata as user and group.
-run-as:
-  user: suricata
-  group: suricata
+#run-as:
+#  user: suri
+#  group: suri
 
 # Some logging module will use that name in event as identifier. The default
 # value is the hostname
@@ -885,7 +878,7 @@ host-mode: auto
 # If you are using the CUDA pattern matcher (mpm-algo: ac-cuda), different rules
 # apply. In that case try something like 60000 or more. This is because the CUDA
 # pattern matcher buffers and scans as many packets as possible in parallel.
-max-pending-packets: 65534 
+#max-pending-packets: 1024
 
 # Runmode the engine should use. Please check --list-runmodes to get the available
 # runmodes for each packet acquisition method. Defaults to "autofp" (auto flow pinned
@@ -968,7 +961,7 @@ pcre:
 # like a routing table so the most specific entry matches.
 host-os-policy:
   # Make the default policy windows.
-  windows: [200.239.64.66, 200.239.64.57, 200.239.64.54, 200.239.64.59, 200.239.64.51]
+  windows: [0.0.0.0/0]
   bsd: []
   bsd-right: []
   old-linux: []
@@ -1218,13 +1211,10 @@ host:
 # If the argument specified is 0, the engine uses an internally defined
 # default limit.  On not specifying a value, we use no limits on the recursion.
 detect:
-  #profile: medium
-  profile: custom
+  profile: medium
   custom-values:
-    #toclient-groups: 3
-    #toserver-groups: 25
-    toclient-groups: 200
-    toserver-groups: 200
+    toclient-groups: 3
+    toserver-groups: 25
   sgh-mpm-context: auto
   inspection-recursion-limit: 3000
   # If set to yes, the loading of signatures will be made after the capture
@@ -1301,15 +1291,12 @@ threading:
   #
   cpu-affinity:
     - management-cpu-set:
-        #cpu: [ 0 ]  # include only these cpus in affinity settings
-        cpu: [ "all" ]  # include only these cpus in affinity settings
+        cpu: [ 0 ]  # include only these cpus in affinity settings
     - receive-cpu-set:
-        #cpu: [ 0 ]  # include only these cpus in affinity settings
-        cpu: [ "all" ]  # include only these cpus in affinity settings
+        cpu: [ 0 ]  # include only these cpus in affinity settings
     - worker-cpu-set:
         cpu: [ "all" ]
-        #mode: "exclusive"
-        mode: "balanced"
+        mode: "exclusive"
         # Use explicitely 3 threads and don't compute number by using
         # detect-thread-ratio variable:
         # threads: 3
@@ -1331,7 +1318,7 @@ threading:
   # thread being created. Regardless of the setting at a minimum 1 detect
   # thread will always be created.
   #
-  detect-thread-ratio: 1.5
+  detect-thread-ratio: 1.0
 
 # Profiling settings. Only effective if Suricata has been built with the
 # the --enable-profiling configure flag.
@@ -1459,7 +1446,7 @@ nflog:
 #
 netmap:
    # To specify OS endpoint add plus sign at the end (e.g. "eth0+")
- - interface: eth1
+ - interface: eth2
    # Number of receive threads. "auto" uses number of RSS queues on interface.
    #threads: auto
    # You can use the following variables to activate netmap tap or IPS mode.
@@ -1499,7 +1486,7 @@ netmap:
 # PF_RING configuration. for use with native PF_RING support
 # for more info see http://www.ntop.org/products/pf_ring/
 pfring:
-  - interface: eth1
+  - interface: eth0
     # Number of receive threads (>1 will enable experimental flow pinned
     # runmode)
     threads: 1

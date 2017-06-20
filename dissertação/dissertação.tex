@@ -179,6 +179,7 @@ Zootecnia, Universidade de São Paulo, São Paulo, 2011.
 \begin{siglas}
   \item[IDS] \textit{Intrusion Detection System}
   \item[IPS] \textit{Intrusion Prevention System}
+  \item[IDPS] \textit{Intrusion Detection and Prevention System}
   \item[MB] \textit{Megabytes}
   \item[GB] \textit{Gigabytes}
   \item[SO] \textit{Sistema Operacional}
@@ -265,7 +266,7 @@ O Nmap é uma ferramente de código aberto utilizada para auditoria de seguranç
 
 Muitos administradores de sistemas utilizam o Nmap para tarefas rotineiras como, criação de inventário de rede, gerenciamento de serviços, visto que é de suma importância manter os mesmos atualizados e monitoramento de \textit{host}.
 
-Diversos parametros podem ser utilizados com o Nmap, posibilitando realizar varreduras das mais variadas maneiras, dependendo do tipo desejado. A lista completa de opções podem ser consultadas na documentação oficial que vem junto da ferramenta ou no site do projeto \cite{nmap}. 
+Diversos parâmetros podem ser utilizados com o Nmap, possibilitando realizar varreduras das mais variadas maneiras, dependendo do tipo desejado. A lista completa de opções podem ser consultadas na documentação oficial que vem junto da ferramenta ou no site do projeto \cite{nmap}. 
 
 Na execução do Nmap, o que não for opção ou argumento da opção é considerado especificação do \textit{host} alvo. O alvo pode ser um ou vários, usando uma notação de intervalo por hífen ou uma lista separada por vírgula. Os \textit{hosts} alvos também podem ser definidos em arquivos.
 
@@ -304,11 +305,11 @@ Os módulos são divididos da seguinte maneira: \textbf{Payload}: São código e
 
 \subsection{Pytbull} \label{sec:pytbull}
 
-O Pytbull é um \textit{framework} para teste de IDS/IPS, capaz de determinar a capacidade de detecção e bloqueio do IDS/IPS, além de fazer uma comparação entre diversas soluções e verifica as configurações.
+O Pytbull é um \textit{framework} para teste de IDPS, capaz de determinar a capacidade de detecção e bloqueio do mesmo, além de fazer uma comparação entre diversas soluções e verifica as configurações.
 
-O \textit{framework} Pytbull possui cerca de 300 testes agrupados em 11 módulos: \textbf{badTraffic}: Pacotes não compatíveis com a RFC são enviados para o servidor para testar como os pacotes são processados; \textbf{bruteForce}: Testa a capacidade do IDS/IPS de rastrear ataques de força bruta; \textbf{clientSideAttacks}: Usa um \textit{shell} reverso para fornecer ao servidor instruções para baixar arquivos maliciosos; \textbf{denialOfService}: Testa a capacidade do IDS/IPS de proteger contra tentativas de DoS; \textbf{evasionTechniques}: Testa a capacidade do IDS/IPS de detectar técnicas de evasão; \textbf{fragmentedPackets}: Várias cargas úteis fragmentadas são enviadas ao servidor para testar sua capacidade de recomposição e detectar os ataques; \textbf{ipReputation}: Testa a capacidade do servidor detectar tráfego de servidores com reputação baixa; \textbf{normalUsage}: Cargas úteis que correspondem a uso normal; \textbf{pcapReplay}: Permite reproduzir arquivos pcap; \textbf{shellCodes}: Envia \textit{shellcodes} para o servidor na porta 21/ftp testando a capacidade de detectar/bloquear o mesmo;  \textbf{testRules}: Testa a base de assinaturas configuradas no servidor IDS/IPS.
+O \textit{framework} Pytbull possui cerca de 300 testes agrupados em 11 módulos: \textbf{badTraffic}, pacotes não compatíveis com a RFC são enviados para o servidor para testar como os pacotes são processados; \textbf{bruteForce}, testa a capacidade do IDPS de rastrear ataques de força bruta; \textbf{clientSideAttacks}, usa um \textit{shell} reverso para fornecer ao servidor instruções para baixar arquivos maliciosos; \textbf{denialOfService}, testa a capacidade do IDPS de proteger contra tentativas de DoS; \textbf{evasionTechniques}, testa a capacidade do IDPS de detectar técnicas de evasão; \textbf{fragmentedPackets}, várias cargas úteis fragmentadas são enviadas ao servidor para testar sua capacidade de recomposição e detectar os ataques; \textbf{ipReputation}, testa a capacidade do servidor detectar tráfego de servidores com reputação baixa; \textbf{normalUsage}, cargas úteis que correspondem a uso normal; \textbf{pcapReplay}, permite reproduzir arquivos pcap; \textbf{shellCodes}, envia \textit{shellcodes} para o servidor na porta 21/ftp testando a capacidade de detectar/bloquear o mesmo;  \textbf{testRules}, testa a base de assinaturas configuradas no servidor IDPS.
 
-Existe basicamente 5 tipos de testes: \textbf{socket}: Abre um \textit{socket} em uma porta e envia o \textit{payload} para o alvo remoto na porta especificada; \textbf{command}: Envia um comando para alvo remoto com a função python subprocess.call(); \textbf{scapy}: Envia cargas úteis especificas baseadas na sintaxe de Scapy; \textbf{client side attacks}: Usa um \textit{shell} reverso no alvo remoto e envia comandos para serem processados no servidor; \textbf{pcap replay}: Permite reproduzir tráfego com base em arquivos de pcap.
+Existe basicamente 5 tipos de testes: \textbf{socket}, abre um \textit{socket} em uma porta e envia o \textit{payload} para o alvo remoto na porta especificada; \textbf{command}, envia um comando para alvo remoto com a função python subprocess.call(); \textbf{scapy}, envia cargas úteis especificas baseadas na sintaxe de Scapy; \textbf{client side attacks}, usa um \textit{shell} reverso no alvo remoto e envia comandos para serem processados no servidor; \textbf{pcap replay}, permite reproduzir tráfego com base em arquivos de pcap.
 
 \begin{figure}
  \centering

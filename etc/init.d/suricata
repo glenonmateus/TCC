@@ -9,28 +9,30 @@
 # Description:       Suricata IDS
 ### END INIT INFO
 
+PIDFILE='/var/run/suricata.pid'
+INTERFACE=eth1
+
 start() {
-  if [ -s '/var/run/suricata.pid' ]; then
-  	PID=`cat /var/run/suricata.pid`
+  if [ -s $PIDFILE ]; then
+  	PID=`cat $PIDFILE`
 	echo "Suricata is already running (PID='$PID')"
-        exit
-  fi
+  else
 	echo 'Starting service…' >&2
-        `LD_PRELOAD="/usr/lib/libtcmalloc_minimal.so.4" suricata -c /etc/suricata/suricata.yaml -i eth1 -D` > /dev/null 2>&1
+        `LD_PRELOAD="/usr/lib/libtcmalloc_minimal.so.4" suricata -c /etc/suricata/suricata.yaml -i $INTERFACE -D` > /dev/null 2>&1
   	echo 'Service started' >&2
+  fi
 }
 
 stop() {
-  if [ -s '/var/run/suricata.pid' ]; then
-  	PID=`cat /var/run/suricata.pid`
+  if [ -s $PIDFILE ]; then
+  	PID=`cat $PIDFILE`
 	echo 'Stopping service…' >&2
 	kill -15 $PID
-	rm /var/run/suricata.pid
+	rm $PIDFILE
 	echo 'Service stopped' >&2
-	exit
-  fi
+  else
 	echo "Suricata is not running"
-	exit 
+  fi
 }
 
 case "$1" in
@@ -46,5 +48,5 @@ case "$1" in
     start
     ;;
   *)
-    echo "Usage: $0 {start <interface>|stop|restart}"
+    echo "Usage: $0 {start | stop | restart}"
 esac
