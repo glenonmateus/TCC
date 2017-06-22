@@ -180,6 +180,8 @@ Zootecnia, Universidade de São Paulo, São Paulo, 2011.
   \item[IDS] \textit{Intrusion Detection System}
   \item[IPS] \textit{Intrusion Prevention System}
   \item[IDPS] \textit{Intrusion Detection and Prevention System}
+  \item[HIDS] \textit{Host Based Intrusion Detection Systems}
+  \item[NIDS] \textit{Network Based Intrusion Detection Systems}
   \item[MB] \textit{Megabytes}
   \item[GB] \textit{Gigabytes}
   \item[SO] \textit{Sistema Operacional}
@@ -207,7 +209,57 @@ Zootecnia, Universidade de São Paulo, São Paulo, 2011.
 \subsection{Fraudes - Direitos Autorais}
 \chapter{Sistemas de Detecção e Prevenção de Intrusão}
 \section{Tipos de IDS/IPS}
+
+\textit{Intrusion Detection Systems} (IDS) ou Sistemas de Detecção de Intrusão (IDS) são ferramentas utilizadas para monitoramento de eventos que ocorrem em redes e sistemas computacionais, analisando sinais de possíveis ataques que podem levar a uma violação das politicas de segurança da organização, alertando os administradores do sistema que estes eventos estão ocorrendo. O \textit{Intrusion Detection Systems} (IPS) ou Sistema de Prevenção de Intrusão (IPS) possui todas as funcionalidades do IDS com uma diferença, ele é capaz de deter alguns possíveis incidentes, minimizando os impactos causados por sistemas comprometidos \cite{mukhopadhyay01}.
+
+Basicamente os sistemas de detecção de intrusão são compostos por quatro componentes, temos: Sensor ou Agente, responsável pelo monitoramento e analise do trafego capturado; Banco de Dados, usado como repositório das informações de eventos detectados pelos sensor ou agente que serão processados; Gestor, é o dispositivo central que recebe, analisa e gerencia as informações de eventos vindos do sensor ou agente; Console, fornece uma interface para administração e monitoramento das atividades do IDS.
+
+Os IDSs são classificados de acordo com o local onde o sensor é instalado, \textit{Host Based Intrusion Detection Systems} (HIDS) e \textit{Network Based Intrusion Detection Systems} (NIDS), e a técnica utilizada para o monitoramento, baseado em assinaturas e anomalias \cite{nagahama2012ipsflow}.
+
+Em um HIDS o sensor é instalado no \textit{host} que será monitorado, analisando as informações contidas na própria máquina. Esse tipo de IDS tem o objetivo de analisar aspectos internos ao \textit{host} como processos em execução, modificações na configuração do sistema e serviços, monitorar o tráfego de rede somente do \textit{host} e acesso a arquivos não autorizados, entre outros.
+
+Os HIDS possuem algumas vantagens como evitar que alguns códigos sejam executados; bloqueia o tráfego de entrada e saída contendo ataques e uso não autorizado de protocolos e programas; evita que arquivos possam ser acessados, modificados e deletados impedindo o instalação de \textit{malware} e outros ataques envolvendo acesso inapropriado a arquivos. Por outro lado, um HIDS possui algumas limitações como, por exemplo, difícil instalação e manutenção; interferir no desempenho do \textit{host}; demora para identificar alguns eventos consequentemente a resposta a esses incidentes sofrerá um \textit{delay} \cite{scarfone01}.
+
+Já em um NIDS, o sensor é instalado na rede e a interface de rede atua em um modo especial chamado ``promíscuo'', passando a ter a capacidade de capturar o tráfego da rede mesmo que os pacotes não sejam destinados ao próprio sensor.
+
+Quanto a localização o NIDS pode ser classificado como passivo ou ativo. No modo passivo, o IDS monitora copias dos pacotes da rede que passam pelo \textit{switch} ou \textit{hub} onde está conectado, ficando limitado somente a gerar notificações quando encontrado algum tráfego malicioso. Enquanto no modo ativo, o IDS é instalado da forma que o tráfego da rede passe através do sensor parecendo com o fluxo de dados associado com um \textit{firewall}. Dessa forma, ele é capaz de parar ataques bloqueando o fluxo malicioso (Figura \ref{nids}). 
+
+Os NIDS possuem algumas vantagens como serem independentes de plataforma; não interfere no desempenho do \textit{host}; fácil implantação e transparente para o atacante. Por outro lado, possuem desvantagens como: pode adicionar retardados nos pacotes quando instalado no modo ativo, isso ocorre principalmente se houver um subdimensionamento do \textit{hardware}; dificuldade de tratar dados de redes de alta velocidade; quando em modo passivo, trata apenas o segmento da rede que o IDS esta instalado e dificuldade de tratar dados criptografados. Esse tipo de IDS é mais utilizado devido a grande heterogeneidade de dispositivos e sistemas operacionais disponíveis na rede, tornando a administração mais simples se comparados com o HIDS.
+
+Quanto a técnica de monitoramento utilizado, o IDS pode ser baseados em assinaturas ou anomalias. IDSs baseados em assinaturas compara os pacotes com uma base de assinaturas de ataques previamente conhecidos e reportados por especialistas, cada assinatura identifica um ataque. Tem como vantagem, usar poucos recursos do servidor e rápido processamento. Porém, as desvantagens são: exigi uma atualização constante da base de assinaturas; alto conhecimento para geração da base e possuir um alto índice de falsos positivos e negativos.
+
+Já os baseados em anomalias, procuram determinar um comportamento normal na fase de aprendizagem do sistema computacional ou rede e sempre que existir um desvio desse padrão alertas são gerados. Possui a vantagem de detectar novos ataques sem necessariamente conhecer a fundo a intrusão através dos desvio de comportamento. Porém existe a desvantagem de gerar um grande número de falsos alertas em decorrência a modificações na rede ou \textit{host} nem sempre representar um tráfego malicioso. 
+
+\begin{figure}[!htb]
+  \centering
+  \subfloat[NIDS Passivo]{
+    \includegraphics[scale=0.5]{nids_passivo.png}
+    \label{nids-passivo}
+  }
+  \quad
+  \subfloat[NIDS Ativo]{
+    \includegraphics[scale=0.5]{nids_ativo.png}
+    \label{nids-ativo}
+  }
+  \caption{Exemplos de Arquitetura de NIDS}
+  \label{nids}
+ \end{figure}
+
 \section{Snort}
+
+O Snort é um sistema de detecção e prevenção de intrusão de código fonte aberto escrita na linguagem de programação C bem conhecido pela comunidade da segurança da informação. Seu primeiro \textit{release} foi lançado em 1998 e desde então passa por constantes revisões e aperfeiçoamentos, com o passar dos anos se tornou o IDS mais utilizado no mundo. Ele combina análise baseada em assinaturas e anomalias, podendo operar em três modos: \textit{sniffer}, \textit{packet logger} e de sistema de detecção de intrusão (NIDS) \cite{snortorgbr}.
+
+No modo \textit{Sniffer}, o Snort captura os pacotes e exibi as informações no console. No modo \textit{Packet Logger}, além de capturar o tráfego, ele registrar essas informações em disco (arquivos de logs). E no modo NIDS, é o modo mais complexo, permite analise do pacotes de rede em tempo real.
+
+Existe quatro componentes no Snort: O \textit{Sniffer}, o Pré-processador, o Motor de Detecção e Módulo de Saída. Os componentes são organizados de acordo com a figura \ref{snort-componentes} \cite{kohlenberg2007snort}.
+
+\begin{figure}[!htp]
+  \centering
+  \includegraphics[scale=0.6]{snort_componentes}
+  \caption{Componentes do Snort}
+  \label{snort-componentes}
+\end{figure}
+
 \section{Suricata}
 
 \chapter{Detecção de Intrusão em um Cenário Real}
@@ -270,14 +322,7 @@ Diversos parâmetros podem ser utilizados com o Nmap, possibilitando realizar va
 
 Na execução do Nmap, o que não for opção ou argumento da opção é considerado especificação do \textit{host} alvo. O alvo pode ser um ou vários, usando uma notação de intervalo por hífen ou uma lista separada por vírgula. Os \textit{hosts} alvos também podem ser definidos em arquivos.
 
-O resultado do Nmap é uma tabela de portas e seus estados (Figura \ref{fig:nmap}). As portas podem assumir quatro estados, temos:
-
-\begin{itemize}
- \item \textbf{aberto} (\textit{open}): significa que existe alguma aplicação escutando conexões;
- \item \textbf{filtrado} (\textit{filtered}): há um obstáculo na rede (firewall) que impossibilita que o Nmap determine se a porta está aberta ou fechada; 
- \item \textbf{fechado} (\textit{closed}): não possuem uma aplicação escutando nelas; 
- \item \textbf{não-filtrado} (\textit{unfilterd}): quando elas respondem porém o Nmap não consegue determinar se estão fechadas ou abertas \cite{nmap}.
- \end{itemize}
+O resultado do Nmap é uma tabela de portas e seus estados (Figura \ref{fig:nmap}). As portas podem assumir quatro estados, temos: aberto (\textif{open}), significa que existe alguma aplicação escutando conexões; filtrado (\textit{filtered}), há um obstáculo na rede, podendo ser algum \textit{firewall}, que impossibilita que o Nmap determine se a porta está aberta ou fechada; fechado (\textit{closed}), não possui aplicação escutando na porta; não-filtrado (\textit{unfilterd}), a porta responde requisição porém o Nmap não consegue determinar se estão fechadas ou abertas \cite{nmap}.
 
 \begin{figure}[!htp]
  \centering
@@ -329,11 +374,13 @@ O passo seguinte seria um estudo e mapeamento da rede, a procura de um \textit{h
 
 nmap -F 200.239.82.0/24
 
-O segundo teste, usou-se o parâmetro '-sV' do Nmap. Essa opção habilita a descoberta de versões, tentando determinar os protocolos de serviços, o nome da aplicação, o número da versão, o nome do \textit{host}, tipo de dispositivo, entre outras informações. Essas informações são de grande valor pois, a partir delas, pode-se explorar vulnerabilidades conhecidas de uma determinada versão de um serviço.
+O segundo teste, usou-se o parâmetro '-sV' do Nmap. Essa opção habilita a descoberta de versões, tentando determinar os protocolos de serviços, o nome da aplicação, o número da versão, o nome do \textit{host}, tipo de dispositivo, sistema operacional usado, entre outras informações. Essas informações são de grande valor pois, a partir delas, pode-se explorar vulnerabilidades conhecidas de uma determinada versão de um serviço.
 
 nmap -sV 200.239.82.0/24
 
-De posse de um alvo, próximo passo seria rodar um scan de vulnerabilidade, em busca de brejas já conhecidas, e que, geralmente por descuido do administrador, não foi fechada. Para esses testes usou-se o \textit{framework} Metasploit \ref{sec:metasploit} nativo do sistema operacional Kali Linux.
+De posse de um alvo em potencial, próximo passo seria rodar um scan de vulnerabilidade, em busca de brejas já conhecidas, e que, geralmente por descuido do administrador, não foi fechada. Para esses testes usou-se o \textit{framework} Metasploit \ref{sec:metasploit} nativo do sistema operacional Kali Linux.
+
+
 
 \section{Resultados} \label{sec:resultados}
 %Resultados esperados e obtidos
