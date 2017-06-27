@@ -179,6 +179,8 @@ Zootecnia, Universidade de São Paulo, São Paulo, 2011.
 \begin{siglas}
   \item[IDS] \textit{Intrusion Detection System}
   \item[IPS] \textit{Intrusion Prevention System}
+  \item[SDI] \textit{Sistema de Detecção de Intrusão}
+  \item[SPI] \textit{Sistema de Prevenção de Intrusão}
   \item[IDPS] \textit{Intrusion Detection and Prevention System}
   \item[HIDS] \textit{Host Based Intrusion Detection Systems}
   \item[NIDS] \textit{Network Based Intrusion Detection Systems}
@@ -191,7 +193,7 @@ Zootecnia, Universidade de São Paulo, São Paulo, 2011.
 \tableofcontents*
 \cleardoublepage
 \textual
-\chapter{Introdução}
+\chapter{Introdução} \label{ch:introdução}
 %- Introdução: Texto introdutório do trabalho, motivação, objetivos,
 %metodologia, trabalhos relacionados.
 %- Adicionar: objetivos
@@ -199,25 +201,39 @@ Zootecnia, Universidade de São Paulo, São Paulo, 2011.
 %- Adicionar o seguinte texto:
 %Este capítulo esta organizado da seguinte forma: A próxima seção
 %apresenta .... A Seção XY apresenta...
-\section{Motivação}
-\section{Objetivos}
-\section{Metodologia}
-\section{Trabalhos Relacionados}
-\chapter{Segurança em Redes de Computadores}
-\section{Definições}
-\section{Cenário Geral}
+\section{Motivação} \label{sec:motivação}
+\section{Objetivos} \label{sec:objetivos}
+\section{Metodologia} \label{sec:metodologia}
+\section{Trabalhos Relacionados} \label{sec:relacionados}
+\chapter{Segurança em Redes de Computadores} \label{ch:segurança}
+\section{Definições} \label{sec:definições}
+
+Para entendemos melhor o que é segurança da informação, precisamos conceituar alguns termos detalhados a seguir \cite{esr-gestao}:
+\begin{itemize}
+ \item \textbf{Incidente de segurança}: qualquer evento oposto a segurança; por exemplo, ataques de negação de serviços (Denial of Service - DoS), roubo de informações, vazamento e obtenção de acesso não autorizado a informações;
+ \item \textbf{Ativo}: qualquer coisa que tenha valor para a organização e para seus negócios. Alguns exemplo: banco de dados, softwares, equipamentos (computadores e notebooks), servidores, elementos de redes (roteadores, switches, entre outros), pessoas, processos e serviços;
+ \item \textbf{Ameaça}: qualquer evento que explore vulnerabilidades. Causa potencial de um incidente indesejado, que pode resultar em dano para um sistema ou organização;
+ \item \textbf{Vulnerabilidade}: qualquer fraqueza que possa ser explorada e comprometer a segurança de sistemas ou informações. Fragilidade de um ativo ou grupo de ativos que pode ser explorada por uma ou mais ameaças. Vulnerabilidades são falhas que permitem o surgimento de deficiências na segurança geral do computador ou da rede. Configurações incorretas no computador ou na segurança também permitem a criação de vulnerabilidades. A partir dessa falha, as ameaças exploram as vulnerabilidades, que, quando concretizadas, resultam em danos para o computador, para a organização ou para os dados pessoais;
+ \item \textbf{Risco}: probabilidade de uma ameaça se concretizar;
+ \item \textbf{Ataque}: qualquer ação que comprometa a segurança de uma organização
+ \item \textbf{Impacto}: consequência de um evento;
+\end{itemize}
+
+Segurança da Informação proteção das informações, sistemas, recursos e demais ativos contra desastres, erros (intencionais ou não) e manipulação não autorizada, objetivando a redução da probabilidade e do impacto de incidentes de segurança.
+
+\section{Cenário Geral} \label{sec:geral}
 %apresentar o cenário geral de uma rede conectada a Internet
-\section{Pontos de Vulnerabilidade}
+\section{Pontos de Vulnerabilidade} \label{sec:vulnerabilidade}
 %Ex.: Roteador, firewall, clientes e suas aplicações,
-\section{Ataques Comuns à Redes de Computadores}
-\subsection{Varredura de Redes}
-\subsection{Exploração de Vulnerabilidades}
-\subsection{Força Bruta}
-\subsection{Desfiguração de páginas}
-\subsection{Negação de Serviços}
-\subsection{Worm}
-\subsection{Trojan}
-\section{Ferramentas para Avaliação de Segurança}
+\section{Ataques Comuns à Redes de Computadores} \label{sec:ataques}
+\subsection{Varredura de Redes} \label{sec:varredura}
+\subsection{Exploração de Vulnerabilidades} \label{sec:exploração}
+\subsection{Força Bruta} \label{sec:forçabruta}
+\subsection{Desfiguração de páginas} \label{sec:desfiguração}
+\subsection{Negação de Serviços} \label{sec:negação}
+\subsection{Worm} \label{sec:worm}
+\subsection{Trojan} \label{sec:trojan}
+\section{Ferramentas para Avaliação de Segurança} \label{sec:ferramentas}
 %Nmap, Metasploit, Pytbull
 
 \subsection{Nmap} \label{sec:nmap}
@@ -245,7 +261,7 @@ O Metasploit é um \textit{framework} de código aberto cujo principio básico �
 
 O Metasploit possui uma biblioteca divida em três partes: \textbf{Rex}: É a biblioteca fundamental, a maioria das tarefas executadas pelo \textit{framework} usaram essa biblioteca; \textbf{MSF Core}: É o \textit{framework} em si, possui, por exemplo, gerenciador de módulos e a base de dados; \textbf{MSF Base}: Guarda os módulos, sejam eles, \textit{exploit}, \textit{encoders} (ferramentas usadas para desenvolver o \textit{payloads}) e os \textit{payloads}. Além disso, são guardadas informações de configuração e sessões criadas pelos \textit{exploits}. A arquitetura é mostrada com mais detalhes na figura \ref{fig:arqmetasploit}. 
 
-Os módulos são divididos da seguinte maneira: \textbf{Payload}: São código executados no alvo remotamente; \textbf{Exploit}: Explora \textit{bugs} ou vulnerabilidade existente em aplicações do alvo; \textbf{Módulos Auxiliares}: Usado para escanear as vulnerabilidades e executar várias tarefas; \textbf{Encoder}: Codifica o \textit{payload} para evitar qualquer tipo de detecção pelo anti vírus.
+Os módulos são divididos da seguinte maneira: Payload: são código executados no alvo remotamente; Exploit: explora \textit{bugs} ou vulnerabilidade existente em aplicações do alvo; Módulos Auxiliares: usado para escanear as vulnerabilidades e executar várias tarefas; Encoder: codifica o \textit{payload} para evitar qualquer tipo de detecção pelo anti vírus.
 
 \textbf{Interface}: Disponibiliza a parte gráfica para o usuário;
 
@@ -274,7 +290,7 @@ O Pytbull é um \textit{framework} para teste de IDPS, capaz de determinar a cap
  \item \textbf{testRules}, testa a base de assinaturas configuradas no servidor IDPS.
 \end{itemize}
 
-Existem basicamente 5 tipos de testes: \textbf{socket}, abre um \textit{socket} em uma porta e envia o \textit{payload} para o alvo remoto na porta especificada; \textbf{command}, envia um comando para alvo remoto com a função python subprocess.call(); \textbf{scapy}, envia cargas úteis especificas baseadas na sintaxe de Scapy; \textbf{client side attacks}, usa um \textit{shell} reverso no alvo remoto e envia comandos para serem processados no servidor; \textbf{pcap replay}, permite reproduzir tráfego com base em arquivos de pcap.
+Existem basicamente 5 tipos de testes: socket, abre um \textit{socket} em uma porta e envia o \textit{payload} para o alvo remoto na porta especificada; command, envia um comando para alvo remoto com a função python subprocess.call(); scapy, envia cargas úteis especificas baseadas na sintaxe de Scapy; client side attacks, usa um \textit{shell} reverso no alvo remoto e envia comandos para serem processados no servidor; pcap replay, permite reproduzir tráfego com base em arquivos de pcap.
 
 \begin{figure}
  \centering
@@ -290,7 +306,7 @@ Existem basicamente 5 tipos de testes: \textbf{socket}, abre um \textit{socket} 
 %breve texto introduzindo o capítulo + apresentação das seções
 \section{Definições de IDS/IPS}
 
-\textit{Intrusion Detection Systems} (IDS) ou Sistemas de Detecção de Intrusão (IDS) são ferramentas utilizadas para monitoramento de eventos que ocorrem em redes e sistemas computacionais, analisando sinais de possíveis ataques que podem levar a uma violação das politicas de segurança da organização, alertando os administradores do sistema que estes eventos estão ocorrendo. O \textit{Intrusion Detection Systems} (IPS) ou Sistema de Prevenção de Intrusão (IPS) possui todas as funcionalidades do IDS com uma diferença, ele é capaz de deter alguns possíveis incidentes, minimizando os impactos causados por sistemas comprometidos \cite{mukhopadhyay01}.
+\textit{Intrusion Detection Systems} (IDS) ou Sistemas de Detecção de Intrusão (SDI) são ferramentas utilizadas para monitoramento de eventos que ocorrem em redes e sistemas computacionais, analisando sinais de possíveis ataques que podem levar a uma violação das politicas de segurança da organização, alertando os administradores do sistema que estes eventos estão ocorrendo. O \textit{Intrusion Detection Systems} (IPS) ou Sistema de Prevenção de Intrusão (SPI) possui todas as funcionalidades do IDS com uma diferença, ele é capaz de deter alguns possíveis incidentes, minimizando os impactos causados por sistemas comprometidos \cite{mukhopadhyay01}.
 
 Basicamente os sistemas de detecção de intrusão são compostos por quatro componentes, temos: Sensor ou Agente, responsável pelo monitoramento e analise do trafego capturado; Banco de Dados, usado como repositório das informações de eventos detectados pelos sensor ou agente que serão processados; Gestor, é o dispositivo central que recebe, analisa e gerencia as informações de eventos vindos do sensor ou agente; Console, fornece uma interface para administração e monitoramento das atividades do IDS.
 
