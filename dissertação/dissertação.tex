@@ -188,6 +188,7 @@ Zootecnia, Universidade de São Paulo, São Paulo, 2011.
   \item[GB] \textit{Gigabytes}
   \item[SO] \textit{Sistema Operacional}
   \item[JSON] \textit{JavaScript Object Notation}
+  \item[DoS] \textit{Denial of Service}
 \end{siglas}
 \pdfbookmark[0]{\contentsname}{toc}
 \tableofcontents*
@@ -215,13 +216,32 @@ Para entendemos melhor o que é segurança da informação, precisamos conceitua
  \item \textbf{Ameaça}: qualquer evento que explore vulnerabilidades. Causa potencial de um incidente indesejado, que pode resultar em dano para um sistema ou organização;
  \item \textbf{Vulnerabilidade}: qualquer fraqueza que possa ser explorada e comprometer a segurança de sistemas ou informações. Fragilidade de um ativo ou grupo de ativos que pode ser explorada por uma ou mais ameaças. Vulnerabilidades são falhas que permitem o surgimento de deficiências na segurança geral do computador ou da rede. Configurações incorretas no computador ou na segurança também permitem a criação de vulnerabilidades. A partir dessa falha, as ameaças exploram as vulnerabilidades, que, quando concretizadas, resultam em danos para o computador, para a organização ou para os dados pessoais;
  \item \textbf{Risco}: probabilidade de uma ameaça se concretizar;
- \item \textbf{Ataque}: qualquer ação que comprometa a segurança de uma organização
- \item \textbf{Impacto}: consequência de um evento;
+ \item \textbf{Ataque}: qualquer ação que comprometa a segurança de uma organização;
+ \item \textbf{Impacto}: consequência de um evento.
 \end{itemize}
 
 Segurança da Informação proteção das informações, sistemas, recursos e demais ativos contra desastres, erros (intencionais ou não) e manipulação não autorizada, objetivando a redução da probabilidade e do impacto de incidentes de segurança.
 
-Segundo a norma ISO/IEC \cite{}, segurança da informação é a preservação da confidencialidade, da integridade e da disponibilidade da informação; adicionalmente, outras propriedades, tais como autenticidade, responsabilidade, não repúdio e confiabilidade, podem também estar envolvidas.
+Segundo a norma ISO/IEC 27002 \cite{isoiec27002}, segurança da informação é a preservação da confidencialidade, da integridade e da disponibilidade da informação; adicionalmente, outras propriedades, tais como autenticidade, responsabilidade, não repúdio e confiabilidade, podem também estar envolvidas.
+
+Dentre vários conhecimentos que um profissional de segurança deve possuir, o conceito mais básico e considerado o pilar de toda a área de segurança corresponde à sigla CID (Confidencialidade, Integridade e Disponibilidade), de modo que um incidente de segurança é caracterizado quando uma dessas áreas é afetada \cite{seg-redes-sistemas}. Abaixo será detalhado cada item.
+
+\begin{itemize}
+ \item \textbf{Confidencialidade}: termo ligado à privacidade de um ativo ou recurso, que deve ser acessível somente por pessoas ou grupos autorizados;
+ \item \textbf{Integridade}: possui duas definições, a primeira está relacionada com o fato da informação ter valor correto, a segunda, está ligada à inviolabilidade da informação;
+ \item \textbf{Disponibilidade}: está relacionada ao acesso à informação, que deve está disponível quando necessária.
+\end{itemize}
+
+Dois dos termos citados são fáceis de ser monitorados pois é perceptível para o usuário: a integridade (identificar se uma informação foi alterada) e a disponibilidade (tentando acessar um serviço e verificando se o mesmo está respondendo adequadamente). No entanto, só é possível identificar se houve quebra da confiabilidade através de auditorias, analisando os registros de acesso (se houver), tornando a identificação complicada e em muitos casos impossível \cite{seg-redes-sistemas}.
+
+Além dos conceito listados, a literatura moderna considera mais alguns conceitos auxiliares, temos:
+
+\begin{itemize}
+ \item \textbf{Autenticidade}: garantia que uma informação, produto ou documento foi elaborado ou distribuído pelo autor a quem se atribui;
+ \item \textbf{Legalidade}: garantia de que ações sejam realizadas em conformidade com os preceitos legais vigentes e que seus produtos tenham validade jurídica;
+ \item \textbf{Não repúdio}: conceito bastante utilizado em certificação digital, onde o emissor de uma mensagem não pode negar que a enviou;
+ \item \textbf{Privacidade}: habilidade de uma pessoa controlar a exposição e a disponibilidade de informações acerca de si.
+\end{itemize}
 
 \section{Cenário Geral} \label{sec:geral}
 %apresentar o cenário geral de uma rede conectada a Internet
