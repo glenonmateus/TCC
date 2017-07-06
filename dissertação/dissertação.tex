@@ -250,9 +250,16 @@ Além dos conceito listados, a literatura moderna considera mais alguns conceito
 %Ex.: Roteador, firewall, clientes e suas aplicações,
 \section{Ataques Comuns à Redes de Computadores} \label{sec:ataques}
 
-O Centro de Atendimento a Incidentes de Segurança (CAIS) é responsável por zela pela segurança da rede Ipê (infraestrutura de rede dedicada à comunidade brasileira de ensino superior), detectando, resolvendo e prevenindo incidentes de segurança. Além disso, tem o papel de orientar (através de publicações de cartilhas) e disseminar boas práticas de segurança da informação, educando e conscientizando usuários de todos os níveis sobre os principais riscos em segurança da informação \cite{cais}.
+Nessa seção será descritos os ataques mais comuns à redes e serviços de organizações privadas e públicas, financeiras ou acadêmicas. Para licitar os ataques dessa seção, levou-se em consideração as estatísticas divulgada semestralmente pelo Centro de Atendimento a Incidentes de Segurança (CAIS) (figura \ref{fig:cais}).
 
+\begin{figure}[!htb]
+ \centering
+ \includegraphics[scale=.5]{incidentes_ano_14.png}
+ \caption{Estatísticas de ataques reportadas ao CAIS}
+ \label{fig:cais}
+\end{figure}
 
+O CAIS é responsável por zela pela segurança da rede Ipê (infraestrutura de rede dedicada à comunidade brasileira de ensino superior), detectando, resolvendo e prevenindo incidentes de segurança. Além disso, tem o papel de orientar (através de publicações de cartilhas) e disseminar boas práticas de segurança da informação, educando e conscientizando usuários de todos os níveis sobre os principais riscos em segurança da informação \cite{cais}.
 
 \subsection{Varredura de Redes} \label{sec:varredura}
 \subsection{Exploração de Vulnerabilidades} \label{sec:exploração}
@@ -263,6 +270,8 @@ O Centro de Atendimento a Incidentes de Segurança (CAIS) é responsável por ze
 \subsection{Trojan} \label{sec:trojan}
 \section{Ferramentas para Avaliação de Segurança} \label{sec:ferramentas}
 %Nmap, Metasploit, Pytbull
+
+Nessa seção será descrito todas as ferramentas auxiliares usadas para geração de ataques \ref{sec:ataques} com objetivo de testar e validar as configurações das ferramentas de IDPS estudas. 
 
 \subsection{Nmap} \label{sec:nmap}
 
@@ -276,7 +285,7 @@ Na execução do Nmap, o que não for opção ou argumento da opção é conside
 
 O resultado do Nmap é uma tabela de portas e seus estados (Figura \ref{fig:nmap}). As portas podem assumir quatro estados, temos: aberto (\textif{open}), significa que existe alguma aplicação escutando conexões; filtrado (\textit{filtered}), há um obstáculo na rede, podendo ser algum \textit{firewall}, que impossibilita que o Nmap determine se a porta está aberta ou fechada; fechado (\textit{closed}), não possui aplicação escutando na porta; não-filtrado (\textit{unfilterd}), a porta responde requisição porém o Nmap não consegue determinar se estão fechadas ou abertas \cite{nmap}.
 
-\begin{figure}[!htp]
+\begin{figure}[!htb]
  \centering
  \includegraphics[scale=.5]{nmap.png}
  \caption{Exemplo de saída do Nmap}
@@ -293,7 +302,7 @@ Os módulos são divididos da seguinte maneira: Payload: são código executados
 
 \textbf{Interface}: Disponibiliza a parte gráfica para o usuário;
 
-\begin{figure}[!htp]
+\begin{figure}[!htb]
  \centering
  \includegraphics[scale=.6]{metasploit_arquitetura.png}
  \caption{Arquitetura do Metasploit}
@@ -320,7 +329,7 @@ O Pytbull é um \textit{framework} para teste de IDPS, capaz de determinar a cap
 
 Existem basicamente 5 tipos de testes: socket, abre um \textit{socket} em uma porta e envia o \textit{payload} para o alvo remoto na porta especificada; command, envia um comando para alvo remoto com a função python subprocess.call(); scapy, envia cargas úteis especificas baseadas na sintaxe de Scapy; client side attacks, usa um \textit{shell} reverso no alvo remoto e envia comandos para serem processados no servidor; pcap replay, permite reproduzir tráfego com base em arquivos de pcap.
 
-\begin{figure}
+\begin{figure}[!htb]
  \centering
  \includegraphics[scale=.4]{arquitetura_pytbull.png}
  \caption{Arquitetura do \textit{framework} Pytbull}
@@ -340,7 +349,6 @@ Basicamente os sistemas de detecção de intrusão são compostos por quatro com
 
 \section{Tipos de IDS/IPS}
 
-
 Os IDSs são classificados de acordo com o local onde o sensor é instalado, \textit{Host Based Intrusion Detection Systems} (HIDS) e \textit{Network Based Intrusion Detection Systems} (NIDS), e a técnica utilizada para o monitoramento, baseado em assinaturas e anomalias \cite{nagahama2012ipsflow}.
 
 Em um HIDS o sensor é instalado no \textit{host} que será monitorado, analisando as informações contidas na própria máquina. Esse tipo de IDS tem o objetivo de analisar aspectos internos ao \textit{host} como processos em execução, modificações na configuração do sistema e serviços, monitorar o tráfego de rede somente do \textit{host} e acesso a arquivos não autorizados, entre outros.
@@ -358,14 +366,14 @@ Quanto a técnica de monitoramento utilizado, o IDS pode ser baseados em assinat
 Já os baseados em anomalias, procuram determinar um comportamento normal na fase de aprendizagem do sistema computacional ou rede e sempre que existir um desvio desse padrão alertas são gerados. Possui a vantagem de detectar novos ataques sem necessariamente conhecer a fundo a intrusão através dos desvio de comportamento. Porém existe a desvantagem de gerar um grande número de falsos alertas em decorrência a modificações na rede ou \textit{host} nem sempre representar um tráfego malicioso. 
 
 \begin{figure}[!htb]
-  \centering
+ \centering
   \subfloat[NIDS Passivo]{
-    \includegraphics[scale=0.5]{nids_passivo.png}
+    \includegraphics[height=7cm]{nids_passivo.png}
     \label{nids-passivo}
   }
   \quad
   \subfloat[NIDS Ativo]{
-    \includegraphics[scale=0.5]{nids_ativo.png}
+    \includegraphics[height=7cm]{nids_ativo.png}
     \label{nids-ativo}
   }
   \caption{Exemplos de Arquitetura de NIDS}
@@ -381,7 +389,7 @@ No modo \textit{Sniffer}, o Snort captura os pacotes e exibi as informações no
 
 Existe quatro componentes no Snort: O \textit{Sniffer}, o Pré-processador, o Motor de Detecção e Módulo de Saída. Os componentes são organizados de acordo com a figura \ref{snort-componentes} \cite{kohlenberg2007snort}.
 
-\begin{figure}[!htp]
+\begin{figure}[!htb]
   \centering
   \includegraphics[scale=0.6]{snort_componentes}
   \caption{Componentes do Snort}
@@ -424,7 +432,7 @@ Para o \textit{host} conseguir pegar o pacotes destinados a rede escolhida para 
 
 Posteriormente criou-se três máquinas virtuais, duas usadas para instalação dos IDSs (Suricata e Snort) e a terceira para instalação das ferramentas usadas para simular ataques a rede. Optou-se pela instalação do sistema Kali Linux \cite{kalilinux} para geração de ataques pois nele existe várias ferramentas nativas para testes de penetração e auditoria de segurança. A infraestrutura final pode ser visualizada na Figura \ref{fig:infra-ambiente}.
 
-\begin{figure}[!htp]
+\begin{figure}[!htb]
  \centering
  \includegraphics[scale=.5]{infra.png}
  \caption{Infraestrutura do ambiente de teste}
@@ -437,7 +445,7 @@ O formato usado para facilitar a análise do \textit{logs} foi JavaScript Object
 
 Para analisar os \textit{logs}, usou-se uma infraestrutura que combina três ferramentas, o Kibana \cite{kibana}, uma plataforma de análise e visualização desenhada para trabalhar com os índices do Elasticsearch \cite{elasticsearch}, a grosso modo, podemos dizer que ela é uma interface gráfica para o Elasticsearch. O Elasticsearch, um motor de busca e análise altamente escalável, capaz de armazenar, buscar e analisar uma grande quantidade de dados em tempo próximo ao real. Por ultimo, o Logstach \cite{logstach}, um motor de coleta de dados em tempo real, unificando os dados de diferentes fontes dinamicamente, normalizando-os nos destinos escolhidos (Figura \ref{fig:logstach}). Dessa forma centralizou-se os \textit{logs}, facilitando a visualização das ocorrências dos IDSs. 
 
-\begin{figure}[!htp]
+\begin{figure}[!htb]
  \centering
  \includegraphics[scale=.4]{logstach.png}
  \caption{Busca e união dos dados de diferentes fontes}
