@@ -264,6 +264,21 @@ O CAIS é responsável por zela pela segurança da rede Ipê (infraestrutura de 
 \subsection{Varredura de Redes} \label{sec:varredura}
 \subsection{Exploração de Vulnerabilidades} \label{sec:exploração}
 \subsection{Força Bruta} \label{sec:forçabruta}
+
+%falar um pouco do fator humano para geração de senha
+
+Existem três métodos mais usados por programas de quebra de senha: ataques de dicionário (ou lista de palavras), ataques híbridos e ataques de força-bruta.
+
+Em um ataque de força bruta, toda e qualquer combinação possível é testada. Esse é o método mais lento.
+
+Um ataque de força bruta consiste em gerar todas as permutações e combinações possíveis de senha, criptografar cada uma e comparar a senha gerada com a senha criptografada original até encontrar uma que seja igual \cite{md5crack2012}. 
+
+O programa que utiliza várias combinações de usuário e senha para conseguir acesso indevido a sistemas ou para descriptografar chaves e arquivos. Além do risco de acesso indevido, o ataque de força bruta gera uma carga excessiva no alvo por ter responder e processar a várias tentativas de logins. Esta técnica é muito utilizada em servidores de SSH mal configurados. 
+
+Esse tipo de ataque é facilmente detectável pois, além de gerar uma alta carga no servidor, gera uma grande quantidade de registros de logs. No entanto, caso a pessoa má intencionada, de alguma outra forma, tenha acesso ao arquivo de \textit{hash} ou a tabela de usuário de um banco de dados, com as senha criptografadas do sistema, ela pode usar o ataque de força bruta no arquivo em qualquer máquina, assim, impossibilitando a detecção do ataque.
+
+Muitos sistemas já possuem formas de contornar esse tipo de ataque, por exemplo, bloqueio de usuário ao errar a palavra-chave por uma certa quantidade de vezes. Outra forma, é colocar um tempo de expiração da senha, por exemplo, a senha deve ser trocada a cada trinta dias por uma diferente e nunca usada anteriormente, dessa maneira, inviabilizando a quebra de senha por força bruta. 
+
 \subsection{Desfiguração de páginas} \label{sec:desfiguração}
 \subsection{Negação de Serviços} \label{sec:negação}
 \subsection{Worm} \label{sec:worm}
