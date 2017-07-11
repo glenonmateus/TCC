@@ -67,6 +67,7 @@
 \frenchspacing 
 \imprimircapa
 \imprimirfolhaderosto*
+
 \begin{fichacatalografica}
 	\sffamily
 	\vspace*{\fill}
@@ -92,26 +93,28 @@
 	\end{minipage}}
 	\end{center}
 \end{fichacatalografica}
-\begin{errata}
-Elemento opcional da \citeonline[4.2.1.2]{NBR14724:2011}. Exemplo:
-\vspace{\onelineskip}
-FERRIGNO, C. R. A. \textbf{Tratamento de neoplasias ósseas apendiculares com
-reimplantação de enxerto ósseo autólogo autoclavado associado ao plasma
-rico em plaquetas}: estudo crítico na cirurgia de preservação de membro em
-cães. 2011. 128 f. Tese (Livre-Docência) - Faculdade de Medicina Veterinária e
-Zootecnia, Universidade de São Paulo, São Paulo, 2011.
-\begin{table}[htb]
-\center
-\footnotesize
-\begin{tabular}{|p{1.4cm}|p{1cm}|p{3cm}|p{3cm}|}
-  \hline
-   \textbf{Folha} & \textbf{Linha}  & \textbf{Onde se lê}  & \textbf{Leia-se}  \\
-    \hline
-    1 & 10 & auto-conclavo & autoconclavo\\
-   \hline
-\end{tabular}
-\end{table}
-\end{errata}
+
+% \begin{errata}
+%Elemento opcional da \citeonline[4.2.1.2]{NBR14724:2011}. Exemplo:
+%\vspace{\onelineskip}
+%FERRIGNO, C. R. A. \textbf{Tratamento de neoplasias ósseas apendiculares com
+%reimplantação de enxerto ósseo autólogo autoclavado associado ao plasma
+%rico em plaquetas}: estudo crítico na cirurgia de preservação de membro em
+%cães. 2011. 128 f. Tese (Livre-Docência) - Faculdade de Medicina Veterinária e
+%Zootecnia, Universidade de São Paulo, São Paulo, 2011.
+%\begin{table}[htb]
+%\center
+%\footnotesize
+%\begin{tabular}{|p{1.4cm}|p{1cm}|p{3cm}|p{3cm}|}
+%  \hline
+%   \textbf{Folha} & \textbf{Linha}  & \textbf{Onde se lê}  & \textbf{Leia-se}  \\
+%    \hline
+%    1 & 10 & auto-conclavo & autoconclavo\\
+%   \hline
+%\end{tabular}
+%\end{table}
+%\end{errata}
+
 \begin{folhadeaprovacao}
   \begin{center}
     {\ABNTEXchapterfont\large\imprimirautor}
@@ -159,9 +162,11 @@ Zootecnia, Universidade de São Paulo, São Paulo, 2011.
 	\end{flushright}
 \end{epigrafe}
 \setlength{\absparsep}{18pt} 
+
 \begin{resumo}
  \textbf{Palavras-chave}: Segurança, Suricata, Snort, Sistema de Detecção de Intrusão, Sistema de Prevenção de Intrusão, IDS, IPS.
 \end{resumo}
+
 \begin{resumo}[Abstract]
  \begin{otherlanguage*}{english}
    \vspace{\onelineskip}
@@ -170,12 +175,14 @@ Zootecnia, Universidade de São Paulo, São Paulo, 2011.
    \textbf{Keywords}: Security, Suricata, Snort, Intrusion Detection System, Intrusion Prevention System, IDS, IPS.
  \end{otherlanguage*}
 \end{resumo}
+
 \pdfbookmark[0]{\listfigurename}{lof}
 \listoffigures*
 \cleardoublepage
 \pdfbookmark[0]{\listtablename}{lot}
 \listoftables*
 \cleardoublepage
+
 \begin{siglas}
   \item[IDS] \textit{Intrusion Detection System}
   \item[IPS] \textit{Intrusion Prevention System}
@@ -190,7 +197,10 @@ Zootecnia, Universidade de São Paulo, São Paulo, 2011.
   \item[JSON] \textit{JavaScript Object Notation}
   \item[DoS] \textit{Denial of Service}
   \item[CAIS] \textit{Centro de Atendimento a Incidentes de Segurança}
+  \item[DoS] \textit{Denial of Services}
+  \item[DDoS] \textit{Distributed Denial of Services}
 \end{siglas}
+
 \pdfbookmark[0]{\contentsname}{toc}
 \tableofcontents*
 \cleardoublepage
@@ -250,13 +260,15 @@ Além dos conceito listados, a literatura moderna considera mais alguns conceito
 %Ex.: Roteador, firewall, clientes e suas aplicações,
 \section{Ataques Comuns à Redes de Computadores} \label{sec:ataques}
 
-Nessa seção será descritos os ataques mais comuns à redes e serviços de organizações privadas e públicas, financeiras ou acadêmicas. Para licitar os ataques dessa seção, levou-se em consideração as estatísticas divulgada semestralmente pelo Centro de Atendimento a Incidentes de Segurança (CAIS) (figura \ref{fig:cais}).
+Nessa seção será descritos os ataques mais comuns à redes e serviços de organizações privadas e públicas, financeiras ou acadêmicas. Para licitar os ataques dessa seção, levou-se em consideração as estatísticas divulgada pelo CERT.br (figura \ref{fig:cert}).
+
+O CERT.br é o grupo de resposta a incidentes de segurança para a internet brasileira, mantido pelo NIC.br. Atua na notificação e tratamento de incidentes de segurança dando apoio no processo de resposta. Além disso, faz um trabalho de conscientização e treinamento sobre problemas de segurança no Brasil. 
 
 \begin{figure}[!htb]
  \centering
- \includegraphics[scale=.5]{incidentes_ano_14.png}
- \caption{Estatísticas de ataques reportadas ao CAIS}
- \label{fig:cais}
+ \includegraphics[scale=.7]{incidentes-reportados.png}
+ \caption{Estatísticas de ataques reportadas ao CERT.br}
+ \label{fig:cert}
 \end{figure}
 
 O CAIS é responsável por zela pela segurança da rede Ipê (infraestrutura de rede dedicada à comunidade brasileira de ensino superior), detectando, resolvendo e prevenindo incidentes de segurança. Além disso, tem o papel de orientar (através de publicações de cartilhas) e disseminar boas práticas de segurança da informação, educando e conscientizando usuários de todos os níveis sobre os principais riscos em segurança da informação \cite{cais}.
@@ -286,7 +298,7 @@ Um ataque de negação de serviço (\textit{Denial of Service} - DoS) tem como p
 
 Esse tipo de ataque pode gerar grandes prejuízos financeiros para as empresas, principalmente e-commence, pois enquanto o sistema está fora ou com uma resposta lenta, as transações financeiras são prejudicadas. Com isso, cria-se também, uma insatisfação pelo usuário do serviço prestado pela empresa.
 
-Existe um forma mais sofisticada de ataque de Negação de Serviço chamada Negação de Serviço Distribuído (\textit{Distributed Denial of Services} - DDoS), enquanto o DoS básico as requisições partem de apenas uma fonte (Figura \ref{DoS}), no DDoS o atacante tem acesso a um grande número de computadores (\textit{zombies}) explorando suas vulnerabilidades criando o que chamamos de \textit{botnet} (Figura \ref{ddos}). Com isso, basta o atacante indicar as coordenadas de um ou mais alvos para o ataque \cite{zargarjoshitipper}. 
+Existe um forma mais sofisticada de ataque de Negação de Serviço chamada Negação de Serviço Distribuído (\textit{Distributed Denial of Services} - DDoS), enquanto o DoS básico as requisições partem de apenas uma fonte (Figura \ref{dos}), no DDoS o atacante tem acesso a um grande número de computadores (\textit{zombies}) explorando suas vulnerabilidades criando o que chamamos de \textit{botnet} (Figura \ref{ddos}). Com isso, basta o atacante indicar as coordenadas de um ou mais alvos para o ataque \cite{zargarjoshitipper}. 
 
  \subsection{Worm} \label{sec:worm}
  \subsection{Trojan} \label{sec:trojan}
@@ -363,6 +375,9 @@ Existe um forma mais sofisticada de ataque de Negação de Serviço chamada Nega
  %Este capítulo apresentou
  \chapter{Sistemas de Detecção e Prevenção de Intrusão}
  %breve texto introduzindo o capítulo + apresentação das seções
+
+Os sistemas de detecção e prevenção de intrusão (\textit{Intrusion Detection and Prevention System} - IDS/IPS) são ferramentas de importância reconhecida pela comunidade da segurança da informação. Nesse capítulo, vamos apresentar os principais conceitos relacionados a IDS e IPS, uma breve descrição do funcionamento e classificação, para melhor entendimento das ferramentas que iremos apresentar e avaliar em um ambiente de real.
+
  \section{Definições de IDS/IPS}
 
  \textit{Intrusion Detection Systems} (IDS) ou Sistemas de Detecção de Intrusão (SDI) são ferramentas utilizadas para monitoramento de eventos que ocorrem em redes e sistemas computacionais, analisando sinais de possíveis ataques que podem levar a uma violação das politicas de segurança da organização, alertando os administradores do sistema que estes eventos estão ocorrendo. O \textit{Intrusion Detection Systems} (IPS) ou Sistema de Prevenção de Intrusão (SPI) possui todas as funcionalidades do IDS com uma diferença, ele é capaz de deter alguns possíveis incidentes, minimizando os impactos causados por sistemas comprometidos \cite{mukhopadhyay01}.
