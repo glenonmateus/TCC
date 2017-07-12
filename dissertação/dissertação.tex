@@ -115,52 +115,55 @@
 %\end{table}
 %\end{errata}
 
-\begin{folhadeaprovacao}
-  \begin{center}
-    {\ABNTEXchapterfont\large\imprimirautor}
-    \vspace*{\fill}\vspace*{\fill}
-    \begin{center}
-      \ABNTEXchapterfont\bfseries\Large\imprimirtitulo
-    \end{center}
-    \vspace*{\fill}
+%\begin{folhadeaprovacao}
+%  \begin{center}
+%    {\ABNTEXchapterfont\large\imprimirautor}
+%    \vspace*{\fill}\vspace*{\fill}
+%    \begin{center}
+%      \ABNTEXchapterfont\bfseries\Large\imprimirtitulo
+%    \end{center}
+%    \vspace*{\fill}
     
-    \hspace{.45\textwidth}
-    \begin{minipage}{.5\textwidth}
-        \imprimirpreambulo
-    \end{minipage}%
-    \vspace*{\fill}
-   \end{center}
+%    \hspace{.45\textwidth}
+%    \begin{minipage}{.5\textwidth}
+%        \imprimirpreambulo
+%    \end{minipage}%
+%    \vspace*{\fill}
+%   \end{center}
         
-   Trabalho aprovado. \imprimirlocal, 24 de novembro de 2012:
-   \assinatura{\textbf{\imprimirorientador} \\ Orientador} 
+%   Trabalho aprovado. \imprimirlocal, 24 de novembro de 2012:
+%   \assinatura{\textbf{\imprimirorientador} \\ Orientador} 
    %\assinatura{\textbf{Professor} \\ Convidado 1}
    %\assinatura{\textbf{Professor} \\ Convidado 2}
    %\assinatura{\textbf{Professor} \\ Convidado 3}
    %\assinatura{\textbf{Professor} \\ Convidado 4}
       
-   \begin{center}
-    \vspace*{0.5cm}
-    {\large\imprimirlocal}
-    \par
-    {\large\imprimirdata}
-    \vspace*{1cm}
-  \end{center}
+%   \begin{center}
+%    \vspace*{0.5cm}
+%    {\large\imprimirlocal}
+%    \par
+%    {\large\imprimirdata}
+%    \vspace*{1cm}
+%  \end{center}
   
-\end{folhadeaprovacao}
-\begin{dedicatoria}
-   \vspace*{\fill}
-   \centering
-   \noindent
-   \textit{•} \vspace*{\fill}
-\end{dedicatoria}
-\begin{agradecimentos}
-\end{agradecimentos}
-\begin{epigrafe}
-    \vspace*{\fill}
-	\begin{flushright}
-		\textit{•}
-	\end{flushright}
-\end{epigrafe}
+%\end{folhadeaprovacao}
+
+%\begin{dedicatoria}
+%   \vspace*{\fill}
+%   \centering
+%   \noindent
+%   \textit{•} \vspace*{\fill}
+%\end{dedicatoria}
+
+%\begin{agradecimentos}
+%\end{agradecimentos}
+%\begin{epigrafe}
+%    \vspace*{\fill}
+%	\begin{flushright}
+%		\textit{•}
+%	\end{flushright}
+%\end{epigrafe}
+
 \setlength{\absparsep}{18pt} 
 
 \begin{resumo}
@@ -296,7 +299,7 @@ Existem três métodos mais usados por programas de quebra de senha: ataques de 
  
 Um ataque de negação de serviço (\textit{Denial of Service} - DoS) tem como principal objetivo deixar um serviço (servidor web, banco de dados) ou recurso (memória, processador)  indisponível, impossibilitando que usuário legítimos tenham acesso a esses recursos. Para tal, o atacante gera diversas requisições inúteis para o servidor, consumindo seus recursos até que o serviço não esteja mais disponível ou degradando a qualidade do serviço \cite{cryptsec}.
 
-Esse tipo de ataque pode gerar grandes prejuízos financeiros para as empresas, principalmente e-commence, pois enquanto o sistema está fora ou com uma resposta lenta, as transações financeiras são prejudicadas. Com isso, cria-se também, uma insatisfação pelo usuário do serviço prestado pela empresa.
+Esse tipo de ataque pode gerar grandes prejuízos financeiros para as empresas, principalmente \textit{e-commence}, pois enquanto o sistema está fora ou com uma resposta lenta, as transações financeiras são prejudicadas. Com isso, cria-se também, uma insatisfação pelo usuário do serviço prestado pela empresa.
 
 Existe um forma mais sofisticada de ataque de Negação de Serviço chamada Negação de Serviço Distribuído (\textit{Distributed Denial of Services} - DDoS), enquanto o DoS básico as requisições partem de apenas uma fonte (Figura \ref{dos}), no DDoS o atacante tem acesso a um grande número de computadores (\textit{zombies}) explorando suas vulnerabilidades criando o que chamamos de \textit{botnet} (Figura \ref{ddos}). Com isso, basta o atacante indicar as coordenadas de um ou mais alvos para o ataque \cite{zargarjoshitipper}. 
 
@@ -306,11 +309,11 @@ Existe um forma mais sofisticada de ataque de Negação de Serviço chamada Nega
 
  É importante entender o funcionamento e o comportamento desses códigos maliciosos para, a partir daí, buscar soluções contra esse ataque. Existe dois tipos de análise: análise estática, requer uma verifica linha a linha do código malicioso, geralmente o código não está disponível e até mesmo se estiver, o autor do \textit{malware} muitas vezes ofusca o código, tornando esse tipo de análise difícil. Por outro lado, existe a análise dinâmica, o analista monitora a execução e o comportamento do \textit{malware}, esse tipo de análise é imune a ofuscação de código \cite{encycrypt}.
 
-Vírus
+ O Vírus é um programa que se propaga inserindo cópias de si mesmo e se tornando parte de outros programas e arquivos. Para dar continuidade ao processo de infecção, o vírus depende da execução do programa ou arquivo hospedeiro. O principal meio de propagação desse tipo de \textit{software} malicioso são as mídias removíveis, como, por exemplo, pen-drives \cite{certs-malwares}.
 
- O Worm é um \textit{malware} (código malicioso) que se propaga através de e-mails, sites ou \textit{software} baseados em rede, explorando as vulnerabilidades das aplicações. Uma das principais características desse tipo de praga é a propagação automática, ou seja, sem a intervenção do usuário \cite{detectingworm}. 
+O Worm é um \textit{malware} que se propaga através de e-mails, sites ou \textit{software} baseados em rede, explorando as vulnerabilidades das aplicações. Uma das principais características desse tipo de \textit{software} é a propagação automática, ou seja, sem a intervenção do usuário \cite{detectingworm}. 
 
- Trojan
+O Trojan ou Cavalo de Troia 
 
  \section{Ferramentas para Avaliação de Segurança} \label{sec:ferramentas}
  %Nmap, Metasploit, Pytbull
