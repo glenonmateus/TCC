@@ -300,8 +300,18 @@ Esse tipo de ataque pode gerar grandes prejuízos financeiros para as empresas, 
 
 Existe um forma mais sofisticada de ataque de Negação de Serviço chamada Negação de Serviço Distribuído (\textit{Distributed Denial of Services} - DDoS), enquanto o DoS básico as requisições partem de apenas uma fonte (Figura \ref{dos}), no DDoS o atacante tem acesso a um grande número de computadores (\textit{zombies}) explorando suas vulnerabilidades criando o que chamamos de \textit{botnet} (Figura \ref{ddos}). Com isso, basta o atacante indicar as coordenadas de um ou mais alvos para o ataque \cite{zargarjoshitipper}. 
 
- \subsection{Worm} \label{sec:worm}
- \subsection{Trojan} \label{sec:trojan}
+ \subsection{Malwares} \label{sec:malwares}
+
+ Os \textit{malwares}, também conhecidos como \textit{softwares} maliciosos, são um grande problema para sistemas de informação, sua existência ou execução tem consequências negativas ou involuntárias. Os \textit{malwares} mais conhecidos são os vírus, worms e trojans.
+
+ É importante entender o funcionamento e o comportamento desses códigos maliciosos para, a partir daí, buscar soluções contra esse ataque. Existe dois tipos de análise: análise estática, requer uma verifica linha a linha do código malicioso, geralmente o código não está disponível e até mesmo se estiver, o autor do \textit{malware} muitas vezes ofusca o código, tornando esse tipo de análise difícil. Por outro lado, existe a análise dinâmica, o analista monitora a execução e o comportamento do \textit{malware}, esse tipo de análise é imune a ofuscação de código \cite{encycrypt}.
+
+Vírus
+
+ O Worm é um \textit{malware} (código malicioso) que se propaga através de e-mails, sites ou \textit{software} baseados em rede, explorando as vulnerabilidades das aplicações. Uma das principais características desse tipo de praga é a propagação automática, ou seja, sem a intervenção do usuário \cite{detectingworm}. 
+
+ Trojan
+
  \section{Ferramentas para Avaliação de Segurança} \label{sec:ferramentas}
  %Nmap, Metasploit, Pytbull
 
