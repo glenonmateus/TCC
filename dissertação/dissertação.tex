@@ -277,6 +277,13 @@ O CERT.br é o grupo de resposta a incidentes de segurança para a internet bras
 O CAIS é responsável por zela pela segurança da rede Ipê (infraestrutura de rede dedicada à comunidade brasileira de ensino superior), detectando, resolvendo e prevenindo incidentes de segurança. Além disso, tem o papel de orientar (através de publicações de cartilhas) e disseminar boas práticas de segurança da informação, educando e conscientizando usuários de todos os níveis sobre os principais riscos em segurança da informação \cite{cais}.
 
 \subsection{Varredura de Redes} \label{sec:varredura}
+
+A utilização de \textit{firewall} não é uma solução definitiva, visto que, muitas portas legítimas podem estar vulneráveis, como é o caso da porta 80 que hospeda websites vulneráveis.
+
+Notificações de varreduras em redes de computadores, com o intuito de identificar quais computadores estão ativos e quais serviços estão sendo disponibilizados por eles. É utilizado por atacantes para identificar potenciais alvos, pois permite associar possíveis vulnerabilidades aos serviços habilitados em um computador.
+
+Técnica onde o atacante descobre máquinas ativas e serviços disponíveis na rede. Em uma rede 192.168.0.0/24, por exemplo, o atacante envia ping para todos endereços possíveis para descobrir quais estão ativos. Com os endereços das máquinas ativas é feita uma nova varredura em cada máquina para descobrir suas portas abertas e seus respectivos serviços. Com isso o atacante pode explorar as vulnerabilidades destes serviços e prejudicar o computador alvo. Um exemplo : sabendo que o alvo possui a porta TCP 23 aberta, o atacante irá explorar vulnerabilidades de software ou configuração do serviço para obter acesso ao sistema.
+
 \subsection{Exploração de Vulnerabilidades} \label{sec:exploração}
 \subsection{Força Bruta} \label{sec:forçabruta}
 
@@ -295,6 +302,9 @@ Existem três métodos mais usados por programas de quebra de senha: ataques de 
  Muitos sistemas já possuem formas de contornar esse tipo de ataque, por exemplo, bloqueio de usuário ao errar a palavra-chave por uma certa quantidade de vezes. Outra forma, é colocar um tempo de expiração da senha, por exemplo, a senha deve ser trocada a cada trinta dias por uma diferente e nunca usada anteriormente, dessa maneira, inviabilizando a quebra de senha por força bruta. 
 
  \subsection{Desfiguração de páginas} \label{sec:desfiguração}
+
+
+
  \subsection{Negação de Serviços} \label{sec:negação}
  
 Um ataque de negação de serviço (\textit{Denial of Service} - DoS) tem como principal objetivo deixar um serviço (servidor web, banco de dados) ou recurso (memória, processador)  indisponível, impossibilitando que usuário legítimos tenham acesso a esses recursos. Para tal, o atacante gera diversas requisições inúteis para o servidor, consumindo seus recursos até que o serviço não esteja mais disponível ou degradando a qualidade do serviço \cite{cryptsec}.
@@ -313,7 +323,7 @@ Existe um forma mais sofisticada de ataque de Negação de Serviço chamada Nega
 
 O Worm é um \textit{malware} que se propaga através de e-mails, sites ou \textit{software} baseados em rede, explorando as vulnerabilidades das aplicações. Uma das principais características desse tipo de \textit{software} é a propagação automática, ou seja, sem a intervenção do usuário \cite{detectingworm}. 
 
-O Trojan ou Cavalo de Troia 
+O Trojan ou Cavalo de Troia são programas que precisam ser explicitamente executados para serem instalados no computador. Esse \textit{malware} se disfarça de um programa benigno, por exemplo, cartões virtuais animados, álbuns de fotos, jogos e protetores de tela que ao serem executados o trojan é instalado sem o consentimento do usuário. No entanto, o atacante, após invadir um computador, pode instalar o trojan  alterando as funções já existentes de programas para executarem ações maliciosas \cite{certs-malwares}.
 
  \section{Ferramentas para Avaliação de Segurança} \label{sec:ferramentas}
  %Nmap, Metasploit, Pytbull
