@@ -265,7 +265,7 @@ Além dos conceito listados, a literatura moderna considera mais alguns conceito
 
 Nessa seção será descritos os ataques mais comuns à redes e serviços de organizações privadas e públicas, financeiras ou acadêmicas. Para licitar os ataques dessa seção, levou-se em consideração as estatísticas divulgada pelo CERT.br (figura \ref{fig:cert}).
 
-O CERT.br é o grupo de resposta a incidentes de segurança para a internet brasileira, mantido pelo NIC.br. Atua na notificação e tratamento de incidentes de segurança dando apoio no processo de resposta. Além disso, faz um trabalho de conscientização e treinamento sobre problemas de segurança no Brasil. 
+O CERT.br é o grupo de resposta a incidentes de segurança para a internet brasileira, mantido Comitê Gestor da Internet no Brasil. Atua na notificação e tratamento de incidentes de segurança dando apoio no processo de resposta. Além disso, faz um trabalho de conscientização e treinamento sobre problemas de segurança no Brasil. 
 
 \begin{figure}[!htb]
  \centering
@@ -277,7 +277,6 @@ O CERT.br é o grupo de resposta a incidentes de segurança para a internet bras
 O CAIS é responsável por zela pela segurança da rede Ipê (infraestrutura de rede dedicada à comunidade brasileira de ensino superior), detectando, resolvendo e prevenindo incidentes de segurança. Além disso, tem o papel de orientar (através de publicações de cartilhas) e disseminar boas práticas de segurança da informação, educando e conscientizando usuários de todos os níveis sobre os principais riscos em segurança da informação \cite{cais}.
 
 \subsection{Varredura de Redes} \label{sec:varredura}
-
 A utilização de \textit{firewall} não é uma solução definitiva, visto que, muitas portas legítimas podem estar vulneráveis, como é o caso da porta 80 que hospeda websites vulneráveis.
 
 Notificações de varreduras em redes de computadores, com o intuito de identificar quais computadores estão ativos e quais serviços estão sendo disponibilizados por eles. É utilizado por atacantes para identificar potenciais alvos, pois permite associar possíveis vulnerabilidades aos serviços habilitados em um computador.
@@ -285,6 +284,8 @@ Notificações de varreduras em redes de computadores, com o intuito de identifi
 Técnica onde o atacante descobre máquinas ativas e serviços disponíveis na rede. Em uma rede 192.168.0.0/24, por exemplo, o atacante envia ping para todos endereços possíveis para descobrir quais estão ativos. Com os endereços das máquinas ativas é feita uma nova varredura em cada máquina para descobrir suas portas abertas e seus respectivos serviços. Com isso o atacante pode explorar as vulnerabilidades destes serviços e prejudicar o computador alvo. Um exemplo : sabendo que o alvo possui a porta TCP 23 aberta, o atacante irá explorar vulnerabilidades de software ou configuração do serviço para obter acesso ao sistema.
 
 \subsection{Exploração de Vulnerabilidades} \label{sec:exploração}
+
+
 \subsection{Força Bruta} \label{sec:forçabruta}
 
 Na segurança da informação, a autenticação é umas das áreas-chaves onde há a distinção de usuários autorizados de outros não-autorizados, tendo como principal vantagem ser de fácil implementação, não requerendo equipamentos, como leitores de biométricos \cite{denise-lilian}.
@@ -303,7 +304,11 @@ Existem três métodos mais usados por programas de quebra de senha: ataques de 
 
  \subsection{Desfiguração de páginas} \label{sec:desfiguração}
 
+ A desfiguração de páginas, \textit{defacement} ou pichação ocorre quando o conteúdo da página \textit{web} de um site é alterado. O atacante (\textit{defacer}) consegue fazer alterações em páginas explorando vulnerabilidade nas aplicações \textit{web} que permite injeção de \textit{script} malicioso ou através de furto de senha de acesso à interface \textit{web} usadas para administração remota \cite{certs-ataques}.
 
+ Nos serviços \textit{web}, como por exemplo, apache2 existe um usuário especial, comumente chamado de www-data ou algo semelhante. O servidor \textit{web}, na maioria das vezes, precisa apenas de permissões de leitura nos arquivos porém muitos gerentes de sistemas cujo a conscientização sobre segurança é insuficiente, designa permissões errôneas (escrita ou alteração), e caso haja um comprometimento, através, por exemplo, de injeção de código remoto PHP, do servidor, o atacante poderá alterar a maioria dos arquivos. A ocorrência amplamente disseminada de ataques de desfiguração de páginas Web é uma consequência direta dessa prática \cite{seguranca:william-lawrie}.
+
+ Em 2010, o site Zone-h registrou mais de 1,4 milhões de páginas desfiguradas, muitas delas associadas a ataques \textit{Cross-site scripting} (XSS). Os \textit{defacements} são considerados ataques passivos pois é gerado apenas uma mensagem na tela \cite{angelo-xss}.
 
  \subsection{Negação de Serviços} \label{sec:negação}
  
