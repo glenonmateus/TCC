@@ -1,0 +1,222 @@
+\documentclass[
+	12pt,				
+	openright,		
+	twoside,	
+	a4paper,
+	english,	
+	brazil	
+	]{abntex2}
+\usepackage{lmodern}		
+\usepackage[T1]{fontenc}	
+\usepackage[utf8]{inputenc}
+\usepackage{lastpage}	
+\usepackage{indentfirst}
+\usepackage{color}	
+\usepackage{graphicx}
+\usepackage{microtype}
+\graphicspath{{./imagens/}}
+\usepackage{lipsum}			
+\usepackage[brazilian,hyperpageref]{backref}	 
+\usepackage[alf]{abntex2cite}	
+\renewcommand{\backrefpagesname}{Citado na(s) página(s):~}
+\renewcommand{\backref}{}
+\renewcommand*{\backrefalt}[4]{
+	\ifcase #1 %
+		Nenhuma citação no texto.%
+	\or
+		Citado na página #2.%
+	\else
+		Citado #1 vezes nas páginas #2.%
+	\fi}%
+\titulo{Análise de Sistemas de Detecção de Intrusão}
+\autor{Glenon Mateus Barbosa Araújo}
+\local{Brasil}
+\data{\the\year}
+\orientador{Dr. Roberto Samarone dos Santos Araújo}
+%\coorientador{}
+\instituicao{
+  Universidade Federal do Pará -- UFPA
+  \par
+  Faculdade de Computação
+  \par
+  Bacharelado em Ciência da Computação}
+\tipotrabalho{Trabalho de Conclusão de Curso}
+\preambulo{Trabalho de Conclusão de Curso submetida a graduação em Ciência da Computação da UFPA}
+\definecolor{blue}{RGB}{41,5,195}
+\makeatletter
+\hypersetup{
+     	%pagebackref=true,
+		pdftitle={\@title}, 
+		pdfauthor={\@author},
+    	pdfsubject={\imprimirpreambulo},
+	    pdfcreator={LaTeX with abnTeX2},
+		pdfkeywords={abnt}{latex}{abntex}{abntex2}{trabalho acadêmico}, 
+		colorlinks=true,       	
+    	linkcolor=blue,          
+    	citecolor=blue,        	
+    	filecolor=magenta,     
+		urlcolor=blue,
+		bookmarksdepth=4
+}
+\makeatother
+\setlength{\parindent}{1.3cm}
+\setlength{\parskip}{0.2cm} 
+\makeindex
+\begin{document}
+\selectlanguage{brazil}
+\frenchspacing 
+\imprimircapa
+\imprimirfolhaderosto*
+
+\begin{fichacatalografica}
+	\sffamily
+	\vspace*{\fill}
+	\begin{center}
+	\fbox{\begin{minipage}[c][8cm]{13.5cm}	
+	\small
+	\imprimirautor
+	\hspace{0.5cm} \imprimirtitulo  / \imprimirautor. --
+	\imprimirlocal, \imprimirdata-
+	\hspace{0.5cm} \pageref{LastPage} p. : il. (algumas color.) ; 30 cm.\\
+	\hspace{0.5cm} \imprimirorientadorRotulo~\imprimirorientador\\
+	\hspace{0.5cm}
+	\parbox[t]{\textwidth}{\imprimirtipotrabalho~--~\imprimirinstituicao,
+	\imprimirdata.}\\
+	\hspace{0.5cm}
+		1. Suricata.
+		2. Snort.
+		3. IDPS.
+		I. Orientador.
+		II. Universidade Federal do Pará.
+		III. Faculdade de Computação.
+		IV. Análise de IDPSs
+	\end{minipage}}
+	\end{center}
+\end{fichacatalografica}
+
+% \begin{errata}
+%Elemento opcional da \citeonline[4.2.1.2]{NBR14724:2011}. Exemplo:
+%\vspace{\onelineskip}
+%FERRIGNO, C. R. A. \textbf{Tratamento de neoplasias ósseas apendiculares com
+%reimplantação de enxerto ósseo autólogo autoclavado associado ao plasma
+%rico em plaquetas}: estudo crítico na cirurgia de preservação de membro em
+%cães. 2011. 128 f. Tese (Livre-Docência) - Faculdade de Medicina Veterinária e
+%Zootecnia, Universidade de São Paulo, São Paulo, 2011.
+%\begin{table}[htb]
+%\center
+%\footnotesize
+%\begin{tabular}{|p{1.4cm}|p{1cm}|p{3cm}|p{3cm}|}
+%  \hline
+%   \textbf{Folha} & \textbf{Linha}  & \textbf{Onde se lê}  & \textbf{Leia-se}  \\
+%    \hline
+%    1 & 10 & auto-conclavo & autoconclavo\\
+%   \hline
+%\end{tabular}
+%\end{table}
+%\end{errata}
+
+%\begin{folhadeaprovacao}
+%  \begin{center}
+%    {\ABNTEXchapterfont\large\imprimirautor}
+%    \vspace*{\fill}\vspace*{\fill}
+%    \begin{center}
+%      \ABNTEXchapterfont\bfseries\Large\imprimirtitulo
+%    \end{center}
+%    \vspace*{\fill}
+    
+%    \hspace{.45\textwidth}
+%    \begin{minipage}{.5\textwidth}
+%        \imprimirpreambulo
+%    \end{minipage}%
+%    \vspace*{\fill}
+%   \end{center}
+        
+%   Trabalho aprovado. \imprimirlocal, 24 de novembro de 2012:
+%   \assinatura{\textbf{\imprimirorientador} \\ Orientador} 
+   %\assinatura{\textbf{Professor} \\ Convidado 1}
+   %\assinatura{\textbf{Professor} \\ Convidado 2}
+   %\assinatura{\textbf{Professor} \\ Convidado 3}
+   %\assinatura{\textbf{Professor} \\ Convidado 4}
+      
+%   \begin{center}
+%    \vspace*{0.5cm}
+%    {\large\imprimirlocal}
+%    \par
+%    {\large\imprimirdata}
+%    \vspace*{1cm}
+%  \end{center}
+  
+%\end{folhadeaprovacao}
+
+%\begin{dedicatoria}
+%   \vspace*{\fill}
+%   \centering
+%   \noindent
+%   \textit{•} \vspace*{\fill}
+%\end{dedicatoria}
+
+%\begin{agradecimentos}
+%\end{agradecimentos}
+%\begin{epigrafe}
+%    \vspace*{\fill}
+%	\begin{flushright}
+%		\textit{•}
+%	\end{flushright}
+%\end{epigrafe}
+
+\setlength{\absparsep}{18pt} 
+
+\begin{resumo}
+ \textbf{Palavras-chave}: Segurança, Suricata, Snort, Sistema de Detecção de Intrusão, Sistema de Prevenção de Intrusão, IDS, IPS.
+\end{resumo}
+
+\begin{resumo}[Abstract]
+ \begin{otherlanguage*}{english}
+   \vspace{\onelineskip}
+ 
+   \noindent 
+   \textbf{Keywords}: Security, Suricata, Snort, Intrusion Detection System, Intrusion Prevention System, IDS, IPS.
+ \end{otherlanguage*}
+\end{resumo}
+
+\pdfbookmark[0]{\listfigurename}{lof}
+\listoffigures*
+\cleardoublepage
+\pdfbookmark[0]{\listtablename}{lot}
+\listoftables*
+\cleardoublepage
+
+\begin{siglas}
+  \item[IDS] \textit{Intrusion Detection System}
+  \item[IPS] \textit{Intrusion Prevention System}
+  \item[SDI] \textit{Sistema de Detecção de Intrusão}
+  \item[SPI] \textit{Sistema de Prevenção de Intrusão}
+  \item[IDPS] \textit{Intrusion Detection and Prevention System}
+  \item[HIDS] \textit{Host Based Intrusion Detection Systems}
+  \item[NIDS] \textit{Network Based Intrusion Detection Systems}
+  \item[MB] \textit{Megabytes}
+  \item[GB] \textit{Gigabytes}
+  \item[SO] \textit{Sistema Operacional}
+  \item[JSON] \textit{JavaScript Object Notation}
+  \item[DoS] \textit{Denial of Service}
+  \item[CAIS] \textit{Centro de Atendimento a Incidentes de Segurança}
+  \item[DoS] \textit{Denial of Services}
+  \item[DDoS] \textit{Distributed Denial of Services}
+  \item[URL] \textit{Uniform Resource Locator}
+\end{siglas}
+
+\pdfbookmark[0]{\contentsname}{toc}
+\tableofcontents*
+\cleardoublepage
+\textual
+\include{1-introducao}
+\include{2-definicoes}
+\include{3-idps}
+\include{4-deteccao-cenario-real}
+\include{5-consideracoes-finais}
+\phantompart
+\postextual
+\bibliography{bib/dissertacao}
+\phantompart
+\printindex
+\end{document}
