@@ -56,19 +56,11 @@ O CERT.br é o grupo de resposta a incidentes de segurança para a internet bras
 O CAIS é responsável por zela pela segurança da rede Ipê (infraestrutura de rede dedicada à comunidade brasileira de ensino superior), detectando, resolvendo e prevenindo incidentes de segurança. Além disso, tem o papel de orientar (através de publicações de cartilhas) e disseminar boas práticas de segurança da informação, educando e conscientizando usuários de todos os níveis sobre os principais riscos em segurança da informação \cite{cais}.
 
 \subsection{Varredura de Redes} \label{sec:varredura}
-A utilização de \textit{firewall} não é uma solução definitiva, visto que, muitas portas legítimas podem estar vulneráveis, como é o caso da porta 80 que hospeda websites vulneráveis.
 
-Notificações de varreduras em redes de computadores, com o intuito de identificar quais computadores estão ativos e quais serviços estão sendo disponibilizados por eles. É utilizado por atacantes para identificar potenciais alvos, pois permite associar possíveis vulnerabilidades aos serviços habilitados em um computador.
-
-Técnica onde o atacante descobre máquinas ativas e serviços disponíveis na rede. Em uma rede 192.168.0.0/24, por exemplo, o atacante envia ping para todos endereços possíveis para descobrir quais estão ativos. Com os endereços das máquinas ativas é feita uma nova varredura em cada máquina para descobrir suas portas abertas e seus respectivos serviços. Com isso o atacante pode explorar as vulnerabilidades destes serviços e prejudicar o computador alvo. Um exemplo : sabendo que o alvo possui a porta TCP 23 aberta, o atacante irá explorar vulnerabilidades de software ou configuração do serviço para obter acesso ao sistema.
 
 \subsection{Exploração de Vulnerabilidades} \label{sec:exploração}
 
-%o que é vulnerabilidades/ameaças? Referenciar o sessão definição de segurança
-%scanner de vulnerabilidades 
-%exploits
-
-Uma vulnerabilidade é a fraqueza em sistemas de informação, procedimentos de segurança do sistema e controles internos, ou aplicação que pode ser explorada tendo como origem uma ameaça. Não obstante, as ameaças visam explorar algumas vulnerabilidades existentes causando, direta ou indiretamente, impacto no negócio. Para isso, considera-se que as vulnerabilidades permeiam as seguintes áreas da segurança: hardware, software, rede, recursos humanos, local ou instalações, e organização. Para cada uma dessas áreas é possível identificar ameaças e possíveis vulnerabilidades \cite{pentest-sigaa:rafela}.
+Conforme tratado na \autoref{sec:definições}, uma vulnerabilidade é a fraqueza em sistemas de informação, procedimentos de segurança do sistema e controles internos, ou aplicação que pode ser explorada tendo como origem uma ameaça. 
 
 Uma maneira de reunir informações sobre vulnerabilidade de um alvo ou uma rede inteira é a utilização de \textit{scanners} de vulnerabilidades automatizados. Existem vários tipos de \textit{scanners} para uma variedade de situações, uns específicos para aplicações web, outros para servidores e serviços, como banco de dados. Normalmente, essas ferramentas funcionam em três estágios \cite{}: 
 
@@ -79,6 +71,8 @@ Uma maneira de reunir informações sobre vulnerabilidade de um alvo ou uma rede
 \end{itemize}
 
 Os \textit{Scanners} de vulnerabilidades automatizados contêm, e atualizam regularmente, enormes bancos de dados de assinaturas de vulnerabilidades conhecidas para basicamente tudo o que está recebendo de informações em uma porta de rede, inclusive sistemas operacionais, serviços e aplicativos web. Eles podem até detectar vulnerabilidades no software do lado do cliente mediante credenciais suficientes, uma estratégia que pode ser útil em estágios posteriores do ataque, quando o invasor pode estar interessado em expandir ainda mais sua base de operações, comprometendo contas adicionais de usuário privilegiado \cite{hackers:stuart-joel}.
+
+Diante da lista de vulnerabilidades encontradas com os \textit{scanners}, basta usar um \textit{exploit} adequado. Um \textit{exploit} são pequenos utilitários usados para explorar vulnerabilidades específicas, podendo serem usados de forma \textit{"stand alone"}, ou seja, serem usados diretamente, ou podem ser incorporados à \textit{malwares} \cite{exploit:cassio}.
 
 \subsection{Força Bruta} \label{sec:forçabruta}
 
