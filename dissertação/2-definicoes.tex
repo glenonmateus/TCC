@@ -2,7 +2,8 @@
 \section{Definições} \label{sec:definições}
 
 Para entendemos melhor o que é segurança da informação, precisamos conceituar alguns termos que serão detalhados abaixo \cite{esr-gestao}:
-\begin{itemize}
+
+\begin{alineas}
  \item \textbf{Incidente de segurança}: qualquer evento oposto a segurança; por exemplo, ataques de negação de serviços (Denial of Service - DoS), roubo de informações, vazamento e obtenção de acesso não autorizado a informações;
  \item \textbf{Ativo}: qualquer coisa que tenha valor para a organização e para seus negócios. Alguns exemplo: banco de dados, softwares, equipamentos (computadores e notebooks), servidores, elementos de redes (roteadores, switches, entre outros), pessoas, processos e serviços;
  \item \textbf{Ameaça}: qualquer evento que explore vulnerabilidades. Causa potencial de um incidente indesejado, que pode resultar em dano para um sistema ou organização;
@@ -10,7 +11,7 @@ Para entendemos melhor o que é segurança da informação, precisamos conceitua
  \item \textbf{Risco}: probabilidade de uma ameaça se concretizar;
  \item \textbf{Ataque}: qualquer ação que comprometa a segurança de uma organização;
  \item \textbf{Impacto}: consequência de um evento.
-\end{itemize}
+\end{alineas}
 
 Segurança da Informação proteção das informações, sistemas, recursos e demais ativos contra desastres, erros (intencionais ou não) e manipulação não autorizada, objetivando a redução da probabilidade e do impacto de incidentes de segurança.
 
@@ -18,22 +19,22 @@ Segundo a norma ISO/IEC 27002 \cite{isoiec27002}, segurança da informação é 
 
 Dentre vários conhecimentos que um profissional de segurança deve possuir, o conceito mais básico e considerado o pilar de toda a área de segurança corresponde à sigla CID (Confidencialidade, Integridade e Disponibilidade), de modo que um incidente de segurança é caracterizado quando uma dessas áreas é afetada \cite{seg-redes-sistemas}. Abaixo será detalhado cada item.
 
-\begin{itemize}
+\begin{alineas}
  \item \textbf{Confidencialidade}: termo ligado à privacidade de um ativo ou recurso, que deve ser acessível somente por pessoas ou grupos autorizados;
  \item \textbf{Integridade}: possui duas definições, a primeira está relacionada com o fato da informação ter valor correto, a segunda, está ligada à inviolabilidade da informação;
  \item \textbf{Disponibilidade}: está relacionada ao acesso à informação, que deve está disponível quando necessária.
-\end{itemize}
+\end{alineas}
 
 Dois dos termos citados são fáceis de ser monitorados pois é perceptível para o usuário: a integridade (identificar se uma informação foi alterada) e a disponibilidade (tentando acessar um serviço e verificando se o mesmo está respondendo adequadamente). No entanto, só é possível identificar se houve quebra da confiabilidade através de auditorias, analisando os registros de acesso (se houver), tornando a identificação complicada e em muitos casos impossível \cite{seg-redes-sistemas}.
 
 Além dos conceito listados, a literatura moderna considera mais alguns conceitos auxiliares, temos:
 
-\begin{itemize}
+\begin{alineas}
  \item \textbf{Autenticidade}: garantia que uma informação, produto ou documento foi elaborado ou distribuído pelo autor a quem se atribui;
  \item \textbf{Legalidade}: garantia de que ações sejam realizadas em conformidade com os preceitos legais vigentes e que seus produtos tenham validade jurídica;
  \item \textbf{Não repúdio}: conceito bastante utilizado em certificação digital, onde o emissor de uma mensagem não pode negar que a enviou;
  \item \textbf{Privacidade}: habilidade de uma pessoa controlar a exposição e a disponibilidade de informações acerca de si.
-\end{itemize}
+\end{alineas}
 
 \section{Cenário Geral} \label{sec:geral}
 %apresentar o cenário geral de uma rede conectada a Internet
@@ -64,15 +65,15 @@ Conforme tratado na \autoref{sec:definições}, uma vulnerabilidade é a fraquez
 
 Uma maneira de reunir informações sobre vulnerabilidade de um alvo ou uma rede inteira é a utilização de \textit{scanners} de vulnerabilidades automatizados. Existem vários tipos de \textit{scanners} para uma variedade de situações, uns específicos para aplicações web, outros para servidores e serviços, como banco de dados. Normalmente, essas ferramentas funcionam em três estágios \cite{}: 
 
-\begin{itemize}
+\begin{alineas}
  \item \textbf{Configuração}: aqui será definido o endereço IP do alvo ou a URL (Uniform Resource Locator) da aplicação Web e demais parâmetros, como, por exemplo, utilização de \textit{proxy}.
  \item \textbf{Rastreamento}: esse estágio é especifico de \textit{scanners} de vulnerabilidade de aplicações web, nele, o \textit{scanner} chama a primeira página web e então examina seu código procurando \textit{links}. Cada \textit{link} encontrado é registrado e este procedimento é repetido várias vezes até que \textit{links} e páginas não sejam mais encontrados.
  \item \textbf{Exploração}: vários testes são executados e as requisições e respostas são armazenadas e analisadas. Ao final, os resultados são exibidos ao usuário e podem ser salvos para uma análise posterior. 
-\end{itemize}
+\end{alineas}
 
 Os \textit{Scanners} de vulnerabilidades automatizados contêm, e atualizam regularmente, enormes bancos de dados de assinaturas de vulnerabilidades conhecidas para basicamente tudo o que está recebendo de informações em uma porta de rede, inclusive sistemas operacionais, serviços e aplicativos web. Eles podem até detectar vulnerabilidades no software do lado do cliente mediante credenciais suficientes, uma estratégia que pode ser útil em estágios posteriores do ataque, quando o invasor pode estar interessado em expandir ainda mais sua base de operações, comprometendo contas adicionais de usuário privilegiado \cite{hackers:stuart-joel}.
 
-Diante da lista de vulnerabilidades encontradas com os \textit{scanners}, basta usar um \textit{exploit} adequado. Um \textit{exploit} são pequenos utilitários usados para explorar vulnerabilidades específicas, podendo serem usados de forma \textit{"stand alone"}, ou seja, serem usados diretamente, ou podem ser incorporados à \textit{malwares} \cite{exploit:cassio}.
+Diante da lista de vulnerabilidades encontradas com os \textit{scanners}, próximo passo seria usar um \textit{exploit} adequado. Os \textit{exploit} são pequenos utilitários usados para explorar vulnerabilidades específicas, podendo serem usados de forma \textit{"stand alone"}, ou seja, serem usados diretamente, ou podem ser incorporados à \textit{malwares} \cite{exploit:cassio}.
 
 \subsection{Força Bruta} \label{sec:forçabruta}
 
@@ -83,8 +84,6 @@ Na literatura sobre segurança da informação, o fator humano é considerado o 
 Existem três métodos mais usados por programas de quebra de senha: ataques de dicionário (ou lista de palavras), ataques híbridos e ataques de força-bruta. Nos ataques por dicionários, utilizam-se listas de palavras comuns: nomes próprios, marcas conhecidas, gírias, nomes de canções, entre outros, tais elementos conseguidos por engenharia social \cite{univhacker}. 
 
  Um ataque de força bruta consiste em gerar todas as permutações e combinações possíveis de senha, criptografar cada uma e comparar a senha gerada com a senha criptografada original até encontrar uma que seja igual \cite{md5crack2012}. 
-
- O programa que utiliza várias combinações de usuário e senha para conseguir acesso indevido a sistemas ou para descriptografar chaves e arquivos. Além do risco de acesso indevido, o ataque de força bruta gera uma carga excessiva no alvo por ter responder e processar a várias tentativas de logins. Esta técnica é muito utilizada em servidores de SSH mal configurados. 
 
  Esse tipo de ataque é facilmente detectável pois, além de gerar uma alta carga no servidor, gera uma grande quantidade de registros de logs. No entanto, caso a pessoa má intencionada, de alguma outra forma, tenha acesso ao arquivo de \textit{hash} ou a tabela de usuário de um banco de dados, com as senha criptografadas do sistema, ela pode usar o ataque de força bruta no arquivo em qualquer máquina, assim, impossibilitando a detecção do ataque.
 
@@ -121,7 +120,7 @@ O Trojan ou Cavalo de Troia são programas que precisam ser explicitamente execu
  \section{Ferramentas para Avaliação de Segurança} \label{sec:ferramentas}
  %Nmap, Metasploit, Pytbull
 
- Nessa seção será descrito as ferramentas auxiliares utilizadas para geração de ataques \ref{sec:ataques} com objetivo de testar e validar as configurações das ferramentas de IDPS estudas. 
+ Nessa seção será descrito as ferramentas auxiliares utilizadas para geração de ataques \autoref{sec:ataques} com objetivo de testar e validar as configurações das ferramentas de IDPS estudas. 
 
  \subsection{Nmap} \label{sec:nmap}
 
@@ -133,20 +132,20 @@ O Trojan ou Cavalo de Troia são programas que precisam ser explicitamente execu
 
  Na execução do Nmap, o que não for opção ou argumento da opção é considerado especificação do \textit{host} alvo. O alvo pode ser um ou vários, usando uma notação de intervalo por hífen ou uma lista separada por vírgula. Os \textit{hosts} alvos também podem ser definidos em arquivos.
 
- O resultado do Nmap é uma tabela de portas e seus estados (Figura \ref{fig:nmap}). As portas podem assumir quatro estados, temos: aberto (\textif{open}), significa que existe alguma aplicação escutando conexões; filtrado (\textit{filtered}), há um obstáculo na rede, podendo ser algum \textit{firewall}, que impossibilita que o Nmap determine se a porta está aberta ou fechada; fechado (\textit{closed}), não possui aplicação escutando na porta; não-filtrado (\textit{unfilterd}), a porta responde requisição porém o Nmap não consegue determinar se estão fechadas ou abertas \cite{nmap}.
+ O resultado do Nmap é uma tabela de portas e seus estados (\autoref{fig:nmap-exemplo}). As portas podem assumir quatro estados, temos: aberto (\textif{open}), significa que existe alguma aplicação escutando conexões; filtrado (\textit{filtered}), há um obstáculo na rede, podendo ser algum \textit{firewall}, que impossibilita que o Nmap determine se a porta está aberta ou fechada; fechado (\textit{closed}), não possui aplicação escutando na porta; não-filtrado (\textit{unfilterd}), a porta responde requisição porém o Nmap não consegue determinar se estão fechadas ou abertas \cite{nmap}
 
- \begin{figure}[!htb]
+ \begin{figure}[htb]
   \centering
   \includegraphics[scale=.5]{nmap.png}
   \caption{Exemplo de saída do Nmap}
-  \label{fig:nmap}
+  \label{fig:nmap-exemplo}
  \end{figure}
 
  \subsection{Metasploit Framework} \label{sec:metasploit}
 
  O Metasploit é um \textit{framework} de código aberto cujo principio básico é desenvolver e executar \textit{exploit} contra alvos remotos e fornecer uma lista de vulnerabilidades existentes no alvo. É uma ferramenta que combina diversos \textit{exploits} e payloads dentro de um local, ideal para levantamento de segurança de serviços e testes de penetração \cite{metasploit:yash}.  
 
- O Metasploit possui uma biblioteca divida em três partes: \textbf{Rex}: É a biblioteca fundamental, a maioria das tarefas executadas pelo \textit{framework} usaram essa biblioteca; \textbf{MSF Core}: É o \textit{framework} em si, possui, por exemplo, gerenciador de módulos e a base de dados; \textbf{MSF Base}: Guarda os módulos, sejam eles, \textit{exploit}, \textit{encoders} (ferramentas usadas para desenvolver o \textit{payloads}) e os \textit{payloads}. Além disso, são guardadas informações de configuração e sessões criadas pelos \textit{exploits}. A arquitetura é mostrada com mais detalhes na figura \ref{fig:arqmetasploit}. 
+ O Metasploit possui uma biblioteca divida em três partes: \textbf{Rex}: É a biblioteca fundamental, a maioria das tarefas executadas pelo \textit{framework} usaram essa biblioteca; \textbf{MSF Core}: É o \textit{framework} em si, possui, por exemplo, gerenciador de módulos e a base de dados; \textbf{MSF Base}: Guarda os módulos, sejam eles, \textit{exploit}, \textit{encoders} (ferramentas usadas para desenvolver o \textit{payloads}) e os \textit{payloads}. Além disso, são guardadas informações de configuração e sessões criadas pelos \textit{exploits}. A arquitetura é mostrada com mais detalhes na \autoref{fig:metasploit-arquitetura}. 
 
  Os módulos são divididos da seguinte maneira: Payload: são código executados no alvo remotamente; Exploit: explora \textit{bugs} ou vulnerabilidade existente em aplicações do alvo; Módulos Auxiliares: usado para escanear as vulnerabilidades e executar várias tarefas; Encoder: codifica o \textit{payload} para evitar qualquer tipo de detecção pelo anti vírus.
 
@@ -154,16 +153,17 @@ O Trojan ou Cavalo de Troia são programas que precisam ser explicitamente execu
 
  \begin{figure}[!htb]
   \centering
-  \includegraphics[scale=.6]{metasploit_arquitetura.png}
   \caption{Arquitetura do Metasploit}
-  \label{fig:arqmetasploit}
+  \includegraphics[scale=.6]{metasploit_arquitetura.png}
+  \legend{}
+  \label{fig:metasploit-arquitetura}
  \end{figure}
 
  \subsection{Pytbull} \label{sec:pytbull}
 
  O Pytbull é um \textit{framework} para teste de IDPS, capaz de determinar a capacidade de detecção e bloqueio do mesmo, além de fazer uma comparação entre diversas soluções e verifica as configurações \cite{pytbull}. O \textit{framework} Pytbull possui cerca de 300 testes agrupados em 11 módulos, temos:
 
- \begin{itemize}
+ \begin{alineas}
   \item \textbf{badTraffic}: pacotes não compatíveis com a RFC são enviados para o servidor para testar como os pacotes são processados; 
   \item \textbf{bruteForce}: testa a capacidade do IDPS de rastrear ataques de força bruta;
   \item \textbf{clientSideAttacks}: usa um \textit{shell} reverso para fornecer ao servidor instruções para baixar arquivos maliciosos; 
@@ -175,18 +175,17 @@ O Trojan ou Cavalo de Troia são programas que precisam ser explicitamente execu
   \item \textbf{pcapReplay}: permite reproduzir arquivos pcap; 
   \item \textbf{shellCodes}: envia \textit{shellcodes} para o servidor na porta 21/ftp testando a capacidade de detectar e/ou bloquear o mesmo; 
   \item \textbf{testRules}, testa a base de assinaturas configuradas no servidor IDPS.
- \end{itemize}
+ \end{alineas}
 
  Existem basicamente 5 tipos de testes: socket, abre um \textit{socket} em uma porta e envia o \textit{payload} para o alvo remoto na porta especificada; command, envia um comando para alvo remoto com a função python subprocess.call(); scapy, envia cargas úteis especificas baseadas na sintaxe de Scapy; client side attacks, usa um \textit{shell} reverso no alvo remoto e envia comandos para serem processados no servidor; pcap replay, permite reproduzir tráfego com base em arquivos de pcap.
 
- \begin{figure}[!htb]
+ \begin{figure}[htb]
   \centering
-  \includegraphics[scale=.4]{arquitetura_pytbull.png}
   \caption{Arquitetura do \textit{framework} Pytbull}
+  \includegraphics[scale=.4]{arquitetura_pytbull.png}
+  \legend{}
   \label{fig:pytbull}
  \end{figure}
 
- \
  \section{Conclusão}
  %Este capítulo apresentou
- 
