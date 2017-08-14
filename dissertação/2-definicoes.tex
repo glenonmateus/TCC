@@ -67,11 +67,11 @@ Conforme tratado na \autoref{sec:definições}, uma vulnerabilidade é a fraquez
 \item \textbf{\textit{scanner} de vulnerabilidades conhecidas}: Um vez determinados os serviços que uma máquina disponibiliza na rede entra em cena o \textit{scanner} de vulnerabilidade. A ideia é checar, através de uma lista de falhas conhecidas, se o sistema está ou não executando um serviço com problemas \cite{univhacker}. 
 \end{alineas}
 
-Normalmente, essas ferramentas funcionam em três estágios \cite{}:
+Normalmente, essas ferramentas funcionam em três estágios \cite{avaliacao:tania}:
 
 \begin{alineas}
  \item \textbf{Configuração}: aqui será definido o endereço IP do alvo ou a URL (Uniform Resource Locator) da aplicação Web e demais parâmetros, como, por exemplo, utilização de \textit{proxy}.
- \item \textbf{Rastreamento}: esse estágio é especifico de \textit{scanners} de vulnerabilidade de aplicações web, nele, o \textit{scanner} chama a primeira página web e então examina seu código procurando \textit{links}. Cada \textit{link} encontrado é registrado e este procedimento é repetido várias vezes até que \textit{links} e páginas não sejam mais encontrados.
+ \item \textbf{Rastreamento}: esse estágio, em \textit{scanners} de vulnerabilidade de aplicações web, o \textit{scanner} chama a primeira página web e então examina seu código procurando \textit{links}. Cada \textit{link} encontrado é registrado e este procedimento é repetido várias vezes até que \textit{links} e páginas não sejam mais encontrados.
  \item \textbf{Exploração}: vários testes são executados e as requisições e respostas são armazenadas e analisadas. Ao final, os resultados são exibidos ao usuário e podem ser salvos para uma análise posterior. 
 \end{alineas}
 
@@ -84,15 +84,11 @@ Um bom \textit{scanner} de vulnerabilidade verifica itens como \cite{univhacker}
 \item \textbf{Vulnerabilidades divulgadas}: Sempre que uma falha de segurança é divulgada há uma corrida dos desenvolvedores para saná-las. Em paralelo, existem \textit{hackers} que querem chegar aos sistemas vulneráveis antes de serem consertados.
 \end{alineas}
 
+Os \textit{scanners} de vulnerabilidades automatizados contêm, e atualizam regularmente, enormes bancos de dados de assinaturas de vulnerabilidades conhecidas para basicamente tudo o que está recebendo de informações em uma porta de rede, inclusive sistemas operacionais, serviços e aplicativos web \cite{hackers:stuart-joel}. 
+
+%Eles podem até detectar vulnerabilidades no software do lado do cliente mediante credenciais suficientes, uma estratégia que pode ser útil em estágios posteriores do ataque, quando o invasor pode estar interessado em expandir ainda mais sua base de operações, comprometendo contas adicionais de usuário privilegiado \cite{hackers:stuart-joel}.
+
 \subsection{\texit{Exploit}} \label{sec:exploit}
-
-\begin{alineas}
- \item \textbf{Configuração}: aqui será definido o endereço IP do alvo ou a URL (Uniform Resource Locator) da aplicação Web e demais parâmetros, como, por exemplo, utilização de \textit{proxy}.
- \item \textbf{Rastreamento}: esse estágio é especifico de \textit{scanners} de vulnerabilidade de aplicações web, nele, o \textit{scanner} chama a primeira página web e então examina seu código procurando \textit{links}. Cada \textit{link} encontrado é registrado e este procedimento é repetido várias vezes até que \textit{links} e páginas não sejam mais encontrados.
- \item \textbf{Exploração}: vários testes são executados e as requisições e respostas são armazenadas e analisadas. Ao final, os resultados são exibidos ao usuário e podem ser salvos para uma análise posterior. 
-\end{alineas}
-
-Os \textit{Scanners} de vulnerabilidades automatizados contêm, e atualizam regularmente, enormes bancos de dados de assinaturas de vulnerabilidades conhecidas para basicamente tudo o que está recebendo de informações em uma porta de rede, inclusive sistemas operacionais, serviços e aplicativos web. Eles podem até detectar vulnerabilidades no software do lado do cliente mediante credenciais suficientes, uma estratégia que pode ser útil em estágios posteriores do ataque, quando o invasor pode estar interessado em expandir ainda mais sua base de operações, comprometendo contas adicionais de usuário privilegiado \cite{hackers:stuart-joel}.
 
 Diante da lista de vulnerabilidades encontradas com os \textit{scanners}, próximo passo seria usar um \textit{exploit} adequado. Os \textit{exploit} são pequenos utilitários usados para explorar vulnerabilidades específicas, podendo serem usados de forma \textit{"stand alone"}, ou seja, serem usados diretamente, ou podem ser incorporados à \textit{malwares} \cite{exploit:cassio}.
 
