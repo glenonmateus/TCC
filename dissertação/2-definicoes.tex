@@ -36,11 +36,11 @@ Além dos conceito listados, a literatura moderna considera mais alguns conceito
  \item \textbf{Privacidade}: habilidade de uma pessoa controlar a exposição e a disponibilidade de informações acerca de si.
 \end{alineas}
 
-\section{Cenário Geral} \label{sec:geral}
+\section{Cenário Geral} \label{sec:cenario-geral}
 %apresentar o cenário geral de uma rede conectada a Internet
-\section{Pontos de Vulnerabilidade} \label{sec:vulnerabilidade}
+\section{Pontos de Vulnerabilidade} \label{sec:pontos-vulnerabilidade}
 %Ex.: Roteador, firewall, clientes e suas aplicações,
-\section{Ataques Comuns à Redes de Computadores} \label{sec:ataques}
+\section{Ataques Comuns à Redes de Computadores} \label{sec:ataques-comuns}
 
 Nessa seção será descritos os ataques mais comuns à redes e serviços de organizações privadas e públicas, financeiras ou acadêmicas. Para licitar os ataques dessa seção, levou-se em consideração as estatísticas divulgada pelo CERT.br (\autoref{fig:cert}).
 
@@ -56,14 +56,36 @@ O CERT.br é o grupo de resposta a incidentes de segurança para a internet bras
 
 O CAIS é responsável por zela pela segurança da rede Ipê (infraestrutura de rede dedicada à comunidade brasileira de ensino superior), detectando, resolvendo e prevenindo incidentes de segurança. Além disso, tem o papel de orientar (através de publicações de cartilhas) e disseminar boas práticas de segurança da informação, educando e conscientizando usuários de todos os níveis sobre os principais riscos em segurança da informação \cite{cais}.
 
-\subsection{Varredura de Redes} \label{sec:varredura}
-
-
-\subsection{Exploração de Vulnerabilidades} \label{sec:exploração}
+\subsection{\textit{Scanners}} \label{sec:varredura}
 
 Conforme tratado na \autoref{sec:definições}, uma vulnerabilidade é a fraqueza em sistemas de informação, procedimentos de segurança do sistema e controles internos, ou aplicação que pode ser explorada tendo como origem uma ameaça. 
 
-Uma maneira de reunir informações sobre vulnerabilidade de um alvo ou uma rede inteira é a utilização de \textit{scanners} de vulnerabilidades automatizados. Existem vários tipos de \textit{scanners} para uma variedade de situações, uns específicos para aplicações web, outros para servidores e serviços, como banco de dados. Normalmente, essas ferramentas funcionam em três estágios \cite{}: 
+\textit{Scanners} são programas usados para varrer uma rede à procura de computadores (tanto pessoais como servidores) com alguma vulnerabilidade. Podemos dividir os \textit{scanners} em dois tipos \cite{univhacker}: 
+
+\begin{alineas}
+\item \textbf{\textit{scanner} de portas TCP/IP abertas (ou \textit{portscanner})}: cada serviço de rede que estiver disponível em uma determinada máquina é uma porta de entrada em potencial. Existem um total de 128 mil porta, sendo 65536 portas para o protocolo TCP e 65536 portas para o protocolo UDP. O \textit{portscanner} verifica quais portas TCP/IP estão abertas com o objetivo de determinar quais serviços de rede TCP/IP disponíveis. Quase todas as técnicas de \textit{portscanning} valem-se de sinais (ou \textit{flags}), TCP, UDP ou ICMP, e a partir da análise desses sinais, os \textit{scanners} retiram informações sobre o sistema; \cite{univhacker}
+\item \textbf{\textit{scanner} de vulnerabilidades conhecidas}: Um vez determinados os serviços que uma máquina disponibiliza na rede entra em cena o \textit{scanner} de vulnerabilidade. A ideia é checar, através de uma lista de falhas conhecidas, se o sistema está ou não executando um serviço com problemas \cite{univhacker}. 
+\end{alineas}
+
+Normalmente, essas ferramentas funcionam em três estágios \cite{}:
+
+\begin{alineas}
+ \item \textbf{Configuração}: aqui será definido o endereço IP do alvo ou a URL (Uniform Resource Locator) da aplicação Web e demais parâmetros, como, por exemplo, utilização de \textit{proxy}.
+ \item \textbf{Rastreamento}: esse estágio é especifico de \textit{scanners} de vulnerabilidade de aplicações web, nele, o \textit{scanner} chama a primeira página web e então examina seu código procurando \textit{links}. Cada \textit{link} encontrado é registrado e este procedimento é repetido várias vezes até que \textit{links} e páginas não sejam mais encontrados.
+ \item \textbf{Exploração}: vários testes são executados e as requisições e respostas são armazenadas e analisadas. Ao final, os resultados são exibidos ao usuário e podem ser salvos para uma análise posterior. 
+\end{alineas}
+
+
+Um bom \textit{scanner} de vulnerabilidade verifica itens como \cite{univhacker}: 
+
+\begin{alineas}
+\item \textbf{Erros comuns de configuração}: portas não utilizadas por nenhum serviço abertas;
+\item \textbf{Configurações e senhas-padrões}: instalação de softwares deixando-os com as configurações de fabrica (com usuário e senha-padrão), por exemplo, usuário: admin, senha: admin. Outro problema é deixar serviços desnecessários ativados;
+\item \textbf{Combinação óbvias de usuário e senha}: Usuário comuns tendem a colocar senhas fáceis de lembrar;
+\item \textbf{Vulnerabilidades divulgadas}: Sempre que uma falha de segurança é divulgada há uma corrida dos desenvolvedores para saná-las. Em paralelo, existem \textit{hackers} que querem chegar aos sistemas vulneráveis antes de serem consertados.
+\end{alineas}
+
+\subsection{\texit{Exploit}} \label{sec:exploração}
 
 \begin{alineas}
  \item \textbf{Configuração}: aqui será definido o endereço IP do alvo ou a URL (Uniform Resource Locator) da aplicação Web e demais parâmetros, como, por exemplo, utilização de \textit{proxy}.
