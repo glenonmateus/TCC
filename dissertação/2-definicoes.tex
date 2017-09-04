@@ -148,7 +148,7 @@ O Trojan ou Cavalo de Troia são programas que precisam ser explicitamente execu
  \section{Ferramentas para Avaliação de Segurança} \label{sec:ferramentas}
  %Nmap, Metasploit, Pytbull
 
- Nessa seção será descrito as ferramentas auxiliares utilizadas para geração de ataques \autoref{sec:ataques} com objetivo de testar e validar as configurações das ferramentas de IDPS estudas. 
+ Nessa seção será descrito as ferramentas auxiliares utilizadas para geração de ataques abordados na \autoref{sec:ataques-comuns} com objetivo de testar e validar as configurações das ferramentas de IDPS estudas. 
 
  \subsection{Nmap} \label{sec:nmap}
 
@@ -177,8 +177,6 @@ O Trojan ou Cavalo de Troia são programas que precisam ser explicitamente execu
  O Metasploit possui uma biblioteca divida em três partes: \textbf{Rex}: É a biblioteca fundamental, a maioria das tarefas executadas pelo \textit{framework} usaram essa biblioteca; \textbf{MSF Core}: É o \textit{framework} em si, possui, por exemplo, gerenciador de módulos e a base de dados; \textbf{MSF Base}: Guarda os módulos, sejam eles, \textit{exploit}, \textit{encoders} (ferramentas usadas para desenvolver o \textit{payloads}) e os \textit{payloads}. Além disso, são guardadas informações de configuração e sessões criadas pelos \textit{exploits}. A arquitetura é mostrada com mais detalhes na \autoref{fig:metasploit-arquitetura}. 
 
  Os módulos são divididos da seguinte maneira: Payload: são código executados no alvo remotamente; Exploit: explora \textit{bugs} ou vulnerabilidade existente em aplicações do alvo; Módulos Auxiliares: usado para escanear as vulnerabilidades e executar várias tarefas; Encoder: codifica o \textit{payload} para evitar qualquer tipo de detecção pelo anti vírus.
-
- \textbf{Interface}: Disponibiliza a parte gráfica para o usuário;
 
  \begin{figure}[!htb]
   \centering
@@ -212,7 +210,7 @@ O Trojan ou Cavalo de Troia são programas que precisam ser explicitamente execu
   \centering
   \caption{Arquitetura do \textit{framework} Pytbull}
   \includegraphics[scale=.4]{arquitetura_pytbull.png}
-  \legend{}
+  \legend{Fonte: \cite{pytbull}}
   \label{fig:pytbull}
  \end{figure}
 
