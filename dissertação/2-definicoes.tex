@@ -1,10 +1,10 @@
 \chapter{Segurança em Redes de Computadores} \label{ch:segurança}
 
-Esse 
+Este capítulo esta organizado da seguinte forma: A próxima seção apresenta as definições sobre segurança da informação. Na \autoref{sec:cenario-geral} será apresentado uma topologia de rede comum, que existe na organizações. Na \autoref{sec:pontos-vulnerabilidade} será abordado os pontos vulneráveis em um rede. Na \autoref{sec:ataques} será apresentado o principais ataques a rede de computadores. Por fim, na \autoref{sec:ferramentas} será apresentada as ferramentas usadas para gerar os ataques.
 
 \section{Definições} \label{sec:definições}
 
-Para entendemos melhor o que é segurança da informação, precisamos conceituar alguns termos que serão detalhados abaixo \cite{esr-gestao}:
+Nessa seção será apresentada os principais conceitos objetivando entender melhor o que é segurança da informação. \cite{esr-gestao}:
 
 \begin{alineas}
  \item \textbf{Incidente de segurança}: qualquer evento oposto a segurança; por exemplo, ataques de negação de serviços (Denial of Service - DoS), roubo de informações, vazamento e obtenção de acesso não autorizado a informações;
@@ -94,6 +94,8 @@ Os \textit{scanners} de vulnerabilidades automatizados contêm, e atualizam regu
 Os atacantes comumente exploram \textit{bugs} ou vulnerabilidades em programas para ter acesso ao sistema alvo. Infelizmente, existem milhares de \textit{bugs}, por exemplo, em 2013, foram reportados 103,000 \textit{bugs} no sistema operacional Ubuntu. Outro projetos de códigos fechados, possuem estatísticas similares \cite{aeg:thanassis}.
 
 Diante das vulnerabilidades encontradas utilizando os \textit{scanners}, próximo passo seria usar um \textit{exploit} adequado. Os \textit{exploit} são pequenos utilitários usados para explorar vulnerabilidades específicas, podendo ser utilizados de forma \textit{"stand alone"}, ou seja, diretamente, ou podem ser incorporados à \textit{malwares} \cite{exploit:cassio}.
+
+Para alguns \textit{exploits} funcionar, é necessário ter acesso ao shell da máquina-alvo. Tal artificio pode ser conseguido através da execução de um cavalo de tróia (\autoref{sec:malwares}) pela vítima em seu sistema. O trojan abre uma porta de comunicação e permite que o invasor tenha total controle sobre a máquina, dessa forma é possível executar \textit{exploits} para quebrar outros níveis de segurança \cite{univhacker}.
 
 \subsection{Força Bruta} \label{sec:forçabruta}
 
