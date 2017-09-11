@@ -4,7 +4,7 @@ Este capítulo esta organizado da seguinte forma: A próxima seção apresenta a
 
 \section{Definições} \label{sec:definições}
 
-Nessa seção será apresentada os principais conceitos objetivando entender melhor o que é segurança da informação. \cite{esr-gestao}:
+Nessa seção será apresentada os principais sobre segurança da informação. Para tal, precisamos conceituar alguns termos apresentados abaixo \cite{esr-gestao}:
 
 \begin{alineas}
  \item \textbf{Incidente de segurança}: qualquer evento oposto a segurança; por exemplo, ataques de negação de serviços (Denial of Service - DoS), roubo de informações, vazamento e obtenção de acesso não autorizado a informações;
@@ -16,9 +16,9 @@ Nessa seção será apresentada os principais conceitos objetivando entender mel
  \item \textbf{Impacto}: consequência de um evento.
 \end{alineas}
 
-Segurança da Informação proteção das informações, sistemas, recursos e demais ativos contra desastres, erros (intencionais ou não) e manipulação não autorizada, objetivando a redução da probabilidade e do impacto de incidentes de segurança.
+Segurança da Informação é a proteção das informações, sistemas, recursos e demais ativos contra desastres, erros (intencionais ou não) e manipulação não autorizada, objetivando a redução da probabilidade e do impacto de incidentes de segurança.
 
-Segundo a norma ISO/IEC 27002 \cite{isoiec27002}, segurança da informação é a preservação da confidencialidade, da integridade e da disponibilidade da informação; adicionalmente, outras propriedades, tais como autenticidade, responsabilidade, não repúdio e confiabilidade, podem também estar envolvidas.
+Segundo a norma ISO/IEC 27002 \cite{isoiec27002}, segurança da informação é a preservação da confidencialidade, da integridade e da disponibilidade da informação, adicionalmente, outras propriedades, tais como autenticidade, responsabilidade, não repúdio e confiabilidade, podem também estar envolvidas.
 
 Dentre vários conhecimentos que um profissional de segurança deve possuir, o conceito mais básico e considerado o pilar de toda a área de segurança corresponde à sigla CID (Confidencialidade, Integridade e Disponibilidade), de modo que um incidente de segurança é caracterizado quando uma dessas áreas é afetada \cite{seg-redes-sistemas}. Abaixo será detalhado cada item.
 
@@ -41,6 +41,18 @@ Além dos conceito listados, a literatura moderna considera mais alguns conceito
 
 \section{Cenário Geral} \label{sec:cenario-geral}
 %apresentar o cenário geral de uma rede conectada a Internet
+Nessa seção será explicado alguns conceito básico sobre redes de computadores e como a maioria das empresas se organizam.
+
+Uma rede de computadores é um conjunto de dispositivos interconectados para compartilhar recursos como \textit{hardware}, \textit{software}, interação e interatividade, onde existem máquinas que desempenham os papéis de clientes, servidores e/ou parceiros dependendo do serviços disponíveis na rede \cite{modelo:jose}.
+
+\begin{figure}[htb]
+    \centering
+    \caption{Cenário Geral} 
+    \includegraphics[scale=.6]{cenario-geral.png}
+    \legend{Fonte: Autoria própria}
+    \label{fig:cenario-geral}
+\end{figure}
+
 \section{Pontos de Vulnerabilidade} \label{sec:pontos-vulnerabilidade}
 %Ex.: Roteador, firewall, clientes e suas aplicações,
 \section{Ataques Comuns à Redes de Computadores} \label{sec:ataques-comuns}
@@ -89,7 +101,7 @@ Um bom \textit{scanner} de vulnerabilidade verifica itens como \cite{univhacker}
 
 Os \textit{scanners} de vulnerabilidades automatizados contêm, e atualizam regularmente, enormes bancos de dados de assinaturas de vulnerabilidades conhecidas para basicamente tudo o que está recebendo de informações em uma porta de rede, inclusive sistemas operacionais, serviços e aplicativos web \cite{hackers:stuart-joel}. 
 
-\subsection{\texit{Exploit}} \label{sec:exploit}
+\subsection{Exploit} \label{sec:exploit}
 
 Os atacantes comumente exploram \textit{bugs} ou vulnerabilidades em programas para ter acesso ao sistema alvo. Infelizmente, existem milhares de \textit{bugs}, por exemplo, em 2013, foram reportados 103,000 \textit{bugs} no sistema operacional Ubuntu. Outro projetos de códigos fechados, possuem estatísticas similares \cite{aeg:thanassis}.
 
