@@ -69,9 +69,19 @@ O CERT.br é o grupo de resposta a incidentes de segurança para a internet bras
  \label{fig:cert}
 \end{figure}
 
-O CAIS é responsável por zela pela segurança da rede Ipê (infraestrutura de rede dedicada à comunidade brasileira de ensino superior), detectando, resolvendo e prevenindo incidentes de segurança. Além disso, tem o papel de orientar (através de publicações de cartilhas) e disseminar boas práticas de segurança da informação, educando e conscientizando usuários de todos os níveis sobre os principais riscos em segurança da informação \cite{cais}.
+Paralelamente ao CERT.br temos o Centro de Atendimento a Incidentes de Segurança (CAIS), mantido pela Rede Nacional de Ensino e Pesquisa (RNP). O CAIS é responsável por zela pela segurança da rede Ipê (infraestrutura de rede dedicada à comunidade brasileira de ensino superior), detectando, resolvendo e prevenindo incidentes de segurança. Além disso, tem o papel de orientar (através de publicações de cartilhas) e disseminar boas práticas de segurança da informação, educando e conscientizando usuários de todos os níveis sobre os principais riscos em segurança da informação \cite{cais}.
 
-\subsection{\textit{Scanners}} \label{sec:varredura}
+Desde 2008, todas a fraudes identificadas pelo CAIS estão sendo ordenadas e disponibilizadas para consulta (\autoref{fig:cais}). Adicionalmente, são enviados alertas através de uma lista quando uma fraude mostra-se particularmente perigosa aos usuários e computadores.
+
+\begin{figure}[htb]
+ \centering
+ \caption{Estatísticas de incidentes reportados ao CAIS}
+ \includegraphics[scale=.6]{cais-incidentes-reportados.png}
+ \legend{Fonte: \cite{cais}}
+ \label{fig:cais}
+\end{figure}
+
+\subsection{\textit{Scanners}} \label{sec:scanners}
 
 Conforme tratado na \autoref{sec:definições}, uma vulnerabilidade é a fraqueza em sistemas de informação, procedimentos de segurança do sistema e controles internos, ou aplicação que pode ser explorada tendo como origem uma ameaça. 
 
@@ -103,11 +113,11 @@ Os \textit{scanners} de vulnerabilidades automatizados contêm, e atualizam regu
 
 \subsection{\textit{Exploit}} \label{sec:exploit}
 
-Os atacantes comumente exploram \textit{bugs} ou vulnerabilidades em programas para ter acesso ao sistema alvo. Infelizmente, existem milhares de \textit{bugs}, por exemplo, em 2013, foram reportados 103,000 \textit{bugs} no sistema operacional Ubuntu. Outro projetos de códigos fechados, possuem estatísticas similares \cite{aeg:thanassis}.
+Os atacantes comumente exploram \textit{bugs} ou vulnerabilidades em programas para ter acesso ao sistema alvo. Infelizmente, existem milhares de \textit{bugs}, em 2013, por exemplo, foram reportados 103,000 \textit{bugs} no sistema operacional Ubuntu. Outro projetos de códigos fechados, possuem estatísticas similares \cite{aeg:thanassis}.
 
-Diante das vulnerabilidades encontradas utilizando os \textit{scanners}, próximo passo seria usar um \textit{exploit} adequado. Os \textit{exploit} são pequenos utilitários usados para explorar vulnerabilidades específicas, podendo ser utilizados de forma \textit{"stand alone"}, ou seja, diretamente, ou podem ser incorporados à \textit{malwares} \cite{exploit:cassio}.
+Diante das vulnerabilidades obtidas por um \textit{scanners} (\autoref{sec:scanners}), próximo passo seria usar um \textit{exploit} adequado. Os \textit{exploit} são pequenos utilitários usados para explorar vulnerabilidades específicas, podendo ser utilizados de forma \textit{"stand alone"}, ou seja, diretamente, ou podem ser incorporados à \textit{malwares} \cite{exploit:cassio}.
 
-Para alguns \textit{exploits} funcionar, é necessário ter acesso ao shell da máquina-alvo. Tal artificio pode ser conseguido através da execução de um cavalo de tróia (\autoref{sec:malwares}) pela vítima em seu sistema. O trojan abre uma porta de comunicação e permite que o invasor tenha total controle sobre a máquina, dessa forma é possível executar \textit{exploits} para quebrar outros níveis de segurança \cite{univhacker}.
+Para alguns \textit{exploits} funcionar, é necessário ter acesso ao \textit{shell} da máquina-alvo. Tal artificio pode ser conseguido através da execução de um cavalo de tróia (\autoref{sec:malwares}) pela vítima em seu sistema. O \textit{trojan} abre uma porta de comunicação e permite que o invasor tenha total controle sobre a máquina, dessa forma é possível executar \textit{exploits} para quebrar outros níveis de segurança \cite{univhacker}.
 
 \subsection{Força Bruta} \label{sec:forçabruta}
 
@@ -133,11 +143,11 @@ Existem três métodos mais usados por programas de quebra de senha: ataques de 
 
  \subsection{Negação de Serviços} \label{sec:negação}
  
-Um ataque de negação de serviço (\textit{Denial of Service} - DoS) tem como principal objetivo deixar um serviço (servidor web, banco de dados) ou recurso (memória, processador)  indisponível, impossibilitando que usuário legítimos tenham acesso a esses recursos. Para tal, o atacante gera diversas requisições inúteis para o servidor, consumindo seus recursos até que o serviço não esteja mais disponível ou degradando a qualidade do serviço \cite{cryptsec}.
+ Um ataque de negação de serviço (\textit{Denial of Service} - DoS) tem como principal objetivo deixar um serviço (servidor \textit{web}, banco de dados) ou recurso (memória, processador)  indisponível, impossibilitando que usuário legítimos tenham acesso a esses recursos. Para tal, o atacante gera diversas requisições inúteis para o servidor, consumindo seus recursos até que o serviço não esteja mais disponível ou degradando a qualidade do serviço \cite{cryptsec}.
 
 Esse tipo de ataque pode gerar grandes prejuízos financeiros para as empresas, principalmente \textit{e-commence}, pois enquanto o sistema está fora ou com uma resposta lenta, as transações financeiras são prejudicadas. Com isso, cria-se também, uma insatisfação pelo usuário do serviço prestado pela empresa.
 
-Existe um forma mais sofisticada de ataque de Negação de Serviço chamada Negação de Serviço Distribuído (\textit{Distributed Denial of Services} - DDoS), enquanto o DoS básico as requisições partem de apenas uma fonte (Figura \ref{dos}), no DDoS o atacante tem acesso a um grande número de computadores (\textit{zombies}) explorando suas vulnerabilidades criando o que chamamos de \textit{botnet} (\autoref{fig:ddos}). Com isso, basta o atacante indicar as coordenadas de um ou mais alvos para o ataque \cite{zargarjoshitipper}. 
+Existe um forma mais sofisticada de ataque de Negação de Serviço chamada Negação de Serviço Distribuído (\textit{Distributed Denial of Services} - DDoS), enquanto o DoS básico as requisições partem de apenas uma fonte, no entanto, no DDoS o atacante tem acesso a um grande número de computadores (\textit{zombies}) explorando suas vulnerabilidades criando o que chamamos de \textit{botnet} (\autoref{fig:ddos}). Com isso, basta o atacante indicar as coordenadas de um ou mais alvos para o ataque \cite{zargarjoshitipper}. 
 
 \begin{figure}[htb]
  \centering
@@ -147,20 +157,19 @@ Existe um forma mais sofisticada de ataque de Negação de Serviço chamada Nega
  \label{fig:ddos}
 \end{figure}
 
- \subsection{Malwares} \label{sec:malwares}
+\subsection{\textit{Malwares}} \label{sec:malwares}
 
- Os \textit{malwares}, também conhecidos como \textit{softwares} maliciosos, são um grande problema para sistemas de informação, sua existência ou execução tem consequências negativas ou involuntárias. Os \textit{malwares} mais conhecidos são os vírus, worms e trojans.
+Os \textit{malwares}, também conhecidos como \textit{softwares} maliciosos, são um grande problema para sistemas de informação, sua existência ou execução tem consequências negativas ou involuntárias. Os \textit{malwares} mais conhecidos são os vírus, \textit{worms} e \textit{trojans}.
 
  É importante entender o funcionamento e o comportamento desses códigos maliciosos para, a partir daí, buscar soluções contra esse ataque. Existe dois tipos de análise: análise estática, requer uma verifica linha a linha do código malicioso, geralmente o código não está disponível e até mesmo se estiver, o autor do \textit{malware} muitas vezes ofusca o código, tornando esse tipo de análise difícil. Por outro lado, existe a análise dinâmica, o analista monitora a execução e o comportamento do \textit{malware}, esse tipo de análise é imune a ofuscação de código \cite{encycrypt}.
 
- O Vírus é um programa que se propaga inserindo cópias de si mesmo e se tornando parte de outros programas e arquivos. Para dar continuidade ao processo de infecção, o vírus depende da execução do programa ou arquivo hospedeiro. O principal meio de propagação desse tipo de \textit{software} malicioso são as mídias removíveis, como, por exemplo, pen-drives \cite{certs-malwares}.
+ O Vírus é um programa que se propaga inserindo cópias de si mesmo e se tornando parte de outros programas e arquivos. Para dar continuidade ao processo de infecção, o vírus depende da execução do programa ou arquivo hospedeiro. O principal meio de propagação desse tipo de \textit{software} malicioso são as mídias removíveis, como, por exemplo, \textit{pen-drives} \cite{certs-malwares}.
 
-O Worm é um \textit{malware} que se propaga através de e-mails, sites ou \textit{software} baseados em rede, explorando as vulnerabilidades das aplicações. Uma das principais características desse tipo de \textit{software} é a propagação automática, ou seja, sem a intervenção do usuário \cite{detectingworm}. 
+ O \textit{Worm} é um \textit{malware} que se propaga através de e-mails, sites ou \textit{software} baseados em rede, explorando as vulnerabilidades das aplicações. Uma das principais características desse tipo de \textit{software} é a propagação automática, ou seja, sem a intervenção do usuário \cite{detectingworm}. 
 
-O Trojan ou Cavalo de Troia são programas que precisam ser explicitamente executados para serem instalados no computador. Esse \textit{malware} se disfarça de um programa benigno, por exemplo, cartões virtuais animados, álbuns de fotos, jogos e protetores de tela que ao serem executados o trojan é instalado sem o consentimento do usuário. No entanto, o atacante, após invadir um computador, pode instalar o trojan  alterando as funções já existentes de programas para executarem ações maliciosas \cite{certs-malwares}.
+ O \textit{Trojan} ou Cavalo de Troia são programas que precisam ser explicitamente executados para serem instalados no computador. Esse \textit{malware} se disfarça de um programa benigno, por exemplo, cartões virtuais animados, álbuns de fotos, jogos e protetores de tela que ao serem executados o \textit{trojan} é instalado sem o consentimento do usuário. No entanto, o atacante, após invadir um computador, pode instalar o \textit{trojan} alterando as funções já existentes de programas para executarem ações maliciosas \cite{certs-malwares}.
 
  \section{Ferramentas para Avaliação de Segurança} \label{sec:ferramentas}
- %Nmap, Metasploit, Pytbull
 
  Nessa seção será descrito as ferramentas auxiliares utilizadas para geração de ataques abordados na \autoref{sec:ataques-comuns} com objetivo de testar e validar as configurações das ferramentas de IDPS estudas. 
 
