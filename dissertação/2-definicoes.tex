@@ -41,13 +41,19 @@ Além dos conceito listados, a literatura moderna considera mais alguns conceito
 
 \section{Cenário Geral} \label{sec:cenario-geral}
 %apresentar o cenário geral de uma rede conectada a Internet
-Nessa seção será explicado alguns conceito básico sobre redes de computadores e como a maioria das empresas se organizam.
+Nessa seção será explicado alguns conceito básico sobre redes de computadores e descrever uma topologia de rede genérica conectada a internet.
 
 Uma rede de computadores é um conjunto de dispositivos interconectados para compartilhar recursos como \textit{hardware}, \textit{software}, interação e interatividade, onde existem máquinas que desempenham os papéis de clientes, servidores e/ou parceiros dependendo do serviços disponíveis na rede \cite{modelo:jose}.
 
+Um administrador, com o minimo de consciência sobre segurança, coloca em sua rede, um \textit{firewall} de borda. Uma empresa pode ter muitas LANs conectadas de forma arbitrárias, mas todo o tráfego de saída ou de entrada da empresas deve ser feito através do \textit{firewall} \cite{redesdecomputadores}.
+
+Os \textit{firewalls} são filtros de pacotes baseados em tabelas configuradas pelo administrador da rede. Essas tabelas listam as origens e os destinos aceitáveis e/ou bloqueados e as regras padrões que orientam o que deve ser feito com os pacotes recebidos de outras máquinas ou destinados a elas \cite{redesdecomputadores}.
+
+Na \autoref{fig:cenario-geral},  
+
 \begin{figure}[htb]
     \centering
-    \caption{Cenário Geral} 
+    \caption{Topologia geral de uma rede de computadores} 
     \includegraphics[scale=.6]{cenario-geral.png}
     \legend{Fonte: Autoria própria}
     \label{fig:cenario-geral}
