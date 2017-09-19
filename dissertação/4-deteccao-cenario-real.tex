@@ -11,7 +11,7 @@
  %diferentes ferramentas,...
  %Adicionar gráficos de utilização da rede
 
- A rede selecionada para ser monitorada tem os valores especificados na tabela. Podemos verificar que em um determinado período do dia o pico de trafego chega a 107,25 Mbps, valores considerados ideais para o experimento, inclusive para tentar validar os recursos alocados. Figura \ref{fig:ilc}
+ A rede selecionada para ser monitorada tem os valores especificados na tabela. Podemos verificar que em um determinado período do dia o pico de trafego chega a 107,25 Mbps, valores considerados ideais para o experimento, inclusive para tentar validar os recursos alocados. 
 
  Em um primeiro momento, selecionou-se uma rede
 
@@ -33,39 +33,38 @@
 
  \begin{figure}[!htb]
   \centering
-  \includegraphics[scale=.5]{infra.png}
   \caption{Infraestrutura do ambiente de teste}
+  \includegraphics[scale=.5]{infra.png}
   \label{fig:infra-ambiente}
+  \legend{Fonte: Autoria própria}
  \end{figure}
 
- Para coleta das informações de uso de recurso de hardware como memória, processamento e I/O das máquinas com os IDSs foi usado o \textit{daemon} Collectd \cite{collectd}. Outra opção para esse fim é a utilização de um servidor de monitoramento com o Zabbix \cite{zabbix}. A ideia de usar duas ferramentas para analise é fazer um comparativo e validar as informações coletadas.
+Para coleta das informações de uso de recurso de hardware como memória, processamento e I/O das máquinas com os IDSs foi usado o \textit{daemon} Collectd \cite{collectd}. Outra opção para esse fim é a utilização de um servidor de monitoramento com o Zabbix \cite{zabbix}. A ideia de usar duas ferramentas para analise é fazer um comparativo e validar as informações coletadas.
 
 O formato usado para facilitar a análise do \textit{logs} foi JavaScript Object Notation (JSON), um formato simples, leve e de fácil leitura. O Motor de Saída do Suricata já tem suporte a esse tipo de formato o que não acontece no Snort. Para tal, usou-se o IDSTools \cite{py-idstools}, uma coleção de bibliotecas na linguagem python que trabalha para auxiliar o IDS, compatível com as ferramentas estudas. Dentre os utilitários presentes nessa coleção, temos o idstools-u2json, que converte, de forma continua, arquivo no formato unified2, uma das saídas disponível no Snort, para o formato JSON.
 
-Para analisar os \textit{logs}, usou-se uma infraestrutura que combina três ferramentas, o Kibana \cite{kibana}, uma plataforma de análise e visualização desenhada para trabalhar com os índices do Elasticsearch \cite{elasticsearch}, a grosso modo, podemos dizer que ela é uma interface gráfica para o Elasticsearch. O Elasticsearch, um motor de busca e análise altamente escalável, capaz de armazenar, buscar e analisar uma grande quantidade de dados em tempo próximo ao real. Por ultimo, o Logstach \cite{logstach}, um motor de coleta de dados em tempo real, unificando os dados de diferentes fontes dinamicamente, normalizando-os nos destinos escolhidos (Figura \ref{fig:logstach}). Dessa forma centralizou-se os \textit{logs}, facilitando a visualização das ocorrências dos IDSs. 
+Para analisar os \textit{logs}, usou-se uma infraestrutura que combina três ferramentas, o Kibana \cite{kibana}, uma plataforma de análise e visualização desenhada para trabalhar com os índices do Elasticsearch \cite{elasticsearch}, a grosso modo, podemos dizer que ela é uma interface gráfica para o Elasticsearch. O Elasticsearch, um motor de busca e análise altamente escalável, capaz de armazenar, buscar e analisar uma grande quantidade de dados em tempo próximo ao real. Por ultimo, o Logstach \cite{logstach}, um motor de coleta de dados em tempo real, unificando os dados de diferentes fontes dinamicamente, normalizando-os nos destinos escolhidos. Dessa forma centralizou-se os \textit{logs}, facilitando a visualização das ocorrências dos IDSs. 
 
-\begin{figure}[!htb]
- \centering
- \includegraphics[scale=.4]{logstach.png}
- \caption{Busca e união dos dados de diferentes fontes}
- \label{fig:logstach}
-\end{figure}
-section{Testes Realizados} \label{sec:testes}
+\section{Testes Realizados} \label{sec:testes}
 %Quais os testes realizados com justificativa ?
 %Descrição dos testes. Quais os testes foram realizados ?
-Os testes realizados são simulações de passos que uma pessoa má intencionada iria tomar para alguma tentativa de invasão, entende-se por invasão, qualquer tipo de violação e alteração não autorizada de um serviço ou \textit{host}.
+Os testes realizados são simulações de passos que uma pessoa má-intencionada iria tomar para alguma tentativa de invasão, entende-se por invasão, qualquer tipo de violação e alteração não autorizada de um serviço ou \textit{host}.
 
-O passo inicial seria um estudo do alvo por engenharia social, analisando as pessoas que trabalharam no organização, enviando spam e phishing na tentativa de capturar dados como senhas de acesso. Posteriormente, verificando os serviços que o alvo oferece e observando (\textit{sniffando}) a rede, a procura de alguma senha desprotegida (não criptografada). Esse passo inicial não será aplicados nos testes pois seria impossível o IDS detectar.
+O passo inicial seria um estudo do alvo utilizando várias técnicas mas principalmente a engenharia social, analisando as pessoas que trabalharam na organização, enviando spam e \textit{phishing} na tentativa de capturar dados como senhas de acesso. 
 
-O passo seguinte seria um estudo e mapeamento da rede, a procura de um \textit{host} vulnerável. A ferramenta escolhida para essa finalidade é o Nmap \ref{sec:nmap}. No primeiro teste de Scan, usou-se o parâmetro "-F", habilitando a modo \textit{fast} do Nmap. Nesse modo, são verificadas apenas a portas especificadas no arquivo nmap-services, na instalação padrão esse arquivo vem com 27372 portas descritas. Isso é muito mais rápido que verificar todas as 65535 portas possíveis em um \textit{host}.
+Posteriormente, verificando os serviços que o alvo oferece e observando (\textit{sniffando}) a rede, a procura de alguma senha desprotegida (não criptografada). Esse passo inicial não será aplicados nos testes pois seria impossível o IDS detectar.
 
-nmap -F 200.239.82.0/24
+O passo seguinte seria uma garimpagem de informações e mapeamento da rede, a procura de um \textit{host} vulnerável. A ferramenta escolhida para essa finalidade é o Nmap \ref{sec:nmap}. 
+
+No primeiro teste de Scan, usou-se o parâmetro '-F', habilitando a modo \textit{fast} do Nmap. Nesse modo, são verificadas apenas a portas especificadas no arquivo nmap-services, na instalação padrão esse arquivo vem com 27372 portas descritas. Isso é muito mais rápido que verificar todas as 65535 portas possíveis em um \textit{host}.
+
+nmap -F <REDE> 
 
 O segundo teste, usou-se o parâmetro '-sV' do Nmap. Essa opção habilita a descoberta de versões, tentando determinar os protocolos de serviços, o nome da aplicação, o número da versão, o nome do \textit{host}, tipo de dispositivo, sistema operacional usado, entre outras informações. Essas informações são de grande valor pois, a partir delas, pode-se explorar vulnerabilidades conhecidas de uma determinada versão de um serviço \cite{nmap}.
 
-nmap -sV 200.239.82.0/24
+nmap -sV <REDE> ou nmap -sV <IP\_ALVO> 
 
-De posse de um alvo em potencial, próximo passo seria rodar um scan de vulnerabilidade, em busca de brejas já conhecidas, e que, geralmente por descuido do administrador, não foi fechada. Para esses testes usou-se o \textit{framework} Metasploit \ref{sec:metasploit} nativo do sistema operacional Kali Linux.
+De posse de um alvo em potencial, próximo passo seria rodar um \textit{scanner} de vulnerabilidade, em busca de brejas já conhecidas, e que, geralmente por descuido do administrador, não foi fechada. Para esses testes usou-se o \textit{framework} Metasploit (\autoref{sec:metasploit}) nativo do sistema operacional Kali Linux.
 
 \section{Resultados} \label{sec:resultados}
 %Resultados esperados e obtidos
