@@ -45,14 +45,16 @@ Nessa seção será explicado alguns conceito básico sobre redes de computadore
 
 Uma rede de computadores é um conjunto de dispositivos interconectados para compartilhar recursos como \textit{hardware}, \textit{software}, interação e interatividade, onde existem máquinas que desempenham os papéis de clientes, servidores e/ou parceiros dependendo do serviços disponíveis na rede \cite{modelo:jose}.
 
-Um administrador, com o minimo de consciência sobre segurança, coloca em sua rede, um \textit{firewall} de borda. Uma empresa pode ter muitas LANs conectadas de forma arbitrárias, mas todo o tráfego de saída ou de entrada da empresas deve ser feito através do \textit{firewall} \cite{redesdecomputadores}.
+Um administrador, com o minimo de consciência sobre segurança, coloca em sua rede, um \textit{firewall} de borda. Um \textit{firewall} sempre é colocada na divisa entre duas ou mais redes, pode ser entre redes privadas ou entre uma rede privada e a Internet. Uma empresa pode ter muitas LANs conectadas de forma arbitrárias, mas todo o tráfego de saída ou de entrada da empresas deve ser feito através do \textit{firewall} \cite{redesdecomputadores}.
 
-Os \textit{firewalls} são filtros de pacotes baseados em tabelas configuradas pelo administrador da rede. Essas tabelas listam as origens e os destinos aceitáveis e/ou bloqueados e as regras padrões que orientam o que deve ser feito com os pacotes recebidos de outras máquinas ou destinados a elas \cite{redesdecomputadores}.
+Os \textit{firewalls} são filtros de pacotes baseados em tabelas configuradas pelo administrador da rede. Essas tabelas listam as origens e os destinos aceitáveis e/ou bloqueados e as regras padrões que orientam o que deve ser feito com os pacotes recebidos de outras máquinas ou destinados a elas, ou seja, o \textit{firewall} tem como função controlar o tráfego entre as redes \cite{redesdecomputadores}. 
 
-Na \autoref{fig:cenario-geral},  
+Há três tipos básicos de pacotes, os mais tradicionais são os filtros de pacotes e os \textit{proxies}. O terceiro tipo é uma evolução do filtro de pacotes tradicional chamado de filtro de estados de pacotes ou \textit{stateful packet filter} (SPF) \cite{univhacker}.
+
+Na \autoref{fig:cenario-geral}, 
 
 \begin{figure}[htb]
-    \centering
+        \centering
     \caption{Topologia geral de uma rede de computadores} 
     \includegraphics[scale=.6]{cenario-geral.png}
     \legend{Fonte: Autoria própria}
