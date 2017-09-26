@@ -45,18 +45,37 @@ Nessa seção será explicado alguns conceito básico sobre redes de computadore
 
 Uma rede de computadores é um conjunto de dispositivos interconectados para compartilhar recursos como \textit{hardware}, \textit{software}, interação e interatividade, onde existem máquinas que desempenham os papéis de clientes, servidores e/ou parceiros dependendo do serviços disponíveis na rede \cite{modelo:jose}.
 
-Um administrador, com o minimo de consciência sobre segurança, coloca em sua rede, um \textit{firewall} de borda. Um \textit{firewall} sempre é colocada na divisa entre duas ou mais redes, pode ser entre redes privadas ou entre uma rede privada e a Internet. Uma empresa pode ter muitas LANs conectadas de forma arbitrárias, mas todo o tráfego de saída ou de entrada da empresas deve ser feito através do \textit{firewall} \cite{redesdecomputadores}.
-
-Os \textit{firewalls} são filtros de pacotes baseados em tabelas configuradas pelo administrador da rede. Essas tabelas listam as origens e os destinos aceitáveis e/ou bloqueados e as regras padrões que orientam o que deve ser feito com os pacotes recebidos de outras máquinas ou destinados a elas, ou seja, o \textit{firewall} tem como função controlar o tráfego entre as redes \cite{redesdecomputadores}. 
+Um administrador, com o minimo de consciência sobre segurança, coloca em sua rede, um \textit{firewall} de borda. Um \textit{firewall} sempre é colocada na divisa entre duas ou mais redes, pode ser entre redes privadas ou entre uma rede privada e a Internet. Uma empresa pode ter muitas LANs conectadas de forma arbitrárias, mas todo o tráfego de saída ou de entrada da empresas para a internet deve ser feito através do \textit{firewall} \cite{redesdecomputadores}.
 
 Há três tipos básicos de \textit{firewall}, os mais tradicionais são os filtros de pacotes e os \textit{proxies}. O terceiro tipo é uma evolução do filtro de pacotes tradicional chamado de filtro de estados de pacotes ou \textit{stateful packet filter} (SPF) \cite{univhacker}.
+
+Um \textit{firewalls} de filtros de pacotes são baseados em tabelas configuradas pelo administrador da rede. Essas tabelas listam as origens e os destinos aceitáveis e/ou bloqueados e as regras padrões que orientam o que deve ser feito com os pacotes recebidos de outras máquinas ou destinados a elas, ou seja, o \textit{firewall} tem como função controlar o tráfego entre as redes \cite{redesdecomputadores}. 
+
+Há vários \textit{softwares} que implementam filtro de pacotes. Alguns são instalados em \textit{hardwares} como roteadores outros são programas que rodam em computadores comuns \cite{univhacker}. Um utilitário bastante conhecido e utilizado para essa finalidade é o \textit{iptables}. A \autoref{tab:firewall-regras} apresenta um exemplo de uma tabela de regras.
+
+\begin{table}[htb]
+\ABNTEXfontereduzida
+\caption{Tabela de regras aplicadas no \textit{firewall}}
+\label{tab:firewall-regras}
+\begin{tabular}{l|l|l|l|l|l|l}
+    \textbf{IP Origem} & \textbf{IP Destino}  & \textbf{Porta Origem}  & \textbf{Porta Destino} & \textbf{Protocolo} & \textbf{Flag TCP} & \textbf{Ação} \\
+    Rede Externa & Servidor Web & Todas & 80,443 & TCP & Todos & Permitir \\
+    Rede Externa & Servidor Web & Todas & 21,3000:3070 & TCP & Todos & Permitir \\
+    Todas & Todas & Todas & Todas & Todos & Todos & Negar \\
+\end{tabular}
+\legend{Fonte: Autoria própria} 
+\end{table}
+
+No exemplo, são permitidas conexões na Intranet no Servidor Web pelas portas 80 e 443 (padrão nos protocolos HTTP e HTTPS) para todos os Flags TCP (ACK, ACK/SYN, SYN e FIN). Além disso, podemos definir um range de portas, como na linha 2, que são abertas as portas 21 e todas as portas entre 3000 e 3070, utilizadas por padrão pelo protocolo FTP.
+
+Um \textit{proxie} trabalha na camada de aplicação interagindo com o programa e seus protocolos, independente de como esse protocolo será encapsulado na pilha TCP/IP. Por exemplo, um \textit{proxy} para Web trabalha apenas com o protocolo HTTP, bloqueando os demais. Além disso, pode-se configurar-lo para controlar quem pode ou não acessar serviços externos \cite{univhacker}.
 
 Na \autoref{fig:cenario-geral} apresenta uma típica rede composta por um roteador de núcleo que interliga roteadores (A, B e C) de outras redes da Intranet, que por sua vez interliga os clientes e/ou servidores. Todo trafego de saída e entrada da Intranet para a Internet passa pelo roteador de núcleo, além disso, os pacotes são tratados por um \textit{firewall} de borda, que determina o que entra e o que sai da rede local.
 
 \begin{figure}[htb]
     \centering
     \caption{Topologia geral de uma rede de computadores} 
-    \includegraphics[scale=.7]{cenario-geral.png}
+    \includegraphics[scale=.6]{cenario-geral.png}
     \legend{Fonte: Autoria própria}
     \label{fig:cenario-geral}
 \end{figure}
