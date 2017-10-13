@@ -45,7 +45,17 @@ Nessa seção será explicado alguns conceito básico sobre redes de computadore
 
 Uma rede de computadores é um conjunto de dispositivos interconectados para compartilhar recursos como \textit{hardware}, \textit{software}, interação e interatividade, onde existem máquinas que desempenham os papéis de clientes, servidores e/ou parceiros dependendo do serviços disponíveis na rede \cite{modelo:jose}.
 
-Uma Internet é uma rede de computadores que interconecta centenas de dispositivos de computadores ao redor do mundo. A União Internacional de Telecomunicações (UTI) estima que haja cerca de 3.578 milhões (\autoref{fig:estatisca-itu}) de usuários usando diferentes tipos de dispositivos, como, celulares, automóveis, \textit{webcams}, TVs, laptops, consoles para jogos, entre outros \cite{estatistica:itu}.
+Podemos caraterizar um rede da seguinte maneira: Dois ou mais computadores interligados; Meio físico de comunicação (com fio, sem fio, metálico, fibra, etc); vários tipos de equipamentos (estações de usuários, servidores, concentradores, etc); software para comunicação entre os equipamentos (protocolos); aplicativos para transferência de informação \cite{esr:arquitetura}.
+
+As redes podem ser classificadas em duas categorias \cite{esr:arquitetura}: 
+\begin{alineas}
+\item \textbf{Redes par-a-par ou (\textit{peer-to-peer})}: Aqui não existem servidores dedicados ou hierarquia entre os computadores, todos são iguais, onde cada computador funciona como cliente e/ou servidor, cabendo o usuário determinar o que será compartilhado;
+\item \textbf{Redes cliente-servidor}: Aqui há servidores dedicados que oferecem serviços à rede (servidores de arquivos e impressão, correio, fax, comunicação, aplicações), geralmente são otimizadas para processar rapidamente as requisições dos clientes da rede e para garantir a segurança dos arquivos e pastas.
+\end{alineas}
+
+%figura da rede p2p e cliente-servidor
+
+Uma Internet é uma rede de computadores que interconecta centenas de dispositivos de computadores ao redor do mundo \cite{redes:kurose}. A União Internacional de Telecomunicações (UTI) estima que haja cerca de 3.578 milhões (\autoref{fig:estatisca-itu}) de usuários usando diferentes tipos de dispositivos, como, celulares, automóveis, \textit{webcams}, TVs, \textit{laptops}, consoles para jogos, entre outros \cite{estatistica:itu}.
 
 \begin{figure}[htb]
     \centering
@@ -54,9 +64,6 @@ Uma Internet é uma rede de computadores que interconecta centenas de dispositiv
     \legend{Fonte: \cite{estatistica:itu}}
     \label{fig:estatisca-itu}
 \end{figure}
-
-\cite{redes:kurose}
-%Definição de Internet
 
 Um administrador, com o minimo de consciência sobre segurança, coloca em sua rede, um \textit{firewall} de borda. Um \textit{firewall} sempre é colocada na divisa entre duas ou mais redes, pode ser entre redes privadas ou entre uma rede privada e a Internet. Uma empresa pode ter muitas LANs conectadas de forma arbitrárias, mas todo o tráfego de saída ou de entrada da empresas para a internet deve ser feito através do \textit{firewall} \cite{redesdecomputadores}.
 
