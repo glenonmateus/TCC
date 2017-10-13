@@ -65,6 +65,14 @@ Uma Internet é uma rede de computadores que interconecta centenas de dispositiv
     \label{fig:estatisca-itu}
 \end{figure}
 
+Os equipamentos que são comumente usados nas redes de computadores são:
+
+\begin{alineas}
+\item \textbf{Concentradores (\textit{hubs})}: São pontos de conexões para dispositivos em uma rede, contendo várias portas usados para conectar os segmentos da LAN. Quando um pacote chega em uma porta, ele é replicado para as demais portas, assim, todos os clientes conectados ao \textit{hub} podem ver todos os pacotes. Esse tipo de equipamento não é mais recomendado.
+\item \textbf{Switches}: São equipamentos que se diferem dos \textit{hubs} por serem capazes de ler o MAC de origem e destino. Além disso, realizam comutações (os pacotes são individualmente encaminhadas entre os dispositivos conectados) de quadros na camada de enlace;
+\item \textbf{Roteadores}: São dispositivos de rede mais tradicionais, como de backbone das intranets e da internet. Suas principais funções são seleção dos melhores caminhos de saída para os pacotes de entrada e roteamento destes pacotes para a interface de saída apropriada.
+\end{alineas}
+
 Um administrador, com o minimo de consciência sobre segurança, coloca em sua rede, um \textit{firewall} de borda. Um \textit{firewall} sempre é colocada na divisa entre duas ou mais redes, pode ser entre redes privadas ou entre uma rede privada e a Internet. Uma empresa pode ter muitas LANs conectadas de forma arbitrárias, mas todo o tráfego de saída ou de entrada da empresas para a internet deve ser feito através do \textit{firewall} \cite{redesdecomputadores}.
 
 Há três tipos básicos de \textit{firewall}, os mais tradicionais são os filtros de pacotes e os \textit{proxies}. O terceiro tipo é uma evolução do filtro de pacotes tradicional chamado de filtro de estados de pacotes ou \textit{stateful packet filter} (SPF) \cite{univhacker}.
