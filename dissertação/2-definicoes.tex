@@ -54,6 +54,13 @@ As redes podem ser classificadas em duas categorias \cite{esr:arquitetura}:
 \end{alineas}
 
 %figura da rede p2p e cliente-servidor
+%\begin{figure}
+%    \centering
+%    \caption{} 
+%    \includegraphics[scale=.55]{}
+%    \legend{Fonte: \cite{}}
+%    \label{}
+%\end{figure}
 
 Uma Internet é uma rede de computadores que interconecta centenas de dispositivos de computadores ao redor do mundo \cite{redes:kurose}. A União Internacional de Telecomunicações (UTI) estima que haja cerca de 3.578 milhões (\autoref{fig:estatisca-itu}) de usuários usando diferentes tipos de dispositivos, como, celulares, automóveis, \textit{webcams}, TVs, \textit{laptops}, consoles para jogos, entre outros \cite{estatistica:itu}.
 
@@ -94,10 +101,11 @@ Há vários \textit{softwares} que implementam filtro de pacotes. Alguns são in
 \legend{Fonte: Autoria própria} 
 \end{table}
 
-No exemplo, são permitidas conexões na Intranet no Servidor Web pelas portas 80 e 443 (padrão nos protocolos HTTP e HTTPS) para todos os Flags TCP (ACK, ACK/SYN, SYN e FIN). Além disso, podemos definir um range de portas, como na linha 2, que são abertas as portas 21 e todas as portas entre 3000 e 3070, utilizadas por padrão pelo protocolo FTP.
+No exemplo, são permitidas conexões na Intranet no Servidor Web pelas portas 80 e 443 (padrão nos protocolos HTTP e HTTPS) para todos os \textit{Flags} TCP (ACK, ACK/SYN, SYN e FIN). Além disso, podemos definir um range de portas, como na linha 2, que são abertas as portas 21 e todas as portas entre 3000 e 3070, utilizadas por padrão pelo protocolo FTP.
 
 Um \textit{proxie} trabalha na camada de aplicação interagindo com o programa e seus protocolos, independente de como esse protocolo será encapsulado na pilha TCP/IP. Por exemplo, um \textit{proxy} para Web trabalha apenas com o protocolo HTTP, bloqueando os demais. Além disso, pode-se configurar-lo para controlar quem pode ou não acessar serviços externos \cite{univhacker}.
 
+No \textit{firewall} de filtros de pacotes por estado (SPF) uma nova tecnologia de análise de pacotes foi agregada, permitindo que eles lembrem-se de pacotes anteriores antes de permitir outro mais recente entrar. Isso é implementado na forma de uma tabela de conexões ativas. Quando uma conexão é iniciada, todos os dados do pacote são guardados nela. Se um novo pacote chegar em direção à mesma máquina, o SPF consulta a tabela. O novo pacote e aceito caso seja dada a continuação da conexão ou rejeitado, se não for.
 %Definição de Firewall SPF
 
 Na \autoref{fig:cenario-geral} apresenta uma típica rede composta por um roteador de núcleo que interliga roteadores (A, B e C) de outras redes da Intranet, que por sua vez interliga os clientes e/ou servidores. Todo trafego de saída e entrada da Intranet para a Internet passa pelo roteador de núcleo, além disso, os pacotes são tratados por um \textit{firewall} de borda, que determina o que entra e o que sai da rede local.
