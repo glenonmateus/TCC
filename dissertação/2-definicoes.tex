@@ -189,9 +189,9 @@ Os \textit{scanners} de vulnerabilidades automatizados contêm, e atualizam regu
 
 \subsection{\textit{Exploit}} \label{sec:exploit}
 
-Os atacantes comumente exploram \textit{bugs} ou vulnerabilidades em programas para ter acesso ao sistema alvo. Infelizmente, existem milhares de \textit{bugs}, em 2013, por exemplo, foram reportados 103,000 \textit{bugs} no sistema operacional Ubuntu. Outro projetos de códigos fechados, possuem estatísticas similares \cite{aeg:thanassis}.
+Os atacantes exploram \textit{bugs} ou vulnerabilidades em programas para ter acesso ao sistema alvo. Infelizmente, existem milhares de \textit{bugs}, em 2013, por exemplo, foram reportados 103,000 \textit{bugs} no sistema operacional Ubuntu. Outro projetos de códigos fechados, possuem estatísticas similares \cite{aeg:thanassis}.
 
-Diante das vulnerabilidades obtidas por um \textit{scanners} (\autoref{sec:scanners}), próximo passo seria usar um \textit{exploit} adequado. Os \textit{exploit} são pequenos utilitários usados para explorar vulnerabilidades específicas, podendo ser utilizados de forma \textit{"stand alone"}, ou seja, diretamente, ou podem ser incorporados à \textit{malwares} \cite{exploit:cassio}.
+Diante das vulnerabilidades obtidas por um \textit{scanners} (\autoref{sec:scanners}), o passo seguinte seria usar um \textit{exploit} adequado. Os \textit{exploit} são pequenos utilitários usados para explorar vulnerabilidades específicas, podendo ser utilizados de forma \textit{"stand alone"}, ou seja, diretamente, ou podem ser incorporados à \textit{malwares} \cite{exploit:cassio}.
 
 Para alguns \textit{exploits} funcionar, é necessário ter acesso ao \textit{shell} da máquina-alvo. Tal artificio pode ser conseguido através da execução de um cavalo de tróia (\autoref{sec:malwares}) pela vítima em seu sistema. O \textit{trojan} abre uma porta de comunicação e permite que o invasor tenha total controle sobre a máquina, dessa forma é possível executar \textit{exploits} para quebrar outros níveis de segurança \cite{univhacker}.
 
@@ -244,6 +244,8 @@ Os \textit{malwares}, também conhecidos como \textit{softwares} maliciosos, sã
  O \textit{Worm} é um \textit{malware} que se propaga através de e-mails, sites ou \textit{software} baseados em rede, explorando as vulnerabilidades das aplicações. Uma das principais características desse tipo de \textit{software} é a propagação automática, ou seja, sem a intervenção do usuário \cite{detectingworm}. 
 
  O \textit{Trojan} ou Cavalo de Troia são programas que precisam ser explicitamente executados para serem instalados no computador. Esse \textit{malware} se disfarça de um programa benigno, por exemplo, cartões virtuais animados, álbuns de fotos, jogos e protetores de tela que ao serem executados o \textit{trojan} é instalado sem o consentimento do usuário. No entanto, o atacante, após invadir um computador, pode instalar o \textit{trojan} alterando as funções já existentes de programas para executarem ações maliciosas \cite{certs-malwares}.
+
+% ransomware e seus tipos
 
  \section{Ferramentas para Avaliação de Segurança} \label{sec:ferramentas}
 
