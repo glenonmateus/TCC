@@ -1,6 +1,6 @@
 \chapter{Segurança em Redes de Computadores} \label{ch:segurança}
 
-Este capítulo esta organizado da seguinte forma: A próxima seção apresenta as definições sobre segurança da informação. Na \autoref{sec:cenario-geral} será apresentado uma topologia de rede comum, que existe na organizações. Na \autoref{sec:pontos-vulnerabilidade} será abordado os pontos vulneráveis em um rede. Na \autoref{sec:ataques} será apresentado o principais ataques a rede de computadores. Por fim, na \autoref{sec:ferramentas} será apresentada as ferramentas usadas para gerar os ataques.
+Este capítulo esta organizado da seguinte forma: A próxima seção apresenta as definições sobre segurança da informação. Na \autoref{sec:cenario-geral} será apresentado uma topologia de rede comum, que existe na organizações. Na \autoref{sec:pontos-vulnerabilidade} será abordado os pontos vulneráveis em um rede. Na \autoref{sec:ataques-comuns} será apresentado o principais ataques a rede de computadores. Por fim, na \autoref{sec:ferramentas} será apresentada as ferramentas usadas para gerar os ataques.
 
 \section{Definições} \label{sec:definições}
 
@@ -39,13 +39,43 @@ Além dos conceito listados, a literatura moderna considera mais alguns conceito
  \item \textbf{Privacidade}: habilidade de uma pessoa controlar a exposição e a disponibilidade de informações acerca de si.
 \end{alineas}
 
+%tipos de ataques (ativos e passivos)
+
 \section{Cenário Geral} \label{sec:cenario-geral}
 
 Nessa seção será explicado alguns conceito básico sobre redes de computadores e descrever uma topologia de rede genérica conectada a internet.
 
 Uma rede de computadores é um conjunto de dispositivos interconectados para compartilhar recursos como \textit{hardware}, \textit{software}, interação e interatividade, onde existem máquinas que desempenham os papéis de clientes, servidores e/ou parceiros dependendo do serviços disponíveis na rede \cite{modelo:jose}.
 
-Uma Internet é uma rede de computadores que interconecta centenas de dispositivos de computadores ao redor do mundo. A União Internacional de Telecomunicações (UTI) estima que haja cerca de 3.578 milhões (\autoref{fig:estatisca-itu}) de usuários usando diferentes tipos de dispositivos, como, celulares, automóveis, \textit{webcams}, TVs, laptops, consoles para jogos, entre outros \cite{estatistica:itu}.
+As características de uma rede são: dois ou mais computadores interligados; meio físico de comunicação (com fio, sem fio, metálico, fibra, etc); vários tipos de equipamentos (estações de usuários, servidores, concentradores, etc); software para comunicação entre os equipamentos (protocolos); aplicativos para transferência de informação \cite{esr:arquitetura}.
+
+As redes podem ser classificadas em duas categorias \cite{esr:arquitetura}: 
+\begin{alineas}
+\item \textbf{Redes par-a-par ou peer-to-peer}: Aqui não existem servidores dedicados ou hierarquia entre os computadores, todos são iguais, onde cada computador funciona como cliente e/ou servidor, cabendo o usuário determinar o que será compartilhado;
+\item \textbf{Redes cliente-servidor}: Aqui há servidores dedicados que oferecem serviços à rede (servidores de arquivos e impressão, correio, fax, comunicação, aplicações, etc), geralmente são otimizadas para processar rapidamente as requisições dos clientes da rede e para garantir a segurança dos arquivos e pastas.
+\end{alineas}
+
+\begin{figure}[htb]
+ \label{fig:arq-redes}
+ \centering
+ \begin{minipage}{0.4\textwidth}
+  \centering
+  \label{fig:p2p}
+  \caption{Rede par-a-par}
+  \includegraphics[scale=.4]{p2p.png}
+  \legend{Fonte: Autoria própria}
+ \end{minipage}
+ \hfill
+ \begin{minipage}{0.4\textwidth}
+  \centering
+  \label{fig:cliente-servidor}
+  \caption{Rede cliente-servidor}
+  \includegraphics[scale=.4]{cliente-servidor.png}
+  \legend{Fonte: Autoria própria}
+ \end{minipage}
+\end{figure}
+
+Uma Internet é uma rede de computadores que interconecta centenas de dispositivos de computadores ao redor do mundo \cite{redes:kurose}. A União Internacional de Telecomunicações (UTI) estima que haja cerca de 3.578 milhões (\autoref{fig:estatisca-itu}) de usuários usando diferentes tipos de dispositivos, como, celulares, automóveis, \textit{webcams}, TVs, \textit{laptops}, consoles para jogos, entre outros \cite{estatistica:itu}.
 
 \begin{figure}[htb]
     \centering
@@ -55,7 +85,17 @@ Uma Internet é uma rede de computadores que interconecta centenas de dispositiv
     \label{fig:estatisca-itu}
 \end{figure}
 
+<<<<<<< HEAD
 \cite{redes:kurose}
+=======
+Os equipamentos que são comumente usados nas redes de computadores são:
+
+\begin{alineas}
+\item \textbf{Concentradores (\textit{hubs})}: São pontos de conexões para dispositivos em uma rede, contendo várias portas usados para conectar os segmentos da LAN. Quando um pacote chega em uma porta, ele é replicado para as demais portas, assim, todos os clientes conectados ao \textit{hub} podem ver todos os pacotes. Esse tipo de equipamento não é mais recomendado.
+\item \textbf{Switches}: São equipamentos que se diferem dos \textit{hubs} por serem capazes de ler o MAC de origem e destino. Além disso, realizam comutações (os pacotes são individualmente encaminhadas entre os dispositivos conectados) de quadros na camada de enlace;
+\item \textbf{Roteadores}: São dispositivos de rede mais tradicionais, como de backbone das intranets e da internet. Suas principais funções são seleção dos melhores caminhos de saída para os pacotes de entrada e roteamento destes pacotes para a interface de saída apropriada.
+\end{alineas}
+>>>>>>> aa84cae762453641e78b5006e2d5ad9e626d6459
 
 Um administrador, com o minimo de consciência sobre segurança, coloca em sua rede, um \textit{firewall} de borda. Um \textit{firewall} sempre é colocada na divisa entre duas ou mais redes, pode ser entre redes privadas ou entre uma rede privada e a Internet. Uma empresa pode ter muitas LANs conectadas de forma arbitrárias, mas todo o tráfego de saída ou de entrada da empresas para a internet deve ser feito através do \textit{firewall} \cite{redesdecomputadores}.
 
@@ -79,10 +119,11 @@ Há vários \textit{softwares} que implementam filtro de pacotes. Alguns são in
 \legend{Fonte: Autoria própria} 
 \end{table}
 
-No exemplo, são permitidas conexões na Intranet no Servidor Web pelas portas 80 e 443 (padrão nos protocolos HTTP e HTTPS) para todos os Flags TCP (ACK, ACK/SYN, SYN e FIN). Além disso, podemos definir um range de portas, como na linha 2, que são abertas as portas 21 e todas as portas entre 3000 e 3070, utilizadas por padrão pelo protocolo FTP.
+No exemplo, são permitidas conexões na Intranet no Servidor Web pelas portas 80 e 443 (padrão nos protocolos HTTP e HTTPS) para todos os \textit{Flags} TCP (ACK, ACK/SYN, SYN e FIN). Além disso, podemos definir um range de portas, como na linha 2, que são abertas as portas 21 e todas as portas entre 3000 e 3070, utilizadas por padrão pelo protocolo FTP.
 
 Um \textit{proxie} trabalha na camada de aplicação interagindo com o programa e seus protocolos, independente de como esse protocolo será encapsulado na pilha TCP/IP. Por exemplo, um \textit{proxy} para Web trabalha apenas com o protocolo HTTP, bloqueando os demais. Além disso, pode-se configurar-lo para controlar quem pode ou não acessar serviços externos \cite{univhacker}.
 
+No \textit{firewall} de filtros de pacotes por estado (SPF) uma nova tecnologia de análise de pacotes foi agregada, permitindo que eles lembrem-se de pacotes anteriores antes de permitir outro mais recente entrar. Isso é implementado na forma de uma tabela de conexões ativas. Quando uma conexão é iniciada, todos os dados do pacote são guardados nela. Se um novo pacote chegar em direção à mesma máquina, o SPF consulta a tabela. O novo pacote e aceito caso seja dada a continuação da conexão ou rejeitado, se não for.
 %Definição de Firewall SPF
 
 Na \autoref{fig:cenario-geral} apresenta uma típica rede composta por um roteador de núcleo que interliga roteadores (A, B e C) de outras redes da Intranet, que por sua vez interliga os clientes e/ou servidores. Todo trafego de saída e entrada da Intranet para a Internet passa pelo roteador de núcleo, além disso, os pacotes são tratados por um \textit{firewall} de borda, que determina o que entra e o que sai da rede local.
@@ -156,9 +197,9 @@ Os \textit{scanners} de vulnerabilidades automatizados contêm, e atualizam regu
 
 \subsection{\textit{Exploit}} \label{sec:exploit}
 
-Os atacantes comumente exploram \textit{bugs} ou vulnerabilidades em programas para ter acesso ao sistema alvo. Infelizmente, existem milhares de \textit{bugs}, em 2013, por exemplo, foram reportados 103,000 \textit{bugs} no sistema operacional Ubuntu. Outro projetos de códigos fechados, possuem estatísticas similares \cite{aeg:thanassis}.
+Os atacantes exploram \textit{bugs} ou vulnerabilidades em programas para ter acesso ao sistema alvo. Infelizmente, existem milhares de \textit{bugs}, em 2013, por exemplo, foram reportados 103,000 \textit{bugs} no sistema operacional Ubuntu. Outro projetos de códigos fechados, possuem estatísticas similares \cite{aeg:thanassis}.
 
-Diante das vulnerabilidades obtidas por um \textit{scanners} (\autoref{sec:scanners}), próximo passo seria usar um \textit{exploit} adequado. Os \textit{exploit} são pequenos utilitários usados para explorar vulnerabilidades específicas, podendo ser utilizados de forma \textit{"stand alone"}, ou seja, diretamente, ou podem ser incorporados à \textit{malwares} \cite{exploit:cassio}.
+Diante das vulnerabilidades obtidas por um \textit{scanners} (\autoref{sec:scanners}), o passo seguinte seria usar um \textit{exploit} adequado. Os \textit{exploit} são pequenos utilitários usados para explorar vulnerabilidades específicas, podendo ser utilizados de forma \textit{"stand alone"}, ou seja, diretamente, ou podem ser incorporados à \textit{malwares} \cite{exploit:cassio}.
 
 Para alguns \textit{exploits} funcionar, é necessário ter acesso ao \textit{shell} da máquina-alvo. Tal artificio pode ser conseguido através da execução de um cavalo de tróia (\autoref{sec:malwares}) pela vítima em seu sistema. O \textit{trojan} abre uma porta de comunicação e permite que o invasor tenha total controle sobre a máquina, dessa forma é possível executar \textit{exploits} para quebrar outros níveis de segurança \cite{univhacker}.
 
@@ -212,9 +253,13 @@ Os \textit{malwares}, também conhecidos como \textit{softwares} maliciosos, sã
 
  O \textit{Trojan} ou Cavalo de Troia são programas que precisam ser explicitamente executados para serem instalados no computador. Esse \textit{malware} se disfarça de um programa benigno, por exemplo, cartões virtuais animados, álbuns de fotos, jogos e protetores de tela que ao serem executados o \textit{trojan} é instalado sem o consentimento do usuário. No entanto, o atacante, após invadir um computador, pode instalar o \textit{trojan} alterando as funções já existentes de programas para executarem ações maliciosas \cite{certs-malwares}.
 
+<<<<<<< HEAD
  Por fim, temos os \textit{ransomwares}. O \textit{ransomware} é um \textit{malware} que criptografa os dados de um computador ou uma rede. A pessoa ou a organização responsável pelo ataque pede um resgate, geralmente pago em bitcoin para manter sua anonimidade, fornecendo uma chave para descriptografar os arquivos mediante o pagamento \cite{ransomware:matt}.
 
  A melhor medida contra esse tipo de \textit{malware}, uma vez que, não há garantias que o atacante irá fornecer a chave depois do pagamento, além de manter o sistema sempre atualizado, é ter uma politica de \textit{backup} regular. O armazenamento de arquivos importantes em outros tipos de mídias não conectadas regularmente ao sistema (removíveis) ou \textit{backup} baseados em nuvens \cite{ransomware:matt}.
+=======
+% ransomware e seus tipos
+>>>>>>> aa84cae762453641e78b5006e2d5ad9e626d6459
 
  \section{Ferramentas para Avaliação de Segurança} \label{sec:ferramentas}
 
@@ -285,4 +330,5 @@ Os \textit{malwares}, também conhecidos como \textit{softwares} maliciosos, sã
  \end{figure}
 
  \section{Conclusão}
- %Este capítulo apresentou
+
+ Este capítulo apresentou
