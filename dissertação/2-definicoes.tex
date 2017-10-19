@@ -56,7 +56,6 @@ Uma Internet é uma rede de computadores que interconecta centenas de dispositiv
 \end{figure}
 
 \cite{redes:kurose}
-%Definição de Internet
 
 Um administrador, com o minimo de consciência sobre segurança, coloca em sua rede, um \textit{firewall} de borda. Um \textit{firewall} sempre é colocada na divisa entre duas ou mais redes, pode ser entre redes privadas ou entre uma rede privada e a Internet. Uma empresa pode ter muitas LANs conectadas de forma arbitrárias, mas todo o tráfego de saída ou de entrada da empresas para a internet deve ser feito através do \textit{firewall} \cite{redesdecomputadores}.
 
@@ -68,6 +67,7 @@ Há vários \textit{softwares} que implementam filtro de pacotes. Alguns são in
 
 \begin{table}[htb]
 \ABNTEXfontereduzida
+\centering
 \caption{Tabela de regras aplicadas no \textit{firewall}}
 \label{tab:firewall-regras}
 \begin{tabular}{l|l|l|l|l|l|l}
@@ -97,6 +97,7 @@ Na \autoref{fig:cenario-geral} apresenta uma típica rede composta por um rotead
 
 \section{Pontos de Vulnerabilidade} \label{sec:pontos-vulnerabilidade}
 %Ex.: Roteador, firewall, clientes e suas aplicações,
+
 \section{Ataques Comuns à Redes de Computadores} \label{sec:ataques-comuns}
 
 Nessa seção será descritos os ataques mais comuns à redes e serviços de organizações privadas e públicas, financeiras ou acadêmicas. Para licitar os ataques dessa seção, levou-se em consideração as estatísticas divulgada pelo CERT.br (\autoref{fig:cert}).
@@ -201,7 +202,7 @@ Existe um forma mais sofisticada de ataque de Negação de Serviço chamada Nega
 
 \subsection{\textit{Malwares}} \label{sec:malwares}
 
-Os \textit{malwares}, também conhecidos como \textit{softwares} maliciosos, são um grande problema para sistemas de informação, sua existência ou execução tem consequências negativas ou involuntárias. Os \textit{malwares} mais conhecidos são os vírus, \textit{worms} e \textit{trojans}.
+Os \textit{malwares}, também conhecidos como \textit{softwares} maliciosos, são um grande problema para sistemas de informação, sua existência ou execução tem consequências negativas ou involuntárias. Nessa seção será apresentado os \textit{malwares} mais popularmente conhecidos que são os vírus, \textit{worms}, \textit{trojans} e, devido sua repercussão, os \textit{ransomwares}.
 
  É importante entender o funcionamento e o comportamento desses códigos maliciosos para, a partir daí, buscar soluções contra esse ataque. Existe dois tipos de análise: análise estática, requer uma verifica linha a linha do código malicioso, geralmente o código não está disponível e até mesmo se estiver, o autor do \textit{malware} muitas vezes ofusca o código, tornando esse tipo de análise difícil. Por outro lado, existe a análise dinâmica, o analista monitora a execução e o comportamento do \textit{malware}, esse tipo de análise é imune a ofuscação de código \cite{encycrypt}.
 
@@ -210,6 +211,10 @@ Os \textit{malwares}, também conhecidos como \textit{softwares} maliciosos, sã
  O \textit{Worm} é um \textit{malware} que se propaga através de e-mails, sites ou \textit{software} baseados em rede, explorando as vulnerabilidades das aplicações. Uma das principais características desse tipo de \textit{software} é a propagação automática, ou seja, sem a intervenção do usuário \cite{detectingworm}. 
 
  O \textit{Trojan} ou Cavalo de Troia são programas que precisam ser explicitamente executados para serem instalados no computador. Esse \textit{malware} se disfarça de um programa benigno, por exemplo, cartões virtuais animados, álbuns de fotos, jogos e protetores de tela que ao serem executados o \textit{trojan} é instalado sem o consentimento do usuário. No entanto, o atacante, após invadir um computador, pode instalar o \textit{trojan} alterando as funções já existentes de programas para executarem ações maliciosas \cite{certs-malwares}.
+
+ Por fim, temos os \textit{ransomwares}. O \textit{ransomware} é um \textit{malware} que criptografa os dados de um computador ou uma rede. A pessoa ou a organização responsável pelo ataque pede um resgate, geralmente pago em bitcoin para manter sua anonimidade, fornecendo uma chave para descriptografar os arquivos mediante o pagamento \cite{ransomware:matt}.
+
+ A melhor medida contra esse tipo de \textit{malware}, uma vez que, não há garantias que o atacante irá fornecer a chave depois do pagamento, além de manter o sistema sempre atualizado, é ter uma politica de \textit{backup} regular. O armazenamento de arquivos importantes em outros tipos de mídias não conectadas regularmente ao sistema (removíveis) ou \textit{backup} baseados em nuvens \cite{ransomware:matt}.
 
  \section{Ferramentas para Avaliação de Segurança} \label{sec:ferramentas}
 
