@@ -39,7 +39,32 @@ Além dos conceito listados, a literatura moderna considera mais alguns conceito
  \item \textbf{Privacidade}: habilidade de uma pessoa controlar a exposição e a disponibilidade de informações acerca de si.
 \end{alineas}
 
-%tipos de ataques (ativos e passivos)
+Pode-se classificar os ataques em passivos e ativos. Em um ataque passivo não há interação direta (modificações de arquivos ou afetando os recursos) com o sistema alvo, o atacante apenas monitora com o objetivo de obter informações. Por outro lado, os ataques ativos há modificações de dados que afetam as operações do sistema. Os ataques podem ser divididos em categorias apresentadas na tabela.
+
+\begin{table}[htb]
+\ABNTEXfontereduzida
+\centering
+\caption{Classificação dos ataques passivos e ativos}
+\label{tab:tipos-de-ataques}
+\begin{tabular}{|l|l|p{7cm}|}
+    \hline
+    \textbf{Ataque} & \textbf{Categoria} & \textbf{Descrição} \\
+    \hline
+    Passivo & Liberação de conteúdo da mensagem & Ocorre quando uma informação é captada e seu conteúdo é lido pelo atacante \\ 
+    \hline
+            & Análise de tráfego & Ocorre quando o tráfego da troca de uma informação (criptografada ou não) é analisado para identificar padrões nas mensagens \\
+    \hline
+    Ativo & Disfarce & Ocorre quando uma entidade finge ser outra entidade \\
+    \hline
+          & Repetição & Ocorre quando os dados são capturados passivamente e, subsequentemente, retransmitidos para produzir um efeito não autorizado \\
+    \hline
+          & Modificação da mensagem & Ocorre quando alguma parte da mensagem original é alterada para produzir um efeito não autorizado \\
+    \hline
+          & Negação de serviço & Ocorre quando há um impedimento ou inibição do uso ou gerenciamento normal das instalações de comunicação \\
+    \hline
+\end{tabular}
+\legend{Fonte: Autoria própria} 
+\end{table}
 
 \section{Cenário Geral} \label{sec:cenario-geral}
 
@@ -85,9 +110,6 @@ Uma Internet é uma rede de computadores que interconecta centenas de dispositiv
     \label{fig:estatisca-itu}
 \end{figure}
 
-<<<<<<< HEAD
-\cite{redes:kurose}
-=======
 Os equipamentos que são comumente usados nas redes de computadores são:
 
 \begin{alineas}
@@ -95,7 +117,6 @@ Os equipamentos que são comumente usados nas redes de computadores são:
 \item \textbf{Switches}: São equipamentos que se diferem dos \textit{hubs} por serem capazes de ler o MAC de origem e destino. Além disso, realizam comutações (os pacotes são individualmente encaminhadas entre os dispositivos conectados) de quadros na camada de enlace;
 \item \textbf{Roteadores}: São dispositivos de rede mais tradicionais, como de backbone das intranets e da internet. Suas principais funções são seleção dos melhores caminhos de saída para os pacotes de entrada e roteamento destes pacotes para a interface de saída apropriada.
 \end{alineas}
->>>>>>> aa84cae762453641e78b5006e2d5ad9e626d6459
 
 Um administrador, com o minimo de consciência sobre segurança, coloca em sua rede, um \textit{firewall} de borda. Um \textit{firewall} sempre é colocada na divisa entre duas ou mais redes, pode ser entre redes privadas ou entre uma rede privada e a Internet. Uma empresa pode ter muitas LANs conectadas de forma arbitrárias, mas todo o tráfego de saída ou de entrada da empresas para a internet deve ser feito através do \textit{firewall} \cite{redesdecomputadores}.
 
