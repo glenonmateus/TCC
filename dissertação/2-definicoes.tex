@@ -168,9 +168,15 @@ Apesar da preocupação dos administradores em proteger suas redes de ataques, d
 
 %phishing e spam 
 
-Outro problema comum é o desenvolvimento de aplicações web sem nenhuma preocupação com segurança, podendo comprometer, não somente o serviço, mas também, em casos mais extremos, o servidor inteiro. Para tal, atacante pode usar vários artifícios, os mais conhecidos são \textit{sql injection} e \textif{cross-site script}.
+Outro problema comum é o desenvolvimento de aplicações \textit{web} sem nenhuma preocupação com segurança, podendo comprometer, não somente o serviço, mas também, em casos mais extremos, o servidor inteiro. Para tal, atacante pode usar vários artifícios, os mais conhecidos são \textit{sql injection} e \textit{cross-site script}.
 
+A inserção de Structured Query Language (SQL) via formulário na aplicação \textit{web} resulta num ataque de \textit{sql injection}. O atacante injeta um código dentro dos campos de entrada, como usuário e senha, de uma aplicação onde a declaração condicional sempre será verdadeiro quando executado. Em casos bem sucedidos, o atacante pode alterar o banco de dados, acessar informações sensíveis ou ter acesso ao sistema \cite{sqlinjection:sankaran}.
 
+No exemplo abaixo, a declaração condicional 'OR 1=1' torna toda a clausura WHERE verdadeiro pois a expressão 1=1 é uma tautologia. A consulta retorna todos os dados da tabela \textit{user\_info}. Perceba que os dois hífens fornecidos no final da entrada comenta o resto da linha.
+
+SELECT * FROM user\_info WHERE logID='' OR 1=1 - - AND pass1=''
+
+O \textit{Cross-site scripting}, conhecido também como XSS, é uma forma de ataque que permite utilizar um aplicação vulnerável para transporta códigos maliciosos até o navegador de outros usuário. O navegador da vítima entende que o código recebido é legítimo e, por isso, informações sensíveis, como o identificador de sessão do usuário, por exemplo, podem ser acessadas programaticamente \cite{}.
 
 \section{Ataques Comuns à Redes de Computadores} \label{sec:ataques-comuns}
 
