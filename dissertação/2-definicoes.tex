@@ -174,9 +174,13 @@ A inserção de Structured Query Language (SQL) via formulário na aplicação \
 
 No exemplo abaixo, a declaração condicional 'OR 1=1' torna toda a clausura WHERE verdadeiro pois a expressão 1=1 é uma tautologia. A consulta retorna todos os dados da tabela \textit{user\_info}. Perceba que os dois hífens fornecidos no final da entrada comenta o resto da linha.
 
-SELECT * FROM user\_info WHERE logID='' OR 1=1 - - AND pass1=''
+\begin{lstlisting}[Language=SQL]
+  SELECT * FROM user_info WHERE logID="" OR 1=1 -- AND pass1="" 
+\end{lstlisting}
 
-O \textit{Cross-site scripting}, conhecido também como XSS, é uma forma de ataque que permite utilizar um aplicação vulnerável para transporta códigos maliciosos até o navegador de outros usuário. O navegador da vítima entende que o código recebido é legítimo e, por isso, informações sensíveis, como o identificador de sessão do usuário, por exemplo, podem ser acessadas programaticamente \cite{}.
+O \textit{Cross-site scripting} (XSS) é uma forma de ataque que permite utilizar um aplicação vulnerável para transporta códigos maliciosos até o navegador de outros usuário. O navegador da vítima entende que o código recebido é legítimo e, por isso, informações sensíveis, como o identificador de sessão do usuário, por exemplo, podem ser acessadas programaticamente \cite{pentestweb:nelson}.
+
+Com o XSS pode-se roubar histórico de navegação, fazer uma varredura de redes privadas, descobrir consultas realizadas em mecanismos de busca, escravizar o navegador \textit{web} e proliferar \textit{worms} (\autoref{sec:malwares}) baseados em XSS \cite{pentestweb:nelson}. 
 
 \section{Ataques Comuns à Redes de Computadores} \label{sec:ataques-comuns}
 
