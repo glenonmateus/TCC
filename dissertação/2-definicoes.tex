@@ -166,11 +166,21 @@ Nessa seção será abordado os pontos fracos que uma pessoa má intencionada po
 
 Apesar da preocupação dos administradores em proteger suas redes de ataques, devido a sua heterogeneidade, sempre haverá uma breja a ser explorada. A literatura considera o ser humano como elo mais fraco, é bastante comum o usuário cadastrar senhas fracas, por conveniência, e fácil memorização (\autoref{sec:forçabruta}).
 
-%phishing e spam 
+Uma técnica bastante comum usadas por golpistas que visa obter informações financeiras ou informações pessoais da vítima, é o \textit{phishing}. Os ataques de \textit{phshing} mais conhecidos são os quais um atacante induz usuários a acessar um site clonado de uma instituição financeira, de modo a coletar suas credenciais de acesso \cite{esr:tratamento}. Muitos usuário, por falta de conhecimento ou até por ingenuidade, acabam informando seus dados em sites falsos, sem ao menos verificar a veracidade do mesmo.
+
+Outros serviços visados por esse tipo de ataque são \cite{esr:tratamento}:
+\begin{alineas}
+\item Credenciais de serviços: e-mails, redes sociais ou armazenamento;
+\item Webmail corporativo; 
+\item Programa de milhagem (companhias aéreas ou redes de supermercados);
+\item Comércio eletrônico.
+\end{alineas}
+
+Uma forma de difundir \textit{phishing} é através de \textit{spam}. Um \textit{spam} é uma mensagem de conteúdo falso enviado para diversos e-mails, nessas mensagens, geralmente, contem uma URL de um site falso ou um site que códigos maliciosos que infectam a vítima. Um \textit{spammer}, como é chamado quem envia \textit{spam}, também usa técnica de \textit{phishing} para obter dados de acesso de e-mails pessoais. Dessa forma, o \textit{spammer} pode acessar a conta de e-mail da vítima e enviar \textit{spam} para todos os seus contatos, sem que ela perceba.
 
 Outro problema comum é o desenvolvimento de aplicações \textit{web} sem nenhuma preocupação com segurança, podendo comprometer, não somente o serviço, mas também, em casos mais extremos, o servidor inteiro. Para tal, atacante pode usar vários artifícios, os mais conhecidos são \textit{sql injection} e \textit{cross-site script}.
 
-A inserção de Structured Query Language (SQL) via formulário na aplicação \textit{web} resulta num ataque de \textit{sql injection}. O atacante injeta um código dentro dos campos de entrada, como usuário e senha, de uma aplicação onde a declaração condicional sempre será verdadeiro quando executado. Em casos bem sucedidos, o atacante pode alterar o banco de dados, acessar informações sensíveis ou ter acesso ao sistema \cite{sqlinjection:sankaran}.
+A inserção de \textit{Structured Query Language} (SQL) via formulário na aplicação \textit{web} resulta num ataque de \textit{sql injection}. O atacante injeta um código dentro dos campos de entrada, como usuário e senha, de uma aplicação onde a declaração condicional sempre será verdadeiro quando executado. Em casos bem sucedidos, o atacante pode alterar o banco de dados, acessar informações sensíveis ou ter acesso ao sistema \cite{sqlinjection:sankaran}.
 
 No exemplo abaixo, a declaração condicional 'OR 1=1' torna toda a clausura WHERE verdadeiro pois a expressão 1=1 é uma tautologia. A consulta retorna todos os dados da tabela \textit{user\_info}. Perceba que os dois hífens fornecidos no final da entrada comenta o resto da linha.
 
