@@ -280,17 +280,35 @@ Existem três métodos mais usados por programas de quebra de senha: ataques de 
 
  Muitos sistemas já possuem formas de contornar esse tipo de ataque, por exemplo, bloqueio de usuário ao errar a palavra-chave por uma certa quantidade de vezes. Outra forma, é colocar um tempo de expiração da senha, por exemplo, a senha deve ser trocada a cada trinta dias por uma diferente e nunca usada anteriormente, dessa maneira, inviabilizando a quebra de senha por força bruta. 
 
- \subsection{Desfiguração de páginas} \label{sec:desfiguração}
+\subsection{Desfiguração de páginas} \label{sec:desfiguração}
 
- A desfiguração de páginas, \textit{defacement} ou pichação ocorre quando o conteúdo da página \textit{web} de um site é alterado. O atacante (\textit{defacer}) consegue fazer alterações em páginas explorando vulnerabilidade nas aplicações \textit{web} que permite injeção de \textit{script} malicioso ou através de furto de senha de acesso à interface \textit{web} usadas para administração remota \cite{certs-ataques}.
+A desfiguração de páginas, \textit{defacement} ou pichação ocorre quando o conteúdo da página \textit{web} de um site é alterado. O atacante (\textit{defacer}) consegue fazer alterações em páginas explorando vulnerabilidade nas aplicações \textit{web} que permite injeção de \textit{script} malicioso ou através de furto de senha de acesso à interface \textit{web} usadas para administração remota \cite{certs-ataques}.
 
- Nos serviços \textit{web}, como por exemplo, apache2 existe um usuário especial, comumente chamado de www-data ou algo semelhante. O servidor \textit{web}, na maioria das vezes, precisa apenas de permissões de leitura nos arquivos porém muitos gerentes de sistemas cujo a conscientização sobre segurança é insuficiente, designa permissões errôneas (escrita ou alteração), e caso haja um comprometimento, através, por exemplo, de injeção de código remoto PHP, do servidor, o atacante poderá alterar a maioria dos arquivos. A ocorrência amplamente disseminada de ataques de desfiguração de páginas Web é uma consequência direta dessa prática \cite{seguranca:william-lawrie}.
+Nos serviços \textit{web}, como por exemplo, apache2 existe um usuário especial, comumente chamado de \textit{www-data} ou algo semelhante. O usuário \textit{www-data}, na maioria das vezes, precisa apenas de permissões de leitura nos arquivos porém muitos gerentes de sistemas cujo a conscientização sobre segurança é insuficiente, designa permissões errôneas (escrita ou alteração), e caso haja um comprometimento, através, por exemplo, de injeção de código remoto PHP, do servidor, o atacante poderá alterar a maioria dos arquivos. A ocorrência amplamente disseminada de ataques de desfiguração de páginas Web é uma consequência direta dessa prática \cite{seguranca:william-lawrie}.
 
- Em 2010, o site Zone-h registrou mais de 1,4 milhões de páginas desfiguradas, muitas delas associadas a ataques \textit{Cross-site scripting} (XSS). Os \textit{defacements} são considerados ataques passivos pois é gerado apenas uma mensagem na tela \cite{angelo-xss}.
+Esse tipo de ataque pode trazer sérias consequências à instituição, entre elas \cite{esr:tratamento}:
 
- \subsection{Negação de Serviços} \label{sec:negação}
+\begin{alineas}
+\item \textbf{Constrangimento}: A instituição pode ter a imagem de confiabilidade afetada, em certos casos, refletir o descaso com que as informações críticas são tratadas; 
+\item \textbf{Disseminação de inverdades}: Algumas alterações no \textit{website}, por exemplo, alterações de preços de produtos, podem resultar em consequências negativas; 
+\item \textbf{Prejuízo de serviços}: Pode indisponibilizar serviços prestados pela instituição, por exemplo, em \textit{e-commence}.
+\end{alineas}
+
+Existem ferramentas que automatizam esse tipo de ataque, elas identificação aplicações web populares vulneráveis, de modo explorar falhas de segurança e alterar o conteúdo da página \cite{esr:tratamento}.
+
+\begin{figure}[htb]
+ \centering
+ \caption{Estatísticas de \textit{defacement}}
+ \includegraphics[scale=.7]{estatisticas-defacement.png}
+ \legend{Fonte: \cite{zoneh}}
+ \label{fig:estatistica-defacement}
+\end{figure}
+
+O site Zone-H mantém um arquivo de páginas alteradas. Os próprios \textit{hackers} submetem os \textit{websites} comprometidos no intuito de ter seus minutos fama. Nas submissões, os sites são espelhados para o Zone-H, então os moderadores verificam a veracidade do \textit{defacement}. Em 2013, foram identificados cerca de 70000 páginas comprometidas, desde então houve uma redução nesse número (\autoref{fig:estatistica-defacement}). Esse tipo de ataque é considerado passivo pois é gerado somente uma mensagem na tela \cite{angelo-xss}.
+
+\subsection{Negação de Serviços} \label{sec:negação}
  
- Um ataque de negação de serviço (\textit{Denial of Service} - DoS) tem como principal objetivo deixar um serviço (servidor \textit{web}, banco de dados) ou recurso (memória, processador)  indisponível, impossibilitando que usuário legítimos tenham acesso a esses recursos. Para tal, o atacante gera diversas requisições inúteis para o servidor, consumindo seus recursos até que o serviço não esteja mais disponível ou degradando a qualidade do serviço \cite{cryptsec}.
+Um ataque de negação de serviço (\textit{Denial of Service} - DoS) tem como principal objetivo deixar um serviço (servidor \textit{web}, banco de dados) ou recurso (memória, processador)  indisponível, impossibilitando que usuário legítimos tenham acesso a esses recursos. Para tal, o atacante gera diversas requisições inúteis para o servidor, consumindo seus recursos até que o serviço não esteja mais disponível ou degradando a qualidade do serviço \cite{cryptsec}.
 
  Pode-se dividir os ataques de Dos em três categorias \cite{redes:kurose}:
 
