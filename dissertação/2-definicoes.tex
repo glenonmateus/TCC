@@ -176,7 +176,17 @@ Outros serviços visados por esse tipo de ataque são \cite{esr:tratamento}:
 \item Comércio eletrônico.
 \end{alineas}
 
-Uma forma de difundir \textit{phishing} é através de \textit{spam}. Um \textit{spam} é uma mensagem de conteúdo falso enviado para diversos e-mails, nessas mensagens, geralmente, contem uma URL de um site falso ou um site que códigos maliciosos que infectam a vítima. Um \textit{spammer}, como é chamado quem envia \textit{spam}, também usa técnica de \textit{phishing} para obter dados de acesso de e-mails pessoais. Dessa forma, o \textit{spammer} pode acessar a conta de e-mail da vítima e enviar \textit{spam} para todos os seus contatos, sem que ela perceba.
+Uma forma de difundir \textit{phishing} é através de \textit{spam}. Um \textit{spam} é uma mensagem, na maioria das vezes de conteúdo falso, enviado para diversos e-mails, nessas mensagens podem conter uma URL de um site falso ou um site com códigos maliciosos \autoref{sec:malwares} que infectam a vítima. Um \textit{spammer}, como é chamado quem envia \textit{spam}, também usa técnica de \textit{phishing} para obter dados de acesso de e-mails pessoais. Dessa forma, o \textit{spammer} pode acessar a conta de e-mail da vítima e enviar \textit{spam} para todos os seus contatos, sem que a vítima perceba.
+
+\begin{figure}[htb]
+ \centering
+ \caption{Fraude identificada pelo CAIS}
+ \includegraphics[scale=.6]{fraude-spam.png}
+ \legend{Fonte: \cite{cais}}
+ \label{fig:spam}
+\end{figure}
+
+O CAIS mantém um catálogo de fraudes identificadas sobre os principais golpes que estão em circulação. Na \autoref{fig:spam}, temos uma fraude recebida por e-mail (\textit{spam}) contendo um \textit{link} para download de um arquivo malicioso criado para roubar informações da vítima e instalar outros arquivos \cite{cais}.
 
 Outro problema comum é o desenvolvimento de aplicações \textit{web} sem nenhuma preocupação com segurança, podendo comprometer, não somente o serviço, mas também, em casos mais extremos, o servidor inteiro. Para tal, atacante pode usar vários artifícios, os mais conhecidos são \textit{sql injection} e \textit{cross-site script}.
 
