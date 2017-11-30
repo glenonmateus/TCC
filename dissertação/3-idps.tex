@@ -1,23 +1,48 @@
 \chapter{Sistemas de Detecção e Prevenção de Intrusão} \label{cap:idps}
- %breve texto introduzindo o capítulo + apresentação das seções
 
 Os sistemas de detecção e prevenção de intrusão (\textit{Intrusion Detection and Prevention System} - IDS/IPS) são ferramentas de importância reconhecida pela comunidade da segurança da informação. Nesse capítulo, vamos apresentar os principais conceitos relacionados a IDS e IPS, uma breve descrição do funcionamento e classificação, para melhor entendimento das ferramentas que iremos apresentar e avaliar em um ambiente de real.
 
 \section{Definições de IDS/IPS} \label{sec:ipds-definicoes}
 
- \textit{Intrusion Detection Systems} (IDS) ou Sistemas de Detecção de Intrusão (SDI) são ferramentas utilizadas para monitoramento de eventos que ocorrem em redes e sistemas computacionais, analisando sinais de possíveis ataques que podem levar a uma violação das politicas de segurança da organização, alertando os administradores do sistema que estes eventos estão ocorrendo. O \textit{Intrusion Detection Systems} (IPS) ou Sistema de Prevenção de Intrusão (SPI) possui todas as funcionalidades do IDS com uma diferença, ele é capaz de deter alguns possíveis incidentes, minimizando os impactos causados por sistemas comprometidos \cite{mukhopadhyay01}.
+\textit{Intrusion Detection Systems} (IDS) ou Sistemas de Detecção de Intrusão (SDI) são ferramentas utilizadas para monitoramento de eventos que ocorrem em redes e sistemas computacionais, analisando sinais de possíveis ataques que podem levar a uma violação das politicas de segurança da organização, alertando os administradores do sistema que estes eventos estão ocorrendo. O \textit{Intrusion Detection Systems} (IPS) ou Sistema de Prevenção de Intrusão (SPI) possui todas as funcionalidades do IDS com uma diferença, ele é capaz de deter os incidentes, minimizando os impactos causados por sistemas comprometidos \cite{mukhopadhyay01}.
 
- Basicamente os sistemas de detecção de intrusão são compostos por quatro componentes, temos: Sensor ou Agente, responsável pelo monitoramento e analise do trafego capturado; Banco de Dados, usado como repositório das informações de eventos detectados pelos sensor ou agente que serão processados; Gestor, é o dispositivo central que recebe, analisa e gerencia as informações de eventos vindos do sensor ou agente; Console, fornece uma interface para administração e monitoramento das atividades do IDS.
+%localizar a referencia
+Os IDS's são compostos basicamente por quatro componentes, temos: 
+\begin{alineas}
+\item \textbf{Sensor ou Agente}: responsável pelo monitoramento e analise do trafego capturado; 
+\item \textbf{Base de Dados}: usado como repositório das informações de eventos detectados pelo sensor e que posteriormente serão processados;
+\item \textbf{Gestor}: é o dispositivo central que recebe, analisa e gerencia as informações de eventos vindo do sensor; 
+\item \textbf{Console}: é uma interface para administração e monitoramento das atividades.
+\end{alineas}
 
- \section{Tipos de IDS/IPS} \label{sec:idps-tipos}
+\section{Tipos de Sistemas de Detecção e Prevenção de Intrusão} \label{sec:idps-tipos}
 
- Os IDSs são classificados de acordo com o local onde o sensor é instalado, \textit{Host Based Intrusion Detection Systems} (HIDS) e \textit{Network Based Intrusion Detection Systems} (NIDS), e a técnica utilizada para o monitoramento, baseado em assinaturas e anomalias \cite{nagahama2012ipsflow}.
+Os IDPS's são classificados de acordo com o local onde o sensor é instalado, \textit{Host Based Intrusion Detection Systems} (HIDS) e \textit{Network Based Intrusion Detection Systems} (NIDS), e a técnica utilizada para o monitoramento, baseado em assinaturas e anomalias \cite{nagahama2012ipsflow}.
 
- Em um HIDS o sensor é instalado no \textit{host} que será monitorado, analisando as informações contidas na própria máquina. Esse tipo de IDS tem o objetivo de analisar aspectos internos ao \textit{host} como processos em execução, modificações na configuração do sistema e serviços, monitorar o tráfego de rede somente do \textit{host} e acesso a arquivos não autorizados, entre outros.
+\subsection{Sistemas de Detecção de Intrusão Baseados em Host (HIDS)}
+Em um HIDS o sensor é instalado no \textit{host}, monitorando as informações contidas na própria máquina. Esse tipo de IDS não observa o tráfego que passa pela rede (somente o trafego que passa pela placa de rede do \textit{host}), seu uso volta-se a verificação de informações relativas aos eventos e registros de logs e sistemas de arquivos (permissão, alteração, acesso a arquivos não autorizados) \cite{}.  
 
- Os HIDS possuem algumas vantagens como evitar que alguns códigos sejam executados; bloqueia o tráfego de entrada e saída contendo ataques e uso não autorizado de protocolos e programas; evita que arquivos possam ser acessados, modificados e deletados impedindo o instalação de \textit{malware} e outros ataques envolvendo acesso inapropriado a arquivos. Por outro lado, um HIDS possui algumas limitações como, por exemplo, difícil instalação e manutenção; interferir no desempenho do \textit{host}; demora para identificar alguns eventos consequentemente a resposta a esses incidentes sofrerá um \textit{delay} \cite{scarfone01}.
+As vantagens do uso dos HIDS são: 
 
- Já em um NIDS, o sensor é instalado na rede e a interface de rede atua em um modo especial chamado ``promíscuo'', passando a ter a capacidade de capturar o tráfego da rede mesmo que os pacotes não sejam destinados ao próprio sensor.
+\begin{alineas}
+\item Evita a execução de códigos maliciosos;
+\item Bloqueia tráfego de entrada e saída contendo ataques e uso não autorizado de protocolos e programas;
+\item Evita que arquivos possam ser acessados, modificados e deletados impedindo a instalação de \textit{malwares} e ataques envolvendo acesso inapropriado a arquivos;
+\end{alineas}
+
+Por outro lado, o HID possui alguns desvantagens como \cite{scarfone01}:  
+
+\begin{alineas}
+\item Difícil instalação e manutenção;
+\item Interfere no desempenho do \textit{hosts};
+\item Demora para identificar eventos consequentemente a resposta ao incidente terá um atraso.
+\end{alineas}
+
+%s HIDS possuem algumas vantagens como evitar que alguns códigos sejam executados; bloqueia o tráfego de entrada e saída contendo ataques e uso não autorizado de protocolos e programas; evita que arquivos possam ser acessados, modificados e deletados impedindo o instalação de \textit{malware} e outros ataques envolvendo acesso inapropriado a arquivos. Por outro lado, um HIDS possui algumas limitações como, por exemplo, difícil instalação e manutenção; interferir no desempenho do \textit{host}; demora para identificar alguns eventos consequentemente a resposta a esses incidentes sofrerá um \textit{delay} \cite{scarfone01}.
+
+\subsection{Sistemas de Detecção de Intrusão Baseados em Rede (NIDS)}
+
+No NIDS, o sensor é instalado na rede e a interface de rede atua em um modo especial chamado ``promíscuo'', tendo a capacidade de capturar o tráfego mesmo que os pacotes não sejam destinados ao sensor. Dessa forma, o NIDS monitora e analisa todo o trafego no segmento da rede, detectando atividades maliciosas, como ataques baseados em serviço, \textit{portscans}, entre outros, além de detectar se algum usuário legítimo está fazendo mau uso da rede \cite{}.
 
 Quanto a localização o NIDS pode ser classificado como passivo ou ativo. No modo passivo, o IDS monitora copias dos pacotes da rede que passam pelo \textit{switch} ou \textit{hub} onde está conectado, ficando limitado somente a gerar notificações quando encontrado algum tráfego malicioso. Enquanto no modo ativo, o IDS é instalado da forma que o tráfego da rede passe através do sensor parecendo com o fluxo de dados associado com um \textit{firewall}. Dessa forma, ele é capaz de parar ataques bloqueando o fluxo malicioso. 
 
