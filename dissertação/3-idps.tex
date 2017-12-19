@@ -4,7 +4,9 @@ Os sistemas de detecção e prevenção de intrusão (\textit{Intrusion Detectio
 
 \section{Definições de IDS/IPS} \label{sec:ipds-definicoes}
 
-\textit{Intrusion Detection Systems} (IDS) ou Sistemas de Detecção de Intrusão (SDI) são ferramentas utilizadas para monitoramento de eventos que ocorrem em redes e sistemas computacionais, analisando sinais de possíveis ataques que podem levar a uma violação das politicas de segurança da organização, alertando os administradores do sistema que estes eventos estão ocorrendo. O \textit{Intrusion Detection Systems} (IPS) ou Sistema de Prevenção de Intrusão (SPI) possui todas as funcionalidades do IDS com uma diferença, ele é capaz de deter os incidentes, minimizando os impactos causados por sistemas comprometidos \cite{mukhopadhyay01}.
+\textit{Intrusion Detection Systems} (IDS) ou Sistemas de Detecção de Intrusão (SDI) são ferramentas utilizadas para monitoramento de eventos que ocorrem em redes e sistemas computacionais, analisando sinais de possíveis ataques que podem levar a uma violação das politicas de segurança da organização, alertando os administradores do sistema que estes eventos estão ocorrendo. 
+
+O \textit{Intrusion Detection Systems} (IPS) ou Sistema de Prevenção de Intrusão (SPI) possui todas as funcionalidades do IDS com uma diferença, ele é capaz de deter os incidentes, minimizando os impactos causados por sistemas comprometidos \cite{mukhopadhyay01}.
 
 %localizar a referencia
 Os IDS's são compostos basicamente por quatro componentes, temos: 
@@ -21,7 +23,7 @@ Os IDPS's são classificados de acordo com o local onde o sensor é instalado, \
 
 \subsection{Sistemas de Detecção de Intrusão Baseados em Host (HIDS)}
 
-Em um HIDS o sensor é instalado no \textit{host}, monitorando as informações contidas na própria máquina. Esse tipo de IDS não observa o tráfego que passa pela rede (somente o trafego que passa pela placa de rede do \textit{host}), seu uso volta-se a verificação de informações relativas aos eventos e registros de logs e sistemas de arquivos (permissão, alteração, acesso a arquivos não autorizados) \cite{}.  
+Em um HIDS o sensor é instalado no \textit{host}, monitorando as informações contidas na própria máquina. Esse tipo de IDS não observa o tráfego que passa pela rede (somente o trafego que passa pela placa de rede do \textit{host}), seu uso volta-se a verificação de informações relativas aos eventos e registros de logs e sistemas de arquivos (permissão, alteração, acesso a arquivos não autorizados) \cite{nagahama2012ipsflow}.  
 
 As vantagens do HIDS são: 
 
@@ -39,58 +41,95 @@ Por outro lado, o HID possui alguns desvantagens como \cite{scarfone01}:
 \item Demora para identificar eventos consequentemente a resposta ao incidente terá um atraso.
 \end{alineas}
 
-%s HIDS possuem algumas vantagens como evitar que alguns códigos sejam executados; bloqueia o tráfego de entrada e saída contendo ataques e uso não autorizado de protocolos e programas; evita que arquivos possam ser acessados, modificados e deletados impedindo o instalação de \textit{malware} e outros ataques envolvendo acesso inapropriado a arquivos. Por outro lado, um HIDS possui algumas limitações como, por exemplo, difícil instalação e manutenção; interferir no desempenho do \textit{host}; demora para identificar alguns eventos consequentemente a resposta a esses incidentes sofrerá um \textit{delay} \cite{scarfone01}.
-
 \subsection{Sistemas de Detecção de Intrusão Baseados em Rede (NIDS)}
 
-No NIDS, o sensor é instalado na rede e a interface de rede atua em um modo especial chamado ``promíscuo'', tendo a capacidade de capturar o tráfego mesmo que os pacotes não sejam destinados ao sensor. Dessa forma, o NIDS monitora e analisa todo o trafego no segmento da rede, detectando atividades maliciosas, como ataques baseados em serviço, \textit{portscans}, entre outros, além de detectar se algum usuário legítimo está fazendo mau uso da rede \cite{}.
+No NIDS, o sensor é instalado na rede e a interface de rede atua em um modo especial chamado ``promíscuo'', tendo a capacidade de capturar o tráfego mesmo que os pacotes não sejam destinados ao sensor. Dessa forma, o NIDS monitora e analisa todo o trafego no segmento da rede, detectando atividades maliciosas, como ataques baseados em serviço, \textit{portscans}, entre outros, além de detectar se algum usuário legítimo está fazendo mau uso da rede \cite{nagahama2012ipsflow}.
 
-Quanto a localização o NIDS pode ser classificado como passivo ou ativo. No modo passivo, o IDS monitora copias dos pacotes da rede que passam pelo \textit{switch} ou \textit{hub} onde está conectado, ficando limitado somente a gerar notificações quando encontrado algum tráfego malicioso. Enquanto no modo ativo, o IDS é instalado da forma que o tráfego da rede passe através do sensor parecendo com o fluxo de dados associado com um \textit{firewall}. Dessa forma, ele é capaz de parar ataques bloqueando o fluxo malicioso. 
+Quanto a localização o NIDS pode ser classificado como passivo ou ativo. No modo passivo (\autoref{fig_nids-ativo}), o IDS monitora copias dos pacotes da rede que passam pelo \textit{switch} ou \textit{hub} onde está conectado, ficando limitado somente a gerar notificações quando encontrado algum tráfego malicioso. 
 
-Os NIDS possuem algumas vantagens como serem independentes de plataforma; não interfere no desempenho do \textit{host}; fácil implantação e transparente para o atacante. Por outro lado, possuem desvantagens como: pode adicionar retardados nos pacotes quando instalado no modo ativo, isso ocorre principalmente se houver um subdimensionamento do \textit{hardware}; dificuldade de tratar dados de redes de alta velocidade; quando em modo passivo, trata apenas o segmento da rede que o IDS esta instalado e dificuldade de tratar dados criptografados. Esse tipo de IDS é mais utilizado devido a grande heterogeneidade de dispositivos e sistemas operacionais disponíveis na rede, tornando a administração mais simples se comparados com o HIDS.
+No entanto, no modo ativo (\autoref{fig_nids-passivo}), o IDS é instalado da forma que o tráfego da rede passe através do sensor parecendo com o fluxo de dados associado com um \textit{firewall}. Dessa forma, ele é capaz de parar ataques bloqueando o fluxo malicioso. 
 
- Quanto a técnica de monitoramento utilizado, o IDS pode ser baseados em assinaturas ou anomalias. IDSs baseados em assinaturas compara os pacotes com uma base de assinaturas de ataques previamente conhecidos e reportados por especialistas, cada assinatura identifica um ataque. Tem como vantagem, usar poucos recursos do servidor e rápido processamento. Porém, as desvantagens são: exigi uma atualização constante da base de assinaturas; alto conhecimento para geração da base e possuir um alto índice de falsos positivos e negativos.
+É necessário uma analise minuciosa na instalação de um IDS ativo pois um mal dimensionamento de \textit{hardware} pode degradar a rede, adicionando atrasos excessivos aos pacotes.
 
- Já os baseados em anomalias, procuram determinar um comportamento normal na fase de aprendizagem do sistema computacional ou rede e sempre que existir um desvio desse padrão alertas são gerados. Possui a vantagem de detectar novos ataques sem necessariamente conhecer a fundo a intrusão através dos desvio de comportamento. Porém existe a desvantagem de gerar um grande número de falsos alertas em decorrência a modificações na rede ou \textit{host} nem sempre representar um tráfego malicioso. 
+As principais vantagens do um NIDS são: 
+
+\begin{alineas}
+\item São independentes de plataformas;
+\item Não interfere no desempenho do \textit{host};
+\item Fácil implantação e transparente para o atacante.
+\end{alineas}
+
+Dentre as desvantagens, temos:
+
+\begin{alineas}
+\item Pode adicionar retardados aos pacotes quando instalado no modo ativo;
+\item Dificuldade de tratar dados de redes de alta velocidade;
+\item Trata apenas segmentos de rede;
+\item Dificuldade de tratar dados criptografados.
+\end{alineas}
+
+%Devido a grande heterogeneidade de dispositivos e sistemas operacionais na rede, a utilização desse tipo de IDS torna a administração mais simples se comparados com o HIDS.
 
 \begin{figure}[htb]
- \label{fig:nids-arquitetura}
+ \label{fig_nids-arquitetura}
  \centering
  \begin{minipage}{0.4\textwidth}
   \centering
-  \label{fig:nids-passivo}
-  \caption{Exemplo de arquitetura de NIDS passivo}
+  \caption{Exemplo de arquitetura de NIDS passivo} \label{fig_nids-passivo}
   \includegraphics[scale=.55]{nids_passivo.png}
   \legend{Fonte: Autoria própria}
  \end{minipage}
  \hfill
  \begin{minipage}{0.4\textwidth}
   \centering
-  \label{fig:nids-ativo}
-  \caption{Exemplo de Arquitetura de NIDS ativo}
+  \caption{Exemplo de Arquitetura de NIDS ativo} \label{fig_nids-ativo}
   \includegraphics[scale=.55]{nids_ativo.png}
   \legend{Fonte: Autoria própria}
  \end{minipage}
 \end{figure}
 
+\subsection{Formas de Detecção} \label{sec:idps-formas}
+
+Quanto a técnica de monitoramento utilizado, o IDS pode ser baseados em assinaturas ou anomalias. IDSs baseados em assinaturas compara os pacotes com uma base de assinaturas de ataques previamente conhecidos e reportados por especialistas, cada assinatura identifica um ataque \cite{nagahama2012ipsflow}.  
+
+As vantagens de um IDS baseados em assinaturas são:
+
+\begin{alineas}
+\item Usa pouco recurso de \textif{hardware} do servidor;
+\item Possui, de certa forma, um rápido processamento.
+\end{alineas}
+
+Dentre as desvantagens temos:
+
+\begin{alineas}
+\item Exige uma atualização constante da base de assinaturas;
+\item Para a geração de uma base própria, a equipe precisa de um alto conhecimento técnico;
+\item Possui altos índices de falsos positivos e negativos.
+\end{alineas}
+
+Os IDS baseados em anomalias, procuram determinar um comportamento normal na fase de aprendizagem do sistema computacional ou rede e sempre que existir um desvio desse padrão alertas são gerados. 
+
+Possui a vantagem de detectar novos ataques sem necessariamente conhecer a fundo a intrusão através dos desvios de comportamento. Porém, tem como desvantagem a geração de um grande número de falsos alertas em decorrência a modificações na rede ou \textit{host} nem sempre representar um tráfego malicioso. 
+
 \section{Principais Ferramentas de IDS} \label{sec:idps-ferramentas}
+
+Nesse capitulo, será apresentado as ferramentas de IDPS analisadas. A escolha dessas ferramentas deu-se devido ser de código aberto e de livre uso, e também, pela sua popularidade diante da comunidade de segurança da informação.
+
 \subsection{Snort} \label{sec:snort}
 
-O Snort é um sistema de detecção e prevenção de intrusão de código fonte aberto escrita na linguagem de programação C bem conhecido pela comunidade da segurança da informação. Seu primeiro \textit{release} foi lançado em 1998 e desde então passa por constantes revisões e aperfeiçoamentos, com o passar dos anos se tornou o IDS mais utilizado no mundo. Ele combina análise baseada em assinaturas e anomalias, podendo operar em três modos: \textit{sniffer}, \textit{packet logger} e de sistema de detecção de intrusão (NIDS) \cite{snortorgbr}.
+O Snort é um sistema de detecção e prevenção de intrusão de código fonte aberto escrita na linguagem de programação C bem conhecido pela comunidade da segurança da informação. Seu primeiro \textit{release} foi lançado em 1998 e desde então passa por constantes revisões e aperfeiçoamentos, com o passar dos anos se tornou o IDS mais utilizado no mundo. Ele combina análise baseada em assinaturas e anomalias, podendo operar em três modos: \textit{sniffer}, \textit{packet logger} e de sistema de detecção de intrusão (NIDS) \cite{snort.org}.
 
-No modo \textit{Sniffer}, o Snort captura os pacotes e exibi as informações no console. No modo \textit{Packet Logger}, além de capturar o tráfego, ele registrar essas informações em disco (arquivos de logs). E no modo NIDS, é o modo mais complexo, permite analise do pacotes de rede em tempo real.
+No modo \textit{Sniffer}, o Snort captura os pacotes e exibi as informações no console de forma continua. No modo \textit{Packet Logger}, além de capturar o tráfego, o Snort escreve essas informações em arquivos (chamados de logs) que são armazenados no disco. Por fim, o \textit{Network Intrusion Detection System} - NIDS, sendo o modo mais complexo e completo, permitindo capturar e analisar os pacotes de rede em tempo real.
 
-Existe quatro componentes no Snort: O \textit{Sniffer}, o Pré-processador, o Motor de Detecção e Módulo de Saída. Os componentes são organizados de acordo com a figura \ref{snort-componentes} \cite{kohlenberg2007snort}.
+Existe quatro componentes no Snort: O \textit{Sniffer}, o Pré-processador, o Motor de Detecção e Módulo de Saída. A \autoref{fig_snort-componentes} mostra a disposição dos componentes \cite{kohlenberg2007snort}.
 
- \begin{figure}[!htb]
-   \centering
-   \includegraphics[scale=0.6]{snort_componentes}
-   \caption{Componentes do Snort}
-   \label{snort-componentes}
- \end{figure}
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[scale=0.6]{snort_componentes}
+  \caption{Componentes do Snort} \label{fig_snort-componentes}
+\end{figure}
 
- \subsection{Suricata} \label{sec:suricata}
- \section{Conclusão} \label{sec:idps-conclusao}
- %Ex: Este capítulo apresentou...
+\subsection{Suricata} \label{sec:suricata}
+\section{Conclusão} \label{sec:idps-conclusao}
 
-
+%Ex: Este capítulo apresentou...

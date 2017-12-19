@@ -76,25 +76,23 @@ As características de uma rede são: dois ou mais computadores interligados; me
 
 As redes podem ser classificadas em duas categorias \cite{esr:arquitetura}: 
 \begin{alineas}
-\item \textbf{Redes par-a-par ou peer-to-peer}: Aqui não existem servidores dedicados ou hierarquia entre os computadores, todos são iguais, onde cada computador funciona como cliente e/ou servidor, cabendo o usuário determinar o que será compartilhado;
-\item \textbf{Redes cliente-servidor}: Aqui há servidores dedicados que oferecem serviços à rede (servidores de arquivos e impressão, correio, fax, comunicação, aplicações, etc), geralmente são otimizadas para processar rapidamente as requisições dos clientes da rede e para garantir a segurança dos arquivos e pastas.
+\item \textbf{Redes par-a-par ou peer-to-peer}: Aqui não existem servidores dedicados ou hierarquia entre os computadores, todos são iguais, onde cada computador funciona como cliente e/ou servidor, cabendo o usuário determinar o que será compartilhado (\autoref{fig_p2p});
+\item \textbf{Redes cliente-servidor}: Aqui há servidores dedicados que oferecem serviços à rede (servidores de arquivos e impressão, correio, fax, comunicação, aplicações, etc), geralmente são otimizadas para processar rapidamente as requisições dos clientes da rede e para garantir a segurança dos arquivos e pastas (\autoref{fig_cliente-servidor}). 
 \end{alineas}
 
 \begin{figure}[htb]
- \label{fig:arq-redes}
+ \label{fig:arquitetura-redes}
  \centering
  \begin{minipage}{0.4\textwidth}
   \centering
-  \label{fig:p2p}
-  \caption{Rede par-a-par}
+  \caption{Rede par-a-par} \label{fig_p2p}
   \includegraphics[scale=.4]{p2p.png}
   \legend{Fonte: Autoria própria}
  \end{minipage}
  \hfill
  \begin{minipage}{0.4\textwidth}
   \centering
-  \label{fig:cliente-servidor}
-  \caption{Rede cliente-servidor}
+  \caption{Rede cliente-servidor} \label{fig_cliente-servidor}
   \includegraphics[scale=.4]{cliente-servidor.png}
   \legend{Fonte: Autoria própria}
  \end{minipage}
