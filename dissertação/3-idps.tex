@@ -88,6 +88,19 @@ Dentre as desvantagens, temos:
  \end{minipage}
 \end{figure}
 
+\subsection{Sistema de Detecção de Intrusão Distribuídos}
+
+A função de um Sistema de Detecção de Intrusão Distribuído (SDID) é de gerencia. Os sensores (pode ser NIDS, HIDS ou a combinação de ambos), localizados remotamente, reportam os alertas para um centralizador. Os \textit{logs} de ataques são, periodicamente, enviados para a estação de gerenciamento, armazenando em uma base única e centralizada, além disso, novas assinaturas de ataques podem ser enviadas para os sensores \cite{snort:andrew}.   
+
+\begin{figure}[!htb]
+  \centering
+  \caption{Sistema de Detecção de Intrusão Distribuído} \label{fig_dids}
+  \includegraphics[scale=0.7]{dids.png}
+  \legend{Fonte: Autoria própria}
+\end{figure}
+
+Na \autoref{fig_dids} mostra um SDID composto por dois sensores e um estação de gerenciamento centralizado. O sensor NIDS 1 e NIDS 2 estão operando em modo \textit{promiscuos} e está protegendo segmentos de rede. É recomendando que a conexão entre os sensores e o centralizado seja feita por uma rede privada, em caso de utilização de rede públicas, recomenda-se adicionar uma camada de segurança, como criptografia, ou VPN.
+
 \subsection{Formas de Detecção} \label{sec:idps-formas}
 
 Quanto a técnica de monitoramento utilizado, o IDS pode ser baseados em assinaturas ou anomalias. IDSs baseados em assinaturas compara os pacotes com uma base de assinaturas de ataques previamente conhecidos e reportados por especialistas, cada assinatura identifica um ataque \cite{nagahama2012ipsflow}.  
@@ -121,15 +134,15 @@ O Snort é um sistema de detecção e prevenção de intrusão de código fonte 
 
 No modo \textit{Sniffer}, o Snort captura os pacotes e exibi as informações no console de forma continua. No modo \textit{Packet Logger}, além de capturar o tráfego, o Snort escreve essas informações em arquivos (chamados de logs) que são armazenados no disco. Por fim, o \textit{Network Intrusion Detection System} - NIDS, sendo o modo mais complexo e completo, permitindo capturar e analisar os pacotes de rede em tempo real.
 
-Existe quatro componentes no Snort: O \textit{Sniffer}, o Pré-processador, o Motor de Detecção e Módulo de Saída. A \autoref{fig_snort-componentes} mostra a disposição dos componentes \cite{kohlenberg2007snort}.
+Existe quatro componentes no Snort: O \textit{Sniffer}, o Pré-processador, o Motor de Detecção e Módulo de Saída. A \autoref{fig_snort-componentes} mostra a disposição dos componentes \cite{snort:andrew}.
 
 \begin{figure}[!htb]
   \centering
-  \includegraphics[scale=0.6]{snort_componentes}
   \caption{Componentes do Snort} \label{fig_snort-componentes}
+  \includegraphics[scale=0.6]{snort_componentes}
+  \legend{Fonte: Autoria própria}
 \end{figure}
 
 \subsection{Suricata} \label{sec:suricata}
 \section{Conclusão} \label{sec:idps-conclusao}
-
 %Ex: Este capítulo apresentou...
