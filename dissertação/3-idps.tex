@@ -155,10 +155,9 @@ Um \textit{sniffer} tem os seguintes usos:
 \item Capturar senhas em texto plano e outros dados sensíveis.
 \end{alineas}
 
-Assim como qualquer outra ferramenta de rede, os \texit{sniffers} podem ser usados tanto para o bem quanto para o mal. Então, criptografar o trafego de rede previne que pessoas sejam capazes de lerem os pacotes capturados.
+Assim como qualquer outra ferramenta de rede, os \texit{sniffers} podem ser usados tanto para o bem quanto para o mal. Então, criptografar o trafego de rede previne que pessoas sejam capazes de lerem os pacotes capturados \cite{snort:andrew}.
 
-
-O preprocessador ...
+O preprocessador pega o pacotes bruto e faz uma checagem utilizando um determinado \textit{plug-in}. Esses \textit{plug-ins} verificam se o pacote tem um tipo particular de comportamento, uma vez determinado, o pacote é enviado para o motor de detecção caso contrário é descartado.
 
 \subsection{Suricata} \label{sec:suricata}
 \section{Conclusão} \label{sec:idps-conclusao}
