@@ -134,14 +134,31 @@ O Snort é um sistema de detecção e prevenção de intrusão de código fonte 
 
 No modo \textit{Sniffer}, o Snort captura os pacotes e exibi as informações no console de forma continua. No modo \textit{Packet Logger}, além de capturar o tráfego, o Snort escreve essas informações em arquivos (chamados de logs) que são armazenados no disco. Por fim, o \textit{Network Intrusion Detection System} - NIDS, sendo o modo mais complexo e completo, permitindo capturar e analisar os pacotes de rede em tempo real.
 
-Existe quatro componentes no Snort: O \textit{Sniffer}, o Pré-processador, o Motor de Detecção e Módulo de Saída. A \autoref{fig_snort-componentes} mostra a disposição dos componentes \cite{snort:andrew}.
+Existe quatro componentes no Snort: O \textit{sniffer}, o preprocessador, o motor de detecção e módulos de saída. A \autoref{fig_snort-componentes} mostra a arquitetura e disposição dos componentes \cite{snort:andrew}.
 
 \begin{figure}[!htb]
   \centering
-  \caption{Componentes do Snort} \label{fig_snort-componentes}
+  \caption{Arquitetura do Snort} \label{fig_snort-componentes}
   \includegraphics[scale=0.6]{snort_componentes}
   \legend{Fonte: Autoria própria}
 \end{figure}
+
+O preprocessador, o motor de detecção e os componentes de alerta do Snort são todos \textit{plug-ins}. \textit{Plug-ins} são programas escritos em conformidade com a API de \textit{plug-ins} do Snort. Esses programas são usados no core do Snort, mas eles são separados para que as modificações feitas no \textit{core} sejam mais confiáveis e mais fáceis de realizar \cite{snort:andrew}.
+
+O \textit{sniffer} é um dispositivo (\textit{software} ou \textit{hardware}) usado para ver o trafego passante em algum segmento de rede. No caso da Internet, consiste geralmente de trafico IP (composto por diferentes protocolos de alto nível como, TCP, UDP, ICMP, protocolos de roteamento e IPSec). Os pacotes são analisado, interpretados e exibidos de uma forma legível para os humanos.
+
+Um \textit{sniffer} tem os seguintes usos:
+
+\begin{alineas}
+\item Analisador de rede e resolução de problemas;
+\item Analisador de performance e avaliação comparativa;
+\item Capturar senhas em texto plano e outros dados sensíveis.
+\end{alineas}
+
+Assim como qualquer outra ferramenta de rede, os \texit{sniffers} podem ser usados tanto para o bem quanto para o mal. Então, criptografar o trafego de rede previne que pessoas sejam capazes de lerem os pacotes capturados.
+
+
+O preprocessador ...
 
 \subsection{Suricata} \label{sec:suricata}
 \section{Conclusão} \label{sec:idps-conclusao}
