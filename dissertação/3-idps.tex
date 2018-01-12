@@ -198,13 +198,14 @@ Dentre as ações que podem ser tomadas temos:
 \item \textbf{\textit{Log}}: Registra e não alerta.
 \end{alineas}
 
-Abaixo temos um exemplo de regra, ele é composto formato de saída (\textit{alert})
+Abaixo temos um exemplo de regra.
 
 \begin{lstlisting}
 alert icmp any any -> any any (msg:"Ping suspeito"; 
 sid:1; resp:icmp_all;)
 \end{lstlisting}
 
+Com a regra acima, o Snort gerará um alerta de qualquer pacotes ICMP que estiver passando de qualquer máquina e porta origem (\textbf{any any}) para qualquer máquina e porta destino (\textbf{any any}) e enviará pacotes ICMP para a máquina de origem com as mensagens \textit{host unreachable; network unreachable}.
 
 \subsection{Suricata} \label{sec:suricata}
 \section{Conclusão} \label{sec:idps-conclusao}
