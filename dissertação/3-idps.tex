@@ -139,8 +139,8 @@ Existe quatro componentes no Snort: O \textit{sniffer}, o pré-processador, o mo
 \begin{figure}[!htb]
   \centering
   \caption{Arquitetura do Snort} \label{fig_snort-componentes}
-  \includegraphics[scale=0.6]{snort_componentes}
-  \legend{Fonte: Autoria própria}
+  \includegraphics[scale=0.5]{arquitetura-snort.png}
+  \legend{Fonte: \cite{arquitetura:martin}}
 \end{figure}
 
 O pré-processador, o motor de detecção e os componentes de alerta do Snort são todos \textit{plugins}. Os \textit{Plugins} são programas escritos em conformidade com a API de \textit{plugins} do Snort. Esses programas são usados no core do Snort, mas eles são separados para que as modificações feitas no \textit{core} sejam mais confiáveis e mais fáceis de realizar \cite{snort:andrew}.
@@ -161,10 +161,10 @@ O pré-processador pega o pacote bruto e faz uma checagem utilizando um determin
 
 Na \autoref{fig_snort_preprocessor}, pode-se ver como o pré-processador utiliza \textit{plugins} para chegar pacotes. O Snort suporta muitos tipos de pré-processadores, cobrindo vários protocolos comumente usados como, IP \textit{fragmentation handling}, \textit{port scanning} e controle de fluxo.
 
-\begin{figure}[!htb]
+\begin{figure}[htb]
   \centering
   \caption{Uso de \textit{plugins} no pré-processador} \label{fig_snort_preprocessor}
-  \includegraphics[scale=0.8]{snort_preprocessor.png}
+  \includegraphics[scale=0.7]{snort_preprocessor.png}
   \legend{Fonte: Autoria própria}
 \end{figure}
 
@@ -174,10 +174,10 @@ Os pacotes, após passarem por todos os pré-processador, são entregues para o 
 
 Na \autoref{fig_snort_detecção}, temos os pacotes saindo dos pré-processadores e chegando no motor de detecção. No motor de detecção há uma base de regras configurada, os dados dos pacotes são comparados com as assinaturas da base, se coincidirem, uma ação é tomada, caso contrário, o pacote é descartado.
 
-\begin{figure}[!htb]
+\begin{figure}[htb]
   \centering
   \caption{Motor de Detecção do Snort} \label{fig_snort_detecção}
-  \includegraphics[scale=0.8]{snort_detection.png}
+  \includegraphics[scale=0.7]{snort_detection.png}
   \legend{Fonte: Autoria própria}
 \end{figure}
 
@@ -201,8 +201,8 @@ Dentre as ações que podem ser tomadas temos:
 Abaixo temos um exemplo de regra.
 
 \begin{lstlisting}
-alert icmp any any -> any any (msg:"Ping suspeito"; 
-sid:1; resp:icmp_all;)
+    alert icmp any any -> any any (msg:"Ping suspeito"; 
+    sid:1; resp:icmp_all;)
 \end{lstlisting}
 
 Com a regra acima, o Snort gerará um alerta de qualquer pacotes ICMP que estiver passando de qualquer máquina e porta origem (\textbf{any any}) para qualquer máquina e porta destino (\textbf{any any}) e enviará pacotes ICMP para a máquina de origem com as mensagens \textit{host unreachable; network unreachable}.
@@ -211,9 +211,20 @@ Se um dado for compatível com uma regra um alerta é gerado. Os alertas podem s
 
 \subsection{Suricata} \label{sec:suricata}
 
-Suricata é um NIDS de código aberto, seu primeiro \textit{release} oficial foi lançando em 2010 e foi desenvolvido e atualmente é mantido pela \textit{Open Information Security Foundation} (OISF). OISF é uma fundação sem fins lucrativos formada por um grupo multinacional de desenvolvedores \cite{suricata}.
+Suricata é um NIDS de código aberto, seu primeiro \textit{release} oficial foi lançando em 2010 e foi desenvolvido e atualmente é mantido pela \textit{Open Information Security Foundation} (OISF). A OISF é uma fundação sem fins lucrativos formada por um grupo multinacional de desenvolvedores \cite{suricata}.
 
-Uma característica bem marcante desse IDS é a utilização de uma tecnologia de processamento \textit{multithread} para ter benefício dos múltiplos núcleos de um computador. Além de utilizar \textit{hardware} de aceleração para ter um melhor desempenho \cite{arquitetura:martin}.
+Uma característica marcante desse IDS é a utilização de uma tecnologia de processamento \textit{multithread} para ter benefício dos múltiplos núcleos de um computador. Além de utilizar \textit{hardware} de aceleração para ter um melhor desempenho \cite{arquitetura:martin}.
+
+O Suricata utilizada detecção baseada em assinatura e em anomalias. As assinaturas desenhadas para o Snort funcionam no Suricata, podendo ser otimizadas para o uso em seu motor de detecção. As anomalias dos protocolos são fornecidas pelos pré-processadores, e quando implementado no modo ativo, atua na modalidade de prevenção \cite{arquitetura:martin}.
+
+Embora o código do Suricata ser original, os desenvolvedores não hesitam afirmar a arquitetura foi inspirada no Snort. Na \autoref{fig_arquitetura-suricata} representa a mesma arquitetura do Snort porém com o mecanismo de \textit{multithread} \cite{arquitetura:martin}.  
+
+\begin{figure}[htb]
+  \centering
+  \caption{Arquitetura \textit{Multithread} do Suricata} \label{fig_arquitetura-suricata}
+  \includegraphics[scale=0.5]{arquitetura-suricata.png} 
+  \legend{Fonte: \cite{arquitetura:martin}}
+\end{figure}
 
 \section{Conclusão} \label{sec:idps-conclusao}
 %Ex: Este capítulo apresentou...
