@@ -195,6 +195,7 @@ Dentre as ações que podem ser tomadas temos:
 \item \textbf{\textit{Dynamic}}: permanece inativa até ser ativado por uma regra \textit{activate}, registrando o tráfego;
 \item \textbf{\textit{Alert}}: Gera um alerta usando um método selecionado e então registra os pacotes e dados;
 \item \textbf{\textit{Pass}}: Ignora os pacotes;
+\item \textbf{\textit{Drop}}: Descarta o pacote (quando configurado para atuar de forma ativa (IPS)); 
 \item \textbf{\textit{Log}}: Registra e não alerta.
 \end{alineas}
 
@@ -217,7 +218,7 @@ Uma característica marcante desse IDS é a utilização de uma tecnologia de pr
 
 O Suricata utilizada detecção baseada em assinatura e em anomalias. As assinaturas desenhadas para o Snort funcionam no Suricata, podendo ser otimizadas para o uso em seu motor de detecção. As anomalias dos protocolos são fornecidas pelos pré-processadores, e quando implementado no modo ativo, atua na modalidade de prevenção \cite{arquitetura:martin}.
 
-Embora o código do Suricata ser original, os desenvolvedores não hesitam afirmar a arquitetura foi inspirada no Snort. Na \autoref{fig_arquitetura-suricata} representa a mesma arquitetura do Snort porém com o mecanismo de \textit{multithread} \cite{arquitetura:martin}.  
+Embora o código do Suricata ser original, os desenvolvedores não hesitam afirmar que a arquitetura foi inspirada no Snort. Na \autoref{fig_arquitetura-suricata} representa a mesma arquitetura do Snort porém com o mecanismo de \textit{multithread} \cite{arquitetura:martin}. Dessa forma não há necessidade de descrever os componentes pois já foram citados na \autoref{sec:snort}.
 
 \begin{figure}[htb]
   \centering
@@ -225,6 +226,14 @@ Embora o código do Suricata ser original, os desenvolvedores não hesitam afirm
   \includegraphics[scale=0.5]{arquitetura-suricata.png} 
   \legend{Fonte: \cite{arquitetura:martin}}
 \end{figure}
+
+As assinaturas são de grande importância tanto no Snort quanto no Suricata. Muitas pessoas, por conveniência, utilizam conjunto de regras prontas. As mais usadas são da Emerging Threats e Talos (anteriormente chamado de VRT) \cite{suricata:rule}. 
+
+Talos é um grupo de especilistas em segurança de rede trabalhando o tempo todo para descobrir, avaliar e responder de forma proativa as últimas tendências em atividades de \textit{hacking}, tentativa de intrusão, \textit{malware} e vulnerabilidades \cite{snort:talos}. 
+
+A base de assinaturas Emerging Threats (ET) é mantida pela Proofpoint. A Proofpoint é uma empresa especialista em segurança da informação, no site oficial há vários produtos que visam proteger pessoas e dados, detectando e bloqueando ataques e respondendo a essas ameaças \cite{et:proofpoint}.
+
+O fato de existir equipes dedicadas para o desenvolvimento de uma base de regras, torna o uso dessas bases confiáveis, menos custoso, tem termos de tempo, recursos financeiros e de pessoal.
 
 \section{Conclusão} \label{sec:idps-conclusao}
 %Ex: Este capítulo apresentou...
