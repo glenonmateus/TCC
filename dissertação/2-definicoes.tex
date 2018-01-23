@@ -358,23 +358,44 @@ Os \textit{malwares}, também conhecidos como \textit{softwares} maliciosos, sã
 
  Na execução do Nmap, o que não for opção ou argumento da opção é considerado especificação do \textit{host} alvo. O alvo pode ser um ou vários, usando uma notação de intervalo por hífen ou uma lista separada por vírgula. Os \textit{hosts} alvos também podem ser definidos em arquivos.
 
- O resultado do Nmap é uma tabela de portas e seus estados (\autoref{fig:nmap-exemplo}). As portas podem assumir quatro estados, temos: aberto (\textif{open}), significa que existe alguma aplicação escutando conexões; filtrado (\textit{filtered}), há um obstáculo na rede, podendo ser algum \textit{firewall}, que impossibilita que o Nmap determine se a porta está aberta ou fechada; fechado (\textit{closed}), não possui aplicação escutando na porta; não-filtrado (\textit{unfilterd}), a porta responde requisição porém o Nmap não consegue determinar se estão fechadas ou abertas \cite{nmap}
+O resultado do Nmap é uma tabela de portas e seus estados (\autoref{fig:nmap-exemplo}). As portas podem assumir quatro estados, temos \cite{nmap}: 
+\begin{alineas}
+\item \textbf{\textit{open}}: significa que existe alguma aplicação escutando conexões; 
+\item \textbf{\textit{filtered}}: há um obstáculo na rede, podendo ser algum \textit{firewall}, que impossibilita que o Nmap determine se a porta está aberta ou fechada; 
+\item \textbf{\textit{closed}}: não possui aplicação escutando na porta; 
+\item \textbf{\textit{unfilterd}}: a porta responde requisição porém o Nmap não consegue determinar se estão fechadas ou abertas.
+\end{alineas}
 
  \begin{figure}[htb]
   \centering
   \caption{Exemplo de saída do Nmap}
-  \includegraphics[scale=.5]{nmap.png}
-  \legend{}
+  \includegraphics[scale=.6]{nmap.png}
+  \legend{Autoria própria}
   \label{fig:nmap-exemplo}
  \end{figure}
 
- \subsection{Metasploit Framework} \label{sec:metasploit}
+\subsection{Metasploit Framework} \label{sec:metasploit}
 
- O Metasploit é um \textit{framework} de código aberto cujo principio básico é desenvolver e executar \textit{exploit} contra alvos remotos e fornecer uma lista de vulnerabilidades existentes no alvo. É uma ferramenta que combina diversos \textit{exploits} e payloads dentro de um local, ideal para levantamento de segurança de serviços e testes de penetração \cite{metasploit:yash}.  
+O Metasploit é um \textit{framework} de código aberto cujo principio básico é desenvolver e executar \textit{exploit} contra alvos remotos e fornecer uma lista de vulnerabilidades existentes no alvo. É uma ferramenta que combina diversos \textit{exploits} e payloads dentro de um local, ideal para levantamento de segurança de serviços e testes de penetração \cite{metasploit:yash}.  
 
- O Metasploit possui uma biblioteca divida em três partes: \textbf{Rex}: É a biblioteca fundamental, a maioria das tarefas executadas pelo \textit{framework} usaram essa biblioteca; \textbf{MSF Core}: É o \textit{framework} em si, possui, por exemplo, gerenciador de módulos e a base de dados; \textbf{MSF Base}: Guarda os módulos, sejam eles, \textit{exploit}, \textit{encoders} (ferramentas usadas para desenvolver o \textit{payloads}) e os \textit{payloads}. Além disso, são guardadas informações de configuração e sessões criadas pelos \textit{exploits}. A arquitetura é mostrada com mais detalhes na \autoref{fig:metasploit-arquitetura}. 
+O Metasploit possui uma biblioteca divida em três partes:
 
- Os módulos são divididos da seguinte maneira: Payload: são código executados no alvo remotamente; Exploit: explora \textit{bugs} ou vulnerabilidade existente em aplicações do alvo; Módulos Auxiliares: usado para escanear as vulnerabilidades e executar várias tarefas; Encoder: codifica o \textit{payload} para evitar qualquer tipo de detecção pelo anti vírus.
+\begin{alineas}
+\item \textbf{Rex}: É a biblioteca fundamental, a maioria das tarefas executadas pelo \textit{framework} usaram essa biblioteca; 
+\item \textbf{MSF Core}: É o \textit{framework} em si, possui, por exemplo, gerenciador de módulos e a base de dados; 
+\item \textbf{MSF Base}: Guarda os módulos, sejam eles, \textit{exploit}, \textit{encoders} (ferramentas usadas para desenvolver o \textit{payloads}) e os \textit{payloads}. Além disso, são guardadas informações de configuração e sessões criadas pelos \textit{exploits}. 
+\end{alineas}
+
+A arquitetura é mostrada com mais detalhes na \autoref{fig:metasploit-arquitetura}. 
+
+Os módulos são divididos da seguinte maneira: 
+
+\begin{alineas}
+\item \textbf{Payload}: são código executados no alvo remotamente; 
+\item \textbf{Exploit}: explora \textit{bugs} ou vulnerabilidade existente em aplicações do alvo; 
+\item \textbf{Módulos Auxiliares}: usado para escanear as vulnerabilidades e executar várias tarefas; 
+\item \textbf{Encoder}: codifica o \textit{payload} para evitar qualquer tipo de detecção por antivírus.
+\end{alineas}
 
  \begin{figure}[!htb]
   \centering
@@ -402,7 +423,14 @@ Os \textit{malwares}, também conhecidos como \textit{softwares} maliciosos, sã
   \item \textbf{testRules}, testa a base de assinaturas configuradas no servidor IDPS.
  \end{alineas}
 
-Existem basicamente 5 tipos de testes: socket, abre um \textit{socket} em uma porta e envia o \textit{payload} para o alvo remoto na porta especificada; command, envia um comando para alvo remoto com a função python subprocess.call(); scapy, envia cargas úteis especificas baseadas na sintaxe de Scapy; client side attacks, usa um \textit{shell} reverso no alvo remoto e envia comandos para serem processados no servidor; pcap replay, permite reproduzir tráfego com base em arquivos de pcap.
+Existem basicamente 5 tipos de testes \cite{pytbull}: 
+\begin{alineas}
+\item \textbf{\textit{socket}}: Abre um \textit{socket} em uma porta e envia o \textit{payload} para o alvo remoto na porta especificada; 
+\item \textbf{\textit{command}}: Envia um comando para alvo remoto com a função python subprocess.call(); 
+\item \textbf{\textit{scapy}}: Envia cargas úteis especificas baseadas na sintaxe de Scapy;
+\item \textbf{\textit{client side attacks}}: Usa um \textit{shell} reverso no alvo remoto e envia comandos para serem processados no servidor; 
+\item \textbf{\textit{pcap replay}}: Permite reproduzir tráfego com base em arquivos de pcap.
+\end{alineas}
 
  \begin{figure}[htb]
   \centering
