@@ -24,6 +24,7 @@ Para implementa tais ferramentas em uma rede, deve-se levar em consideração a 
 Diante do apresentado, este trabalho tem como objetivo geral, analisar e apresentar um comparativo entre as soluções de código aberto de IDPS mais conhecidas: Snort e Suricata. Como desdobramento de tal objetivo, os seguintes objetivos secundários foram definidos:
 
 \begin{alineas}
+\item Apresentar conceitos sobre segurança da informação e sua importância em um ambiente corporativo;
 \item Descrever problemas relacionados a ataques envolvendo redes de computadores;
 \item Descrever as ferramentas, compreendendo requisitos, características, modos de atuação e funcionalidades;
 \item Descrever o ambiente experimental;
@@ -36,9 +37,13 @@ Diante do apresentado, este trabalho tem como objetivo geral, analisar e apresen
 
 \section{Trabalhos Relacionados} \label{sec:trabalhos-relacionados}
 
-O uso de ferramentas IDS \textit{opensource} Snort e/ou Suricata, importantes na área de segurança, já foi abordado e apresentou alguns resultados satisfatórios em pesquisas anteriores, por exemplo, nas pesquisas de Nagahama \textit{et al.} (2013).
+O uso de ferramentas IDS \textit{opensource} Snort e/ou Suricata, importantes na área de segurança, já foi abordado e apresentou alguns resultados satisfatórios em pesquisas anteriores, por exemplo, nas pesquisas de Nagahama \textit{et al.} (2013), Martín \textit{et al.} (2014) e Cléber \textit{et al} (2014).
 
 No trabalho do Nagahama \textit{et al.} (2013), é usado redes definidas por \textit{softwares}, que desacopla os planos de controle e de dados, permitindo adaptar o funcionamento da rede de acordo com a necessidade de cada um. O \textit{software} utilizado na pesquisa foi o OpenFLOW. Tal uso, tem como objetivo mitigar a falta de integração do IDS com os equipamentos de rede como {switches} e roteadores, o que limita a atuação destas ferramentas. 
+
+Já Martín \textit{et al.} (2014), utiliza-se do BroFlow que possui uma série de vantagem, como, detecção de intrusão através de algoritmos simples, modular e flexível, reação imediata a um ataque descantando pacotes dos atacantes os mais próximo da origem. Dentre os resultados obtidos, destacam-se que a ferramenta conseguiu garantir o encaminhamento de pacotes legítimos na rede na taxa máxima do enlace e reduziu, em até dez vezes, o atraso na rede provocado pelo ataque.
+
+
 
 \section{Organização do Trabalho} \label{sec:organização-do-trabalho}
 
