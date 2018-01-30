@@ -50,20 +50,20 @@ Os ataques são classificados em passivo e ativo. Em um ataque passivo não há 
 \centering
 \caption{Classificação dos ataques passivos e ativos}
 \label{tab:tipos-de-ataques}
-\begin{tabular}{|l|l|p{7cm}|}
+\begin{tabular}{|M{2cm}|M{5cm}|M{6cm}|}
     \hline
     \textbf{Ataque} & \textbf{Categoria} & \textbf{Descrição} \\
     \hline
-    Passivo & Liberação de conteúdo da mensagem & Ocorre quando uma informação é captada e seu conteúdo é lido pelo atacante \\ 
+    \multirow{2}{*}{Passivo} & Liberação de conteúdo da mensagem & Ocorre quando uma informação é captada e seu conteúdo é lido pelo atacante \\
+    \cline{2-3}
+    & Análise de tráfego & Ocorre quando o tráfego da troca de uma informação (criptografada ou não) é analisado para identificar padrões nas mensagens \\
     \hline
-            & Análise de tráfego & Ocorre quando o tráfego da troca de uma informação (criptografada ou não) é analisado para identificar padrões nas mensagens \\
-    \hline
-    Ativo & Disfarce & Ocorre quando uma entidade finge ser outra entidade \\
-    \hline
+    \multirow{4}{*}{Ativo} & Disfarce & Ocorre quando uma entidade finge ser outra entidade \\
+    \cline{2-3}
           & Repetição & Ocorre quando os dados são capturados passivamente e, subsequentemente, retransmitidos para produzir um efeito não autorizado \\
-    \hline
+    \cline{2-3}
           & Modificação da mensagem & Ocorre quando alguma parte da mensagem original é alterada para produzir um efeito não autorizado \\
-    \hline
+    \cline{2-3}
           & Negação de serviço & Ocorre quando há um impedimento ou inibição do uso ou gerenciamento normal das instalações de comunicação \\
     \hline
 \end{tabular}
