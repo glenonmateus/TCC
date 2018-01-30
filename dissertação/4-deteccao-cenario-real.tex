@@ -1,7 +1,7 @@
 \chapter{Detecção de Intrusão em um Cenário Real} \label{ch:cenário-real}
  %- Em cada capitulo adicionar um texto introdutório
 
- Este capítulo esta organizado da seguinte forma: A próxima seção apresenta o cenário de testes, descrevendo características gerais da rede selecionada para os teste. Na seção \ref{sec:infraestrutura} será abordado a infraestrutura usada para os testes, ferramentas utilizadas e as configurações feitas. Na seção \ref{sec:testes} será descrito os testes realizados com suas respectivas justificativas. Na seção \ref{sec:resultados} será apresentado os resultados esperados e obtidos, problemas encontrados e a comparação das ferramentas e por último, na seção \ref{sec:conclusão}, uma breve conclusão.
+Este capítulo esta organizado da seguinte forma: A próxima seção apresenta o cenário de testes, descrevendo características gerais da rede selecionada para os teste. Na seção \ref{sec:infraestrutura} será abordado a infraestrutura usada para os testes, ferramentas utilizadas e as configurações feitas. Na seção \ref{sec:testes} será descrito os testes realizados com suas respectivas justificativas. Na seção \ref{sec:resultados} será apresentado os resultados esperados e obtidos, problemas encontrados e a comparação das ferramentas e por último, na seção \ref{sec:conclusão}, uma breve conclusão.
 
  \section{Metodologia dos Testes}
  % (Adicionar o escopo dos testes): descrever o ambientes,
@@ -67,15 +67,15 @@ Posteriormente, verificando os serviços que o alvo oferece e observando (\texti
 
 O passo seguinte seria uma garimpagem de informações e mapeamento da rede, a procura de um \textit{host} vulnerável. A ferramenta escolhida para essa finalidade é o NMAP \autoref{sec:nmap}. 
 
-No primeiro teste de Scan, usou-se o parâmetro '-F', habilitando a modo \textit{fast} do NMAP. Nesse modo, são verificadas apenas a portas especificadas no arquivo nmap-services, na instalação padrão esse arquivo vem com 27372 portas descritas. Isso é muito mais rápido que verificar todas as 65535 portas possíveis em um \textit{host}.
+No primeiro teste de Scan, usou-se o parâmetro '-F', habilitando a modo \textit{fast} do NMAP. Nesse modo, são verificadas apenas a portas especificadas no arquivo nmap-services, na instalação padrão esse arquivo vem com 27372 portas descritas. Isso é muito mais rápido que verificar todas as 65535 portas tcp e 65535 portas udp, possíveis em um \textit{host}.
 
-\begin{lstlisting}[language=bash]
+\begin{lstlisting}[language=bash, frame=single]
     nmap -F ALVO
 \end{lstlisting}
 
 O segundo teste, usou-se o parâmetro '-sV' do NMAP. Essa opção habilita a descoberta de versões, tentando determinar os protocolos de serviços, o nome da aplicação, o número da versão, o nome do \textit{host} (utilizando o DNS reverso), tipo de dispositivo, sistema operacional usado, entre outras informações. Essas informações são de grande valor pois, a partir delas, pode-se explorar vulnerabilidades conhecidas de uma determinada versão de um serviço \cite{nmap}.
 
-\begin{lstlisting}[language=bash]
+\begin{lstlisting}[language=bash, frame=single]  
     nmap -sV ALVO
 \end{lstlisting}
 

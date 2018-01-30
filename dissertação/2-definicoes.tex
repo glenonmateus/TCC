@@ -93,7 +93,7 @@ As redes podem ser classificadas em duas categorias \cite{esr:arquitetura}:
 \item \textbf{Redes cliente-servidor}: Aqui há servidores dedicados que oferecem serviços à rede (servidores de arquivos e impressão, correio, fax, comunicação, aplicações, etc), geralmente são otimizadas para processar rapidamente as requisições dos clientes da rede e para garantir a segurança dos arquivos e pastas (\autoref{fig_cliente-servidor}). 
 \end{alineas}
 
-\begin{figure}[htb]
+\begin{figure}[!htb]
  \label{fig:arquitetura-redes}
  \centering
  \begin{minipage}{0.4\textwidth}
@@ -143,9 +143,9 @@ Há vários \textit{softwares} que implementam filtro de pacotes. Alguns são in
 \caption{Tabela de regras aplicadas no \textit{firewall}}
 \label{tab:firewall-regras}
 \begin{tabular}{l|l|l|l|l|l|l}
-    \textbf{IP Origem} & \textbf{IP Destino}  & \textbf{Porta Origem}  & \textbf{Porta Destino} & \textbf{Protocolo} & \textbf{Flag TCP} & \textbf{Ação} \\
-    Rede Externa & Servidor Web & Todas & 80,443 & TCP & Todos & Permitir \\
-    Rede Externa & Servidor Web & Todas & 21,3000:3070 & TCP & Todos & Permitir \\
+    \textbf{IP Origem} & \textbf{IP Destino}  & \textbf{Porta Origem}  & \textbf{Porta Destino} & \textbf{Protocolo} & \textbf{Flag TCP} & \textbf{Ação} \\ \hline
+    Rede Externa & Servidor Web & Todas & 80,443 & TCP & Todos & Permitir \\ \hline
+    Rede Externa & Servidor Web & Todas & 21,3000:3070 & TCP & Todos & Permitir \\ \hline
     Todas & Todas & Todas & Todas & Todos & Todos & Negar \\
 \end{tabular}
 \legend{Fonte: Autoria própria} 
@@ -205,7 +205,7 @@ A inserção de \textit{Structured Query Language} (SQL) via formulário na apli
 
 No exemplo abaixo, a declaração condicional 'OR 1=1' torna toda a clausura WHERE verdadeiro pois a expressão 1=1 é uma tautologia. A consulta retorna todos os dados da tabela \textit{user\_info}. Perceba que os dois hífens fornecidos no final da entrada comenta o resto da linha.
 
-\begin{lstlisting}[Language=SQL]
+\begin{lstlisting}[Language=SQL, frame=single] 
   SELECT * FROM user_info WHERE logID="" OR 1=1 -- AND pass1="" 
 \end{lstlisting}
 
