@@ -201,7 +201,7 @@ Dentre as ações que podem ser tomadas temos:
 
 Abaixo temos um exemplo de regra.
 
-\begin{lstlisting}
+\begin{lstlisting}[frame=single]
     alert icmp any any -> any any (msg:"Ping suspeito"; 
     sid:1; resp:icmp_all;)
 \end{lstlisting}
@@ -227,13 +227,13 @@ Embora o código do Suricata ser original, os desenvolvedores não hesitam afirm
   \legend{Fonte: \cite{arquitetura:martin}}
 \end{figure}
 
-As assinaturas são de grande importância tanto no Snort quanto no Suricata. Muitas pessoas, por conveniência, utilizam conjunto de regras prontas. As mais usadas são da Emerging Threats e Talos (anteriormente chamado de VRT) \cite{suricata:rule}. 
+As assinaturas são de grande importância tanto no Snort quanto no Suricata. Muitas pessoas, por conveniência, utilizam conjunto de regras prontas. As mais usadas são da Emerging Threats (ET) e Talos (anteriormente chamado de VRT) \cite{suricata:rule}. 
 
-Talos é um grupo de especilistas em segurança de rede trabalhando o tempo todo para descobrir, avaliar e responder de forma proativa as últimas tendências em atividades de \textit{hacking}, tentativa de intrusão, \textit{malware} e vulnerabilidades \cite{snort:talos}. 
+Talos é um grupo de especialistas em segurança de rede trabalhando o tempo todo para descobrir, avaliar e responder de forma proativa as últimas tendências em atividades de \textit{hacking}, tentativa de intrusão, \textit{malware} e vulnerabilidades \cite{snort:talos}. 
 
-A base de assinaturas Emerging Threats (ET) é mantida pela Proofpoint. A Proofpoint é uma empresa especialista em segurança da informação, no site oficial há vários produtos que visam proteger pessoas e dados, detectando e bloqueando ataques e respondendo a essas ameaças \cite{et:proofpoint}.
+A base de assinaturas ET é mantida pela Proofpoint. A Proofpoint é uma empresa especialista em segurança da informação, no site oficial há vários produtos que visam proteger pessoas e dados, detectando e bloqueando ataques e respondendo a essas ameaças \cite{et:proofpoint}.
 
 O fato de existir equipes dedicadas para o desenvolvimento de uma base de regras, torna o uso dessas bases confiáveis, menos custoso, tem termos de tempo, recursos financeiros e de pessoal e fácil implementação. 
 
 \section{Conclusão} \label{sec:idps-conclusao}
-%Ex: Este capítulo apresentou...
+Este capítulo apresentou...
