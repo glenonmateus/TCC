@@ -33,7 +33,13 @@ Diante do apresentado, este trabalho tem como objetivo geral, analisar e apresen
 
 \section{Metodologia} \label{sec:metodologia}
 
+Esse trabalho se configura numa pesquisa qualitativa. Utilizou-se uma máquina com \textit{hardware} robusto, configurada com 130G de memória RAM, com um processador possuindo 40 núcleos e duas interfaces de rede, uma para gerência e outra configurada em modo '\textit{promisc}' com espelhamento do roteador. Nela instalou-se o SO XenServer versão 7, da Citrix, SO voltado para virtualização com um bom desempenho num ambiente de produção real. 
 
+No \textit{host}, instalou-se duas máquinas virtuais, uma para cada ferramenta de IDPS em teste, Snort e Suricata, nas suas versões mais recentes, 2.9.8.3 e 4.0.0, respectivamente. A mesma quantidade de recurso de \textit{hardware} foi alocada para as máquinas, criando assim um ambiente igual para ambas as ferramentas. Além disso, após configuradas, usou-se a mesma base de assinaturas aberta da \textit{Emerging Threats} (ET), que possui frequentes atualizações.
+
+As métricas para comparação avaliadas são a quantidade de recurso usado pela ferramenta para análise do tráfego em um período de tempo determinado, quantidade de falsos positivos e negativos e a taxa de detecção. Para avaliar os recursos de \textit{hardware}, usou-se dois recursos. Primeiro, foi instalado nas máquinas virtuais um \textit{daemon} collectd, a segunda forma, foi instalar um servidor de monitoramento Zabbix. 
+
+Para facilitar a avaliação dos alertas gerados pelas ferramentas e determinar os falsos positivos e negativos, optou-se por centralizar o \textit{logs} em um servidor. Para tal, usou-se uma infraestrutura que reúne três serviços, descrito na \autoref{sec:infraestrutura}.
 
 \section{Trabalhos Relacionados} \label{sec:trabalhos-relacionados}
 
