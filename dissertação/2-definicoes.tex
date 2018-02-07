@@ -347,27 +347,27 @@ Existe uma forma mais sofisticada de ataque de DoS chamada Negação de Serviço
 
 Os \textit{malwares}, também conhecidos como \textit{softwares} maliciosos, são um grande problema para sistemas de informação, sua existência ou execução tem consequências negativas ou involuntárias. Nessa seção será apresentado os \textit{malwares} mais popularmente conhecidos que são os vírus, \textit{worms}, \textit{trojans} e, devido sua repercussão, os \textit{ransomwares}.
 
- É importante entender o funcionamento e o comportamento desses códigos maliciosos para, a partir daí, buscar soluções contra esse ataque. Existe dois tipos de análise: análise estática, requer uma verifica linha a linha do código malicioso, geralmente o código não está disponível e até mesmo se estiver, o autor do \textit{malware} muitas vezes ofusca o código, tornando esse tipo de análise difícil. Por outro lado, existe a análise dinâmica, o analista monitora a execução e o comportamento do \textit{malware}, esse tipo de análise é imune a ofuscação de código \cite{encycrypt}.
+É importante entender o funcionamento e o comportamento desses códigos maliciosos para, a partir daí, buscar soluções contra esse ataque. Existe dois tipos de análise: análise estática, requer uma verifica linha a linha do código malicioso, geralmente o código não está disponível e até mesmo se estiver, o autor do \textit{malware} muitas vezes ofusca o código, tornando esse tipo de análise difícil. Por outro lado, existe a análise dinâmica, o analista monitora a execução e o comportamento do \textit{malware}, esse tipo de análise é imune a ofuscação de código \cite{encycrypt}.
 
- O Vírus é um programa que se propaga inserindo cópias de si mesmo e se tornando parte de outros programas e arquivos. Para dar continuidade ao processo de infecção, o vírus depende da execução do programa ou arquivo hospedeiro. O principal meio de propagação desse tipo de \textit{software} malicioso são as mídias removíveis, como, por exemplo, \textit{pen-drives} \cite{certs-malwares}.
+O Vírus é um programa que se propaga inserindo cópias de si mesmo e se tornando parte de outros programas e arquivos. Para dar continuidade ao processo de infecção, o vírus depende da execução do programa ou arquivo hospedeiro. O principal meio de propagação desse tipo de \textit{software} malicioso são as mídias removíveis, como, por exemplo, \textit{pen-drives} \cite{certs-malwares}.
 
- O \textit{Worm} é um \textit{malware} que se propaga através de e-mails, sites ou \textit{software} baseados em rede, explorando as vulnerabilidades das aplicações. Uma das principais características desse tipo de \textit{software} é a propagação automática, ou seja, sem a intervenção do usuário \cite{detectingworm}. 
+O \textit{Worm} é um \textit{malware} que se propaga através de e-mails, sites ou \textit{software} baseados em rede, explorando as vulnerabilidades das aplicações. Uma das principais características desse tipo de \textit{software} é a propagação automática, ou seja, sem a intervenção do usuário \cite{detectingworm}. 
 
- O \textit{Trojan} ou Cavalo de Troia são programas que precisam ser explicitamente executados para serem instalados no computador. Esse \textit{malware} se disfarça de um programa benigno, por exemplo, cartões virtuais animados, álbuns de fotos, jogos e protetores de tela que ao serem executados o \textit{trojan} é instalado sem o consentimento do usuário. No entanto, o atacante, após invadir um computador, pode instalar o \textit{trojan} alterando as funções já existentes de programas para executarem ações maliciosas \cite{certs-malwares}.
+O \textit{Trojan} ou Cavalo de Troia são programas que precisam ser explicitamente executados para serem instalados no computador. Esse \textit{malware} se disfarça de um programa benigno, por exemplo, cartões virtuais animados, álbuns de fotos, jogos e protetores de tela que ao serem executados o \textit{trojan} é instalado sem o consentimento do usuário. No entanto, o atacante, após invadir um computador, pode instalar o \textit{trojan} alterando as funções já existentes de programas para executarem ações maliciosas \cite{certs-malwares}.
 
- Por fim, temos os \textit{ransomwares}. O \textit{ransomware} é um \textit{malware} que criptografa os dados de um computador ou uma rede. A pessoa ou a organização responsável pelo ataque pede um resgate, geralmente pago em bitcoin para manter sua anonimidade, fornecendo uma chave para descriptografar os arquivos mediante o pagamento \cite{ransomware:matt}.
+Por fim, temos os \textit{ransomwares}. O \textit{ransomware} é um \textit{malware} que criptografa os dados de um computador ou uma rede. A pessoa ou a organização responsável pelo ataque pede um resgate, geralmente pago em cripto moedas, como por exemplo, bitcoin, para manter sua anonimidade, fornecendo uma chave para descriptografar os arquivos mediante o pagamento \cite{ransomware:matt}.
 
- A melhor medida contra esse tipo de \textit{malware}, uma vez que, não há garantias que o atacante irá fornecer a chave depois do pagamento, além de manter o sistema sempre atualizado, é ter uma politica de \textit{backup} regular. O armazenamento de arquivos importantes em outros tipos de mídias não conectadas regularmente ao sistema (removíveis) ou \textit{backup} baseados em nuvens \cite{ransomware:matt}.
+A melhor medida contra esse tipo de \textit{malware}, uma vez que, não há garantias que o atacante irá fornecer a chave depois do pagamento, além de manter o sistema sempre atualizado, é ter uma politica de \textit{backup} regular. O armazenamento de arquivos importantes em outros tipos de mídias não conectadas regularmente ao sistema (removíveis) ou \textit{backup} baseados em nuvens \cite{ransomware:matt}.
 
- \section{Ferramentas para Avaliação de Segurança} \label{sec:ferramentas}
+\section{Ferramentas para Avaliação de Segurança} \label{sec:ferramentas}
 
- Nessa seção será descrito as ferramentas auxiliares utilizadas para geração de ataques abordados na \autoref{sec:ataques-comuns} com objetivo de testar e validar as configurações das ferramentas de IDPS estudas. 
+Nessa seção será descrito as ferramentas auxiliares utilizadas para geração de ataques abordados na \autoref{sec:ataques-comuns} com objetivo de testar e validar as configurações das ferramentas de IDPS estudas. 
 
  \subsection{Nmap} \label{sec:nmap}
 
- O Nmap é uma ferramente de código aberto utilizada para auditoria de segurança e descoberta de rede. A ferramenta é capaz de determinar quais \textit{hosts} estão disponíveis na rede, quais serviços cada \textit{host} está oferecendo, incluindo nome e versão da aplicação, o sistema operacional usado, dentre outras características.  
+O Nmap é uma ferramente de código aberto utilizada para auditoria de segurança e descoberta de rede. A ferramenta é capaz de determinar quais \textit{hosts} estão disponíveis na rede, quais serviços cada \textit{host} está oferecendo, incluindo nome e versão da aplicação, o sistema operacional usado, dentre outras características.  
 
- Muitos administradores de sistemas utilizam o Nmap para tarefas rotineiras como, criação de inventário de rede, gerenciamento de serviços, visto que é de suma importância manter os mesmos atualizados e monitoramento de \textit{host}.
+Muitos administradores de sistemas utilizam o Nmap para tarefas rotineiras como, criação de inventário de rede, gerenciamento de serviços, visto que é de suma importância manter os mesmos atualizados e monitoramento de \textit{host}.
 
  Diversos parâmetros podem ser utilizados com o Nmap, possibilitando realizar varreduras das mais variadas maneiras, dependendo do tipo desejado. A lista completa de opções podem ser consultadas na documentação oficial que vem junto da ferramenta ou no site do projeto \cite{nmap}. 
 
@@ -391,15 +391,17 @@ O resultado do Nmap é uma tabela de portas e seus estados (\autoref{fig:nmap-ex
 
 \subsection{Metasploit Framework} \label{sec:metasploit}
 
-O Metasploit é um \textit{framework} de código aberto cujo principio básico é desenvolver e executar \textit{exploit} contra alvos remotos e fornecer uma lista de vulnerabilidades existentes no alvo. É uma ferramenta que combina diversos \textit{exploits} e payloads dentro de um local, ideal para levantamento de segurança de serviços e testes de penetração \cite{metasploit:yash}.  
+O Metasploit é um \textit{framework} de código aberto cujo principio básico é desenvolver e executar \textit{exploit} contra alvos remotos e fornecer uma lista de vulnerabilidades existentes no alvo. É uma ferramenta que combina diversos \textit{exploits} e \textit{payloads} dentro de um local, ideal para levantamento de segurança de serviços e testes de penetração \cite{metasploit:yash}.  
 
 O Metasploit possui uma biblioteca divida em três partes:
 
 \begin{alineas}
-\item \textbf{Rex}: É a biblioteca fundamental, a maioria das tarefas executadas pelo \textit{framework} usaram essa biblioteca; 
+\item \textbf{Rex}: É a biblioteca fundamental, a maioria das tarefas executadas pelo \textit{framework} usarão essa biblioteca; 
 \item \textbf{MSF Core}: É o \textit{framework} em si, possui, por exemplo, gerenciador de módulos e a base de dados; 
 \item \textbf{MSF Base}: Guarda os módulos, sejam eles, \textit{exploit}, \textit{encoders} (ferramentas usadas para desenvolver o \textit{payloads}) e os \textit{payloads}. Além disso, são guardadas informações de configuração e sessões criadas pelos \textit{exploits}. 
 \end{alineas}
+
+A Interface permite que o usuário interaja com o \textit{framework}. Nele há o \textit{msfconsole} uma interface de linha de comando interativa, o \textit{msfcli} interface de linha de comando não-interativa, e o \textit{msfweb} interface baseada em \textit{web} \cite{metasploittoolkit}. Por fim, temos o Armitage, que é uma interface gráfica baseada em Java desenvolvido por Raphael Mudge.
 
 A arquitetura é mostrada com mais detalhes na \autoref{fig:metasploit-arquitetura}. 
 
