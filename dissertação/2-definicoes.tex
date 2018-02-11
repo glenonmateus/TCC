@@ -463,6 +463,30 @@ Uma das ferramentas mais populares para buscas de vulnerabilidades é o Nessus, 
 
 Em 2005, com o anuncio oficial de fechamento do código do Nessus, foi lançado um \textit{fork} que resultou no OpenVAS. A comunidade que mantém o OpenVAS é crescente e bem ativa e conta com indivíduos e corporações de todo o mundo \cite{openvas:tim}. Além disso, o OpenVAS é membro da \textit{Software in the Public Interest}, uma organização sem fins lucrativos dedicada a ajudar no desenvolvimento de \textit{Software} Livre.
 
+Segundo o site oficial, o OpenVAS é definido como: "[...] é um \textit{framework} com vários serviços e ferramentas que oferecem um análise de vulnerabilidade abrangente e poderosa solução de gerenciamento de vulnerabilidade." \cite{openvas}.
+
+O OpenVAS possui uma arquitetura cliente-servidor, onde o servidor é responsável por todo o processamento, procurando vulnerabilidades e armazena as configurações de varreduras realizadas. Já, do lado do cliente, é disponibilizado uma interface para o administrador realizar as configurações e visualizar os relatórios. Vale ressaltar que toda essa comunicação é tunelada por SSL com cifras fortes para garantir que apenas pessoas autorizadas acesse os dados gerados pelo OpenVAS \cite{openvas:tim}.
+
+A \autoref{fig:openvas} ilustra a arquitetura do OpenVAS e seus componentes, abaixo segue a descrição de cada um: 
+
+\begin{alineas}
+\item \textbf{\textit{Network Vulnerability Tests} (NVT)}: São testes de segurança desenvolvidos na linguagem de script do Nessus, \textit{Nessus Attack Scripting Language} (NASL). Existe um serviço que disponibiliza esses testes diariamente chamado OpenVAS NVT Feed, atualmente contendo 50.000 NVTs. No entanto, é possível desenvolver sua própria NVT para realizar testes para alguma necessidade especifica, como, por exemplo, testar sistemas próprios;
+\item \textbf{OpenVAS Scanner}: Programa que executa os testes NVTs no alvo; 
+\item \textbf{OpenVAS Manager}: Executa e gerencia as varreduras feitas pelo OpenVAS Scanner. Os resultados são armazenados em um banco de dados baseados em SQLite. A conexão entre o cliente e o Manager é feita através do protocolo OpenVAS Management Protocol (OMP);
+\item \textbf{OpenVAS Administrator}: Módulo que gerencia os usuários e as atualizações dos NVTs. Sua comunicação é feita através do protocolo OpenVAS Administrator Protocol (OAP);
+\item \textbf{OpenVAS CLI}: Interface de linha de comando;
+\item \textbf{Greenbone Security Desktop} (GSD): Interface \textit{desktop} baseada em Qt;
+\item \textbf{Greenbone Security Assistant} (GSA): Interface web onde é possível rodar em qualquer navegador.
+\end{alineas}
+
+\begin{figure}[!htb]
+    \centering
+    \caption{Arquitetura OpenVAS} 
+    \includegraphics[scale=.6]{openvas.png}
+    \legend{Fonte: \cite{openvas}}
+    \label{fig:openvas}
+\end{figure}
+
 \section{Conclusão}
 
 Este capítulo apresentou definições sobre segurança da informação, mostrando os elementos envolvidos. Definindo os tipos de ataques existentes e suas categorias e os possíveis impactos. Mostrou-se um cenário geral de uma rede de computador e seus componentes assim como suas definições e os ataques comuns envolvendo essas redes. Ao final do capítulo, mostrou-se as ferramentas auxiliares usadas para simular ataques com objetivo de analisar o comportamento dos IDPS.
