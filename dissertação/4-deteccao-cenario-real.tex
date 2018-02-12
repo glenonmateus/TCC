@@ -70,16 +70,34 @@ O passo seguinte seria uma garimpagem de informações e mapeamento da rede, a p
 No primeiro teste de \textit{scan}, usou-se o parâmetro '-F', habilitando a modo \textit{fast} do Nmap. Nesse modo, são verificadas apenas a portas especificadas no arquivo nmap-services, na instalação padrão esse arquivo vem com 27372 portas descritas. Isso é muito mais rápido que verificar todas as 65535 portas tcp e 65535 portas udp, possíveis em um \textit{host}.
 
 \begin{lstlisting}[language=bash, frame=single]
-    nmap -F ALVO
+    nmap -F 192.168.1.107
 \end{lstlisting}
 
 O segundo teste, usou-se o parâmetro '-sV' do NMAP. Essa opção habilita a descoberta de versões, tentando determinar os protocolos de serviços, o nome da aplicação, o número da versão, o nome do \textit{host} (utilizando o DNS reverso), tipo de dispositivo, sistema operacional usado, entre outras informações. Essas informações são de grande valor pois, a partir delas, pode-se explorar vulnerabilidades conhecidas de uma determinada versão de um serviço \cite{nmap}.
 
 \begin{lstlisting}[language=bash, frame=single]  
-    nmap -sV ALVO
+    nmap -sV 192.168.1.107
 \end{lstlisting}
 
-De posse de um alvo em potencial, próximo passo seria rodar um \textit{scanner} de vulnerabilidade, em busca de brejas já conhecidas, e que, geralmente por descuido do administrador, não foi fechada. Para esses testes usou-se o \textit{framework} Metasploit (\autoref{sec:metasploit}) nativo do sistema operacional Kali Linux.
+De posse de um alvo em potencial, próximo passo seria rodar um \textit{scanner} de vulnerabilidade, em busca de brejas já conhecidas, e que, geralmente por descuido do administrador, não foi fechada. Essas brejas podem ter várias origem, desde uma versão do serviço com \textit{bugs} ou uma má configuração. Para esse teste, usou-se o OpenVAS (\autoref{sec:openvas}).
+
+Alguns configurações são necessárias nessa etapa. Primeiramente, deve-se definir o alvo 
+
+Outro teste realizado determinará a capacidade das ferramentas de detectar ataques de negação de serviço (\autoref{sec:negação}). Existem várias técnicas para realizar esse tipo de ataque, o usado nesse trabalho foi o TCP SYN FLOOD. 
+
+Quando um cliente tenta começar um conexão TCP com um servidor, são trocados, entre eles, uma série de mensagens (\textit{Three-Way Handshaker}). O TCP SYN FLOOD consiste em enviar uma sequência de requisições SYN para o alvo, sobrecarregando-o diretamente na camada de transporte e indiretamente na camada de aplicação.
+
+Para tal, usou-se o Metasploit Framework (\autoref{sec:metasploit}). Primeiramente, entrou-se no console de linha de comando, para acessar, basta, no terminal, digitar \textit{msfconsole}. Existe um modulo no Metasploit chamado \textit{synflood}, para utilizar esse modulo, é necessário definir o IP do alvo e o IP de onde partirá o ataque. Abaixo segue os comandos usados no \textit{msfconsole}.
+
+\begin{lstlisting}[language=bash, frame=single]
+use auxiliary/dos/tcp/synflood
+
+msf auxiliary(synflood) > set rhost 192.168.1.107 (target IP)
+
+msf auxiliary(synflood) > set shost 192.168.1.105 (attack IP)
+
+msf auxiliary(synflood) > exploit
+\end{lstlisting}
 
 \section{Resultados} \label{sec:resultados}
 %Resultados esperados e obtidos
