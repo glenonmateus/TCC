@@ -81,7 +81,27 @@ O segundo teste, usou-se o parâmetro '-sV' do NMAP. Essa opção habilita a des
 
 De posse de um alvo em potencial, próximo passo seria rodar um \textit{scanner} de vulnerabilidade, em busca de brejas já conhecidas, e que, geralmente por descuido do administrador, não foi fechada. Essas brejas podem ter várias origem, desde uma versão do serviço com \textit{bugs} ou uma má configuração. Para esse teste, usou-se o OpenVAS (\autoref{sec:openvas}).
 
-Alguns configurações são necessárias nessa etapa. Primeiramente, deve-se definir o alvo 
+Alguns configurações são necessárias nessa etapa. Primeiramente, deve-se definir o alvo, tal configuração é feita através do caminho "\textit{Configuration > New target}", a \autoref{fig:openvas-newtarget} mostra a janela aberta, nela temos que definir um nome para o alvo e o IP ou a faixa de IP's, as outras configurações serão deixadas o padrão.
+
+\begin{figure}[htb]
+\centering
+\caption{Definição do alvo no OpenVAS}
+\includegraphics[scale=.55]{openvas-newtarget.png}
+\label{fig:openvas-newtarget}
+\legend{Fonte: Autoria própria}
+\end{figure}
+
+A realização do scan é feita através do caminho "\textit{Scans > Tasks > New Task}", na \autoref{fig:openvas-newtask} mostra a janela aberta, nela precisamos definir no nome da \textit{task} e o alvo, que foi definido anteriormente, as outras opções serão deixadas o padrão. 
+
+Por padrão, quando uma \textit{task} é criada, o \textit{scan} é automaticamente executado. Esse processo pode demorar, isso depende de quantos alvos foram definidos. Ao final, um relatório é exibido com as vulnerabilidades encontradas e categorizadas (\textit{high, medium, low}) de acordo com a sua severidade. Além disso, o OpenVAS exibe um sumário, descrevendo a falha encontrada e a possível solução do problema.
+
+\begin{figure}[htb]
+\centering
+\caption{Configuração de um \textit{task} de scan no OpenVAS}
+\includegraphics[scale=.55]{openvas-newtask.png}
+\label{fig:openvas-newtask}
+\legend{Fonte: Autoria própria}
+\end{figure}
 
 Outro teste realizado determinará a capacidade das ferramentas de detectar ataques de negação de serviço (\autoref{sec:negação}). Existem várias técnicas para realizar esse tipo de ataque, o usado nesse trabalho foi o TCP SYN FLOOD. 
 
