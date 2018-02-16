@@ -96,6 +96,7 @@
 	\end{minipage}}
 	\end{center}
 \end{fichacatalografica}
+
 % \begin{errata}
 %Elemento opcional da \citeonline[4.2.1.2]{NBR14724:2011}. Exemplo:
 %\vspace{\onelineskip}
@@ -116,34 +117,36 @@
 %\end{tabular}
 %\end{table}
 %\end{errata}
-%\begin{folhadeaprovacao}
-%  \begin{center}
-%    {\ABNTEXchapterfont\large\imprimirautor}
-%    \vspace*{\fill}\vspace*{\fill}
-%    \begin{center}
-%      \ABNTEXchapterfont\bfseries\Large\imprimirtitulo
-%    \end{center}
-%    \vspace*{\fill}
-%    \hspace{.45\textwidth}
-%    \begin{minipage}{.5\textwidth}
-%        \imprimirpreambulo
-%    \end{minipage}%
-%    \vspace*{\fill}
-%   \end{center}
-%   Trabalho aprovado. \imprimirlocal, 24 de novembro de 2012:
-%   \assinatura{\textbf{\imprimirorientador} \\ Orientador} 
+
+\begin{folhadeaprovacao}
+  \begin{center}
+    {\ABNTEXchapterfont\large\imprimirautor}
+    \vspace*{\fill}\vspace*{\fill}
+    \begin{center}
+      \ABNTEXchapterfont\bfseries\Large\imprimirtitulo
+    \end{center}
+    \vspace*{\fill}
+    \hspace{.45\textwidth}
+    \begin{minipage}{.5\textwidth}
+        \imprimirpreambulo
+    \end{minipage}%
+    \vspace*{\fill}
+   \end{center}
+   Trabalho aprovado. \imprimirlocal, 24 de novembro de 2012:
+   \assinatura{\textbf{\imprimirorientador} \\ Orientador} 
    %\assinatura{\textbf{Professor} \\ Convidado 1}
    %\assinatura{\textbf{Professor} \\ Convidado 2}
    %\assinatura{\textbf{Professor} \\ Convidado 3}
    %\assinatura{\textbf{Professor} \\ Convidado 4}
-%   \begin{center}
-%    \vspace*{0.5cm}
-%    {\large\imprimirlocal}
-%    \par
-%    {\large\imprimirdata}
-%    \vspace*{1cm}
-%  \end{center}
-%\end{folhadeaprovacao}
+   \begin{center}
+    \vspace*{0.5cm}
+    {\large\imprimirlocal}
+    \par
+    {\large\imprimirdata}
+    \vspace*{1cm}
+  \end{center}
+\end{folhadeaprovacao}
+
 %\begin{dedicatoria}
 %   \vspace*{\fill}
 %   \centering
@@ -158,14 +161,21 @@
 %		\textit{•}
 %	\end{flushright}
 %\end{epigrafe}
+
 \setlength{\absparsep}{18pt} 
+
 \begin{resumo}
- \textbf{Palavras-chave}: Segurança da Informação, Suricata, Snort, Sistema de Detecção de Intrusão, Sistema de Prevenção de Intrusão, IDS, IPS.
+ 
+A todo momento, novos ataques ou mesmo variações de ataques existentes surgem e são lançados a várias redes. Somente a utilização de \textit{firewall} é insuficiente pois o atacante pode utilizar portas legitimas para realizar ataques. Diante desse cenário, é indispensável, para um administrador de rede, o uso de ferramentas auxiliares de IDPS, que alertam ou até mesmo bloqueiam ataques. Esse trabalho tem o objetivo de analisar os Sistemas de Detecção de Intrusão \textit{open source} mais populares, Snort e Suricata. O Snort é um sistema de detecção lançado em 1998 por Martin Roesch foi uma das primeiras em seu segmento a realizar análise de tráfego em tempo real e registro dos pacotes de forma leve, utilizando recursos mínimos de processamento. Já o Suricata, foi lançado em 2010, e tem como principal característica utilização da tecnologia \textit{multithreading}, tirando maior proveito dos processadores, visando melhorar o desempenho. A análise foi realizada comparando o desempenho e as detecções de intrusões, as quais foram colocadas em funcionamento em uma rede de produção real, verificando suas vantagens e desvantagens. Nos testes realizados, foram utilizados ferramentas auxiliares para simular ataques a uma máquina alvo instalada para essa finalidade. 
+
+\textbf{Palavras-chave}: Segurança da Informação, Suricata, Snort, Sistema de Detecção de Intrusão, Sistema de Prevenção de Intrusão, IDS, IPS.
 \end{resumo}
 \begin{resumo}[Abstract]
  \begin{otherlanguage*}{english}
    \vspace{\onelineskip}
    \noindent 
+   At any time, new attacks or even variations of existing attacks arise and are thrown across multiple networks. Only the use of firewall is insufficient because the attacker can use legitimate ports to carry out attacks. Given this scenario, it is essential for a network administrator to use IDPS helper tools that alert or even block attacks. This work has the objective of analyzing the most popular open source Intrusion Detection Systems, Snort and Suricata. Snort is a detection system launched in 1998 by Martin Roesch was one of the first in its segment to carry out real-time traffic analysis and registration of packages in a light way, using minimum processing. Suricata was launched in 2010, and its main feature is the use of multithreading technology, taking advantage of processors to improve performance. The analysis was performed comparing intrusion performance and detections, which were put into operation in a real production network, checking their advantages and disadvantages. In the tests performed, auxiliary tools were used to simulate attacks on a target machine installed for this purpose.
+
    \textbf{Keywords}: Security Information, Suricata, Snort, Intrusion Detection System, Intrusion Prevention System, IDS, IPS.
  \end{otherlanguage*}
 \end{resumo}
@@ -200,8 +210,9 @@
   \item[NVT] \textit{Network Vulnerability Tests}
   \item[OMP] \textit{OpenVAS Management Protocol}
   \item[OAP] \textit{OpenVAS Assistant Protocol}
-  \item[GSD \textit{Greenbone Security Desktop}
+  \item[GSD] \textit{Greenbone Security Desktop}
   \item[GSA] \textit{Greenbone Security Assistant}
+  \item[VM] \textit{Virtual Machine}
 \end{siglas}
 \pdfbookmark[0]{\contentsname}{toc}
 \tableofcontents*

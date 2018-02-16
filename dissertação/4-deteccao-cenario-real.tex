@@ -3,24 +3,23 @@
 
 Este capítulo esta organizado da seguinte forma: A próxima seção apresenta o cenário de testes, descrevendo características gerais da rede selecionada para os teste. Na seção \ref{sec:infraestrutura} será abordado a infraestrutura usada para os testes, ferramentas utilizadas e as configurações feitas. Na seção \ref{sec:testes} será descrito os testes realizados com suas respectivas justificativas. Na seção \ref{sec:resultados} será apresentado os resultados esperados e obtidos, problemas encontrados e a comparação das ferramentas e por último, na seção \ref{sec:conclusão}, uma breve conclusão.
 
- \section{Metodologia dos Testes}
- % (Adicionar o escopo dos testes): descrever o ambientes,
- \subsection{Cenário de Testes} \label{sec:cenário}
- %Descrever o cenário. Ex: Uma rede com XXX usuários; Os usuários utilizam
- %diferentes ferramentas,...
- %Adicionar gráficos de utilização da rede
+\section{Metodologia dos Testes}
 
- A rede selecionada para ser monitorada tem os valores especificados na tabela. Podemos verificar que em um determinado período do dia o pico de trafego chega a 107,25 Mbps, valores considerados ideais para o experimento, inclusive para tentar validar os recursos alocados. 
+Nessa seção será descrito o cenário utilizado para a realização dos testes. Na \autoref{sec:cenário}, aborta a rede onde os sensores foram instalados e algumas de suas estatísticas de uso. A \autoref{sec:infraestrutura} descreve a infraestrutura montada para realização dos testes, os equipamentos utilizados e as ferramentas adicionais. Na \autoref{sec:testes}, será descrito os testes realizados. Na \autoref{sec:resultados} abordará os resultados esperados e obtidos com os testes. Por último, na \autoref{sec:conclusão} a conclusão.
 
- Em um primeiro momento, selecionou-se uma rede
+% (Adicionar o escopo dos testes): descrever o ambientes,
+\subsection{Cenário de Testes} \label{sec:cenário}
+%Descrever o cenário. Ex: Uma rede com XXX usuários; Os usuários utilizam
+%diferentes ferramentas,...
+%Adicionar gráficos de utilização da rede
 
- \subsection{Infraestrutura Definida para Testes} \label{sec:infraestrutura}
- %Descrever o que foi utilizado:
- %Ex: Equipamentos - Servidores, ....
- %    Configuração
- %    Ferramentas - Snort (referenciar capítulo), ...
+\subsection{Infraestrutura Definida para Testes} \label{sec:infraestrutura}
+%Descrever o que foi utilizado:
+%Ex: Equipamentos - Servidores, ....
+%    Configuração
+%    Ferramentas - Snort (referenciar capítulo), ...
 
- No ambiente de teste foi usado uma máquina Dell com 134 Megabytes (MB) de memória RAM e 40 núcleos. Usou-se XenServer \cite{xenserver} versão 7, sistema operacional (SO) \textit{opensource} da Citrix voltado para virtualização. Foram testados outros SOs porém somente o XenServer possuía, na época da instalação do ambiente, \textit{firmware} da placa de rede do \textit{host} compatível e que funcionava com instabilidade. 
+No ambiente de teste foi usado uma máquina Dell com 134 Megabytes (MB) de memória RAM e 40 núcleos. Usou-se XenServer \cite{xenserver} versão 7, sistema operacional (SO) \textit{opensource} da Citrix voltado para virtualização. Foram testados outros SOs porém somente o XenServer possuía, na época da instalação do ambiente, \textit{firmware} da placa de rede do \textit{host} compatível e que funcionava com instabilidade. 
  
 Outro fator que pesou na escolha do SO foi a experiência com a plataforma e por existir uma interface para gerencia chamada XenCenter que roda no Windows. Uma alternativa \textit{opensource} desse software é o OpenXenManager que funciona nos sistemas Unix \cite{openxenmanager}.
 
@@ -30,17 +29,17 @@ Foi alocado 8 MB memória RAM, 4 processadores e 100 Gigabytes(GB) de espaço em
 
 Para o \textit{host} conseguir pegar o pacotes destinados a rede escolhida para ser monitorada foi necessário uma configuração de espelhamento no roteador B (Figura \ref{fig:infra-ambiente}) que consiste na copia dos pacotes que saem pela porta dessa rede no roteador para a porta conectada no \textit{host} que possui uma largura de banda de 10 Gigabits. A interface de rede do \textit{host} precisou ser configurada no modo \textit{promisc}.
 
-Posteriormente criou-se quatro máquinas virtuais, duas usadas para instalação dos IDSs (Suricata e Snort) e a terceira para instalação das ferramentas usadas para simular ataques a rede. Optou-se pela instalação do sistema Kali Linux \cite{kalilinux} para geração de ataques pois nele existe várias ferramentas nativas para testes de penetração e auditoria de segurança (Metasploit \autoref{sec:metasploit} e NMAP \autoref{sec:nmap}). 
+Posteriormente criou-se quatro máquinas virtuais, duas usadas para instalação dos IDSs (Suricata e Snort) e a terceira para instalação das ferramentas usadas para simular ataques a rede. Optou-se pela instalação do sistema Kali Linux \cite{kalilinux} para geração de ataques pois nele existe várias ferramentas nativas para testes de penetração e auditoria de segurança (Metasploit \autoref{sec:metasploit}, NMAP \autoref{sec:nmap} e OpenVAS \autoref{sec:openvas}). 
 
 Na quarta máquina foi instalado o \textit{framework} Pytbull (\autoref{sec:pytbull}), ela servirá também como alvo das simulações dos ataques. A infraestrutura final pode ser visualizada na \autoref{fig:infra-ambiente}.
 
- \begin{figure}[!htb]
-  \centering
-  \caption{Infraestrutura do ambiente de teste}
-  \includegraphics[scale=.65]{infra.png}
-  \label{fig:infra-ambiente}
-  \legend{Fonte: Autoria própria}
- \end{figure}
+\begin{figure}[!htb]
+\centering
+\caption{Infraestrutura do ambiente de teste}
+\includegraphics[scale=.65]{infra.png}
+\label{fig:infra-ambiente}
+\legend{Fonte: Autoria própria}
+\end{figure}
 
 Para coleta das informações de uso de recurso de hardware como memória, processamento e I/O das máquinas com os IDSs foi utilizado o \textit{daemon} Collectd \cite{collectd}. Outra opção para esse finalidade é a utilização de um servidor de monitoramento como o Zabbix \cite{zabbix}. A ideia de ter duas ferramentas para essa analise é fazer um comparativo e validar as informações coletadas.
 
@@ -81,7 +80,7 @@ O segundo teste, usou-se o parâmetro '-sV' do NMAP. Essa opção habilita a des
 
 De posse de um alvo em potencial, próximo passo seria rodar um \textit{scanner} de vulnerabilidade, em busca de brejas já conhecidas, e que, geralmente por descuido do administrador, não foi fechada. Essas brejas podem ter várias origem, desde uma versão do serviço com \textit{bugs} ou uma má configuração. Para esse teste, usou-se o OpenVAS (\autoref{sec:openvas}).
 
-Alguns configurações são necessárias nessa etapa. Primeiramente, deve-se definir o alvo, tal configuração é feita através do caminho "\textit{Configuration > New target}", a \autoref{fig:openvas-newtarget} mostra a janela aberta, nela temos que definir um nome para o alvo e o IP ou a faixa de IP's, as outras configurações serão deixadas o padrão.
+Alguns configurações são necessárias nessa etapa. Primeiramente, deve-se definir o alvo, tal configuração é feita através do caminho "\textit{Configuration > New target}", a \autoref{fig:openvas-newtarget} mostra a janela aberta, nela temos que definir um nome para o alvo e o IP ou a faixa de IP's, as outras configurações serão deixadas com o padrão.
 
 \begin{figure}[htb]
 \centering
@@ -91,9 +90,9 @@ Alguns configurações são necessárias nessa etapa. Primeiramente, deve-se def
 \legend{Fonte: Autoria própria}
 \end{figure}
 
-A realização do scan é feita através do caminho "\textit{Scans > Tasks > New Task}", na \autoref{fig:openvas-newtask} mostra a janela aberta, nela precisamos definir no nome da \textit{task} e o alvo, que foi definido anteriormente, as outras opções serão deixadas o padrão. 
+A realização do scan é feita através do caminho "\textit{Scans > Tasks > New Task}", na \autoref{fig:openvas-newtask} mostra a janela aberta, nela precisamos definir no nome da \textit{task} e o alvo, que foi definido anteriormente, as outras opções serão deixadas com o padrão. 
 
-Por padrão, quando uma \textit{task} é criada, o \textit{scan} é automaticamente executado. Esse processo pode demorar, isso depende de quantos alvos foram definidos. Ao final, um relatório é exibido com as vulnerabilidades encontradas e categorizadas (\textit{high, medium, low}) de acordo com a sua severidade. Além disso, o OpenVAS exibe um sumário, descrevendo a falha encontrada e a possível solução do problema.
+Por padrão, quando uma \textit{task} é criada, o \textit{scan} é automaticamente executado. Esse processo pode demorar, isso depende de quantos alvos foram definidos. Ao final, um relatório é exibido com as vulnerabilidades encontradas e categorizadas (\textit{high, medium, low}) de acordo com a sua severidade. Além disso, o OpenVAS exibe um sumário, descrevendo a(s) falha(s) encontrada(s) e como resolver ou mitigar o problema.
 
 \begin{figure}[htb]
 \centering
@@ -119,13 +118,15 @@ msf auxiliary(synflood) > set shost 192.168.1.105 (attack IP)
 msf auxiliary(synflood) > exploit
 \end{lstlisting}
 
+No ultimo teste, utilizou-se o \textit{framework} Pytbull (\autoref{sec:pytbull}). 
+
 \section{Resultados} \label{sec:resultados}
 %Resultados esperados e obtidos
 %Quais os resultados dos testes ??
 %Comparação das ferramentas
 %Problemas encontrados
 \section{Conclusão} \label{sec:conclusão}
-\section{Métricas de Comparação}
+%\section{Métricas de Comparação}
 %Consumo dos Recursos de Hardware (Memória, Processamento)
 %Taxa de Detecção
 %Número de Falsos Positivos/Negativos
