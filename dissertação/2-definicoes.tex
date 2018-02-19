@@ -449,12 +449,46 @@ Existem basicamente 5 tipos de testes \cite{pytbull}:
 \item \textbf{\textit{pcap replay}}: Permite reproduzir tráfego com base em arquivos de pcap.
 \end{alineas}
 
+Segundo \cite{pytbull}, o Pytbull pode ser usado seguindo as seguintes arquiteturas:
+
+\begin{alineas}
+\item \textbf{\textit{Remote Mode}}: Nesse modo, o IDS é conectado em um espelhamento de porta no \textit{switch} de núcleo e com a interface em modo \textit{promisc}, analisando todo o tráfego que passa no \textit{switch}. Os arquivos maliciosos podem ser baixados pelo Pytbull ou pelo servidor (\autoref{fig:pytbull-remote});
+\item \textbf{\textit{Local Mode}}: Nesse modo, os arquivos maliciosos são baixados pelo Pytbull;
+\item \textbf{\textit{IDS mode with attacked server in DMZ}}: Nessa configuração, o \textit{firewall} divide a rede em três seguimentos (lan, wan, DMZ). O IDS é conectado em um espelhamento do \textit{switch} com um interface em modo \textit{promisc}, analisando todo o tráfego enviado a interface LAN do \textit{firewall} (\autoref{fig:pytbull-ids-dmz});
+\item \textbf{\textit{IPS Mode}}: Nessa configuração, o IDS é colocado entre o Pytbull e o firewall. O Pytbull deve fazer o \textit{download} dos arquivos maliciosos para dar chance o IDS detectar (\autoref{fig:pytbull-ips});
+\item \textbf{\textit{IPS mode with attacked server in DMZ}}: O mesmo do modo anterior porém com uma DMZ (\autoref{fig:pytbull-ips-dmz}).
+\end{alineas}
+
 \begin{figure}[htb]
     \centering
-    \caption{Arquitetura do \textit{framework} Pytbull}
-    \includegraphics[scale=.4]{arquitetura_pytbull.png}
+    \caption{Arquitetura \textit{Remote Mode} do \textit{framework} Pytbull}
+    \includegraphics[scale=.45]{arquitetura_pytbull_remote.png}
     \legend{Fonte: \cite{pytbull}}
-    \label{fig:pytbull}
+    \label{fig:pytbull-remote}
+\end{figure}
+
+\begin{figure}[htb]
+    \centering
+    \caption{Arquitetura \textit{IDS mode with attacked server in dmz} do \textit{framework} pytbull}
+    \includegraphics[scale=.45]{arquitetura_pytbull_ids_dmz.png}
+    \legend{Fonte: \cite{pytbull}}
+    \label{fig:pytbull-ids-dmz}
+\end{figure}
+
+\begin{figure}[htb]
+    \centering
+    \caption{Arquitetura \textit{IPS mode} do \textit{framework} pytbull}
+    \includegraphics[scale=.45]{arquitetura_pytbull_ips.png}
+    \legend{Fonte: \cite{pytbull}}
+    \label{fig:pytbull-ips}
+\end{figure}
+
+\begin{figure}[htb]
+    \centering
+    \caption{Arquitetura \textit{IPS mode with attacked server in dmz} do \textit{framework} pytbull}
+    \includegraphics[scale=.45]{arquitetura_pytbull_ips_dmz.png}
+    \legend{Fonte: \cite{pytbull}}
+    \label{fig:pytbull-ips-dmz}
 \end{figure}
 
 \subsection{OpenVAS} \label{sec:openvas}
