@@ -174,7 +174,7 @@ Os pacotes, após passarem por todos os pré-processador, são entregues para o 
 
 Na \autoref{fig_snort_detecção}, temos os pacotes saindo dos pré-processadores e chegando no motor de detecção. No motor de detecção há uma base de regras configurada, os dados dos pacotes são comparados com as assinaturas da base, se coincidirem, uma ação é tomada, caso contrário, o pacote é descartado.
 
-\begin{figure}[htb]
+\begin{figure}[!htb]
   \centering
   \caption{Motor de Detecção do Snort} \label{fig_snort_detecção}
   \includegraphics[scale=0.7]{snort_detection.png}
@@ -220,7 +220,7 @@ O Suricata utilizada detecção baseada em assinatura e em anomalias. As assinat
 
 Embora o código do Suricata ser original, os desenvolvedores não hesitam afirmar que a arquitetura foi inspirada no Snort. Na \autoref{fig_arquitetura-suricata} representa a mesma arquitetura do Snort porém com o mecanismo de \textit{multithread} \cite{arquitetura:martin}. Dessa forma não há necessidade de descrever os componentes pois já foram citados na \autoref{sec:snort}.
 
-\begin{figure}[htb]
+\begin{figure}[!htb]
   \centering
   \caption{Arquitetura \textit{Multithread} do Suricata} \label{fig_arquitetura-suricata}
   \includegraphics[scale=0.5]{arquitetura-suricata.png} 
