@@ -115,7 +115,7 @@ As redes podem ser classificadas em duas categorias \cite{esr:arquitetura}:
 
 Uma Internet é uma rede de computadores que interconecta centenas de dispositivos de computadores ao redor do mundo \cite{redes:kurose}. A União Internacional de Telecomunicações (UTI) estima que haja cerca de 3.578 milhões (\autoref{fig:estatisca-itu}) de usuários usando diferentes tipos de dispositivos, como, celulares, automóveis, \textit{webcams}, TVs, \textit{laptops}, consoles para jogos, entre outros \cite{estatistica:itu}.
 
-\begin{figure}[htb]
+\begin{figure}[!htb]
     \centering
     \caption{Quantidade de usuário conectados na Internet} 
     \includegraphics[scale=.55]{estatistica-uit.png}
@@ -191,7 +191,7 @@ Outros serviços visados por esse tipo de ataque são \cite{esr:tratamento}:
 
 Uma forma de difundir \textit{phishing} é através de \textit{spam}. Um \textit{spam} é uma mensagem, na maioria das vezes de conteúdo falso, enviado para diversos e-mails, nessas mensagens podem conter uma URL de um site falso ou um site com códigos maliciosos \autoref{sec:malwares} que infectam a vítima. Um \textit{spammer}, como é chamado quem envia \textit{spam}, também usa técnica de \textit{phishing} para obter dados de acesso de e-mails pessoais. Dessa forma, o \textit{spammer} pode acessar a conta de e-mail da vítima e enviar \textit{spam} para todos os seus contatos, sem que a vítima perceba.
 
-\begin{figure}[htb]
+\begin{figure}[!htb]
  \centering
  \caption{Fraude identificada pelo CAIS}
  \includegraphics[scale=.6]{fraude-spam.png}
@@ -221,7 +221,7 @@ Nessa seção será descritos os ataques mais comuns à redes e serviços de org
 
 O CERT.br é o grupo de resposta a incidentes de segurança para a internet brasileira, mantido Comitê Gestor da Internet no Brasil. Atua na notificação e tratamento de incidentes de segurança dando apoio no processo de resposta. Além disso, faz um trabalho de conscientização e treinamento sobre problemas de segurança no Brasil. 
 
-\begin{figure}[htb]
+\begin{figure}[!htb]
  \centering
  \caption{Estatísticas de ataques reportadas ao CERT.br}
  \includegraphics[scale=.6]{incidentes-reportados.png}
@@ -233,7 +233,7 @@ Paralelamente ao CERT.br temos o Centro de Atendimento a Incidentes de Seguranç
 
 Desde 2008, todas a fraudes identificadas pelo CAIS estão sendo ordenadas e disponibilizadas para consulta (\autoref{fig:cais}). Adicionalmente, são enviados alertas através de uma lista quando uma fraude mostra-se particularmente perigosa aos usuários e computadores.
 
-\begin{figure}[htb]
+\begin{figure}[!htb]
  \centering
  \caption{Estatísticas de incidentes reportados ao CAIS}
  \includegraphics[scale=.7]{cais-incidentes-reportados.png}
@@ -309,7 +309,7 @@ Esse tipo de ataque pode trazer sérias consequências à instituição, entre e
 
 Existem ferramentas que automatizam esse tipo de ataque, elas identificação aplicações web populares vulneráveis, de modo explorar falhas de segurança e alterar o conteúdo da página \cite{esr:tratamento}.
 
-\begin{figure}[htb]
+\begin{figure}[!htb]
  \centering
  \caption{Estatísticas de \textit{defacement}}
  \includegraphics[scale=.7]{estatisticas-defacement.png}
@@ -335,7 +335,7 @@ Esse tipo de ataque pode gerar grandes prejuízos financeiros para as empresas, 
 
 Existe uma forma mais sofisticada de ataque de DoS chamada Negação de Serviço Distribuído (\textit{Distributed Denial of Services} - DDoS), enquanto o DoS básico as requisições partem de apenas uma fonte, no entanto, no DDoS o atacante tem acesso a um grande número de computadores (\textit{zombies}) explorando suas vulnerabilidades criando o que chamamos de \textit{botnet} (\autoref{fig:ddos}). Com isso, basta o atacante indicar as coordenadas de um ou mais alvos para o ataque \cite{zargarjoshitipper}. O DDoS são mais difíceis de detectar e de prevenir do que um ataque DoS de um único hospedeiro.
 
-\begin{figure}[htb]
+\begin{figure}[!htb]
  \centering
  \caption{Ataque de Negação de Serviço Distribuído}
  \includegraphics[scale=.6]{ddos.png}
@@ -381,7 +381,7 @@ O resultado do Nmap é uma tabela de portas e seus estados (\autoref{fig:nmap-ex
 \item \textbf{\textit{unfilterd}}: a porta responde requisição porém o Nmap não consegue determinar se estão fechadas ou abertas.
 \end{alineas}
 
- \begin{figure}[htb]
+ \begin{figure}[!htb]
   \centering
   \caption{Exemplo de saída do Nmap}
   \includegraphics[scale=.6]{nmap.png}
@@ -459,7 +459,7 @@ Segundo \cite{pytbull}, o Pytbull pode ser usado seguindo as seguintes arquitetu
 \item \textbf{\textit{IPS mode with attacked server in DMZ}}: O mesmo do modo anterior porém com uma DMZ (\autoref{fig:pytbull-ips-dmz}).
 \end{alineas}
 
-\begin{figure}[htb]
+\begin{figure}[!htb]
     \centering
     \caption{Arquitetura \textit{Remote Mode} do \textit{framework} Pytbull}
     \includegraphics[scale=.45]{arquitetura_pytbull_remote.png}
@@ -467,7 +467,7 @@ Segundo \cite{pytbull}, o Pytbull pode ser usado seguindo as seguintes arquitetu
     \label{fig:pytbull-remote}
 \end{figure}
 
-\begin{figure}[htb]
+\begin{figure}[!htb]
     \centering
     \caption{Arquitetura \textit{IDS mode with attacked server in dmz} do \textit{framework} pytbull}
     \includegraphics[scale=.45]{arquitetura_pytbull_ids_dmz.png}
@@ -475,7 +475,7 @@ Segundo \cite{pytbull}, o Pytbull pode ser usado seguindo as seguintes arquitetu
     \label{fig:pytbull-ids-dmz}
 \end{figure}
 
-\begin{figure}[htb]
+\begin{figure}[!htb]
     \centering
     \caption{Arquitetura \textit{IPS mode} do \textit{framework} pytbull}
     \includegraphics[scale=.45]{arquitetura_pytbull_ips.png}
@@ -483,7 +483,7 @@ Segundo \cite{pytbull}, o Pytbull pode ser usado seguindo as seguintes arquitetu
     \label{fig:pytbull-ips}
 \end{figure}
 
-\begin{figure}[htb]
+\begin{figure}[!htb]
     \centering
     \caption{Arquitetura \textit{IPS mode with attacked server in dmz} do \textit{framework} pytbull}
     \includegraphics[scale=.45]{arquitetura_pytbull_ips_dmz.png}

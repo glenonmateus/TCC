@@ -82,7 +82,7 @@ De posse de um alvo em potencial, próximo passo seria rodar um \textit{scanner}
 
 Alguns configurações são necessárias nessa etapa. Primeiramente, deve-se definir o alvo, tal configuração é feita através do caminho "\textit{Configuration > New target}", a \autoref{fig:openvas-newtarget} mostra a janela aberta, nela temos que definir um nome para o alvo e o IP ou a faixa de IP's, as outras configurações serão deixadas com o padrão.
 
-\begin{figure}[htb]
+\begin{figure}[!htb]
 \centering
 \caption{Definição do alvo no OpenVAS}
 \includegraphics[scale=.55]{openvas-newtarget.png}
@@ -94,7 +94,7 @@ A realização do scan é feita através do caminho "\textit{Scans > Tasks > New
 
 Por padrão, quando uma \textit{task} é criada, o \textit{scan} é automaticamente executado. Esse processo pode demorar, isso depende de quantos alvos foram definidos. Ao final, um relatório é exibido com as vulnerabilidades encontradas e categorizadas (\textit{high, medium, low}) de acordo com a sua severidade. Além disso, o OpenVAS exibe um sumário, descrevendo a(s) falha(s) encontrada(s) e como resolver ou mitigar o problema.
 
-\begin{figure}[htb]
+\begin{figure}[!htb]
 \centering
 \caption{Configuração de um \textit{task} de scan no OpenVAS}
 \includegraphics[scale=.55]{openvas-newtask.png}
