@@ -120,7 +120,21 @@ msf auxiliary(synflood) > exploit
 
 No ultimo teste, utilizou-se o \textit{framework} Pytbull (\autoref{sec:pytbull}). O Pytbull foi desenvolvido especificamente para realizar testes e validar configurações em IDPS. Na documentação oficial exemplifica algumas arquiteturas que podem ser usadas, nesse trabalho usou-se a arquitetura \textit{remote mode} onde o IDS é colocado para escutar todo o tráfego que passa no \textit{switch} através de uma porta espelhada e com uma interface configurada em modo \textit{promisc}.
 
-Por padrão, todos os testes do \textit{framework} estão ativados. Como o teste de DoS foi realizado utilizando o Metasploit, e para diminuir o tempo da experimentação, o módulo denialOfService do Pytbull foi desativado. Outra mudança feita, com o intuito de melhorar a eficácia do teste, foi a configuração das ferramentas de IDPS para analisar somente pacotes com o IP do \textit{host} que executará o Pytbull. 
+Por padrão, todos os testes do \textit{framework} estão ativados. Como o teste de DoS foi realizado utilizando o Metasploit, e para diminuir o tempo da experimentação, o módulo denialOfService do Pytbull foi desativado. Outro módulo desativado, devido demora na execução, foi o testRules, a execução desse módulo levava mais de uma hora. Para desativar esses módulos precisa-se editar o arquivo \textbf{pytbull/config/config.cfg}, alterando, na parte dos testes, os valores de 1 para 0.
+
+Outra mudança feita, com o intuito de melhorar a eficácia do teste, foi a configuração das ferramentas de IDPS para analisar somente pacotes com o IP do \textit{host} que executará o Pytbull. 
+
+Antes de executar o \textit{framework}, é necessário mover, para os \textit{hosts} que estão executando as ferramentas de IDPS, o script \textbf{pytbull/server/pytbull-server.py} encontrado no arquivo .tar.bz2, baixado no site oficial do Pytbull \cite{pytbull}. Esse executável abre um shell reverso no servidor que é usado pelo módulo clientSideAttacks do Pytbull, fazendo-o baixar arquivos maliciosos da Internet. 
+
+Feito isso, basta executar os comandos abaixo, substituindo \textbf{suricata} e \textbf{snort} pelos seus respectivos IPs:
+
+\begin{lstlisting}[language=bash, frame=single]
+cd pytbull/
+
+sudo ./pytbull -t suricata
+
+sudo ./pytbull -t snort
+\end{lstlisting}
 
 \section{Resultados} \label{sec:resultados}
 %Resultados esperados e obtidos
