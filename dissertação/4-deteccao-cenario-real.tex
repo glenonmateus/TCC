@@ -23,15 +23,13 @@ No ambiente de teste foi usado uma máquina Dell com 134 Megabytes (MB) de memó
  
 Outro fator que pesou na escolha do SO foi a experiência com a plataforma e por existir uma interface para gerencia chamada XenCenter que roda no Windows. Uma alternativa \textit{opensource} desse software é o OpenXenManager que funciona nos sistemas Unix \cite{openxenmanager}.
 
-No primeiro momento, foi instalado uma máquina virtual com o sistema operacional Debian 9.3 \textit{codename} Wheezy \cite{debianwheezy}, uma distribuição linux com uma proposta de ser totalmente livre, usada como base para instalação de outras máquinas utilizando o recurso de \textit{snapshot}, uma cópia de uma máquina virtual rodando em um certo momento, do XenServer. O uso desse recurso foi necessário para criar um ambiente igual para os IDSs.
+No primeiro momento, foi instalado uma máquina virtual com o sistema operacional Debian 9.3 \textit{codename} Stretch \cite{debianwheezy}, uma distribuição linux com uma proposta de ser totalmente livre, usada como base para instalação de outras máquinas utilizando o recurso de \textit{snapshot}, uma cópia de uma máquina virtual rodando em um certo momento, do XenServer. O uso desse recurso foi necessário para criar um ambiente igual para as ferramentas em estudo.
 
-Foi alocado 8 MB memória RAM, 4 processadores e 100 Gigabytes(GB) de espaço em disco para o \textit{snapshot}. Esses valores foram definidos com base em um estudo \cite{mikelococo} que considerava vários fatores, como largura da rede, localização do IDS e versão, tipo do capturador de tráfego e tamanho da base de assinaturas para dimensionar os recursos de memória e processamento, aplicado especificamente ao Snort. A mesma regra foi aplicada ao Suricata.
+Foi alocado 8 MB memória RAM, 4 processadores e 100 Gigabytes(GB) de espaço em disco para o \textit{snapshot}. Esses valores foram definidos com base em um estudo \cite{mikelococo} que considera vários fatores, como largura da rede, localização do IDS e versão, tipo do capturador de tráfego e tamanho da base de assinaturas para dimensionar os recursos de memória e processamento, aplicado especificamente ao Snort. A mesma regra foi aplicada ao Suricata.
 
-Para o \textit{host} conseguir pegar o pacotes destinados a rede escolhida para ser monitorada foi necessário uma configuração de espelhamento no roteador B (Figura \ref{fig:infra-ambiente}) que consiste na copia dos pacotes que saem pela porta dessa rede no roteador para a porta conectada no \textit{host} que possui uma largura de banda de 10 Gigabits. A interface de rede do \textit{host} precisou ser configurada no modo \textit{promisc}.
+Para o \textit{host} conseguir pegar o pacotes destinados a rede escolhida para o experimento, foi necessário uma configuração de espelhamento no roteador B (Figura \ref{fig:infra-ambiente}) que consiste na copia dos pacotes que saem pela porta dessa rede no roteador para a porta conectada no \textit{host} que possui uma largura de banda de 10 Gigabits. A interface de rede do \textit{host} precisou ser configurada no modo \textit{promisc}.
 
-Posteriormente criou-se quatro máquinas virtuais, duas usadas para instalação dos IDSs (Suricata e Snort) e a terceira para instalação das ferramentas usadas para simular ataques a rede. Optou-se pela instalação do sistema Kali Linux \cite{kalilinux} para geração de ataques pois nele existe várias ferramentas nativas para testes de penetração e auditoria de segurança (Metasploit \autoref{sec:metasploit}, NMAP \autoref{sec:nmap} e OpenVAS \autoref{sec:openvas}). 
-
-Na quarta máquina foi instalado o \textit{framework} Pytbull (\autoref{sec:pytbull}), ela servirá também como alvo das simulações dos ataques. A infraestrutura final pode ser visualizada na \autoref{fig:infra-ambiente}.
+Posteriormente criou-se três máquinas virtuais, duas usadas para instalação dos IDSs (Suricata e Snort) e a terceira será usada para rodar o \textit{framework} Pytbull (\cite{sec:pytbull}). Numa quarta máquina, instalou-se o sistema Kali Linux \cite{kalilinux} para geração de ataques, esse SO possui ferramentas nativas para testes de penetração e auditoria de segurança (Metasploit \autoref{sec:metasploit}, NMAP \autoref{sec:nmap} e OpenVAS \autoref{sec:openvas}). A infraestrutura final do ambiente de teste poder ser visualizada na \autoref{fig:infra-ambiente}.
 
 \begin{figure}[!htb]
 \centering
@@ -41,7 +39,7 @@ Na quarta máquina foi instalado o \textit{framework} Pytbull (\autoref{sec:pytb
 \legend{Fonte: Autoria própria}
 \end{figure}
 
-Para coleta das informações de uso de recurso de hardware como memória, processamento e I/O das máquinas com os IDSs foi utilizado o \textit{daemon} Collectd \cite{collectd}. Outra opção para esse finalidade é a utilização de um servidor de monitoramento como o Zabbix \cite{zabbix}. A ideia de ter duas ferramentas para essa analise é fazer um comparativo e validar as informações coletadas.
+Para coleta das informações de uso de recurso de hardware como memória, processamento e I/O das máquinas com os IDSs utilizou-se o \textit{daemon} Collectd \cite{collectd}. Outra opção para essa finalidade é a utilização de um servidor de monitoramento como o Zabbix \cite{zabbix}. A ideia de ter duas ferramentas para essa analise é fazer um comparativo e validar as informações coletadas.
 
 O formato usado para facilitar a análise do \textit{logs} foi JavaScript Object Notation (JSON), um formato simples, leve e de fácil leitura. O Motor de Saída do Suricata já tem suporte a esse tipo de formato o que não acontece no Snort. Para tal, usou-se o IDSTools \cite{py-idstools}, uma coleção de bibliotecas na linguagem python que trabalha para auxiliar o IDS Snort. Dentre os utilitários presentes nessa coleção, temos o idstools-u2json, que converte, de forma continua, arquivo no formato unified2, uma das saídas disponível no Snort, para o formato JSON.
 
@@ -53,7 +51,7 @@ Para analisar os \textit{logs}, usou-se uma infraestrutura que combina três fer
 \item \textbf{Logstach} \cite{logstach}: Um motor de coleta de dados em tempo real, unificando os dados de diferentes fontes dinamicamente, normalizando-os nos destinos escolhidos.
 \end{alineas}
 
-Dessa forma centralizou-se os \textit{logs}, facilitando a visualização e analise das ocorrências dos IDSs. 
+Dessa forma centralizou-se os \textit{logs}, facilitando a visualização e analise das ocorrências geradas pelos IDSs. 
 
 \section{Testes Realizados} \label{sec:testes}
 %Quais os testes realizados com justificativa ?
@@ -66,21 +64,21 @@ Posteriormente, o atacante iria observar o tráfego da rede, verificando os serv
 
 O passo seguinte seria uma garimpagem de informações e mapeamento da rede, a procura de um \textit{host} vulnerável. A ferramenta escolhida para essa finalidade é o Nmap \autoref{sec:nmap}. 
 
-No primeiro teste de \textit{scan}, usou-se o parâmetro '-F', habilitando a modo \textit{fast} do Nmap. Nesse modo, são verificadas apenas a portas especificadas no arquivo nmap-services, na instalação padrão esse arquivo vem com 27372 portas descritas. Isso é muito mais rápido que verificar todas as 65535 portas tcp e 65535 portas udp, possíveis em um \textit{host}.
+No primeiro teste de \textit{scan}, usou-se o parâmetro '-F', habilitando a modo \textit{fast} do Nmap. Nesse modo, são verificadas apenas as portas especificadas no arquivo nmap-services, que, na instalação padrão, possui 27372 portas descritas. Isso é muito mais rápido que verificar todas as 65535 portas tcp e 65535 portas udp, possíveis em um \textit{host}.
 
 \begin{lstlisting}[language=bash, frame=single]
     nmap -F 192.168.1.107
 \end{lstlisting}
 
-O segundo teste, usou-se o parâmetro '-sV' do NMAP. Essa opção habilita a descoberta de versões, tentando determinar os protocolos de serviços, o nome da aplicação, o número da versão, o nome do \textit{host} (utilizando o DNS reverso), tipo de dispositivo, sistema operacional usado, entre outras informações. Essas informações são de grande valor pois, a partir delas, pode-se explorar vulnerabilidades conhecidas de uma determinada versão de um serviço \cite{nmap}.
+O segundo teste, usou-se o parâmetro '-sV' do NMAP. Essa opção habilita a descoberta de versões, tentando determinar os protocolos de serviços, o nome da aplicação, o número da versão, o nome do \textit{host} (utilizando o DNS reverso), tipo de dispositivo, sistema operacional, entre outras informações \cite{nmap}. Essas informações são de grande valor pois, a partir delas, pode-se explorar vulnerabilidades conhecidas de uma determinada versão de um serviço.
 
 \begin{lstlisting}[language=bash, frame=single]  
     nmap -sV 192.168.1.107
 \end{lstlisting}
 
-De posse de um alvo em potencial, próximo passo seria rodar um \textit{scanner} de vulnerabilidade, em busca de brejas já conhecidas, e que, geralmente por descuido do administrador, não foi fechada. Essas brejas podem ter várias origem, desde uma versão do serviço com \textit{bugs} ou uma má configuração. Para esse teste, usou-se o OpenVAS (\autoref{sec:openvas}).
+De posse de um alvo em potencial, próximo passo seria rodar um \textit{scanner} de vulnerabilidade, em busca de brejas já conhecidas, e que, geralmente por descuido do administrador, não foi fechada. Essas brejas podem ter várias origens, desde uma versão do serviço com \textit{bugs} ou uma má configuração. Para esse teste, usou-se o OpenVAS (\autoref{sec:openvas}).
 
-Alguns configurações são necessárias nessa etapa. Primeiramente, deve-se definir o alvo, tal configuração é feita através do caminho "\textit{Configuration > New target}", a \autoref{fig:openvas-newtarget} mostra a janela aberta, nela temos que definir um nome para o alvo e o IP ou a faixa de IP's, as outras configurações serão deixadas com o padrão.
+É necessário algumas configurações no \textit{scanner} nessa etapa. Primeiramente, deve-se definir o alvo, tal configuração é feita através do caminho "\textit{Configuration > New target}", a \autoref{fig:openvas-newtarget} mostra a janela aberta, nela temos que definir um nome para o alvo e o IP ou a faixa de IP's, as outras configurações serão deixadas com o padrão.
 
 \begin{figure}[!htb]
 \centering
@@ -118,11 +116,11 @@ msf auxiliary(synflood) > set shost 192.168.1.105 (attack IP)
 msf auxiliary(synflood) > exploit
 \end{lstlisting}
 
-No ultimo teste, utilizou-se o \textit{framework} Pytbull (\autoref{sec:pytbull}). O Pytbull foi desenvolvido especificamente para realizar testes e validar configurações em IDPS. Na documentação oficial exemplifica algumas arquiteturas que podem ser usadas, nesse trabalho usou-se a arquitetura \textit{remote mode} onde o IDS é colocado para escutar todo o tráfego que passa no \textit{switch} através de uma porta espelhada e com uma interface configurada em modo \textit{promisc}.
+No ultimo teste, utilizou-se o \textit{framework} Pytbull (\autoref{sec:pytbull}). O Pytbull foi desenvolvido especificamente para realizar testes e validar configurações em IDPS. A documentação oficial exemplifica algumas arquiteturas que podem ser usadas, nesse trabalho usou-se a arquitetura \textit{remote mode} onde o IDS é colocado para escutar todo o tráfego que passa no \textit{switch} através de uma porta espelhada e com uma interface configurada em modo \textit{promisc}.
 
 Por padrão, todos os testes do \textit{framework} estão ativados. Como o teste de DoS foi realizado utilizando o Metasploit, e para diminuir o tempo da experimentação, o módulo denialOfService do Pytbull foi desativado. Outro módulo desativado, devido demora na execução, foi o testRules, a execução desse módulo levava mais de uma hora. Para desativar esses módulos precisa-se editar o arquivo \textbf{pytbull/config/config.cfg}, alterando, na parte dos testes, os valores de 1 para 0.
 
-Outra mudança feita, com o intuito de melhorar a eficácia do teste, foi a configuração das ferramentas de IDPS para analisar somente pacotes com o IP do \textit{host} que executará o Pytbull. 
+Outra mudança feita, somente nessa fase, com o intuito de melhorar a eficácia do teste, foi a configuração das ferramentas de IDPS para analisar somente pacotes com o IP do \textit{host} que executará o Pytbull. 
 
 Antes de executar o \textit{framework}, é necessário mover, para os \textit{hosts} que estão executando as ferramentas de IDPS, o script \textbf{pytbull/server/pytbull-server.py} encontrado no arquivo .tar.bz2, baixado no site oficial do Pytbull \cite{pytbull}. Esse executável abre um shell reverso no servidor que é usado pelo módulo clientSideAttacks do Pytbull, fazendo-o baixar arquivos maliciosos da Internet. 
 
@@ -141,6 +139,9 @@ sudo ./pytbull -t snort
 %Quais os resultados dos testes ??
 %Comparação das ferramentas
 %Problemas encontrados
+
+
+
 \section{Conclusão} \label{sec:conclusão}
 %\section{Métricas de Comparação}
 %Consumo dos Recursos de Hardware (Memória, Processamento)
