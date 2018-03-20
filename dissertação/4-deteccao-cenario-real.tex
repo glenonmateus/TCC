@@ -76,6 +76,30 @@ O segundo teste, usou-se o parâmetro '-sV' do NMAP. Essa opção habilita a des
     nmap -sV 192.168.1.107
 \end{lstlisting}
 
+Uma forma encontrada para automatizar o processo de execução dos comandos citados acima foi a criação de um código em \textit{shell script}. O \textit{Shell Script} é uma linguagem de script usada por vários sistemas operacional, principalmente os baseados em UNIX. Abaixo segue o código.
+
+\begin{lstlisting}[language=bash, frame=single]
+ #!/bin/bash
+  
+   STARTIME=$(date)
+  
+   for i in $(seq 1 100)
+   do
+       nmap -F 200.239.72.19 > /dev/null
+       sleep 10
+   done
+  
+   ENDTIME=$(date)
+  
+   echo
+   echo "Inicio $STARTIME"
+   echo
+   echo "Fim $ENDTIME"
+   echo
+\end{lstlisting}
+
+Na primeira linha de um código em \textit{shell script}, precisamos especificar o interpretador utilizado (\#!/bin/bash). Criou-se duas variáveis, uma para armazenar a hora do inicio do \textit{script} e uma para armazenar termino, dessa forma, a pesquisa pelos alertas gerados pelas ferramentas será menos dispendiosa. O comando NMAP foi colocado dentro de um laço \textit{for}, executado 100 vezes. 
+
 De posse de um alvo em potencial, próximo passo seria rodar um \textit{scanner} de vulnerabilidade, em busca de brejas já conhecidas, e que, geralmente por descuido do administrador, não foi fechada. Essas brejas podem ter várias origens, desde uma versão do serviço com \textit{bugs} ou uma má configuração. Para esse teste, usou-se o OpenVAS (\autoref{sec:openvas}).
 
 É necessário algumas configurações no \textit{scanner} nessa etapa. Primeiramente, deve-se definir o alvo, tal configuração é feita através do caminho "\textit{Configuration > New target}", a \autoref{fig:openvas-newtarget} mostra a janela aberta, nela temos que definir um nome para o alvo e o IP ou a faixa de IP's, as outras configurações serão deixadas com o padrão.
