@@ -29,7 +29,7 @@ Foi alocado 8 MB memória RAM, 4 processadores e 100 Gigabytes(GB) de espaço em
 
 Para o \textit{host} conseguir pegar o pacotes destinados a rede escolhida para o experimento, foi necessário uma configuração de espelhamento no roteador B (Figura \ref{fig:infra-ambiente}) que consiste na copia dos pacotes que saem pela porta dessa rede no roteador para a porta conectada no \textit{host} que possui uma largura de banda de 10 Gigabits. A interface de rede do \textit{host} precisou ser configurada no modo \textit{promisc}.
 
-Posteriormente criou-se três máquinas virtuais, duas usadas para instalação dos IDSs (Suricata e Snort) e a terceira será usada para rodar o \textit{framework} Pytbull (\cite{sec:pytbull}). Numa quarta máquina, instalou-se o sistema Kali Linux \cite{kalilinux} para geração de ataques, esse SO possui ferramentas nativas para testes de penetração e auditoria de segurança (Metasploit \autoref{sec:metasploit}, NMAP \autoref{sec:nmap} e OpenVAS \autoref{sec:openvas}). A infraestrutura final do ambiente de teste poder ser visualizada na \autoref{fig:infra-ambiente}.
+Posteriormente criou-se três máquinas virtuais, duas usadas para instalação dos IDSs (Suricata e Snort) e a terceira será usada para rodar o \textit{framework} Pytbull (\autoref{sec:pytbull}). Numa quarta máquina, instalou-se o sistema Kali Linux \cite{kalilinux} para geração de ataques, esse SO possui ferramentas nativas para testes de penetração e auditoria de segurança (Metasploit \autoref{sec:metasploit}, NMAP \autoref{sec:nmap} e OpenVAS \autoref{sec:openvas}). A infraestrutura final do ambiente de teste poder ser visualizada na \autoref{fig:infra-ambiente}.
 
 \begin{figure}[!htb]
 \centering
@@ -164,7 +164,7 @@ sudo ./pytbull -t snort
 %Comparação das ferramentas
 %Problemas encontrados
 
-
+Nessa seção será descritos os resultados esperados e obtidos dos testes apresentados na \autoref{sec:testes}. Ao final, será feita uma comparação entre as ferramentas de IDPS's estudas e o relato dos problemas encontrados.
 
 \section{Conclusão} \label{sec:conclusão}
 %\section{Métricas de Comparação}
