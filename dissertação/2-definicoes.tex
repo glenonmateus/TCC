@@ -113,360 +113,360 @@ As redes podem ser classificadas em duas categorias \cite{esr:arquitetura}:
  \end{minipage}
 \end{figure}
 
-Uma Internet é uma rede de computadores que interconecta centenas de dispositivos de computadores ao redor do mundo \cite{redes:kurose}. A União Internacional de Telecomunicações (UTI) estima que haja cerca de 3.578 milhões (\autoref{fig:estatisca-itu}) de usuários usando diferentes tipos de dispositivos, como, celulares, automóveis, \textit{webcams}, TVs, \textit{laptops}, consoles para jogos, entre outros \cite{estatistica:itu}.
+    Uma Internet é uma rede de computadores que interconecta centenas de dispositivos de computadores ao redor do mundo \cite{redes:kurose}. A União Internacional de Telecomunicações (UTI) estima que haja cerca de 3.578 milhões (\autoref{fig:estatisca-itu}) de usuários usando diferentes tipos de dispositivos, como, celulares, automóveis, \textit{webcams}, TVs, \textit{laptops}, consoles para jogos, entre outros \cite{estatistica:itu}.
 
-\begin{figure}[!htb]
+    \begin{figure}[!htb]
+        \centering
+        \caption{Quantidade de usuário conectados na Internet} 
+        \includegraphics[scale=.55]{estatistica-uit.png}
+        \legend{Fonte: \cite{estatistica:itu}}
+        \label{fig:estatisca-itu}
+    \end{figure}
+
+    Os equipamentos que são comumente usados nas redes de computadores são:
+
+    \begin{alineas}
+    \item \textbf{Concentradores (\textit{hubs})}: São pontos de conexões para dispositivos em uma rede, contendo várias portas usados para conectar os segmentos da LAN. Quando um pacote chega em uma porta, ele é replicado para as demais portas, assim, todos os clientes conectados ao \textit{hub} podem ver todos os pacotes. Esse tipo de equipamento não é mais recomendado.
+    \item \textbf{Switches}: São equipamentos que se diferem dos \textit{hubs} por serem capazes de ler o MAC de origem e destino. Além disso, realizam comutações (os pacotes são individualmente encaminhadas entre os dispositivos conectados) de quadros na camada de enlace;
+    \item \textbf{Roteadores}: São dispositivos de rede mais tradicionais, como de backbone das intranets e da internet. Suas principais funções são seleção dos melhores caminhos de saída para os pacotes de entrada e roteamento destes pacotes para a interface de saída apropriada.
+    \end{alineas}
+
+    Um administrador, com o minimo de consciência sobre segurança, coloca em sua rede, um \textit{firewall} de borda. Um \textit{firewall} sempre é colocada na divisa entre duas ou mais redes, pode ser entre redes privadas ou entre uma rede privada e a Internet. Uma empresa pode ter muitas LANs conectadas de forma arbitrárias, mas todo o tráfego de saída ou de entrada da empresas para a internet deve ser feito através do \textit{firewall}, permitindo assim, que alguns pacotes passem e bloqueando outros \cite{redesdecomputadores}.
+
+    Há três tipos básicos de \textit{firewall}, os mais tradicionais são os filtros de pacotes e os \textit{proxies}. O terceiro tipo é uma evolução do filtro de pacotes tradicional chamado de filtro de estados de pacotes ou \textit{stateful packet filter} (SPF) \cite{univhacker}.
+
+    Um \textit{firewalls} de filtros de pacotes são baseados em tabelas configuradas pelo administrador da rede. Essas tabelas listam as origens e os destinos aceitáveis e/ou bloqueados e as regras padrões que orientam o que deve ser feito com os pacotes recebidos de outras máquinas ou destinados a elas, ou seja, o \textit{firewall} tem como função controlar o tráfego entre as redes \cite{redesdecomputadores}. 
+
+    Há vários \textit{softwares} que implementam filtro de pacotes. Alguns são instalados em \textit{hardwares} como roteadores outros são programas que rodam em computadores comuns \cite{univhacker}. Um utilitário bastante conhecido e utilizado para essa finalidade é o \textit{iptables}. A \autoref{tab:firewall-regras} apresenta um exemplo de uma tabela de regras.
+
+    \begin{table}[htb]
+    \ABNTEXfontereduzida
     \centering
-    \caption{Quantidade de usuário conectados na Internet} 
-    \includegraphics[scale=.55]{estatistica-uit.png}
-    \legend{Fonte: \cite{estatistica:itu}}
-    \label{fig:estatisca-itu}
-\end{figure}
+    \caption{Tabela de regras aplicadas no \textit{firewall}}
+    \label{tab:firewall-regras}
+    \begin{tabular}{l|l|l|l|l|l|l}
+        \textbf{IP Origem} & \textbf{IP Destino}  & \textbf{Porta Origem}  & \textbf{Porta Destino} & \textbf{Protocolo} & \textbf{Flag TCP} & \textbf{Ação} \\ \hline
+        Rede Externa & Servidor Web & Todas & 80,443 & TCP & Todos & Permitir \\ \hline
+        Rede Externa & Servidor Web & Todas & 21,3000:3070 & TCP & Todos & Permitir \\ \hline
+        Todas & Todas & Todas & Todas & Todos & Todos & Negar \\
+    \end{tabular}
+    \legend{Fonte: Autoria própria} 
+    \end{table}
 
-Os equipamentos que são comumente usados nas redes de computadores são:
+    No exemplo, são permitidas conexões na Intranet no Servidor Web pelas portas 80 e 443 (padrão nos protocolos HTTP e HTTPS) para todos os \textit{Flags} TCP (ACK, ACK/SYN, SYN e FIN). Além disso, podemos definir um range de portas, como na linha 2, que são abertas as portas 21 e todas as portas entre 3000 e 3070, utilizadas por padrão pelo protocolo FTP.
 
-\begin{alineas}
-\item \textbf{Concentradores (\textit{hubs})}: São pontos de conexões para dispositivos em uma rede, contendo várias portas usados para conectar os segmentos da LAN. Quando um pacote chega em uma porta, ele é replicado para as demais portas, assim, todos os clientes conectados ao \textit{hub} podem ver todos os pacotes. Esse tipo de equipamento não é mais recomendado.
-\item \textbf{Switches}: São equipamentos que se diferem dos \textit{hubs} por serem capazes de ler o MAC de origem e destino. Além disso, realizam comutações (os pacotes são individualmente encaminhadas entre os dispositivos conectados) de quadros na camada de enlace;
-\item \textbf{Roteadores}: São dispositivos de rede mais tradicionais, como de backbone das intranets e da internet. Suas principais funções são seleção dos melhores caminhos de saída para os pacotes de entrada e roteamento destes pacotes para a interface de saída apropriada.
-\end{alineas}
+    Um \textit{proxie} trabalha na camada de aplicação interagindo com o programa e seus protocolos, independente de como esse protocolo será encapsulado na pilha TCP/IP. Por exemplo, um \textit{proxy} para Web trabalha apenas com o protocolo HTTP, bloqueando os demais. Além disso, pode-se configurar-lo para controlar quem pode ou não acessar serviços externos \cite{univhacker}.
 
-Um administrador, com o minimo de consciência sobre segurança, coloca em sua rede, um \textit{firewall} de borda. Um \textit{firewall} sempre é colocada na divisa entre duas ou mais redes, pode ser entre redes privadas ou entre uma rede privada e a Internet. Uma empresa pode ter muitas LANs conectadas de forma arbitrárias, mas todo o tráfego de saída ou de entrada da empresas para a internet deve ser feito através do \textit{firewall}, permitindo assim, que alguns pacotes passem e bloqueando outros \cite{redesdecomputadores}.
+    No \textit{firewall} de filtros de pacotes por estado (SPF) uma nova tecnologia de análise de pacotes foi agregada, permitindo que eles lembrem-se de pacotes anteriores antes de permitir outro mais recente entrar. Isso é implementado na forma de uma tabela de conexões ativas. Quando uma conexão é iniciada, todos os dados do pacote são guardados nela. Se um novo pacote chegar em direção à mesma máquina, o SPF consulta a tabela. O novo pacote e aceito caso seja dada a continuação da conexão ou rejeitado, se não for \cite{univhacker}.
 
-Há três tipos básicos de \textit{firewall}, os mais tradicionais são os filtros de pacotes e os \textit{proxies}. O terceiro tipo é uma evolução do filtro de pacotes tradicional chamado de filtro de estados de pacotes ou \textit{stateful packet filter} (SPF) \cite{univhacker}.
+    Na \autoref{fig:cenario-geral} apresenta uma típica rede composta por um roteador de núcleo que interliga roteadores (A, B e C) de outras redes da Intranet, que por sua vez interliga os clientes e/ou servidores. Todo trafego de saída e entrada da Intranet para a Internet passa pelo roteador de núcleo, além disso, os pacotes são tratados por um \textit{firewall} de borda, que determina o que entra e o que sai da rede local.
 
-Um \textit{firewalls} de filtros de pacotes são baseados em tabelas configuradas pelo administrador da rede. Essas tabelas listam as origens e os destinos aceitáveis e/ou bloqueados e as regras padrões que orientam o que deve ser feito com os pacotes recebidos de outras máquinas ou destinados a elas, ou seja, o \textit{firewall} tem como função controlar o tráfego entre as redes \cite{redesdecomputadores}. 
+    \begin{figure}[!htb]
+        \centering
+        \caption{Topologia geral de uma rede de computadores} 
+        \includegraphics[scale=.6]{cenario-geral.png}
+        \legend{Fonte: Autoria própria}
+        \label{fig:cenario-geral}
+    \end{figure}
 
-Há vários \textit{softwares} que implementam filtro de pacotes. Alguns são instalados em \textit{hardwares} como roteadores outros são programas que rodam em computadores comuns \cite{univhacker}. Um utilitário bastante conhecido e utilizado para essa finalidade é o \textit{iptables}. A \autoref{tab:firewall-regras} apresenta um exemplo de uma tabela de regras.
+    \section{Pontos de Vulnerabilidade} \label{sec:pontos-vulnerabilidade}
+    %Ex.: Roteador, firewall, clientes e suas aplicações, serviço mal configurado (sem aplicação de patch de atualização)
+    % falar dos problemas nas aplicações (erro de programação, sqlinjection, cross-site script)
+    % problemas relacionados a firewall que na sua maioria é fitro de pacotes, o atacante pode usar portas abertas no firewall que possuem serviços com falhas de segurança conhecidas ou aplicações mal desenvolvidas.
+    % clientes, envolve engenharia social, mencionar senha fraca, prática de spam
 
-\begin{table}[htb]
-\ABNTEXfontereduzida
-\centering
-\caption{Tabela de regras aplicadas no \textit{firewall}}
-\label{tab:firewall-regras}
-\begin{tabular}{l|l|l|l|l|l|l}
-    \textbf{IP Origem} & \textbf{IP Destino}  & \textbf{Porta Origem}  & \textbf{Porta Destino} & \textbf{Protocolo} & \textbf{Flag TCP} & \textbf{Ação} \\ \hline
-    Rede Externa & Servidor Web & Todas & 80,443 & TCP & Todos & Permitir \\ \hline
-    Rede Externa & Servidor Web & Todas & 21,3000:3070 & TCP & Todos & Permitir \\ \hline
-    Todas & Todas & Todas & Todas & Todos & Todos & Negar \\
-\end{tabular}
-\legend{Fonte: Autoria própria} 
-\end{table}
+    Nessa seção será abordado os pontos fracos que uma pessoa má intencionada pode explorar para ter um ataque bem sucedido a um rede de computador.
 
-No exemplo, são permitidas conexões na Intranet no Servidor Web pelas portas 80 e 443 (padrão nos protocolos HTTP e HTTPS) para todos os \textit{Flags} TCP (ACK, ACK/SYN, SYN e FIN). Além disso, podemos definir um range de portas, como na linha 2, que são abertas as portas 21 e todas as portas entre 3000 e 3070, utilizadas por padrão pelo protocolo FTP.
+    Apesar da preocupação dos administradores em proteger suas redes de ataques, devido a sua heterogeneidade, sempre haverá uma breja a ser explorada. A literatura considera o ser humano como elo mais fraco, é bastante comum o usuário cadastrar senhas fracas, por conveniência, e fácil memorização (\autoref{sec:forçabruta}).
 
-Um \textit{proxie} trabalha na camada de aplicação interagindo com o programa e seus protocolos, independente de como esse protocolo será encapsulado na pilha TCP/IP. Por exemplo, um \textit{proxy} para Web trabalha apenas com o protocolo HTTP, bloqueando os demais. Além disso, pode-se configurar-lo para controlar quem pode ou não acessar serviços externos \cite{univhacker}.
+    Uma técnica bastante comum usadas por golpistas que visa obter informações financeiras ou informações pessoais da vítima, é o \textit{phishing}. Os ataques de \textit{phshing} mais conhecidos são os quais um atacante induz usuários a acessar um site clonado de uma instituição financeira, de modo a coletar suas credenciais de acesso \cite{esr:tratamento}. Muitos usuário, por falta de conhecimento ou até por ingenuidade, acabam informando seus dados em sites falsos, sem ao menos verificar a veracidade do mesmo.
 
-No \textit{firewall} de filtros de pacotes por estado (SPF) uma nova tecnologia de análise de pacotes foi agregada, permitindo que eles lembrem-se de pacotes anteriores antes de permitir outro mais recente entrar. Isso é implementado na forma de uma tabela de conexões ativas. Quando uma conexão é iniciada, todos os dados do pacote são guardados nela. Se um novo pacote chegar em direção à mesma máquina, o SPF consulta a tabela. O novo pacote e aceito caso seja dada a continuação da conexão ou rejeitado, se não for \cite{univhacker}.
+    Outros serviços visados por esse tipo de ataque são \cite{esr:tratamento}:
+    \begin{alineas}
+    \item Credenciais de serviços: e-mails, redes sociais ou armazenamento;
+    \item Webmail corporativo; 
+    \item Programa de milhagem (companhias aéreas ou redes de supermercados);
+    \item Comércio eletrônico.
+    \end{alineas}
 
-Na \autoref{fig:cenario-geral} apresenta uma típica rede composta por um roteador de núcleo que interliga roteadores (A, B e C) de outras redes da Intranet, que por sua vez interliga os clientes e/ou servidores. Todo trafego de saída e entrada da Intranet para a Internet passa pelo roteador de núcleo, além disso, os pacotes são tratados por um \textit{firewall} de borda, que determina o que entra e o que sai da rede local.
+    Uma forma de difundir \textit{phishing} é através de \textit{spam}. Um \textit{spam} é uma mensagem, na maioria das vezes de conteúdo falso, enviado para diversos e-mails, nessas mensagens podem conter uma URL de um site falso ou um site com códigos maliciosos \autoref{sec:malwares} que infectam a vítima. Um \textit{spammer}, como é chamado quem envia \textit{spam}, também usa técnica de \textit{phishing} para obter dados de acesso de e-mails pessoais. Dessa forma, o \textit{spammer} pode acessar a conta de e-mail da vítima e enviar \textit{spam} para todos os seus contatos, sem que a vítima perceba.
 
-\begin{figure}[!htb]
-    \centering
-    \caption{Topologia geral de uma rede de computadores} 
-    \includegraphics[scale=.6]{cenario-geral.png}
-    \legend{Fonte: Autoria própria}
-    \label{fig:cenario-geral}
-\end{figure}
+    \begin{figure}[!htb]
+     \centering
+     \caption{Fraude identificada pelo CAIS}
+     \includegraphics[scale=.6]{fraude-spam.png}
+     \legend{Fonte: \cite{cais}}
+     \label{fig:spam}
+    \end{figure}
 
-\section{Pontos de Vulnerabilidade} \label{sec:pontos-vulnerabilidade}
-%Ex.: Roteador, firewall, clientes e suas aplicações, serviço mal configurado (sem aplicação de patch de atualização)
-% falar dos problemas nas aplicações (erro de programação, sqlinjection, cross-site script)
-% problemas relacionados a firewall que na sua maioria é fitro de pacotes, o atacante pode usar portas abertas no firewall que possuem serviços com falhas de segurança conhecidas ou aplicações mal desenvolvidas.
-% clientes, envolve engenharia social, mencionar senha fraca, prática de spam
+    O CAIS mantém um catálogo de fraudes identificadas sobre os principais golpes que estão em circulação. Na \autoref{fig:spam}, temos uma fraude recebida por e-mail (\textit{spam}) contendo um \textit{link} para download de um arquivo malicioso criado para roubar informações da vítima e instalar outros arquivos \cite{cais}.
 
-Nessa seção será abordado os pontos fracos que uma pessoa má intencionada pode explorar para ter um ataque bem sucedido a um rede de computador.
+    Outro problema comum é o desenvolvimento de aplicações \textit{web} sem nenhuma preocupação com segurança, podendo comprometer, não somente o serviço, mas também, em casos mais extremos, o servidor inteiro. Para tal, atacante pode usar vários artifícios, os mais conhecidos são \textit{sql injection} e \textit{cross-site script}.
 
-Apesar da preocupação dos administradores em proteger suas redes de ataques, devido a sua heterogeneidade, sempre haverá uma breja a ser explorada. A literatura considera o ser humano como elo mais fraco, é bastante comum o usuário cadastrar senhas fracas, por conveniência, e fácil memorização (\autoref{sec:forçabruta}).
+    A inserção de \textit{Structured Query Language} (SQL) via formulário na aplicação \textit{web} resulta num ataque de \textit{sql injection}. O atacante injeta um código dentro dos campos de entrada, como usuário e senha, de uma aplicação onde a declaração condicional sempre será verdadeiro quando executado. Em casos bem sucedidos, o atacante pode alterar o banco de dados, acessar informações sensíveis ou ter acesso ao sistema \cite{sqlinjection:sankaran}.
 
-Uma técnica bastante comum usadas por golpistas que visa obter informações financeiras ou informações pessoais da vítima, é o \textit{phishing}. Os ataques de \textit{phshing} mais conhecidos são os quais um atacante induz usuários a acessar um site clonado de uma instituição financeira, de modo a coletar suas credenciais de acesso \cite{esr:tratamento}. Muitos usuário, por falta de conhecimento ou até por ingenuidade, acabam informando seus dados em sites falsos, sem ao menos verificar a veracidade do mesmo.
+    No exemplo abaixo, a declaração condicional 'OR 1=1' torna toda a clausura WHERE verdadeiro pois a expressão 1=1 é uma tautologia. A consulta retorna todos os dados da tabela \textit{user\_info}. Perceba que os dois hífens fornecidos no final da entrada comenta o resto da linha.
 
-Outros serviços visados por esse tipo de ataque são \cite{esr:tratamento}:
-\begin{alineas}
-\item Credenciais de serviços: e-mails, redes sociais ou armazenamento;
-\item Webmail corporativo; 
-\item Programa de milhagem (companhias aéreas ou redes de supermercados);
-\item Comércio eletrônico.
-\end{alineas}
+    \begin{lstlisting}[Language=SQL, frame=single] 
+      SELECT * FROM user_info WHERE logID="" OR 1=1 -- AND pass1="" 
+    \end{lstlisting}
 
-Uma forma de difundir \textit{phishing} é através de \textit{spam}. Um \textit{spam} é uma mensagem, na maioria das vezes de conteúdo falso, enviado para diversos e-mails, nessas mensagens podem conter uma URL de um site falso ou um site com códigos maliciosos \autoref{sec:malwares} que infectam a vítima. Um \textit{spammer}, como é chamado quem envia \textit{spam}, também usa técnica de \textit{phishing} para obter dados de acesso de e-mails pessoais. Dessa forma, o \textit{spammer} pode acessar a conta de e-mail da vítima e enviar \textit{spam} para todos os seus contatos, sem que a vítima perceba.
+    O \textit{Cross-site scripting} (XSS) é uma forma de ataque que permite utilizar um aplicação vulnerável para transporta códigos maliciosos até o navegador de outros usuário. O navegador da vítima entende que o código recebido é legítimo e, por isso, informações sensíveis, como o identificador de sessão do usuário, por exemplo, podem ser acessadas programaticamente \cite{pentestweb:nelson}.
 
-\begin{figure}[!htb]
- \centering
- \caption{Fraude identificada pelo CAIS}
- \includegraphics[scale=.6]{fraude-spam.png}
- \legend{Fonte: \cite{cais}}
- \label{fig:spam}
-\end{figure}
+    Com o XSS pode-se roubar histórico de navegação, fazer uma varredura de redes privadas, descobrir consultas realizadas em mecanismos de busca, escravizar o navegador \textit{web} e proliferar \textit{worms} (\autoref{sec:malwares}) baseados em XSS \cite{pentestweb:nelson}. 
 
-O CAIS mantém um catálogo de fraudes identificadas sobre os principais golpes que estão em circulação. Na \autoref{fig:spam}, temos uma fraude recebida por e-mail (\textit{spam}) contendo um \textit{link} para download de um arquivo malicioso criado para roubar informações da vítima e instalar outros arquivos \cite{cais}.
+    \section{Ataques Comuns à Redes de Computadores} \label{sec:ataques-comuns}
 
-Outro problema comum é o desenvolvimento de aplicações \textit{web} sem nenhuma preocupação com segurança, podendo comprometer, não somente o serviço, mas também, em casos mais extremos, o servidor inteiro. Para tal, atacante pode usar vários artifícios, os mais conhecidos são \textit{sql injection} e \textit{cross-site script}.
+    Nessa seção será descritos os ataques mais comuns à redes e serviços de organizações privadas e públicas, financeiras ou acadêmicas. Para licitar os ataques dessa seção, levou-se em consideração as estatísticas divulgada pelo CERT.br (\autoref{fig:cert}).
 
-A inserção de \textit{Structured Query Language} (SQL) via formulário na aplicação \textit{web} resulta num ataque de \textit{sql injection}. O atacante injeta um código dentro dos campos de entrada, como usuário e senha, de uma aplicação onde a declaração condicional sempre será verdadeiro quando executado. Em casos bem sucedidos, o atacante pode alterar o banco de dados, acessar informações sensíveis ou ter acesso ao sistema \cite{sqlinjection:sankaran}.
+    O CERT.br é o grupo de resposta a incidentes de segurança para a internet brasileira, mantido Comitê Gestor da Internet no Brasil. Atua na notificação e tratamento de incidentes de segurança dando apoio no processo de resposta. Além disso, faz um trabalho de conscientização e treinamento sobre problemas de segurança no Brasil. 
 
-No exemplo abaixo, a declaração condicional 'OR 1=1' torna toda a clausura WHERE verdadeiro pois a expressão 1=1 é uma tautologia. A consulta retorna todos os dados da tabela \textit{user\_info}. Perceba que os dois hífens fornecidos no final da entrada comenta o resto da linha.
+    \begin{figure}[!htb]
+     \centering
+     \caption{Estatísticas de ataques reportadas ao CERT.br}
+     \includegraphics[scale=.6]{incidentes-reportados.png}
+     \legend{Fonte: \cite{tipos-ataques:certs.br}}
+     \label{fig:cert}
+    \end{figure}
 
-\begin{lstlisting}[Language=SQL, frame=single] 
-  SELECT * FROM user_info WHERE logID="" OR 1=1 -- AND pass1="" 
-\end{lstlisting}
+    Paralelamente ao CERT.br temos o Centro de Atendimento a Incidentes de Segurança (CAIS), mantido pela Rede Nacional de Ensino e Pesquisa (RNP). O CAIS é responsável por zela pela segurança da rede Ipê (infraestrutura de rede dedicada à comunidade brasileira de ensino superior), detectando, resolvendo e prevenindo incidentes de segurança. Além disso, tem o papel de orientar (através de publicações de cartilhas) e disseminar boas práticas de segurança da informação, educando e conscientizando usuários de todos os níveis sobre os principais riscos em segurança da informação \cite{cais}.
 
-O \textit{Cross-site scripting} (XSS) é uma forma de ataque que permite utilizar um aplicação vulnerável para transporta códigos maliciosos até o navegador de outros usuário. O navegador da vítima entende que o código recebido é legítimo e, por isso, informações sensíveis, como o identificador de sessão do usuário, por exemplo, podem ser acessadas programaticamente \cite{pentestweb:nelson}.
+    Desde 2008, todas a fraudes identificadas pelo CAIS estão sendo ordenadas e disponibilizadas para consulta (\autoref{fig:cais}). Adicionalmente, são enviados alertas através de uma lista quando uma fraude mostra-se particularmente perigosa aos usuários e computadores.
 
-Com o XSS pode-se roubar histórico de navegação, fazer uma varredura de redes privadas, descobrir consultas realizadas em mecanismos de busca, escravizar o navegador \textit{web} e proliferar \textit{worms} (\autoref{sec:malwares}) baseados em XSS \cite{pentestweb:nelson}. 
+    \begin{figure}[!htb]
+     \centering
+     \caption{Estatísticas de incidentes reportados ao CAIS}
+     \includegraphics[scale=.7]{cais-incidentes-reportados.png}
+     \legend{Fonte: \cite{cais}}
+     \label{fig:cais}
+    \end{figure}
 
-\section{Ataques Comuns à Redes de Computadores} \label{sec:ataques-comuns}
+    \subsection{\textit{Scanners}} \label{sec:scanners}
 
-Nessa seção será descritos os ataques mais comuns à redes e serviços de organizações privadas e públicas, financeiras ou acadêmicas. Para licitar os ataques dessa seção, levou-se em consideração as estatísticas divulgada pelo CERT.br (\autoref{fig:cert}).
+    Conforme tratado na \autoref{sec:definições}, uma vulnerabilidade é a fraqueza em sistemas de informação, procedimentos de segurança do sistema e controles internos, ou aplicação que pode ser explorada tendo como origem uma ameaça. 
 
-O CERT.br é o grupo de resposta a incidentes de segurança para a internet brasileira, mantido Comitê Gestor da Internet no Brasil. Atua na notificação e tratamento de incidentes de segurança dando apoio no processo de resposta. Além disso, faz um trabalho de conscientização e treinamento sobre problemas de segurança no Brasil. 
+    \textit{Scanners} são programas usados para varrer uma rede à procura de computadores (tanto pessoais como servidores) com alguma vulnerabilidade. Podemos dividir os \textit{scanners} em dois tipos \cite{univhacker}: 
 
-\begin{figure}[!htb]
- \centering
- \caption{Estatísticas de ataques reportadas ao CERT.br}
- \includegraphics[scale=.6]{incidentes-reportados.png}
- \legend{Fonte: \cite{tipos-ataques:certs.br}}
- \label{fig:cert}
-\end{figure}
+    \begin{alineas}
+    \item \textbf{\textit{scanner} de portas TCP/IP abertas (ou \textit{portscanner})}: cada serviço de rede que estiver disponível em uma determinada máquina é uma porta de entrada em potencial. Existem um total de 128 mil porta, sendo 65536 portas para o protocolo TCP e 65536 portas para o protocolo UDP. O \textit{portscanner} verifica quais portas TCP/IP estão abertas com o objetivo de determinar quais serviços de rede TCP/IP disponíveis. Quase todas as técnicas de \textit{portscanning} valem-se de sinais (ou \textit{flags}), TCP, UDP ou ICMP, e a partir da análise desses sinais, os \textit{scanners} retiram informações sobre o sistema; \cite{univhacker}
+    \item \textbf{\textit{scanner} de vulnerabilidades conhecidas}: Um vez determinados os serviços que uma máquina disponibiliza na rede entra em cena o \textit{scanner} de vulnerabilidade. A ideia é checar, através de uma lista de falhas conhecidas, se o sistema está ou não executando um serviço com problemas \cite{univhacker}. 
+    \end{alineas}
 
-Paralelamente ao CERT.br temos o Centro de Atendimento a Incidentes de Segurança (CAIS), mantido pela Rede Nacional de Ensino e Pesquisa (RNP). O CAIS é responsável por zela pela segurança da rede Ipê (infraestrutura de rede dedicada à comunidade brasileira de ensino superior), detectando, resolvendo e prevenindo incidentes de segurança. Além disso, tem o papel de orientar (através de publicações de cartilhas) e disseminar boas práticas de segurança da informação, educando e conscientizando usuários de todos os níveis sobre os principais riscos em segurança da informação \cite{cais}.
+    Normalmente, essas ferramentas funcionam em três estágios \cite{avaliacao:tania}:
 
-Desde 2008, todas a fraudes identificadas pelo CAIS estão sendo ordenadas e disponibilizadas para consulta (\autoref{fig:cais}). Adicionalmente, são enviados alertas através de uma lista quando uma fraude mostra-se particularmente perigosa aos usuários e computadores.
+    \begin{alineas}
+     \item \textbf{Configuração}: aqui será definido o endereço IP do alvo ou a URL (Uniform Resource Locator) da aplicação Web e demais parâmetros, como, por exemplo, utilização de \textit{proxy}.
+     \item \textbf{Rastreamento}: esse estágio, em \textit{scanners} de vulnerabilidade de aplicações web, o \textit{scanner} chama a primeira página web e então examina seu código procurando \textit{links}. Cada \textit{link} encontrado é registrado e este procedimento é repetido várias vezes até que \textit{links} e páginas não sejam mais encontrados.
+     \item \textbf{Exploração}: vários testes são executados e as requisições e respostas são armazenadas e analisadas. Ao final, os resultados são exibidos ao usuário e podem ser salvos para uma análise posterior. 
+    \end{alineas}
 
-\begin{figure}[!htb]
- \centering
- \caption{Estatísticas de incidentes reportados ao CAIS}
- \includegraphics[scale=.7]{cais-incidentes-reportados.png}
- \legend{Fonte: \cite{cais}}
- \label{fig:cais}
-\end{figure}
+    Um bom \textit{scanner} de vulnerabilidade verifica itens como \cite{univhacker}: 
 
-\subsection{\textit{Scanners}} \label{sec:scanners}
+    \begin{alineas}
+    \item \textbf{Erros comuns de configuração}: portas não utilizadas por nenhum serviço abertas;
+    \item \textbf{Configurações e senhas-padrões}: instalação de softwares deixando-os com as configurações de fabrica (com usuário e senha-padrão), por exemplo, usuário: admin, senha: admin. Outro problema é deixar serviços desnecessários ativados;
+    \item \textbf{Combinação óbvias de usuário e senha}: Usuário comuns tendem a colocar senhas fáceis de lembrar;
+    \item \textbf{Vulnerabilidades divulgadas}: Sempre que uma falha de segurança é divulgada há uma corrida dos desenvolvedores para saná-las. Em paralelo, existem \textit{hackers} que querem chegar aos sistemas vulneráveis antes de serem consertados.
+    \end{alineas}
 
-Conforme tratado na \autoref{sec:definições}, uma vulnerabilidade é a fraqueza em sistemas de informação, procedimentos de segurança do sistema e controles internos, ou aplicação que pode ser explorada tendo como origem uma ameaça. 
+    Os \textit{scanners} de vulnerabilidades automatizados contêm, e atualizam regularmente, enormes bancos de dados de assinaturas de vulnerabilidades conhecidas para basicamente tudo o que está recebendo de informações em uma porta de rede, inclusive sistemas operacionais, serviços e aplicativos web \cite{hackers:stuart-joel}. 
 
-\textit{Scanners} são programas usados para varrer uma rede à procura de computadores (tanto pessoais como servidores) com alguma vulnerabilidade. Podemos dividir os \textit{scanners} em dois tipos \cite{univhacker}: 
+    \subsection{\textit{Exploit}} \label{sec:exploit}
 
-\begin{alineas}
-\item \textbf{\textit{scanner} de portas TCP/IP abertas (ou \textit{portscanner})}: cada serviço de rede que estiver disponível em uma determinada máquina é uma porta de entrada em potencial. Existem um total de 128 mil porta, sendo 65536 portas para o protocolo TCP e 65536 portas para o protocolo UDP. O \textit{portscanner} verifica quais portas TCP/IP estão abertas com o objetivo de determinar quais serviços de rede TCP/IP disponíveis. Quase todas as técnicas de \textit{portscanning} valem-se de sinais (ou \textit{flags}), TCP, UDP ou ICMP, e a partir da análise desses sinais, os \textit{scanners} retiram informações sobre o sistema; \cite{univhacker}
-\item \textbf{\textit{scanner} de vulnerabilidades conhecidas}: Um vez determinados os serviços que uma máquina disponibiliza na rede entra em cena o \textit{scanner} de vulnerabilidade. A ideia é checar, através de uma lista de falhas conhecidas, se o sistema está ou não executando um serviço com problemas \cite{univhacker}. 
-\end{alineas}
+    Os atacantes exploram \textit{bugs} ou vulnerabilidades em programas para ter acesso ao sistema alvo. Infelizmente, existem milhares de \textit{bugs}, em 2013, por exemplo, foram reportados 103,000 \textit{bugs} no sistema operacional Ubuntu. Outro projetos de códigos fechados, possuem estatísticas similares \cite{aeg:thanassis}.
 
-Normalmente, essas ferramentas funcionam em três estágios \cite{avaliacao:tania}:
+    Diante das vulnerabilidades obtidas por um \textit{scanners} (\autoref{sec:scanners}), o passo seguinte seria usar um \textit{exploit} adequado. Os \textit{exploit} são pequenos utilitários usados para explorar vulnerabilidades específicas, podendo ser utilizados de forma \textit{"stand alone"}, ou seja, diretamente, ou podem ser incorporados à \textit{malwares} \cite{exploit:cassio}.
 
-\begin{alineas}
- \item \textbf{Configuração}: aqui será definido o endereço IP do alvo ou a URL (Uniform Resource Locator) da aplicação Web e demais parâmetros, como, por exemplo, utilização de \textit{proxy}.
- \item \textbf{Rastreamento}: esse estágio, em \textit{scanners} de vulnerabilidade de aplicações web, o \textit{scanner} chama a primeira página web e então examina seu código procurando \textit{links}. Cada \textit{link} encontrado é registrado e este procedimento é repetido várias vezes até que \textit{links} e páginas não sejam mais encontrados.
- \item \textbf{Exploração}: vários testes são executados e as requisições e respostas são armazenadas e analisadas. Ao final, os resultados são exibidos ao usuário e podem ser salvos para uma análise posterior. 
-\end{alineas}
+    Para alguns \textit{exploits} funcionar, é necessário ter acesso ao \textit{shell} da máquina-alvo. Tal artificio pode ser conseguido através da execução de um cavalo de tróia (\autoref{sec:malwares}) pela vítima em seu sistema. O \textit{trojan} abre uma porta de comunicação e permite que o invasor tenha total controle sobre a máquina, dessa forma é possível executar \textit{exploits} para quebrar outros níveis de segurança \cite{univhacker}.
 
-Um bom \textit{scanner} de vulnerabilidade verifica itens como \cite{univhacker}: 
+    \subsection{Força Bruta} \label{sec:forçabruta}
 
-\begin{alineas}
-\item \textbf{Erros comuns de configuração}: portas não utilizadas por nenhum serviço abertas;
-\item \textbf{Configurações e senhas-padrões}: instalação de softwares deixando-os com as configurações de fabrica (com usuário e senha-padrão), por exemplo, usuário: admin, senha: admin. Outro problema é deixar serviços desnecessários ativados;
-\item \textbf{Combinação óbvias de usuário e senha}: Usuário comuns tendem a colocar senhas fáceis de lembrar;
-\item \textbf{Vulnerabilidades divulgadas}: Sempre que uma falha de segurança é divulgada há uma corrida dos desenvolvedores para saná-las. Em paralelo, existem \textit{hackers} que querem chegar aos sistemas vulneráveis antes de serem consertados.
-\end{alineas}
+    Na segurança da informação, a autenticação é umas das áreas-chaves onde há a distinção de usuários autorizados de outros não-autorizados, tendo como principal vantagem ser de fácil implementação, não requerendo equipamentos, como leitores biométricos \cite{denise-lilian}.
 
-Os \textit{scanners} de vulnerabilidades automatizados contêm, e atualizam regularmente, enormes bancos de dados de assinaturas de vulnerabilidades conhecidas para basicamente tudo o que está recebendo de informações em uma porta de rede, inclusive sistemas operacionais, serviços e aplicativos web \cite{hackers:stuart-joel}. 
+    Na literatura sobre segurança da informação, o fator humano é considerado o elo mais fraco. Muitos usuários, por conveniência, criam senhas de acesso fáceis e, em muitos casos, única para acessar diversos sistemas. Nesse ponto que \textit{hackers} iram atuar para ter acesso não-autorizado ao sistema. 
 
-\subsection{\textit{Exploit}} \label{sec:exploit}
+    Existem três métodos mais usados por programas de quebra de senha: ataques de dicionário (ou lista de palavras), ataques híbridos e ataques de força-bruta. Nos ataques por dicionários, utilizam-se listas de palavras comuns: nomes próprios, marcas conhecidas, gírias, nomes de canções, entre outros, tais elementos conseguidos por engenharia social \cite{univhacker}. 
 
-Os atacantes exploram \textit{bugs} ou vulnerabilidades em programas para ter acesso ao sistema alvo. Infelizmente, existem milhares de \textit{bugs}, em 2013, por exemplo, foram reportados 103,000 \textit{bugs} no sistema operacional Ubuntu. Outro projetos de códigos fechados, possuem estatísticas similares \cite{aeg:thanassis}.
+     Um ataque de força bruta consiste em gerar todas as permutações e combinações possíveis de senha, criptografar cada uma e comparar a senha gerada com a senha criptografada original até encontrar uma que seja igual \cite{md5crack2012}. 
 
-Diante das vulnerabilidades obtidas por um \textit{scanners} (\autoref{sec:scanners}), o passo seguinte seria usar um \textit{exploit} adequado. Os \textit{exploit} são pequenos utilitários usados para explorar vulnerabilidades específicas, podendo ser utilizados de forma \textit{"stand alone"}, ou seja, diretamente, ou podem ser incorporados à \textit{malwares} \cite{exploit:cassio}.
+     Esse tipo de ataque é facilmente detectável pois, além de gerar uma alta carga no servidor, gera uma grande quantidade de registros de logs. No entanto, caso a pessoa má intencionada, de alguma outra forma, tenha acesso ao arquivo de \textit{hash} ou a tabela de usuário de um banco de dados, com as senha criptografadas do sistema, ela pode usar o ataque de força bruta no arquivo em qualquer máquina, assim, impossibilitando a detecção do ataque.
 
-Para alguns \textit{exploits} funcionar, é necessário ter acesso ao \textit{shell} da máquina-alvo. Tal artificio pode ser conseguido através da execução de um cavalo de tróia (\autoref{sec:malwares}) pela vítima em seu sistema. O \textit{trojan} abre uma porta de comunicação e permite que o invasor tenha total controle sobre a máquina, dessa forma é possível executar \textit{exploits} para quebrar outros níveis de segurança \cite{univhacker}.
+     Muitos sistemas já possuem formas de contornar esse tipo de ataque, por exemplo, bloqueio de usuário ao errar a palavra-chave por uma certa quantidade de vezes. Outra forma, é colocar um tempo de expiração da senha, por exemplo, a senha deve ser trocada a cada trinta dias por uma diferente e nunca usada anteriormente, dessa maneira, inviabilizando a quebra de senha por força bruta. 
 
-\subsection{Força Bruta} \label{sec:forçabruta}
+    \subsection{Desfiguração de páginas} \label{sec:desfiguração}
 
-Na segurança da informação, a autenticação é umas das áreas-chaves onde há a distinção de usuários autorizados de outros não-autorizados, tendo como principal vantagem ser de fácil implementação, não requerendo equipamentos, como leitores biométricos \cite{denise-lilian}.
+    A desfiguração de páginas, \textit{defacement} ou pichação ocorre quando o conteúdo da página \textit{web} de um site é alterado. O atacante (\textit{defacer}) consegue fazer alterações em páginas explorando vulnerabilidade nas aplicações \textit{web} que permite injeção de \textit{script} malicioso ou através de furto de senha de acesso à interface \textit{web} usadas para administração remota \cite{certs-ataques}.
 
-Na literatura sobre segurança da informação, o fator humano é considerado o elo mais fraco. Muitos usuários, por conveniência, criam senhas de acesso fáceis e, em muitos casos, única para acessar diversos sistemas. Nesse ponto que \textit{hackers} iram atuar para ter acesso não-autorizado ao sistema. 
+    Nos serviços \textit{web}, como por exemplo, apache2 existe um usuário especial, comumente chamado de \textit{www-data} ou algo semelhante. O usuário \textit{www-data}, na maioria das vezes, precisa apenas de permissões de leitura nos arquivos porém muitos gerentes de sistemas cujo a conscientização sobre segurança é insuficiente, designa permissões errôneas (escrita ou alteração), e caso haja um comprometimento, através, por exemplo, de injeção de código remoto PHP, do servidor, o atacante poderá alterar a maioria dos arquivos. A ocorrência amplamente disseminada de ataques de desfiguração de páginas Web é uma consequência direta dessa prática \cite{seguranca:william-lawrie}.
 
-Existem três métodos mais usados por programas de quebra de senha: ataques de dicionário (ou lista de palavras), ataques híbridos e ataques de força-bruta. Nos ataques por dicionários, utilizam-se listas de palavras comuns: nomes próprios, marcas conhecidas, gírias, nomes de canções, entre outros, tais elementos conseguidos por engenharia social \cite{univhacker}. 
+    Esse tipo de ataque pode trazer sérias consequências à instituição, entre elas \cite{esr:tratamento}:
 
- Um ataque de força bruta consiste em gerar todas as permutações e combinações possíveis de senha, criptografar cada uma e comparar a senha gerada com a senha criptografada original até encontrar uma que seja igual \cite{md5crack2012}. 
+    \begin{alineas}
+    \item \textbf{Constrangimento}: A instituição pode ter a imagem de confiabilidade afetada, em certos casos, refletir o descaso com que as informações críticas são tratadas; 
+    \item \textbf{Disseminação de inverdades}: Algumas alterações no \textit{website}, por exemplo, alterações de preços de produtos, podem resultar em consequências negativas; 
+    \item \textbf{Prejuízo de serviços}: Pode indisponibilizar serviços prestados pela instituição, por exemplo, em \textit{e-commence}.
+    \end{alineas}
 
- Esse tipo de ataque é facilmente detectável pois, além de gerar uma alta carga no servidor, gera uma grande quantidade de registros de logs. No entanto, caso a pessoa má intencionada, de alguma outra forma, tenha acesso ao arquivo de \textit{hash} ou a tabela de usuário de um banco de dados, com as senha criptografadas do sistema, ela pode usar o ataque de força bruta no arquivo em qualquer máquina, assim, impossibilitando a detecção do ataque.
+    Existem ferramentas que automatizam esse tipo de ataque, elas identificação aplicações web populares vulneráveis, de modo explorar falhas de segurança e alterar o conteúdo da página \cite{esr:tratamento}.
 
- Muitos sistemas já possuem formas de contornar esse tipo de ataque, por exemplo, bloqueio de usuário ao errar a palavra-chave por uma certa quantidade de vezes. Outra forma, é colocar um tempo de expiração da senha, por exemplo, a senha deve ser trocada a cada trinta dias por uma diferente e nunca usada anteriormente, dessa maneira, inviabilizando a quebra de senha por força bruta. 
+    \begin{figure}[!htb]
+     \centering
+     \caption{Estatísticas de \textit{defacement}}
+     \includegraphics[scale=.7]{estatisticas-defacement.png}
+     \legend{Fonte: \cite{zoneh}}
+     \label{fig:estatistica-defacement}
+    \end{figure}
 
-\subsection{Desfiguração de páginas} \label{sec:desfiguração}
+    O site Zone-H mantém um arquivo de páginas alteradas. Os próprios \textit{hackers} submetem os \textit{websites} comprometidos no intuito de ter seus minutos fama. Nas submissões, os sites são espelhados para o Zone-H, então os moderadores verificam a veracidade do \textit{defacement}. Em 2013, foram identificados cerca de 70000 páginas comprometidas, desde então houve uma redução nesse número (\autoref{fig:estatistica-defacement}). Esse tipo de ataque é considerado passivo pois é gerado somente uma mensagem na tela \cite{angelo-xss}.
 
-A desfiguração de páginas, \textit{defacement} ou pichação ocorre quando o conteúdo da página \textit{web} de um site é alterado. O atacante (\textit{defacer}) consegue fazer alterações em páginas explorando vulnerabilidade nas aplicações \textit{web} que permite injeção de \textit{script} malicioso ou através de furto de senha de acesso à interface \textit{web} usadas para administração remota \cite{certs-ataques}.
+    \subsection{Negação de Serviços} \label{sec:negação}
+     
+    Um ataque de negação de serviço (\textit{Denial of Service} - DoS) tem como principal objetivo deixar um serviço (servidor \textit{web}, banco de dados) ou recurso (memória, processador)  indisponível, impossibilitando que usuário legítimos tenham acesso a esses recursos. Para tal, o atacante gera diversas requisições inúteis para o servidor, consumindo seus recursos até que o serviço não esteja mais disponível ou degradando a qualidade do serviço \cite{cryptsec}.
 
-Nos serviços \textit{web}, como por exemplo, apache2 existe um usuário especial, comumente chamado de \textit{www-data} ou algo semelhante. O usuário \textit{www-data}, na maioria das vezes, precisa apenas de permissões de leitura nos arquivos porém muitos gerentes de sistemas cujo a conscientização sobre segurança é insuficiente, designa permissões errôneas (escrita ou alteração), e caso haja um comprometimento, através, por exemplo, de injeção de código remoto PHP, do servidor, o atacante poderá alterar a maioria dos arquivos. A ocorrência amplamente disseminada de ataques de desfiguração de páginas Web é uma consequência direta dessa prática \cite{seguranca:william-lawrie}.
+     Pode-se dividir os ataques de Dos em três categorias \cite{redes:kurose}:
 
-Esse tipo de ataque pode trazer sérias consequências à instituição, entre elas \cite{esr:tratamento}:
+    \begin{alineas}
+    \item \textbf{Ataque de vulnerabilidade}: Envolve o envio de um série de mensagens a uma aplicação ou sistema operacional vulnerável, como consequência o serviço pode parar ou, no pior caso, o hospedeiro pode pifar;
+    \item \textbf{Inundação na largura de banda}: O atacante envia um grande quantidade de pacotes ao hospedeiro, fazendo com que o enlace de acesso do alvo fique indisponível, impedindo os pacotes legítimos de alcançarem o servidor;
+    \item \textbf{Inundação na conexão}: O atacante estabelece um grande número de conexões no hospedeiro-alvo fazendo-o deixar de aceitar conexões legítimas.
+    \end{alineas}
 
-\begin{alineas}
-\item \textbf{Constrangimento}: A instituição pode ter a imagem de confiabilidade afetada, em certos casos, refletir o descaso com que as informações críticas são tratadas; 
-\item \textbf{Disseminação de inverdades}: Algumas alterações no \textit{website}, por exemplo, alterações de preços de produtos, podem resultar em consequências negativas; 
-\item \textbf{Prejuízo de serviços}: Pode indisponibilizar serviços prestados pela instituição, por exemplo, em \textit{e-commence}.
-\end{alineas}
+    Esse tipo de ataque pode gerar grandes prejuízos financeiros para as empresas, principalmente \textit{e-commence}, pois enquanto o sistema está fora ou com uma resposta lenta, as transações financeiras são prejudicadas. Com isso, cria-se também, uma insatisfação pelo usuário do serviço prestado pela empresa.
 
-Existem ferramentas que automatizam esse tipo de ataque, elas identificação aplicações web populares vulneráveis, de modo explorar falhas de segurança e alterar o conteúdo da página \cite{esr:tratamento}.
+    Existe uma forma mais sofisticada de ataque de DoS chamada Negação de Serviço Distribuído (\textit{Distributed Denial of Services} - DDoS), enquanto o DoS básico as requisições partem de apenas uma fonte, no entanto, no DDoS o atacante tem acesso a um grande número de computadores (\textit{zombies}) explorando suas vulnerabilidades criando o que chamamos de \textit{botnet} (\autoref{fig:ddos}). Com isso, basta o atacante indicar as coordenadas de um ou mais alvos para o ataque \cite{zargarjoshitipper}. O DDoS são mais difíceis de detectar e de prevenir do que um ataque DoS de um único hospedeiro.
 
-\begin{figure}[!htb]
- \centering
- \caption{Estatísticas de \textit{defacement}}
- \includegraphics[scale=.7]{estatisticas-defacement.png}
- \legend{Fonte: \cite{zoneh}}
- \label{fig:estatistica-defacement}
-\end{figure}
+    \begin{figure}[!htb]
+     \centering
+     \caption{Ataque de Negação de Serviço Distribuído}
+     \includegraphics[scale=.6]{ddos.png}
+     \legend{Fonte: Autoria própria}}
+     \label{fig:ddos}
+    \end{figure}
 
-O site Zone-H mantém um arquivo de páginas alteradas. Os próprios \textit{hackers} submetem os \textit{websites} comprometidos no intuito de ter seus minutos fama. Nas submissões, os sites são espelhados para o Zone-H, então os moderadores verificam a veracidade do \textit{defacement}. Em 2013, foram identificados cerca de 70000 páginas comprometidas, desde então houve uma redução nesse número (\autoref{fig:estatistica-defacement}). Esse tipo de ataque é considerado passivo pois é gerado somente uma mensagem na tela \cite{angelo-xss}.
+    \subsection{\textit{Malwares}} \label{sec:malwares}
 
-\subsection{Negação de Serviços} \label{sec:negação}
- 
-Um ataque de negação de serviço (\textit{Denial of Service} - DoS) tem como principal objetivo deixar um serviço (servidor \textit{web}, banco de dados) ou recurso (memória, processador)  indisponível, impossibilitando que usuário legítimos tenham acesso a esses recursos. Para tal, o atacante gera diversas requisições inúteis para o servidor, consumindo seus recursos até que o serviço não esteja mais disponível ou degradando a qualidade do serviço \cite{cryptsec}.
+    Os \textit{malwares}, também conhecidos como \textit{softwares} maliciosos, são um grande problema para sistemas de informação, sua existência ou execução tem consequências negativas ou involuntárias. Nessa seção será apresentado os \textit{malwares} mais popularmente conhecidos que são os vírus, \textit{worms}, \textit{trojans} e, devido sua repercussão, os \textit{ransomwares}.
 
- Pode-se dividir os ataques de Dos em três categorias \cite{redes:kurose}:
+    É importante entender o funcionamento e o comportamento desses códigos maliciosos para, a partir daí, buscar soluções contra esse ataque. Existe dois tipos de análise: análise estática, requer uma verifica linha a linha do código malicioso, geralmente o código não está disponível e até mesmo se estiver, o autor do \textit{malware} muitas vezes ofusca o código, tornando esse tipo de análise difícil. Por outro lado, existe a análise dinâmica, o analista monitora a execução e o comportamento do \textit{malware}, esse tipo de análise é imune a ofuscação de código \cite{encycrypt}.
 
-\begin{alineas}
-\item \textbf{Ataque de vulnerabilidade}: Envolve o envio de um série de mensagens a uma aplicação ou sistema operacional vulnerável, como consequência o serviço pode parar ou, no pior caso, o hospedeiro pode pifar;
-\item \textbf{Inundação na largura de banda}: O atacante envia um grande quantidade de pacotes ao hospedeiro, fazendo com que o enlace de acesso do alvo fique indisponível, impedindo os pacotes legítimos de alcançarem o servidor;
-\item \textbf{Inundação na conexão}: O atacante estabelece um grande número de conexões no hospedeiro-alvo fazendo-o deixar de aceitar conexões legítimas.
-\end{alineas}
+    O Vírus é um programa que se propaga inserindo cópias de si mesmo e se tornando parte de outros programas e arquivos. Para dar continuidade ao processo de infecção, o vírus depende da execução do programa ou arquivo hospedeiro. O principal meio de propagação desse tipo de \textit{software} malicioso são as mídias removíveis, como, por exemplo, \textit{pen-drives} \cite{certs-malwares}.
 
-Esse tipo de ataque pode gerar grandes prejuízos financeiros para as empresas, principalmente \textit{e-commence}, pois enquanto o sistema está fora ou com uma resposta lenta, as transações financeiras são prejudicadas. Com isso, cria-se também, uma insatisfação pelo usuário do serviço prestado pela empresa.
+    O \textit{Worm} é um \textit{malware} que se propaga através de e-mails, sites ou \textit{software} baseados em rede, explorando as vulnerabilidades das aplicações. Uma das principais características desse tipo de \textit{software} é a propagação automática, ou seja, sem a intervenção do usuário \cite{detectingworm}. 
 
-Existe uma forma mais sofisticada de ataque de DoS chamada Negação de Serviço Distribuído (\textit{Distributed Denial of Services} - DDoS), enquanto o DoS básico as requisições partem de apenas uma fonte, no entanto, no DDoS o atacante tem acesso a um grande número de computadores (\textit{zombies}) explorando suas vulnerabilidades criando o que chamamos de \textit{botnet} (\autoref{fig:ddos}). Com isso, basta o atacante indicar as coordenadas de um ou mais alvos para o ataque \cite{zargarjoshitipper}. O DDoS são mais difíceis de detectar e de prevenir do que um ataque DoS de um único hospedeiro.
+    O \textit{Trojan} ou Cavalo de Troia são programas que precisam ser explicitamente executados para serem instalados no computador. Esse \textit{malware} se disfarça de um programa benigno, por exemplo, cartões virtuais animados, álbuns de fotos, jogos e protetores de tela que ao serem executados o \textit{trojan} é instalado sem o consentimento do usuário. No entanto, o atacante, após invadir um computador, pode instalar o \textit{trojan} alterando as funções já existentes de programas para executarem ações maliciosas \cite{certs-malwares}.
 
-\begin{figure}[!htb]
- \centering
- \caption{Ataque de Negação de Serviço Distribuído}
- \includegraphics[scale=.6]{ddos.png}
- \legend{Fonte: Autoria própria}}
- \label{fig:ddos}
-\end{figure}
+    Por fim, temos os \textit{ransomwares}. O \textit{ransomware} é um \textit{malware} que criptografa os dados de um computador ou uma rede. A pessoa ou a organização responsável pelo ataque pede um resgate, geralmente pago em cripto moedas, como por exemplo, bitcoin, para manter sua anonimidade, fornecendo uma chave para descriptografar os arquivos mediante o pagamento \cite{ransomware:matt}.
 
-\subsection{\textit{Malwares}} \label{sec:malwares}
+    A melhor medida contra esse tipo de \textit{malware}, uma vez que, não há garantias que o atacante irá fornecer a chave depois do pagamento, além de manter o sistema sempre atualizado, é ter uma politica de \textit{backup} regular. O armazenamento de arquivos importantes em outros tipos de mídias não conectadas regularmente ao sistema (removíveis) ou \textit{backup} baseados em nuvens \cite{ransomware:matt}.
 
-Os \textit{malwares}, também conhecidos como \textit{softwares} maliciosos, são um grande problema para sistemas de informação, sua existência ou execução tem consequências negativas ou involuntárias. Nessa seção será apresentado os \textit{malwares} mais popularmente conhecidos que são os vírus, \textit{worms}, \textit{trojans} e, devido sua repercussão, os \textit{ransomwares}.
+    \section{Ferramentas para Avaliação de Segurança} \label{sec:ferramentas}
 
-É importante entender o funcionamento e o comportamento desses códigos maliciosos para, a partir daí, buscar soluções contra esse ataque. Existe dois tipos de análise: análise estática, requer uma verifica linha a linha do código malicioso, geralmente o código não está disponível e até mesmo se estiver, o autor do \textit{malware} muitas vezes ofusca o código, tornando esse tipo de análise difícil. Por outro lado, existe a análise dinâmica, o analista monitora a execução e o comportamento do \textit{malware}, esse tipo de análise é imune a ofuscação de código \cite{encycrypt}.
+    Nessa seção será descrito as ferramentas auxiliares utilizadas para geração de ataques abordados na \autoref{sec:ataques-comuns} com objetivo de testar e validar as configurações das ferramentas de IDPS estudas. 
 
-O Vírus é um programa que se propaga inserindo cópias de si mesmo e se tornando parte de outros programas e arquivos. Para dar continuidade ao processo de infecção, o vírus depende da execução do programa ou arquivo hospedeiro. O principal meio de propagação desse tipo de \textit{software} malicioso são as mídias removíveis, como, por exemplo, \textit{pen-drives} \cite{certs-malwares}.
+     \subsection{Nmap} \label{sec:nmap}
 
-O \textit{Worm} é um \textit{malware} que se propaga através de e-mails, sites ou \textit{software} baseados em rede, explorando as vulnerabilidades das aplicações. Uma das principais características desse tipo de \textit{software} é a propagação automática, ou seja, sem a intervenção do usuário \cite{detectingworm}. 
+    O Nmap é uma ferramente de código aberto utilizada para auditoria de segurança e descoberta de rede. A ferramenta é capaz de determinar quais \textit{hosts} estão disponíveis na rede, quais serviços cada \textit{host} está oferecendo, incluindo nome e versão da aplicação, o sistema operacional usado, dentre outras características.  
 
-O \textit{Trojan} ou Cavalo de Troia são programas que precisam ser explicitamente executados para serem instalados no computador. Esse \textit{malware} se disfarça de um programa benigno, por exemplo, cartões virtuais animados, álbuns de fotos, jogos e protetores de tela que ao serem executados o \textit{trojan} é instalado sem o consentimento do usuário. No entanto, o atacante, após invadir um computador, pode instalar o \textit{trojan} alterando as funções já existentes de programas para executarem ações maliciosas \cite{certs-malwares}.
+    Muitos administradores de sistemas utilizam o Nmap para tarefas rotineiras como, criação de inventário de rede, gerenciamento de serviços, visto que é de suma importância manter os mesmos atualizados e monitoramento de \textit{host}.
 
-Por fim, temos os \textit{ransomwares}. O \textit{ransomware} é um \textit{malware} que criptografa os dados de um computador ou uma rede. A pessoa ou a organização responsável pelo ataque pede um resgate, geralmente pago em cripto moedas, como por exemplo, bitcoin, para manter sua anonimidade, fornecendo uma chave para descriptografar os arquivos mediante o pagamento \cite{ransomware:matt}.
+     Diversos parâmetros podem ser utilizados com o Nmap, possibilitando realizar varreduras das mais variadas maneiras, dependendo do tipo desejado. A lista completa de opções podem ser consultadas na documentação oficial que vem junto da ferramenta ou no site do projeto \cite{nmap}. 
 
-A melhor medida contra esse tipo de \textit{malware}, uma vez que, não há garantias que o atacante irá fornecer a chave depois do pagamento, além de manter o sistema sempre atualizado, é ter uma politica de \textit{backup} regular. O armazenamento de arquivos importantes em outros tipos de mídias não conectadas regularmente ao sistema (removíveis) ou \textit{backup} baseados em nuvens \cite{ransomware:matt}.
+     Na execução do Nmap, o que não for opção ou argumento da opção é considerado especificação do \textit{host} alvo. O alvo pode ser um ou vários, usando uma notação de intervalo por hífen ou uma lista separada por vírgula. Os \textit{hosts} alvos também podem ser definidos em arquivos.
 
-\section{Ferramentas para Avaliação de Segurança} \label{sec:ferramentas}
+    O resultado do Nmap é uma tabela de portas e seus estados (\autoref{fig:nmap-exemplo}). As portas podem assumir quatro estados, temos \cite{nmap}: 
+    \begin{alineas}
+    \item \textbf{\textit{open}}: significa que existe alguma aplicação escutando conexões; 
+    \item \textbf{\textit{filtered}}: há um obstáculo na rede, podendo ser algum \textit{firewall}, que impossibilita que o Nmap determine se a porta está aberta ou fechada; 
+    \item \textbf{\textit{closed}}: não possui aplicação escutando na porta; 
+    \item \textbf{\textit{unfilterd}}: a porta responde requisição porém o Nmap não consegue determinar se estão fechadas ou abertas.
+    \end{alineas}
 
-Nessa seção será descrito as ferramentas auxiliares utilizadas para geração de ataques abordados na \autoref{sec:ataques-comuns} com objetivo de testar e validar as configurações das ferramentas de IDPS estudas. 
+     \begin{figure}[!htb]
+      \centering
+      \caption{Exemplo de saída do Nmap}
+      \includegraphics[scale=.6]{nmap.png}
+      \legend{Autoria própria}
+      \label{fig:nmap-exemplo}
+     \end{figure}
 
- \subsection{Nmap} \label{sec:nmap}
+    \subsection{Metasploit Framework} \label{sec:metasploit}
 
-O Nmap é uma ferramente de código aberto utilizada para auditoria de segurança e descoberta de rede. A ferramenta é capaz de determinar quais \textit{hosts} estão disponíveis na rede, quais serviços cada \textit{host} está oferecendo, incluindo nome e versão da aplicação, o sistema operacional usado, dentre outras características.  
+    O Metasploit é um \textit{framework} de código aberto cujo principio básico é desenvolver e executar \textit{exploit} contra alvos remotos e fornecer uma lista de vulnerabilidades existentes no alvo. É uma ferramenta que combina diversos \textit{exploits} e \textit{payloads} dentro de um local, ideal para levantamento de segurança de serviços e testes de penetração \cite{metasploit:yash}.  
 
-Muitos administradores de sistemas utilizam o Nmap para tarefas rotineiras como, criação de inventário de rede, gerenciamento de serviços, visto que é de suma importância manter os mesmos atualizados e monitoramento de \textit{host}.
+    O Metasploit possui uma biblioteca divida em três partes:
 
- Diversos parâmetros podem ser utilizados com o Nmap, possibilitando realizar varreduras das mais variadas maneiras, dependendo do tipo desejado. A lista completa de opções podem ser consultadas na documentação oficial que vem junto da ferramenta ou no site do projeto \cite{nmap}. 
+    \begin{alineas}
+    \item \textbf{Rex}: É a biblioteca fundamental, a maioria das tarefas executadas pelo \textit{framework} usarão essa biblioteca; 
+    \item \textbf{MSF Core}: É o \textit{framework} em si, possui, por exemplo, gerenciador de módulos e a base de dados; 
+    \item \textbf{MSF Base}: Guarda os módulos, sejam eles, \textit{exploit}, \textit{encoders} (ferramentas usadas para desenvolver o \textit{payloads}) e os \textit{payloads}. Além disso, são guardadas informações de configuração e sessões criadas pelos \textit{exploits}. 
+    \end{alineas}
 
- Na execução do Nmap, o que não for opção ou argumento da opção é considerado especificação do \textit{host} alvo. O alvo pode ser um ou vários, usando uma notação de intervalo por hífen ou uma lista separada por vírgula. Os \textit{hosts} alvos também podem ser definidos em arquivos.
+    A Interface permite que o usuário interaja com o \textit{framework}. Nele há o \textit{msfconsole} uma interface de linha de comando interativa, o \textit{msfcli} interface de linha de comando não-interativa, e o \textit{msfweb} interface baseada em \textit{web} \cite{metasploittoolkit}. Por fim, temos o Armitage, que é uma interface gráfica baseada em Java desenvolvido por Raphael Mudge.
 
-O resultado do Nmap é uma tabela de portas e seus estados (\autoref{fig:nmap-exemplo}). As portas podem assumir quatro estados, temos \cite{nmap}: 
-\begin{alineas}
-\item \textbf{\textit{open}}: significa que existe alguma aplicação escutando conexões; 
-\item \textbf{\textit{filtered}}: há um obstáculo na rede, podendo ser algum \textit{firewall}, que impossibilita que o Nmap determine se a porta está aberta ou fechada; 
-\item \textbf{\textit{closed}}: não possui aplicação escutando na porta; 
-\item \textbf{\textit{unfilterd}}: a porta responde requisição porém o Nmap não consegue determinar se estão fechadas ou abertas.
-\end{alineas}
+    A arquitetura é mostrada com mais detalhes na \autoref{fig:metasploit-arquitetura}. 
 
- \begin{figure}[!htb]
-  \centering
-  \caption{Exemplo de saída do Nmap}
-  \includegraphics[scale=.6]{nmap.png}
-  \legend{Autoria própria}
-  \label{fig:nmap-exemplo}
- \end{figure}
+    Os módulos são divididos da seguinte maneira: 
 
-\subsection{Metasploit Framework} \label{sec:metasploit}
+    \begin{alineas}
+    \item \textbf{Payload}: são código executados no alvo remotamente; 
+    \item \textbf{Exploit}: explora \textit{bugs} ou vulnerabilidade existente em aplicações do alvo; 
+    \item \textbf{Módulos Auxiliares}: usado para escanear as vulnerabilidades e executar várias tarefas; 
+    \item \textbf{Encoder}: codifica o \textit{payload} para evitar qualquer tipo de detecção por antivírus.
+    \end{alineas}
 
-O Metasploit é um \textit{framework} de código aberto cujo principio básico é desenvolver e executar \textit{exploit} contra alvos remotos e fornecer uma lista de vulnerabilidades existentes no alvo. É uma ferramenta que combina diversos \textit{exploits} e \textit{payloads} dentro de um local, ideal para levantamento de segurança de serviços e testes de penetração \cite{metasploit:yash}.  
+     \begin{figure}[!htb]
+      \centering
+      \caption{Arquitetura do Metasploit}
+      \includegraphics[scale=.6]{metasploit_arquitetura.png}
+      \legend{Fonte: Autoria própria}
+      \label{fig:metasploit-arquitetura}
+     \end{figure}
 
-O Metasploit possui uma biblioteca divida em três partes:
+     \subsection{Pytbull} \label{sec:pytbull}
 
-\begin{alineas}
-\item \textbf{Rex}: É a biblioteca fundamental, a maioria das tarefas executadas pelo \textit{framework} usarão essa biblioteca; 
-\item \textbf{MSF Core}: É o \textit{framework} em si, possui, por exemplo, gerenciador de módulos e a base de dados; 
-\item \textbf{MSF Base}: Guarda os módulos, sejam eles, \textit{exploit}, \textit{encoders} (ferramentas usadas para desenvolver o \textit{payloads}) e os \textit{payloads}. Além disso, são guardadas informações de configuração e sessões criadas pelos \textit{exploits}. 
-\end{alineas}
+     O Pytbull é um \textit{framework} para teste de IDPS, capaz de determinar a capacidade de detecção e bloqueio do mesmo, além de fazer uma comparação entre diversas soluções e verifica as configurações \cite{pytbull}. O \textit{framework} Pytbull possui cerca de 300 testes agrupados em 11 módulos, temos:
 
-A Interface permite que o usuário interaja com o \textit{framework}. Nele há o \textit{msfconsole} uma interface de linha de comando interativa, o \textit{msfcli} interface de linha de comando não-interativa, e o \textit{msfweb} interface baseada em \textit{web} \cite{metasploittoolkit}. Por fim, temos o Armitage, que é uma interface gráfica baseada em Java desenvolvido por Raphael Mudge.
+     \begin{alineas}
+      \item \textbf{badTraffic}: pacotes não compatíveis com a RFC são enviados para o servidor para testar como os pacotes são processados; 
+      \item \textbf{bruteForce}: testa a capacidade do IDPS de rastrear ataques de força bruta;
+      \item \textbf{clientSideAttacks}: usa um \textit{shell} reverso para fornecer ao servidor instruções para baixar arquivos maliciosos; 
+      \item \textbf{denialOfService}: testa a capacidade do IDPS de proteger contra tentativas de DoS; 
+      \item \textbf{evasionTechniques}: testa a capacidade do IDPS de detectar técnicas de evasão; 
+      \item \textbf{fragmentedPackets}: várias cargas úteis fragmentadas são enviadas ao servidor para testar sua capacidade de recomposição e detectar os ataques; 
+      \item \textbf{ipReputation}: testa a capacidade do servidor detectar tráfego de servidores com reputação baixa;
+      \item \textbf{normalUsage}: cargas úteis que correspondem a uso normal; 
+      \item \textbf{pcapReplay}: permite reproduzir arquivos pcap; 
+      \item \textbf{shellCodes}: envia \textit{shellcodes} para o servidor na porta 21/ftp testando a capacidade de detectar e/ou bloquear o mesmo; 
+      \item \textbf{testRules}, testa a base de assinaturas configuradas no servidor IDPS.
+     \end{alineas}
 
-A arquitetura é mostrada com mais detalhes na \autoref{fig:metasploit-arquitetura}. 
+    Existem basicamente 5 tipos de testes \cite{pytbull}: 
+    \begin{alineas}
+    \item \textbf{\textit{socket}}: Abre um \textit{socket} em uma porta e envia o \textit{payload} para o alvo remoto na porta especificada; 
+    \item \textbf{\textit{command}}: Envia um comando para alvo remoto com a função python subprocess.call(); 
+    \item \textbf{\textit{scapy}}: Envia cargas úteis especificas baseadas na sintaxe de Scapy;
+    \item \textbf{\textit{client side attacks}}: Usa um \textit{shell} reverso no alvo remoto e envia comandos para serem processados no servidor; 
+    \item \textbf{\textit{pcap replay}}: Permite reproduzir tráfego com base em arquivos de pcap.
+    \end{alineas}
 
-Os módulos são divididos da seguinte maneira: 
+    Segundo \cite{pytbull}, o Pytbull pode ser usado seguindo as seguintes arquiteturas:
 
-\begin{alineas}
-\item \textbf{Payload}: são código executados no alvo remotamente; 
-\item \textbf{Exploit}: explora \textit{bugs} ou vulnerabilidade existente em aplicações do alvo; 
-\item \textbf{Módulos Auxiliares}: usado para escanear as vulnerabilidades e executar várias tarefas; 
-\item \textbf{Encoder}: codifica o \textit{payload} para evitar qualquer tipo de detecção por antivírus.
-\end{alineas}
+    \begin{alineas}
+    \item \textbf{\textit{Remote Mode}}: Nesse modo, o IDS é conectado em um espelhamento de porta no \textit{switch} de núcleo e com a interface em modo \textit{promisc}, analisando todo o tráfego que passa no \textit{switch}. Os arquivos maliciosos podem ser baixados pelo Pytbull ou pelo servidor (\autoref{fig:pytbull-remote});
+    \item \textbf{\textit{Local Mode}}: Nesse modo, os arquivos maliciosos são baixados pelo Pytbull;
+    \item \textbf{\textit{IDS mode with attacked server in DMZ}}: Nessa configuração, o \textit{firewall} divide a rede em três seguimentos (lan, wan, DMZ). O IDS é conectado em um espelhamento do \textit{switch} com um interface em modo \textit{promisc}, analisando todo o tráfego enviado a interface LAN do \textit{firewall} (\autoref{fig:pytbull-ids-dmz});
+    \item \textbf{\textit{IPS Mode}}: Nessa configuração, o IDS é colocado entre o Pytbull e o firewall. O Pytbull deve fazer o \textit{download} dos arquivos maliciosos para dar chance o IDS detectar (\autoref{fig:pytbull-ips});
+    \item \textbf{\textit{IPS mode with attacked server in DMZ}}: O mesmo do modo anterior porém com uma DMZ (\autoref{fig:pytbull-ips-dmz}).
+    \end{alineas}
 
- \begin{figure}[!htb]
-  \centering
-  \caption{Arquitetura do Metasploit}
-  \includegraphics[scale=.6]{metasploit_arquitetura.png}
-  \legend{Fonte: Autoria própria}
-  \label{fig:metasploit-arquitetura}
- \end{figure}
-
- \subsection{Pytbull} \label{sec:pytbull}
-
- O Pytbull é um \textit{framework} para teste de IDPS, capaz de determinar a capacidade de detecção e bloqueio do mesmo, além de fazer uma comparação entre diversas soluções e verifica as configurações \cite{pytbull}. O \textit{framework} Pytbull possui cerca de 300 testes agrupados em 11 módulos, temos:
-
- \begin{alineas}
-  \item \textbf{badTraffic}: pacotes não compatíveis com a RFC são enviados para o servidor para testar como os pacotes são processados; 
-  \item \textbf{bruteForce}: testa a capacidade do IDPS de rastrear ataques de força bruta;
-  \item \textbf{clientSideAttacks}: usa um \textit{shell} reverso para fornecer ao servidor instruções para baixar arquivos maliciosos; 
-  \item \textbf{denialOfService}: testa a capacidade do IDPS de proteger contra tentativas de DoS; 
-  \item \textbf{evasionTechniques}: testa a capacidade do IDPS de detectar técnicas de evasão; 
-  \item \textbf{fragmentedPackets}: várias cargas úteis fragmentadas são enviadas ao servidor para testar sua capacidade de recomposição e detectar os ataques; 
-  \item \textbf{ipReputation}: testa a capacidade do servidor detectar tráfego de servidores com reputação baixa;
-  \item \textbf{normalUsage}: cargas úteis que correspondem a uso normal; 
-  \item \textbf{pcapReplay}: permite reproduzir arquivos pcap; 
-  \item \textbf{shellCodes}: envia \textit{shellcodes} para o servidor na porta 21/ftp testando a capacidade de detectar e/ou bloquear o mesmo; 
-  \item \textbf{testRules}, testa a base de assinaturas configuradas no servidor IDPS.
- \end{alineas}
-
-Existem basicamente 5 tipos de testes \cite{pytbull}: 
-\begin{alineas}
-\item \textbf{\textit{socket}}: Abre um \textit{socket} em uma porta e envia o \textit{payload} para o alvo remoto na porta especificada; 
-\item \textbf{\textit{command}}: Envia um comando para alvo remoto com a função python subprocess.call(); 
-\item \textbf{\textit{scapy}}: Envia cargas úteis especificas baseadas na sintaxe de Scapy;
-\item \textbf{\textit{client side attacks}}: Usa um \textit{shell} reverso no alvo remoto e envia comandos para serem processados no servidor; 
-\item \textbf{\textit{pcap replay}}: Permite reproduzir tráfego com base em arquivos de pcap.
-\end{alineas}
-
-Segundo \cite{pytbull}, o Pytbull pode ser usado seguindo as seguintes arquiteturas:
-
-\begin{alineas}
-\item \textbf{\textit{Remote Mode}}: Nesse modo, o IDS é conectado em um espelhamento de porta no \textit{switch} de núcleo e com a interface em modo \textit{promisc}, analisando todo o tráfego que passa no \textit{switch}. Os arquivos maliciosos podem ser baixados pelo Pytbull ou pelo servidor (\autoref{fig:pytbull-remote});
-\item \textbf{\textit{Local Mode}}: Nesse modo, os arquivos maliciosos são baixados pelo Pytbull;
-\item \textbf{\textit{IDS mode with attacked server in DMZ}}: Nessa configuração, o \textit{firewall} divide a rede em três seguimentos (lan, wan, DMZ). O IDS é conectado em um espelhamento do \textit{switch} com um interface em modo \textit{promisc}, analisando todo o tráfego enviado a interface LAN do \textit{firewall} (\autoref{fig:pytbull-ids-dmz});
-\item \textbf{\textit{IPS Mode}}: Nessa configuração, o IDS é colocado entre o Pytbull e o firewall. O Pytbull deve fazer o \textit{download} dos arquivos maliciosos para dar chance o IDS detectar (\autoref{fig:pytbull-ips});
-\item \textbf{\textit{IPS mode with attacked server in DMZ}}: O mesmo do modo anterior porém com uma DMZ (\autoref{fig:pytbull-ips-dmz}).
-\end{alineas}
-
-\begin{figure}[!htb]
- \label{fig:pytbull}
- \centering
- \begin{minipage}{0.4\textwidth}
-  \centering
-  \caption{Arquitetura \textit{Remote Mode} do \textit{framework} Pytbull} \label{fig:pytbull-remote}
-  \includegraphics[scale=.32]{arquitetura_pytbull_remote.png}
-  \legend{Fonte: \cite{pytbull}}
+    \begin{figure}[!htb]
+     \label{fig:pytbull1}
+     \centering
+     \begin{minipage}{0.4\textwidth}
+      \centering
+      \caption{Arquitetura \textit{Remote Mode} do \textit{framework} Pytbull} \label{fig:pytbull-remote}
+      \includegraphics[scale=.32]{arquitetura_pytbull_remote.png}
+      \legend{Fonte: \cite{pytbull}}
  \end{minipage}
  \hfill
  \begin{minipage}{0.4\textwidth}
@@ -478,7 +478,7 @@ Segundo \cite{pytbull}, o Pytbull pode ser usado seguindo as seguintes arquitetu
 \end{figure}
 
 \begin{figure}[!htb]
- \label{fig:pytbull}
+ \label{fig:pytbull2}
  \centering
  \begin{minipage}{0.4\textwidth}
   \centering

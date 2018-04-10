@@ -1,0 +1,16 @@
+#!/bin/bash
+
+echo "\nIniciando ..."
+STARTIME=$(date)
+
+for i in $(seq 1 100)
+    do
+    nmap -F 200.239.72.19 > /dev/null
+    sleep 10
+done
+
+ENDTIME=$(date)
+
+echo "\nInicio $STARTIME"
+echo "\nFim $ENDTIME"
+

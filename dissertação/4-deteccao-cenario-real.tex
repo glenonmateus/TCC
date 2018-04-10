@@ -62,18 +62,18 @@ O passo inicial seria um estudo do alvo utilizando várias técnicas mas princip
 
 Posteriormente, o atacante iria observar o tráfego da rede, verificando os serviços que o alvo oferece, a procura de alguma senha desprotegida (não criptografada). Esse passo inicial não será aplicados nos testes pois seria impossível o IDS detectar.
 
-O passo seguinte seria uma garimpagem de informações e mapeamento da rede, a procura de um \textit{host} vulnerável. A ferramenta escolhida para essa finalidade é o Nmap \autoref{sec:nmap}. 
+O passo seguinte seria uma garimpagem de informações e mapeamento da rede, a procura de um \textit{host} vulnerável. A ferramenta escolhida para essa finalidade é o Nmap (\autoref{sec:nmap}). 
 
-No primeiro teste de \textit{scan}, usou-se o parâmetro '-F', habilitando a modo \textit{fast} do Nmap. Nesse modo, são verificadas apenas as portas especificadas no arquivo nmap-services, que, na instalação padrão, possui 27372 portas descritas. Isso é muito mais rápido que verificar todas as 65535 portas tcp e 65535 portas udp, possíveis em um \textit{host}.
+No primeiro teste de \textit{scan}, usou-se o parâmetro '-F', habilitando a modo \textit{fast} do Nmap. Nesse modo, são verificadas apenas as portas especificadas no arquivo nmap-services, que, na instalação padrão, possui 27372 portas descritas. Isso é muito mais rápido que verificar todas as 65535 portas tcp e 65535 portas udp, possíveis em um \textit{host}. Abaixo segue o comando usado.
 
 \begin{lstlisting}[language=bash, frame=single]
-    nmap -F 192.168.1.107
+    nmap -F 200.239.72.19
 \end{lstlisting}
 
 O segundo teste, usou-se o parâmetro '-sV' do NMAP. Essa opção habilita a descoberta de versões, tentando determinar os protocolos de serviços, o nome da aplicação, o número da versão, o nome do \textit{host} (utilizando o DNS reverso), tipo de dispositivo, sistema operacional, entre outras informações \cite{nmap}. Essas informações são de grande valor pois, a partir delas, pode-se explorar vulnerabilidades conhecidas de uma determinada versão de um serviço.
 
 \begin{lstlisting}[language=bash, frame=single]  
-    nmap -sV 192.168.1.107
+    nmap -sV 200.239.72.19
 \end{lstlisting}
 
 Uma forma encontrada para automatizar o processo de execução dos comandos citados acima foi a criação de um código em \textit{shell script}. O \textit{Shell Script} é uma linguagem de script usada por vários sistemas operacional, principalmente os baseados em UNIX. Abaixo segue o código.
@@ -133,9 +133,9 @@ Para tal, usou-se o Metasploit Framework (\autoref{sec:metasploit}). Primeiramen
 \begin{lstlisting}[language=bash, frame=single]
 use auxiliary/dos/tcp/synflood
 
-msf auxiliary(synflood) > set rhost 192.168.1.107 (target IP)
+msf auxiliary(synflood) > set rhost 200.239.72.19 (target IP)
 
-msf auxiliary(synflood) > set shost 192.168.1.105 (attack IP)
+msf auxiliary(synflood) > set shost 10.15.10.20 (attack IP)
 
 msf auxiliary(synflood) > exploit
 \end{lstlisting}
@@ -164,7 +164,19 @@ sudo ./pytbull -t snort
 %Comparação das ferramentas
 %Problemas encontrados
 
-Nessa seção será descritos os resultados esperados e obtidos dos testes apresentados na \autoref{sec:testes}. Ao final, será feita uma comparação entre as ferramentas de IDPS's estudas e o relato dos problemas encontrados.
+O Snort e Suricata são Sistemas de Detecção de Intrusão baseados em assinaturas, ambos gratuitos e multiplataformas, no entanto, caso queira uma base de assinaturas robusta e com suporte, o mesmo deve ser adquirido mediante a um pagamento. 
+
+Nada impede o desenvolvimento de uma base própria, no entanto, é necessário uma equipe altamente capacitada e dedicada para esse fim, visto que, diariamente, são lançados na rede novos ataques ou variações de ataques existentes, tornando a atualização da base de assinaturas um processo árduo e custoso.
+
+O Snort encontra-se consolidado no mercado há vários anos e com muitas versões, já o Suricata surgiu em 2010 como um novo motor, com a tecnologia \texit{multithreading} (processa várias tarefas ao mesmo tempo), aproveitando o paradigma multinúcleos dos processadores.
+
+Foram encontrados vários desafios durante o desenvolvimento desse trabalho. Dentre elas, destacam-se a dificuldade de encontrar material e experimentos referente ao Suricata, a documentação oficial do sistema é pobre de conteúdo, limitando-se ao básico de instalação e algumas particularidades de configuração. 
+
+Outra dificuldade que se destaca foi com relação a configuração do cenário de teste, devido a alta complexidade e por requerer configurações em vários equipamentos, no qual, em alguns casos, a gerência pertencia a terceiros.
+
+%Nessa seção será descritos os resultados esperados e obtidos dos testes apresentados na \autoref{sec:testes}. Ao final, será feita uma comparação entre as ferramentas de IDPS's estudas e o relato dos problemas encontrados.
+
+%O resultado obtido no primeiro experimento de varredura utilizando NMAP no \textit{fast}.
 
 \section{Conclusão} \label{sec:conclusão}
 %\section{Métricas de Comparação}
