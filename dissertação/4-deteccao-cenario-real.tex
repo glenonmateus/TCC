@@ -66,36 +66,34 @@ O passo seguinte seria uma garimpagem de informações e mapeamento da rede, a p
 
 No primeiro teste de \textit{scan}, usou-se o parâmetro '-F', habilitando a modo \textit{fast} do Nmap. Nesse modo, são verificadas apenas as portas especificadas no arquivo nmap-services, que, na instalação padrão, possui 27372 portas descritas. Isso é muito mais rápido que verificar todas as 65535 portas tcp e 65535 portas udp, possíveis em um \textit{host}. Abaixo segue o comando usado.
 
-\begin{lstlisting}[language=bash, frame=single]
+\begin{lstlisting}[caption={Comando NMAP no modo \textit{fast}},language=bash, frame=single, label={lst:nmap-F}]
     nmap -F 200.239.72.19
 \end{lstlisting}
 
 O segundo teste, usou-se o parâmetro '-sV' do NMAP. Essa opção habilita a descoberta de versões, tentando determinar os protocolos de serviços, o nome da aplicação, o número da versão, o nome do \textit{host} (utilizando o DNS reverso), tipo de dispositivo, sistema operacional, entre outras informações \cite{nmap}. Essas informações são de grande valor pois, a partir delas, pode-se explorar vulnerabilidades conhecidas de uma determinada versão de um serviço.
 
-\begin{lstlisting}[language=bash, frame=single]  
+\begin{lstlisting}[caption={Comando NMAP no modo de descoberta de versões},language=bash, frame=single, label={lst:nmap-sv}]  
     nmap -sV 200.239.72.19
 \end{lstlisting}
 
 Uma forma encontrada para automatizar o processo de execução dos comandos citados acima foi a criação de um código em \textit{shell script}. O \textit{Shell Script} é uma linguagem de script usada por vários sistemas operacional, principalmente os baseados em UNIX. Abaixo segue o código.
 
-\begin{lstlisting}[language=bash, frame=single]
- #!/bin/bash
-  
-   STARTIME=$(date)
-  
-   for i in $(seq 1 100)
-   do
-       nmap -F 200.239.72.19 > /dev/null
-       sleep 10
-   done
-  
-   ENDTIME=$(date)
-  
-   echo
-   echo "Inicio $STARTIME"
-   echo
-   echo "Fim $ENDTIME"
-   echo
+\begin{lstlisting}[caption={Automatização das execuções do comando NMAP},language=bash, frame=single, label={lst:script-nmap}]
+#!/bin/bash
+
+echo "\nIniciando ..."
+STARTIME=$(date)
+
+for i in $(seq 1 100)
+    do  
+        echo "\n$i Execução..."
+        nmap $1 200.239.72.19 > /dev/null
+        sleep 5
+    done
+
+ENDTIME=$(date)                                                                                                                                                                 
+echo "\nInicio $STARTIME"
+echo "\nFim $ENDTIME"
 \end{lstlisting}
 
 Na primeira linha de um código em \textit{shell script}, precisamos especificar o interpretador utilizado (\#!/bin/bash). Criou-se duas variáveis, uma para armazenar a hora do inicio do \textit{script} e uma para armazenar termino, dessa forma, a pesquisa pelos alertas gerados pelas ferramentas será menos dispendiosa. O comando NMAP foi colocado dentro de um laço \textit{for}, executado 100 vezes. 
@@ -130,7 +128,7 @@ Quando um cliente tenta começar um conexão TCP com um servidor, são trocados,
 
 Para tal, usou-se o Metasploit Framework (\autoref{sec:metasploit}). Primeiramente, entrou-se no console de linha de comando, para acessar, basta, no terminal, digitar \textit{msfconsole}. Existe um modulo no Metasploit chamado \textit{synflood}, para utilizar esse modulo, é necessário definir o IP do alvo e o IP de onde partirá o ataque. Abaixo segue os comandos usados no \textit{msfconsole}.
 
-\begin{lstlisting}[language=bash, frame=single]
+\begin{lstlisting}[caption={Comando usados no Metasploit para ataque de negação de serviço},language=bash, frame=single, label={lst:synflood}]
 use auxiliary/dos/tcp/synflood
 
 msf auxiliary(synflood) > set rhost 200.239.72.19 (target IP)
@@ -168,15 +166,15 @@ O Snort e Suricata são Sistemas de Detecção de Intrusão baseados em assinatu
 
 Nada impede o desenvolvimento de uma base própria, no entanto, é necessário uma equipe altamente capacitada e dedicada para esse fim, visto que, diariamente, são lançados na rede novos ataques ou variações de ataques existentes, tornando a atualização da base de assinaturas um processo árduo e custoso.
 
-O Snort encontra-se consolidado no mercado há vários anos e com muitas versões, já o Suricata surgiu em 2010 como um novo motor, com a tecnologia \texit{multithreading} (processa várias tarefas ao mesmo tempo), aproveitando o paradigma multinúcleos dos processadores.
+O Snort encontra-se consolidado no mercado há vários anos e com muitas versões, já o Suricata surgiu em 2010 como um novo motor, com a tecnologia \texit{multithreading} (processa várias tarefas ao mesmo tempo), aproveitando o paradigma multinúcleos dos processadores. Por esse motivo, espera-se que o desempenho do Suricata seja superior ao do Snort.
 
 Foram encontrados vários desafios durante o desenvolvimento desse trabalho. Dentre elas, destacam-se a dificuldade de encontrar material e experimentos referente ao Suricata, a documentação oficial do sistema é pobre de conteúdo, limitando-se ao básico de instalação e algumas particularidades de configuração. 
 
-Outra dificuldade que se destaca foi com relação a configuração do cenário de teste, devido a alta complexidade e por requerer configurações em vários equipamentos, no qual, em alguns casos, a gerência pertencia a terceiros.
+Outra dificuldade que se destaca foi com relação a configuração do cenário de teste, devido a alta complexidade e por requerer configurações em vários equipamento, no qual, em alguns casos, a gerência pertencia a terceiros. Depois de um tempo, observou-se que nem todos os pacotes da interface espelhada estava passando para as VM's, isso afetaria os resultados dos testes. Após análise, concluiu-se que era necessário uma configuração de espelhamento no \textit{openvswitch} (utilizado pelo XenServer) do \textit{host}. 
 
-%Nessa seção será descritos os resultados esperados e obtidos dos testes apresentados na \autoref{sec:testes}. Ao final, será feita uma comparação entre as ferramentas de IDPS's estudas e o relato dos problemas encontrados.
+No primeiro experimento realizado, utilizando o NMAP no modo \textit{fast}, a execução do \textit{script} \autoref{lst:script-nmap}, gerou um total de 62 alertas, dos quais 100\% deles foram do Snort.
 
-%O resultado obtido no primeiro experimento de varredura utilizando NMAP no \textit{fast}.
+No segundo teste de varredura, utilizando o NMAP no modo no qual é possível identificar as versões dos serviços e até o SO do alvo, as ferramentas geraram, com a execução do \textit{script} (\autoref{lst:script-nmap}), um total de .
 
 \section{Conclusão} \label{sec:conclusão}
 %\section{Métricas de Comparação}

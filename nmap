@@ -5,8 +5,9 @@ STARTIME=$(date)
 
 for i in $(seq 1 100)
     do
-    nmap -F 200.239.72.19 > /dev/null
-    sleep 10
+    echo "\n$i Execução..."
+    nmap $1 200.239.72.19 
+    sleep 5
 done
 
 ENDTIME=$(date)
