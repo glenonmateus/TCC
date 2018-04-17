@@ -70,10 +70,10 @@ No primeiro teste de \textit{scan}, usou-se o parâmetro '-F', habilitando a mod
     nmap -F 200.239.72.19
 \end{lstlisting}
 
-O segundo teste, usou-se o parâmetro '-sV' do NMAP. Essa opção habilita a descoberta de versões, tentando determinar os protocolos de serviços, o nome da aplicação, o número da versão, o nome do \textit{host} (utilizando o DNS reverso), tipo de dispositivo, sistema operacional, entre outras informações \cite{nmap}. Essas informações são de grande valor pois, a partir delas, pode-se explorar vulnerabilidades conhecidas de uma determinada versão de um serviço.
+O segundo teste, usou-se o parâmetro '-A' do NMAP. Essa opção habilita opções adicionais avançadas e agressivas, descobrindo versões dos serviço, determinando protocolos de serviços, o nome da aplicação, o número da versão, o nome do \textit{host} (utilizando o DNS reverso), tipo de dispositivo, sistema operacional, entre outras informações. Ter um número de versão exacto ajuda substancialmente na determinação de quais \textit{exploits} o servidor está vulnerável \cite{nmap}.
 
 \begin{lstlisting}[caption={Comando NMAP no modo de descoberta de versões},language=bash, frame=single, label={lst:nmap-sv}]  
-    nmap -sV 200.239.72.19
+    nmap -A 200.239.72.19
 \end{lstlisting}
 
 Uma forma encontrada para automatizar o processo de execução dos comandos citados acima foi a criação de um código em \textit{shell script}. O \textit{Shell Script} é uma linguagem de script usada por vários sistemas operacional, principalmente os baseados em UNIX. Abaixo segue o código.
@@ -148,7 +148,7 @@ Antes de executar o \textit{framework}, é necessário mover, para os \textit{ho
 
 Feito isso, basta executar os comandos abaixo, substituindo \textbf{suricata} e \textbf{snort} pelos seus respectivos IPs:
 
-\begin{lstlisting}[language=bash, frame=single]
+\begin{lstlisting}[caption={Comandos usados para execução do Pytbull}, language=bash, frame=single, label={lst:pytbull}]
 cd pytbull/
 
 sudo ./pytbull -t suricata
@@ -161,7 +161,6 @@ sudo ./pytbull -t snort
 %Quais os resultados dos testes ??
 %Comparação das ferramentas
 %Problemas encontrados
-
 O Snort e Suricata são Sistemas de Detecção de Intrusão baseados em assinaturas, ambos gratuitos e multiplataformas, no entanto, caso queira uma base de assinaturas robusta e com suporte, o mesmo deve ser adquirido mediante a um pagamento. 
 
 Nada impede o desenvolvimento de uma base própria, no entanto, é necessário uma equipe altamente capacitada e dedicada para esse fim, visto que, diariamente, são lançados na rede novos ataques ou variações de ataques existentes, tornando a atualização da base de assinaturas um processo árduo e custoso.
@@ -172,9 +171,11 @@ Foram encontrados vários desafios durante o desenvolvimento desse trabalho. Den
 
 Outra dificuldade que se destaca foi com relação a configuração do cenário de teste, devido a alta complexidade e por requerer configurações em vários equipamento, no qual, em alguns casos, a gerência pertencia a terceiros. Depois de um tempo, observou-se que nem todos os pacotes da interface espelhada estava passando para as VM's, isso afetaria os resultados dos testes. Após análise, concluiu-se que era necessário uma configuração de espelhamento no \textit{openvswitch} (utilizado pelo XenServer) do \textit{host}. 
 
+As métricas usadas para análise e comparação das ferramentas são a utilização dos recursos de \textit{hardware} (memória, processamento), taxa de detecção, independente de ser falso positivo e falso negativo. No primeiro momento, havia a ideia de comparar utilizando essa métrica, no entanto, devido a uma quantidade muito grande de alertas e devido a rede ser grande (vários clientes), essa comparação tornou-se inviável.
+
 No primeiro experimento realizado, utilizando o NMAP no modo \textit{fast}, a execução do \textit{script} \autoref{lst:script-nmap}, gerou um total de 62 alertas, dos quais 100\% deles foram do Snort.
 
-No segundo teste de varredura, utilizando o NMAP no modo no qual é possível identificar as versões dos serviços e até o SO do alvo, as ferramentas geraram, com a execução do \textit{script} (\autoref{lst:script-nmap}), um total de .
+No segundo teste de varredura, utilizando o NMAP no modo no qual é possível identificar as versões dos serviços e até o SO do alvo, as ferramentas geraram, com a execução do \textit{script} (\autoref{lst:script-nmap}), um total de 210 alertas, desses, 50.5\% foi gerado pelo Suricata e 49.5\% pelo Snort.
 
 \section{Conclusão} \label{sec:conclusão}
 %\section{Métricas de Comparação}
