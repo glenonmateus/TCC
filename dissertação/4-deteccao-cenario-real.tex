@@ -175,7 +175,9 @@ As métricas usadas para análise e comparação das ferramentas são a utiliza�
 
 No primeiro experimento realizado, utilizando o NMAP no modo \textit{fast}, a execução do \textit{script} \autoref{lst:script-nmap}, gerou um total de 62 alertas, dos quais 100\% deles foram do Snort.
 
-No segundo teste de varredura, utilizando o NMAP no modo no qual é possível identificar as versões dos serviços e até o SO do alvo, as ferramentas geraram, com a execução do \textit{script} (\autoref{lst:script-nmap}), um total de 210 alertas, desses, 50.5\% foi gerado pelo Suricata e 49.5\% pelo Snort.
+No segundo teste de varredura, utilizando o NMAP no modo no qual é possível identificar as versões dos serviços e até o SO do alvo, as ferramentas geraram, com a execução do \textit{script} (\autoref{lst:script-nmap}), um total de 210 alertas, desses, 106 (50.5\%) foi gerado pelo Suricata e 104 (49.5\%) pelo Snort.
+
+Já no teste realizado usando um \textit{scan} de vulnerabilidade (\autoref{sec:openvas}), os IDPS's geraram um total de 3071 alertas, sendo que 2142 (69.74\%) veio do Suricata e 929 (30.26\%) do Snort.
 
 \section{Conclusão} \label{sec:conclusão}
 %\section{Métricas de Comparação}
