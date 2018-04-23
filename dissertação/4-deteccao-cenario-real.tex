@@ -179,7 +179,29 @@ No segundo teste de varredura, utilizando o NMAP no modo no qual é possível id
 
 Já no teste realizado usando um \textit{scan} de vulnerabilidade (\autoref{sec:openvas}), os IDPS's geraram um total de 3071 alertas, sendo que 2142 (69.74\%) veio do Suricata e 929 (30.26\%) do Snort.
 
-Para determinar se os IDPS's tinham capacidade de identificar ataques de negação de serviço utilizou um módulo do \textit{Metasploit Framework} (\autoref{lst:synflood}). Nesse teste, nenhuma uma das ferramentas alertou sobre a execução desse tipo de ataque. 
+Para determinar se os IDPS's tinham capacidade de identificar ataques de negação de serviço utilizou-se um módulo do \textit{Metasploit Framework} (\autoref{lst:synflood}). Nesse teste, nenhuma uma das ferramentas alertou sobre a execução desse tipo de ataque. 
+
+Por último, temos o teste utilizando \textit{framework} Pytbull (\autoref{lst:pytbull}). Para melhorar os resultados, configurou-se os IDPS's para apenas gerar alertas de eventos relacionados ao \textit{host} alvo. Abaixo segue os resultados, o gráfico é fornecido pelo próprio Pytbull ao final da execução.
+
+Na \autoref{fig:suricata-pytbull-report} temos o resultado obtido da execução do Pytbull sobre o Suricata. A taxa de detecção completa foi de 6\%, detecção parcial 47\% e nenhuma detecção 47\%.
+
+\begin{figure}[!htb]
+\centering
+\caption{Resultado da execução do \textit{framework} Pytbull sobre o Suricata}
+\includegraphics[scale=.7]{suricata-pytbull-report.png}
+\label{fig:suricata-pytbull-report}
+\legend{Fonte: Pytbull}
+\end{figure}
+
+Na \autoref{fig:snort-pytbull-report} temos o resultado obtido da execução do Pytbuull sobre o Snort. A taxa de detecção completa foi de 6\%, detecção parcial 13\%, e nenhuma detecção 81\%.
+
+\begin{figure}[!htb]
+\centering
+\caption{Resultado da execução do \textit{framework} Pytbull sobre o Snort}
+\includegraphics[scale=.7]{snort-pytbull-report.png}
+\label{fig:snort-pytbull-report}
+\legend{Fonte: Pytbull}
+\end{figure}
 
 \section{Conclusão} \label{sec:conclusão}
 %\section{Métricas de Comparação}
