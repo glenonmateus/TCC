@@ -205,7 +205,7 @@ Na \autoref{fig:snort-pytbull-report} temos o resultado obtido da execução do 
 
 Na \autoref{tab:suricata-recursos} está presente os dados coletados pelo serviço de monitoramento Zabbix do Suricata no decorrer de um mês. Foram coletados quatro informações, a carga do processador por núcleo nos tempos de um, cinco e quinze minutos e o uso de memória. Na \autoref{tab:snort-recursos}, há as mesmas informações, no entanto, do Snort.
 
-\begin{table}[htb]
+\begin{table}[!htb]
 \ABNTEXfontereduzida
 \centering
 \caption{Resultado do uso de recurso de \textit{hardware} do Suricata}
@@ -226,7 +226,7 @@ Na \autoref{tab:suricata-recursos} está presente os dados coletados pelo servi�
 \legend{Fonte: Zabbix} 
 \end{table}
 
-\begin{table}[htb]
+\begin{table}[!htb]
 \ABNTEXfontereduzida
 \centering
 \caption{Resultado do uso de recurso de \textit{hardware} do Snort}
@@ -250,6 +250,16 @@ Na \autoref{tab:suricata-recursos} está presente os dados coletados pelo servi�
 Quanto a taxa de detecção, analisou-se os registros de alertas gerados no Kibana, selecionando um período de uma semana. Houve um total de 47.778 de alertas gerados, desses 30.097 (62.99\%) vieram do Suricata e 17.681 (37.01\%) do Snort.
 
 \section{Conclusão} \label{sec:conclusão}
+
+No primeiro experimento com NMAP, o Snort teve um desempenho melhor pois ele foi capaz de detecção a varredura no modo \textit{fast} e utilizando o modo mais completo, houve uma taxa de detecção bem aproximada, quase uma equidade (50.5\% contra 49.5\%). 
+
+No segundo experimento com o OpenVAS, o desempenho do Suricata foi superior pois a quantidade de alertas gerados foi maior (69.74\%) contra 30.28\% do Snort. Vale salientar, que não está sendo levado em consideração se o alerta é um falso positivo ou falso negativo.  
+
+No experimento de DOS, nenhumas das ferramentas foi capaz de detectar o ataque. O resultado obtido com a execução do Pytbull, mostrou que houve um igualdade na taxa de detecção total, no entanto, o Suricata mostrou-se superior pois a quantidade não detectado do Snort foi maior, 81\% contra 47\% do Suricata.
+
+Quanto a utilização de recurso de \textit{hardware}, conclui-se que o Snort utiliza um quantidade menor de memória, no entanto, possui um média de carga de processamento maior. Tal característica é válida devido a arquitetura do Snort usar apenas uma \textit{thread} por processo. O fato do processamento minimo do Suricata ser zero, dar-se a um comportamento da ferramenta, no qual o mesmo era finalizado de forma inesperada.  
+
+%A ferramentas estudas apresentaram resultados semelhantes. 
 %\section{Métricas de Comparação}
 %Consumo dos Recursos de Hardware (Memória, Processamento)
 %Taxa de Detecção
