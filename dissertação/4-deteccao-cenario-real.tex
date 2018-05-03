@@ -203,6 +203,50 @@ Na \autoref{fig:snort-pytbull-report} temos o resultado obtido da execução do 
 \legend{Fonte: Pytbull}
 \end{figure}
 
+Na \autoref{tab:suricata-recursos} está presente os dados coletados pelo serviço de monitoramento Zabbix do Suricata no decorrer de um mês. Foram coletados quatro informações, a carga do processador por núcleo nos tempos de um, cinco e quinze minutos e o uso de memória. Na \autoref{tab:snort-recursos}, há as mesmas informações, no entanto, do Snort.
+
+\begin{table}[htb]
+\ABNTEXfontereduzida
+\centering
+\caption{Resultado do uso de recurso de \textit{hardware} do Suricata}
+\label{tab:suricata-recursos}
+\begin{tabular}{|M{5cm}|M{2cm}|M{2cm}|M{2cm}|}
+    \hline
+     & \textbf{minimo} & \textbf{média} & \textbf{máximo} \\
+    \hline
+    Carga do Processador (1 min) por core & 0 & 0.0326 & 0.545 \\
+    \hline
+    Carga do Processador (5 min) por core & 0 & 0.0326 & 0.545 \\
+    \hline
+    Carga do Processador (15 min) por core & 0 & 0.0326 & 0.545 \\
+    \hline
+    Uso de Memória & 3.16 GB & 5.48 GB & 7.78 GB \\
+    \hline
+\end{tabular}
+\legend{Fonte: Zabbix} 
+\end{table}
+
+\begin{table}[htb]
+\ABNTEXfontereduzida
+\centering
+\caption{Resultado do uso de recurso de \textit{hardware} do Snort}
+\label{tab:snort-recursos}
+\begin{tabular}{|M{5cm}|M{2cm}|M{2cm}|M{2cm}|}
+    \hline
+     & \textbf{minimo} & \textbf{média} & \textbf{máximo} \\
+    \hline
+    Carga do Processador (1 min) por core & 0 & 0.1798 & 0.4625 \\
+    \hline
+    Carga do Processador (5 min) por core & 0.0075 & 0.1788 & 0.3225 \\
+    \hline
+    Carga do Processador (15 min) por core & 0.0125 & 0.1774 & 0.2825 \\
+    \hline
+    Uso de Memória & 2.09 GB & 3.81 GB & 5.06 GB \\
+    \hline
+\end{tabular}
+\legend{Fonte: Zabbix} 
+\end{table}
+
 \section{Conclusão} \label{sec:conclusão}
 %\section{Métricas de Comparação}
 %Consumo dos Recursos de Hardware (Memória, Processamento)
