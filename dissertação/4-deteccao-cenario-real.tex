@@ -173,17 +173,16 @@ Outra dificuldade que se destaca foi com relação a configuração do cenário 
 
 As métricas usadas para análise e comparação das ferramentas são a utilização dos recursos de \textit{hardware} (memória, processamento), taxa de detecção, independente de ser falso positivo e falso negativo. No primeiro momento, havia a ideia de comparar utilizando essa métrica, no entanto, devido a uma quantidade muito grande de alertas e devido a rede ser grande (vários clientes), essa comparação tornou-se inviável.
 
-No primeiro experimento realizado, utilizando o NMAP no modo \textit{fast}, a execução do \textit{script} \autoref{lst:script-nmap}, gerou um total de 62 alertas, dos quais 100\% deles foram do Snort.
+No primeiro experimento realizado, utilizando o NMAP no modo \textit{fast}, a execução do \textit{script} \autoref{lst:script-nmap}, gerou um total de 62 alertas, dos quais 100\% deles foram do Snort. o Snort teve um desempenho melhor pois ele foi capaz de detectar a execução do comando.
 
-No segundo teste de varredura, utilizando o NMAP no modo no qual é possível identificar as versões dos serviços e até o SO do alvo, as ferramentas geraram, com a execução do \textit{script} (\autoref{lst:script-nmap}), um total de 210 alertas, desses, 106 (50.5\%) foi gerado pelo Suricata e 104 (49.5\%) pelo Snort.
+No segundo teste de varredura, utilizando o NMAP no modo no qual é possível identificar as versões dos serviços e até o SO do alvo, as ferramentas geraram, com a execução do \textit{script} (\autoref{lst:script-nmap}), um total de 210 alertas, desses, 106 (50.5\%) foi gerado pelo Suricata e 104 (49.5\%) pelo Snort. Nesse cenário, houve quase uma equidade na taxa de detecção. No geral, nesse experimento com NMAP, o Snort teve um desempenho melhor, pois conseguiu gerar alertas no primeiro teste.
 
-Já no teste realizado usando um \textit{scan} de vulnerabilidade (\autoref{sec:openvas}), os IDPS's geraram um total de 3071 alertas, sendo que 2142 (69.74\%) veio do Suricata e 929 (30.26\%) do Snort.
+Já no teste realizado usando um \textit{scan} de vulnerabilidade (\autoref{sec:openvas}), os IDPS's geraram um total de 3071 alertas, sendo que 2142 (69.74\%) veio do Suricata e 929 (30.26\%) do Snort. Aqui, houve uma disparidade grande na taxa de detecção, assim, nesse cenário, o Suricata apresentou um desempenho melhor.
 
 Para determinar se os IDPS's tinham capacidade de identificar ataques de negação de serviço utilizou-se um módulo do \textit{Metasploit Framework} (\autoref{lst:synflood}). Nesse teste, nenhuma uma das ferramentas alertou sobre a execução desse tipo de ataque. 
 
-Por último, temos o teste utilizando \textit{framework} Pytbull (\autoref{lst:pytbull}). Para melhorar os resultados, configurou-se os IDPS's para apenas gerar alertas de eventos relacionados ao \textit{host} alvo. Abaixo segue os resultados, o gráfico é fornecido pelo próprio Pytbull ao final da execução.
+Por último, temos o teste utilizando \textit{framework} Pytbull (\autoref{lst:pytbull}). Para melhorar os resultados, configurou-se os IDPS's para apenas gerar alertas de eventos relacionados ao \textit{host} alvo. O resultado mostrou que houve um igualdade na taxa de detecção total, no entanto, o Suricata mostrou-se superior pois a quantidade não detectado do Snort foi maior, 81\% contra 47\% do Suricata. Abaixo segue os resultados, o gráfico é fornecido pelo próprio Pytbull ao final da execução. 
 
-Na \autoref{fig:suricata-pytbull-report} temos o resultado obtido da execução do Pytbull sobre o Suricata. A taxa de detecção completa foi de 6\%, detecção parcial 47\% e nenhuma detecção 47\%.
 
 \begin{figure}[!htb]
 \centering
@@ -192,8 +191,6 @@ Na \autoref{fig:suricata-pytbull-report} temos o resultado obtido da execução 
 \label{fig:suricata-pytbull-report}
 \legend{Fonte: Pytbull}
 \end{figure}
-
-Na \autoref{fig:snort-pytbull-report} temos o resultado obtido da execução do Pytbuull sobre o Snort. A taxa de detecção completa foi de 6\%, detecção parcial 13\%, e nenhuma detecção 81\%.
 
 \begin{figure}[!htb]
 \centering
@@ -204,6 +201,8 @@ Na \autoref{fig:snort-pytbull-report} temos o resultado obtido da execução do 
 \end{figure}
 
 Na \autoref{tab:suricata-recursos} está presente os dados coletados pelo serviço de monitoramento Zabbix do Suricata no decorrer de um mês. Foram coletados quatro informações, a carga do processador por núcleo nos tempos de um, cinco e quinze minutos e o uso de memória. Na \autoref{tab:snort-recursos}, há as mesmas informações, no entanto, do Snort.
+
+Quanto a utilização de recurso de \textit{hardware}, conclui-se que o Snort utiliza um quantidade menor de memória, no entanto, possui um média de carga de processamento maior. Tal característica é válida devido a arquitetura do Snort usar apenas uma \textit{thread} por processo. O fato do processamento minimo do Suricata ser zero, dar-se a um comportamento da ferramenta, no qual o mesmo era finalizado de forma inesperada.  
 
 \begin{table}[!htb]
 \ABNTEXfontereduzida
@@ -247,22 +246,16 @@ Na \autoref{tab:suricata-recursos} está presente os dados coletados pelo servi�
 \legend{Fonte: Zabbix} 
 \end{table}
 
-Quanto a taxa de detecção, analisou-se os registros de alertas gerados no Kibana, selecionando um período de uma semana. Houve um total de 47.778 de alertas gerados, desses 30.097 (62.99\%) vieram do Suricata e 17.681 (37.01\%) do Snort.
+Quanto a taxa de detecção, analisou-se os registros de alertas gerados no Kibana, selecionando um período de uma semana. Houve um total de 47.778 de alertas gerados, desses 30.097 (62.99\%) vieram do Suricata e 17.681 (37.01\%) do Snort. Assim, o Suricata teve um desempenho melhor neste cenário. Vale salientar que, não esta sendo levado em consideração se o alerta é um falso negativo ou falso positivo.
 
 \section{Conclusão} \label{sec:conclusão}
-
-No primeiro experimento com NMAP, o Snort teve um desempenho melhor pois ele foi capaz de detecção a varredura no modo \textit{fast} e utilizando o modo mais completo, houve uma taxa de detecção bem aproximada, quase uma equidade (50.5\% contra 49.5\%). 
-
-No segundo experimento com o OpenVAS, o desempenho do Suricata foi superior pois a quantidade de alertas gerados foi maior (69.74\%) contra 30.28\% do Snort. Vale salientar, que não está sendo levado em consideração se o alerta é um falso positivo ou falso negativo.  
-
-No experimento de DOS, nenhumas das ferramentas foi capaz de detectar o ataque. O resultado obtido com a execução do Pytbull, mostrou que houve um igualdade na taxa de detecção total, no entanto, o Suricata mostrou-se superior pois a quantidade não detectado do Snort foi maior, 81\% contra 47\% do Suricata.
-
-Quanto a utilização de recurso de \textit{hardware}, conclui-se que o Snort utiliza um quantidade menor de memória, no entanto, possui um média de carga de processamento maior. Tal característica é válida devido a arquitetura do Snort usar apenas uma \textit{thread} por processo. O fato do processamento minimo do Suricata ser zero, dar-se a um comportamento da ferramenta, no qual o mesmo era finalizado de forma inesperada.  
-
-A tabela mostra um resumo dos resultados obtidos. 
-
 %A ferramentas estudas apresentaram resultados semelhantes. 
 %\section{Métricas de Comparação}
 %Consumo dos Recursos de Hardware (Memória, Processamento)
 %Taxa de Detecção
 %Número de Falsos Positivos/Negativos
+Diante dos resultados obtidos na \autoref{sec:resultados}, conclui-se que, apesar da ferramenta Suricata (versão 4.0.0) ter, em aspectos gerais, um desempenho melhor, justificando assim, que a arquitetura nela implementada (utilizando \textit{multithread}) ajuda na melhoria da detecção e geração de alertas. 
+
+No entanto, recomenda-se a utilização do Snort (versão 2.9.8.3) em um ambiente de produção real. Tal afirmação, é sustentada devido a um comportamento do Suricata observado durante o desenvolvimento desse trabalho, que, por algum motivo não investigado, era finalizado. Dessa forma, os alertas não eram gerados, deixando a rede um pouco desprotegida.
+
+Além disso, caso opte-se por implantar o Suricata em um ambiente de produção, será necessário um esforço maior, pois a equipe de segurança, deve está sempre monitorando se o processo da ferramenta está executando e gerando os alertas corretamente.
