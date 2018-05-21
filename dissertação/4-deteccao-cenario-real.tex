@@ -183,7 +183,6 @@ Para determinar se os IDPS's tinham capacidade de identificar ataques de negaç�
 
 Por último, temos o teste utilizando \textit{framework} Pytbull (\autoref{lst:pytbull}). Para melhorar os resultados, configurou-se os IDPS's para apenas gerar alertas de eventos relacionados ao \textit{host} alvo. O resultado mostrou que houve um igualdade na taxa de detecção total, no entanto, o Suricata mostrou-se superior pois a quantidade não detectado do Snort foi maior, 81\% contra 47\% do Suricata. Abaixo segue os resultados, o gráfico é fornecido pelo próprio Pytbull ao final da execução. 
 
-
 \begin{figure}[!htb]
 \centering
 \caption{Resultado da execução do \textit{framework} Pytbull sobre o Suricata}
@@ -254,8 +253,5 @@ Quanto a taxa de detecção, analisou-se os registros de alertas gerados no Kiba
 %Consumo dos Recursos de Hardware (Memória, Processamento)
 %Taxa de Detecção
 %Número de Falsos Positivos/Negativos
-Diante dos resultados obtidos na \autoref{sec:resultados}, conclui-se que, apesar da ferramenta Suricata (versão 4.0.0) ter, em aspectos gerais, um desempenho melhor, justificando assim, que a arquitetura nela implementada (utilizando \textit{multithread}) ajuda na melhoria da detecção e geração de alertas. 
 
-No entanto, recomenda-se a utilização do Snort (versão 2.9.8.3) em um ambiente de produção real. Tal afirmação, é sustentada devido a um comportamento do Suricata observado durante o desenvolvimento desse trabalho, que, por algum motivo não investigado, era finalizado. Dessa forma, os alertas não eram gerados, deixando a rede um pouco desprotegida.
-
-Além disso, caso opte-se por implantar o Suricata em um ambiente de produção, será necessário um esforço maior, pois a equipe de segurança, deve está sempre monitorando se o processo da ferramenta está executando e gerando os alertas corretamente.
+Esse capítulo apresentou o cenário no qual as ferramentas estudas foram colocadas para análise. Descreveu-se a infraestrutura montada e os componentes envolvidos para a realização do estudo. Além disso, foi detalhado os testes realizados, simulações de ataques a uma máquina alvo dentro da rede e ao final os resultados obtidos. 
