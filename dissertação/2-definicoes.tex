@@ -1,12 +1,12 @@
 \chapter{Segurança em Redes de Computadores} \label{ch:segurança}
 
-Esse capítulo apresentará conceitos e definições sobre segurança da informação e rede de computadores, mostrando seus principais componentes e os ataques mais utilizados contra essas redes. Ao final, foram apresentadas as ferramentas usadas para simular ataques com o intuito de avaliar o comportamento dos IDPS (Snort e Suricata).
+Esse capítulo apresenta conceitos e definições sobre segurança da informação e rede de computadores, mostrando seus principais componentes e os ataques mais utilizados contra essas redes. Ao final, foram apresentadas as ferramentas usadas para simular ataques com o intuito de avaliar o comportamento dos IDPS (Snort e Suricata).
 
 Este capítulo esta organizado da seguinte forma: A próxima seção apresenta as definições sobre segurança da informação. Na \autoref{sec:cenario-geral} será apresentado uma topologia de rede comum, que existe na organizações. Na \autoref{sec:pontos-vulnerabilidade} será abordado os pontos vulneráveis em uma rede. Na \autoref{sec:ataques-comuns} será apresentado o principais ataques a rede de computadores. Por fim, na \autoref{sec:ferramentas} será apresentada as ferramentas usadas para gerar os ataques.
 
 \section{Definições} \label{sec:definições}
 
-Quando se fala e segurança de sistemas computacionais, logo vem a mente da maioria dos usuários da rede, roubo de número de cartões de crédito, \textit{hackers} danificando páginas (\autoref{sec:desfiguração}) e aplicações \textit{Web} e ataques de negação de serviço (\autoref{sec:negação}). Também tens a imagem dos \textit{malwares}, como vírus, cavalos de tróia e \textit{worms} (\autoref{sec:malwares}). Esses possuem maior visibilidade pois representam uma parte significativa das ameaças existentes na Internet.
+Quando se fala e segurança de sistemas computacionais, logo vem a mente da maioria dos usuários da rede, roubo de número de cartões de crédito, \textit{hackers} danificando páginas e aplicações \textit{Web} e ataques de negação de serviço. Também tens a imagem dos \textit{malwares}, como vírus, cavalos de tróia e \textit{worms}. Esses possuem maior visibilidade pois representam uma parte significativa das ameaças existentes na Internet.
 
 Porém existem outros problemas que apresentam riscos que normalmente não são levados em consideração, como administradores desonestos, funcionários descontentes e usuários que utilizam dados sigilosos de forma equivocada.
 
@@ -26,7 +26,7 @@ Diante desses elementos, podemos definir segurança da informação como sendo a
 
 Segundo \cite{isoiec27002}, segurança da informação é a preservação da confidencialidade, da integridade e da disponibilidade da informação, adicionalmente, outras propriedades, tais como autenticidade, responsabilidade, não repúdio e confiabilidade, podem também estar envolvidas.
 
-Dentre vários conhecimentos que um profissional de segurança deve possuir, o conceito mais básico e considerado o pilar de toda a área de segurança corresponde à sigla CID (Confidencialidade, Integridade e Disponibilidade), de modo que um incidente de segurança é caracterizado quando uma dessas áreas é afetada \cite{seg-redes-sistemas}. Abaixo será detalhado cada item.
+O conceito mais básico e considerado o pilar de toda a área de segurança corresponde à sigla CID (Confidencialidade, Integridade e Disponibilidade), de modo que um incidente de segurança é caracterizado quando uma dessas áreas é afetada \cite{seg-redes-sistemas}. Abaixo será detalhado cada item.
 
 \begin{alineas}
  \item \textbf{Confidencialidade}: termo ligado à privacidade de um ativo ou recurso, que deve ser acessível somente por pessoas ou grupos autorizados;
@@ -36,7 +36,7 @@ Dentre vários conhecimentos que um profissional de segurança deve possuir, o c
 
 Dois dos termos citados são fáceis de ser monitorados pois é perceptível para o usuário: a integridade (capacidade de identificar se uma informação foi alterada) e a disponibilidade (através da tentativa de acesso a um serviço e verificando se o mesmo está respondendo adequadamente). No entanto, só é possível identificar se houve quebra da confidencialidade com auditorias, analisando os registros de acesso (se houver), isso torna a identificação custosa e em muitos casos impossível \cite{seg-redes-sistemas}.
 
-Além dos conceito listados, a literatura moderna considera mais alguns conceitos auxiliares, temos:
+Além dos conceito listados, a literatura considera mais alguns conceitos auxiliares:
 
 \begin{alineas}
  \item \textbf{Autenticidade}: garantia que uma informação, produto ou documento foi elaborado ou distribuído pelo autor a quem se atribui;
@@ -83,9 +83,9 @@ Além disso, podemos dividir os ataques em quatro categorias, que são \cite{sis
 
 \section{Cenário Geral} \label{sec:cenario-geral}
 
-Nessa seção será explicado alguns conceito básico sobre redes de computadores e descrever uma topologia de rede genérica conectada a internet.
+    Nessa seção será apresentado conceitos sobre redes de computadores e descrever uma topologia de rede genérica conectada a internet.
 
-Uma rede de computadores é um conjunto de dispositivos interconectados para compartilhar recursos como \textit{hardware}, \textit{software}, interação e interatividade, onde existem máquinas que desempenham os papéis de clientes, servidores e/ou parceiros dependendo do serviços disponíveis na rede \cite{modelo:jose}.
+    Uma rede de computadores é um conjunto de dispositivos interconectados para compartilhar recursos como \textit{hardware}, \textit{software}, interação e interatividade, onde existem máquinas que desempenham os papéis de clientes, servidores e/ou parceiros dependendo do serviços disponíveis na rede \cite{modelo:jose}.
 
     Um administrador, com o minimo de consciência sobre segurança, coloca em sua rede, um \textit{firewall} de borda. Um \textit{firewall} sempre é colocada na divisa entre duas ou mais redes, pode ser entre redes privadas ou entre uma rede privada e a Internet. Uma empresa pode ter muitas LANs conectadas de forma arbitrárias, mas todo o tráfego de saída ou de entrada da empresas para a internet deve ser feito através do \textit{firewall}, permitindo assim, que alguns pacotes passem e bloqueando outros \cite{redesdecomputadores}.
 
@@ -133,29 +133,7 @@ Uma rede de computadores é um conjunto de dispositivos interconectados para com
 
     Nessa seção será abordado os pontos fracos que uma pessoa má intencionada pode explorar para ter um ataque bem sucedido a um rede de computador.
 
-    Apesar da preocupação dos administradores em proteger suas redes de ataques, devido a sua heterogeneidade, sempre haverá uma breja a ser explorada. A literatura considera o ser humano como elo mais fraco, é bastante comum o usuário cadastrar senhas fracas, por conveniência, e fácil memorização (\autoref{sec:forçabruta}).
-
-    Uma técnica bastante comum usadas por golpistas que visa obter informações financeiras ou informações pessoais da vítima, é o \textit{phishing}. Os ataques de \textit{phshing} mais conhecidos são os quais um atacante induz usuários a acessar um site clonado de uma instituição financeira, de modo a coletar suas credenciais de acesso \cite{esr:tratamento}. Muitos usuário, por falta de conhecimento ou até por ingenuidade, acabam informando seus dados em sites falsos, sem ao menos verificar a veracidade do mesmo.
-
-    Outros serviços visados por esse tipo de ataque são \cite{esr:tratamento}:
-    \begin{alineas}
-    \item Credenciais de serviços: e-mails, redes sociais ou armazenamento;
-    \item Webmail corporativo; 
-    \item Programa de milhagem (companhias aéreas ou redes de supermercados);
-    \item Comércio eletrônico.
-    \end{alineas}
-
-    Uma forma de difundir \textit{phishing} é através de \textit{spam}. Um \textit{spam} é uma mensagem, na maioria das vezes de conteúdo falso, enviado para diversos e-mails, nessas mensagens podem conter uma URL de um site falso ou um site com códigos maliciosos \autoref{sec:malwares} que infectam a vítima. Um \textit{spammer}, como é chamado quem envia \textit{spam}, também usa técnica de \textit{phishing} para obter dados de acesso de e-mails pessoais. Dessa forma, o \textit{spammer} pode acessar a conta de e-mail da vítima e enviar \textit{spam} para todos os seus contatos, sem que a vítima perceba.
-
-    \begin{figure}[!htb]
-     \centering
-     \caption{Fraude identificada pelo CAIS}
-     \includegraphics[scale=.6]{fraude-spam.png}
-     \legend{Fonte: \cite{cais}}
-     \label{fig:spam}
-    \end{figure}
-
-    O CAIS mantém um catálogo de fraudes identificadas sobre os principais golpes que estão em circulação. Na \autoref{fig:spam}, temos uma fraude recebida por e-mail (\textit{spam}) contendo um \textit{link} para download de um arquivo malicioso criado para roubar informações da vítima e instalar outros arquivos \cite{cais}.
+    Apesar da preocupação dos administradores em proteger suas redes de ataques, devido a sua heterogeneidade, sempre haverá uma breja a ser explorada. A literatura considera o ser humano como elo mais fraco, é bastante comum o usuário cadastrar senhas fracas, por conveniência, e fácil memorização.
 
     Outro problema comum é o desenvolvimento de aplicações \textit{web} sem nenhuma preocupação com segurança, podendo comprometer, não somente o serviço, mas também, em casos mais extremos, o servidor inteiro. Para tal, atacante pode usar vários artifícios, os mais conhecidos são \textit{sql injection} e \textit{cross-site script}.
 
@@ -174,28 +152,6 @@ Uma rede de computadores é um conjunto de dispositivos interconectados para com
     \section{Ataques Comuns à Redes de Computadores} \label{sec:ataques-comuns}
 
     Nessa seção será descritos os ataques mais comuns à redes e serviços de organizações privadas e públicas, financeiras ou acadêmicas. Para licitar os ataques dessa seção, levou-se em consideração as estatísticas divulgada pelo CERT.br (\autoref{fig:cert}).
-
-    O CERT.br é o grupo de resposta a incidentes de segurança para a internet brasileira, mantido Comitê Gestor da Internet no Brasil. Atua na notificação e tratamento de incidentes de segurança dando apoio no processo de resposta. Além disso, faz um trabalho de conscientização e treinamento sobre problemas de segurança no Brasil. 
-
-    \begin{figure}[!htb]
-     \centering
-     \caption{Estatísticas de ataques reportadas ao CERT.br}
-     \includegraphics[scale=.6]{incidentes-reportados.png}
-     \legend{Fonte: \cite{tipos-ataques:certs.br}}
-     \label{fig:cert}
-    \end{figure}
-
-    Paralelamente ao CERT.br temos o Centro de Atendimento a Incidentes de Segurança (CAIS), mantido pela Rede Nacional de Ensino e Pesquisa (RNP). O CAIS é responsável por zela pela segurança da rede Ipê (infraestrutura de rede dedicada à comunidade brasileira de ensino superior), detectando, resolvendo e prevenindo incidentes de segurança. Além disso, tem o papel de orientar (através de publicações de cartilhas) e disseminar boas práticas de segurança da informação, educando e conscientizando usuários de todos os níveis sobre os principais riscos em segurança da informação \cite{cais}.
-
-    Desde 2008, todas a fraudes identificadas pelo CAIS estão sendo ordenadas e disponibilizadas para consulta (\autoref{fig:cais}). Adicionalmente, são enviados alertas através de uma lista quando uma fraude mostra-se particularmente perigosa aos usuários e computadores.
-
-    \begin{figure}[!htb]
-     \centering
-     \caption{Estatísticas de incidentes reportados ao CAIS}
-     \includegraphics[scale=.7]{cais-incidentes-reportados.png}
-     \legend{Fonte: \cite{cais}}
-     \label{fig:cais}
-    \end{figure}
 
     \subsection{\textit{Scanners}} \label{sec:scanners}
 
