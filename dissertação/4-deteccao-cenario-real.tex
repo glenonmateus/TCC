@@ -1,16 +1,14 @@
 \chapter{Detecção de Intrusão em um Cenário Real} \label{ch:cenário-real}
- %- Em cada capitulo adicionar um texto introdutório
 
-Este capítulo esta organizado da seguinte forma: A próxima seção apresenta o cenário de testes, descrevendo características gerais da rede selecionada para os teste. Na seção \ref{sec:infraestrutura} será abordado a infraestrutura usada para os testes, ferramentas utilizadas e as configurações feitas. Na seção \ref{sec:testes} será descrito os testes realizados com suas respectivas justificativas. Na seção \ref{sec:resultados} será apresentado os resultados esperados e obtidos, problemas encontrados e a comparação das ferramentas e por último, na seção \ref{sec:conclusão}, uma breve conclusão.
+Este capítulo esta organizado da seguinte forma: A próxima seção apresenta o cenário de testes, descrevendo características gerais da rede selecionada para os teste. Na \autoref{sec:metodologia} será abordado a infraestrutura usada para os testes, ferramentas utilizadas e as configurações feitas. Na \autoref{sec:testes} será descrito os testes realizados com suas respectivas justificativas. Na \autoref{sec:resultados} será apresentado os resultados esperados e obtidos, problemas encontrados e a comparação das ferramentas e por último, na seção \autoref{sec:conclusão}, uma breve conclusão.
 
-\section{Metodologia dos Testes}
+\section{Metodologia dos Testes} \label{sec:metodologia}
 
-Nessa seção será descrito o cenário utilizado para a realização dos testes. Na \autoref{sec:cenário}, aborta a rede onde os sensores foram instalados e algumas de suas estatísticas de uso. A \autoref{sec:infraestrutura} descreve a infraestrutura montada para realização dos testes, os equipamentos utilizados e as ferramentas adicionais. Na \autoref{sec:testes}, será descrito os testes realizados. Na \autoref{sec:resultados} abordará os resultados esperados e obtidos com os testes. Por último, na \autoref{sec:conclusão} a conclusão.
+Nessa seção será descrito o cenário utilizado para a realização dos testes, descrevendo a rede onde os sensores foram instalados e algumas de suas estatísticas de uso. Posteriormente, descreve-se a infraestrutura montada para realização dos testes, os equipamentos utilizados e as ferramentas adicionais. Na \autoref{sec:testes}, será descrito os testes realizados. Na \autoref{sec:resultados} abordará os resultados esperados e obtidos com os testes. Por último, na \autoref{sec:conclusão} a conclusão.
 
-% (Adicionar o escopo dos testes): descrever o ambientes,
 \subsection{Cenário de Testes} \label{sec:cenário}
 
-O tráfego da rede na qual os sensores foram colocados para a avaliação possui um pico de taxa de transferência, girando entorno de 800 Mbps (\autoref{fig:trafego-rede}). É impossível determinar a quantidade de exatas usuários dessa rede, devido a grande quantidade de dispositivos (servidores, roteadores, rádios) e também, por envolver, redes sem fio, que a todo momento clientes entram e saem da rede.
+O tráfego da rede na qual os sensores foram colocados para a avaliação possui um pico de taxa de transferência, girando entorno de 800 Mbps (\autoref{fig:trafego-rede}). A quantidade de usuários nessa rede é indeterminado, devido a grande quantidade de dispositivos (servidores, roteadores, rádios) e também, por envolver, redes sem fio, que a todo momento clientes entram e saem da rede.
 
 \begin{figure}[!htb]
 \centering
@@ -20,23 +18,21 @@ O tráfego da rede na qual os sensores foram colocados para a avaliação possui
 \legend{Fonte: \cite{zabbix}}
 \end{figure}
 
-\subsection{Infraestrutura Definida para Testes} \label{sec:infraestrutura}
-%Descrever o que foi utilizado:
-%Ex: Equipamentos - Servidores, ....
-%    Configuração
-%    Ferramentas - Snort (referenciar capítulo), ...
+\subsection{Infraestrutura} \label{sec:infraestrutura}
 
-No ambiente de teste foi usado uma máquina Dell com 134 Megabytes (MB) de memória RAM e 40 núcleos. Usou-se XenServer \cite{xenserver} versão 7, sistema operacional (SO) \textit{opensource} da Citrix voltado para virtualização. Foram testados outros SOs porém somente o XenServer possuía, na época da instalação do ambiente, \textit{firmware} da placa de rede do \textit{host} compatível e que funcionava com instabilidade. 
+No ambiente de teste foi usado uma máquina Dell com 134 Megabytes (MB) de memória RAM e 40 núcleos. Foi utilizado XenServer \cite{xenserver} versão 7, sistema operacional (SO) \textit{opensource} da Citrix voltado para virtualização. Foram testados outros SOs porém somente o XenServer possuía, na época da instalação do ambiente, \textit{firmware} da placa de rede do \textit{host} compatível e que funcionava com instabilidade. 
  
-Outro fator que pesou na escolha do SO foi a experiência com a plataforma e por existir uma interface para gerencia chamada XenCenter que roda no Windows. Uma alternativa \textit{opensource} desse software é o OpenXenManager que funciona nos sistemas Unix \cite{openxenmanager}.
+Outro fator importante na escolha do SO foi a experiência com a plataforma e por existir uma interface para gerencia chamada XenCenter que roda no Windows. Uma alternativa \textit{opensource} desse software é o OpenXenManager que funciona nos sistemas Unix \cite{openxenmanager}.
 
-No primeiro momento, foi instalado uma máquina virtual com o sistema operacional Debian 9.3 \textit{codename} Stretch \cite{debianwheezy}, uma distribuição linux com uma proposta de ser totalmente livre, usada como base para instalação de outras máquinas utilizando o recurso de \textit{snapshot}, uma cópia de uma máquina virtual rodando em um certo momento, do XenServer. O uso desse recurso foi necessário para criar um ambiente igual para as ferramentas em estudo.
+No primeiro momento, foi instalado uma máquina virtual com o sistema operacional Debian 9.3 \textit{codename} Stretch \cite{debianwheezy}, uma distribuição linux com uma proposta de ser totalmente livre.
+
+Essa VM foi utilizada como base para instalação de outras máquinas utilizando o recurso de \textit{snapshot}, uma cópia de uma máquina virtual rodando em um certo momento, do XenServer. O uso desse recurso foi necessário para criar um ambiente igual para as ferramentas em estudo.
 
 Foi alocado 8 MB memória RAM, 4 processadores e 100 Gigabytes(GB) de espaço em disco para o \textit{snapshot}. Esses valores foram definidos com base em um estudo \cite{mikelococo} que considera vários fatores, como largura da rede, localização do IDS e versão, tipo do capturador de tráfego e tamanho da base de assinaturas para dimensionar os recursos de memória e processamento, aplicado especificamente ao Snort. A mesma regra foi aplicada ao Suricata.
 
-Para o \textit{host} conseguir pegar o pacotes destinados a rede escolhida para o experimento, foi necessário uma configuração de espelhamento no roteador B (Figura \ref{fig:infra-ambiente}) que consiste na copia dos pacotes que saem pela porta dessa rede no roteador para a porta conectada no \textit{host} que possui uma largura de banda de 10 Gigabits. A interface de rede do \textit{host} precisou ser configurada no modo \textit{promisc}.
+Para o \textit{host} obter os pacotes destinados a rede escolhida para o experimento, foi necessário uma configuração de espelhamento no roteador B (\autoref{fig:infra-ambiente}) que consiste na copia dos pacotes que saem pela porta dessa rede no roteador para a porta conectada no \textit{host} que possui uma largura de banda de 10 Gigabits. A interface de rede do \textit{host} precisou ser configurada no modo \textit{promisc}.
 
-Posteriormente criou-se três máquinas virtuais, duas usadas para instalação dos IDSs (Suricata e Snort) e a terceira será usada para rodar o \textit{framework} Pytbull (\autoref{sec:pytbull}). Numa quarta máquina, instalou-se o sistema Kali Linux \cite{kalilinux} para geração de ataques, esse SO possui ferramentas nativas para testes de penetração e auditoria de segurança (Metasploit \autoref{sec:metasploit}, NMAP \autoref{sec:nmap} e OpenVAS \autoref{sec:openvas}). A infraestrutura final do ambiente de teste poder ser visualizada na \autoref{fig:infra-ambiente}.
+Posteriormente criou-se três máquinas virtuais, duas usadas para instalação dos IDSs (Suricata e Snort) e a terceira será usada para rodar o \textit{framework} Pytbull. Numa quarta máquina, instalou-se o sistema Kali Linux \cite{kalilinux} para geração de ataques, esse SO possui ferramentas nativas para testes de penetração e auditoria de segurança (Metasploit, NMAP e OpenVAS). A infraestrutura final do ambiente de teste poder ser visualizada na \autoref{fig:infra-ambiente}.
 
 \begin{figure}[!htb]
 \centering
@@ -61,51 +57,50 @@ Para analisar os \textit{logs}, usou-se uma infraestrutura que combina três fer
 Dessa forma centralizou-se os \textit{logs}, facilitando a visualização e analise das ocorrências geradas pelos IDSs. 
 
 \section{Testes Realizados} \label{sec:testes}
-%Quais os testes realizados com justificativa ?
-%Descrição dos testes. Quais os testes foram realizados ?
-Os testes realizados são simulações de passos que uma pessoa má-intencionada iria tomar para alguma tentativa de invasão, entende-se por invasão, qualquer tipo de violação e alteração não autorizada de um serviço ou \textit{host}.
+
+Os testes realizados são simulações de passos que uma pessoa má-intencionada iria tomar para alguma tentativa de invasão. Entende-se por invasão, qualquer tipo de violação e alteração não autorizada de um serviço ou \textit{host}.
 
 O passo inicial seria um estudo do alvo utilizando várias técnicas mas principalmente a engenharia social, analisando as pessoas que trabalharam na organização, enviando spam e \textit{phishing} na tentativa de capturar dados como senhas de acesso. 
 
 Posteriormente, o atacante iria observar o tráfego da rede, verificando os serviços que o alvo oferece, a procura de alguma senha desprotegida (não criptografada). Esse passo inicial não será aplicados nos testes pois seria impossível o IDS detectar.
 
-O passo seguinte seria uma garimpagem de informações e mapeamento da rede, a procura de um \textit{host} vulnerável. A ferramenta escolhida para essa finalidade é o Nmap (\autoref{sec:nmap}). 
+O passo seguinte seria uma garimpagem de informações e mapeamento da rede, a procura de um \textit{host} vulnerável. A ferramenta escolhida para essa finalidade é o NMAP. 
 
 No primeiro teste de \textit{scan}, usou-se o parâmetro '-F', habilitando a modo \textit{fast} do Nmap. Nesse modo, são verificadas apenas as portas especificadas no arquivo nmap-services, que, na instalação padrão, possui 27372 portas descritas. Isso é muito mais rápido que verificar todas as 65535 portas tcp e 65535 portas udp, possíveis em um \textit{host}. Abaixo segue o comando usado.
 
-\begin{lstlisting}[caption={Comando NMAP no modo \textit{fast}},language=bash, frame=single, label={lst:nmap-F}]
+\begin{lstlisting}[title={Comando NMAP no modo \textit{fast}},language=bash, frame=single, label={lst:nmap-F}]
     nmap -F 200.239.72.19
 \end{lstlisting}
 
 O segundo teste, usou-se o parâmetro '-A' do NMAP. Essa opção habilita opções adicionais avançadas e agressivas, descobrindo versões dos serviço, determinando protocolos de serviços, o nome da aplicação, o número da versão, o nome do \textit{host} (utilizando o DNS reverso), tipo de dispositivo, sistema operacional, entre outras informações. Ter um número de versão exacto ajuda substancialmente na determinação de quais \textit{exploits} o servidor está vulnerável \cite{nmap}.
 
-\begin{lstlisting}[caption={Comando NMAP no modo de descoberta de versões},language=bash, frame=single, label={lst:nmap-sv}]  
+\begin{lstlisting}[title={Comando NMAP no modo de descoberta de versões},language=bash, frame=single, label={lst:nmap-sv}]  
     nmap -A 200.239.72.19
 \end{lstlisting}
 
 Uma forma encontrada para automatizar o processo de execução dos comandos citados acima foi a criação de um código em \textit{shell script}. O \textit{Shell Script} é uma linguagem de script usada por vários sistemas operacional, principalmente os baseados em UNIX. Abaixo segue o código.
 
-\begin{lstlisting}[caption={Automatização das execuções do comando NMAP},language=bash, frame=single, label={lst:script-nmap}]
+\begin{lstlisting}[title={Automatização das execuções do comando NMAP},language=bash, frame=single, label={lst:script-nmap}]
 #!/bin/bash
 
-echo "\nIniciando ..."
+echo "\nIniciando..."
 STARTIME=$(date)
 
 for i in $(seq 1 100)
     do  
-        echo "\n$i Execução..."
+        echo "\n$i-Executando..."
         nmap $1 200.239.72.19 > /dev/null
         sleep 5
     done
 
-ENDTIME=$(date)                                                                                                                                                                 
-echo "\nInicio $STARTIME"
-echo "\nFim $ENDTIME"
+ENDTIME=$(date)                                                                                                                                                           
+echo "\nInicio-$STARTIME"
+echo "\nFim-$ENDTIME"
 \end{lstlisting}
 
 Na primeira linha de um código em \textit{shell script}, precisamos especificar o interpretador utilizado (\#!/bin/bash). Criou-se duas variáveis, uma para armazenar a hora do inicio do \textit{script} e uma para armazenar termino, dessa forma, a pesquisa pelos alertas gerados pelas ferramentas será menos dispendiosa. O comando NMAP foi colocado dentro de um laço \textit{for}, executado 100 vezes. 
 
-De posse de um alvo em potencial, próximo passo seria rodar um \textit{scanner} de vulnerabilidade, em busca de brejas já conhecidas, e que, geralmente por descuido do administrador, não foi fechada. Essas brejas podem ter várias origens, desde uma versão do serviço com \textit{bugs} ou uma má configuração. Para esse teste, usou-se o OpenVAS (\autoref{sec:openvas}).
+De posse de um alvo em potencial, próximo passo seria executar um \textit{scanner} de vulnerabilidade, em busca de brechas já conhecidas, e que, geralmente por descuido do administrador, não foi fechada. Essas brechas podem ter várias origens, desde uma versão do serviço com \textit{bugs} ou uma má configuração. Para esse teste, usou-se o OpenVAS.
 
 É necessário algumas configurações no \textit{scanner} nessa etapa. Primeiramente, deve-se definir o alvo, tal configuração é feita através do caminho "\textit{Configuration > New target}", a \autoref{fig:openvas-newtarget} mostra a janela aberta, nela temos que definir um nome para o alvo e o IP ou a faixa de IP's, as outras configurações serão deixadas com o padrão.
 
@@ -117,25 +112,25 @@ De posse de um alvo em potencial, próximo passo seria rodar um \textit{scanner}
 \legend{Fonte: Autoria própria}
 \end{figure}
 
-A realização do scan é feita através do caminho "\textit{Scans > Tasks > New Task}", na \autoref{fig:openvas-newtask} mostra a janela aberta, nela precisamos definir no nome da \textit{task} e o alvo, que foi definido anteriormente, as outras opções serão deixadas com o padrão. 
+A realização do \textit{scan} é feita através do caminho "\textit{Scans > Tasks > New Task}", na \autoref{fig:openvas-newtask} mostra a janela aberta, nela precisamos definir no nome da \textit{task} e o alvo, que foi definido anteriormente, as outras opções serão deixadas com o padrão. 
 
 Por padrão, quando uma \textit{task} é criada, o \textit{scan} é automaticamente executado. Esse processo pode demorar, isso depende de quantos alvos foram definidos. Ao final, um relatório é exibido com as vulnerabilidades encontradas e categorizadas (\textit{high, medium, low}) de acordo com a sua severidade. Além disso, o OpenVAS exibe um sumário, descrevendo a(s) falha(s) encontrada(s) e como resolver ou mitigar o problema.
 
 \begin{figure}[!htb]
 \centering
-\caption{Configuração de um \textit{task} de scan no OpenVAS}
+\caption{Configuração de um \textit{task} de \textit{scan} no OpenVAS}
 \includegraphics[scale=.55]{openvas-newtask.png}
 \label{fig:openvas-newtask}
 \legend{Fonte: Autoria própria}
 \end{figure}
 
-Outro teste realizado determinará a capacidade das ferramentas de detectar ataques de negação de serviço (\autoref{sec:negação}). Existem várias técnicas para realizar esse tipo de ataque, o usado nesse trabalho foi o TCP SYN FLOOD. 
+Outro teste realizado determinará a capacidade das ferramentas de detectar ataques de negação de serviço. Existem várias técnicas para realizar esse tipo de ataque, o usado nesse trabalho foi o TCP SYN FLOOD. 
 
 Quando um cliente tenta começar um conexão TCP com um servidor, são trocados, entre eles, uma série de mensagens (\textit{Three-Way Handshaker}). O TCP SYN FLOOD consiste em enviar uma sequência de requisições SYN para o alvo, sobrecarregando-o diretamente na camada de transporte e indiretamente na camada de aplicação.
 
-Para tal, usou-se o Metasploit Framework (\autoref{sec:metasploit}). Primeiramente, entrou-se no console de linha de comando, para acessar, basta, no terminal, digitar \textit{msfconsole}. Existe um modulo no Metasploit chamado \textit{synflood}, para utilizar esse modulo, é necessário definir o IP do alvo e o IP de onde partirá o ataque. Abaixo segue os comandos usados no \textit{msfconsole}.
+Para tal, usou-se o Metasploit Framework. Primeiramente, entrou-se no console de linha de comando, para acessar, basta, no terminal, digitar \textit{msfconsole}. Existe um modulo no Metasploit chamado \textit{synflood}, para utilizar esse modulo, é necessário definir o IP do alvo e o IP de onde partirá o ataque. Abaixo segue os comandos usados no \textit{msfconsole}.
 
-\begin{lstlisting}[caption={Comando usados no Metasploit para ataque de negação de serviço},language=bash, frame=single, label={lst:synflood}]
+\begin{lstlisting}[title={Comando usados no Metasploit para ataque de negação de serviço},language=bash, frame=single, label={lst:synflood}]
 use auxiliary/dos/tcp/synflood
 
 msf auxiliary(synflood) > set rhost 200.239.72.19 (target IP)
@@ -145,7 +140,7 @@ msf auxiliary(synflood) > set shost 10.15.10.20 (attack IP)
 msf auxiliary(synflood) > exploit
 \end{lstlisting}
 
-No ultimo teste, utilizou-se o \textit{framework} Pytbull (\autoref{sec:pytbull}). O Pytbull foi desenvolvido especificamente para realizar testes e validar configurações em IDPS. A documentação oficial exemplifica algumas arquiteturas que podem ser usadas, nesse trabalho usou-se a arquitetura \textit{remote mode} onde o IDS é colocado para escutar todo o tráfego que passa no \textit{switch} através de uma porta espelhada e com uma interface configurada em modo \textit{promisc}.
+No ultimo teste, utilizou-se o \textit{framework} Pytbull. O Pytbull foi desenvolvido especificamente para realizar testes e validar configurações em IDPS. A documentação oficial exemplifica algumas arquiteturas que podem ser usadas, nesse trabalho usou-se a arquitetura \textit{remote mode} onde o IDS é colocado para escutar todo o tráfego que passa no \textit{switch} através de uma porta espelhada e com uma interface configurada em modo \textit{promisc}.
 
 Por padrão, todos os testes do \textit{framework} estão ativados. Como o teste de DoS foi realizado utilizando o Metasploit, e para diminuir o tempo da experimentação, o módulo denialOfService do Pytbull foi desativado. Outro módulo desativado, devido demora na execução, foi o testRules, a execução desse módulo levava mais de uma hora. Para desativar esses módulos precisa-se editar o arquivo \textbf{pytbull/config/config.cfg}, alterando, na parte dos testes, os valores de 1 para 0.
 
@@ -155,7 +150,7 @@ Antes de executar o \textit{framework}, é necessário mover, para os \textit{ho
 
 Feito isso, basta executar os comandos abaixo, substituindo \textbf{suricata} e \textbf{snort} pelos seus respectivos IPs:
 
-\begin{lstlisting}[caption={Comandos usados para execução do Pytbull}, language=bash, frame=single, label={lst:pytbull}]
+\begin{lstlisting}[title={Comandos usados para execução do Pytbull}, language=bash, frame=single, label={lst:pytbull}]
 cd pytbull/
 
 sudo ./pytbull -t suricata
@@ -164,10 +159,7 @@ sudo ./pytbull -t snort
 \end{lstlisting}
 
 \section{Resultados} \label{sec:resultados}
-%Resultados esperados e obtidos
-%Quais os resultados dos testes ??
-%Comparação das ferramentas
-%Problemas encontrados
+
 O Snort e Suricata são Sistemas de Detecção de Intrusão baseados em assinaturas, ambos gratuitos e multiplataformas, no entanto, caso queira uma base de assinaturas robusta e com suporte, o mesmo deve ser adquirido mediante a um pagamento. 
 
 Nada impede o desenvolvimento de uma base própria, no entanto, é necessário uma equipe altamente capacitada e dedicada para esse fim, visto que, diariamente, são lançados na rede novos ataques ou variações de ataques existentes, tornando a atualização da base de assinaturas um processo árduo e custoso.
@@ -180,15 +172,15 @@ Outra dificuldade que se destaca foi com relação a configuração do cenário 
 
 As métricas usadas para análise e comparação das ferramentas são a utilização dos recursos de \textit{hardware} (memória, processamento), taxa de detecção, independente de ser falso positivo e falso negativo. No primeiro momento, havia a ideia de comparar utilizando essa métrica, no entanto, devido a uma quantidade muito grande de alertas e devido a rede ser grande (vários clientes), essa comparação tornou-se inviável.
 
-No primeiro experimento realizado, utilizando o NMAP no modo \textit{fast}, a execução do \textit{script} \autoref{lst:script-nmap}, gerou um total de 62 alertas, dos quais 100\% deles foram do Snort. o Snort teve um desempenho melhor pois ele foi capaz de detectar a execução do comando.
+No primeiro experimento realizado, utilizando o NMAP no modo \textit{fast}, a execução do \textit{script}, gerou um total de 62 alertas, dos quais 100\% deles foram do Snort. O Snort teve um desempenho melhor pois ele foi capaz de detectar a execução do comando.
 
-No segundo teste de varredura, utilizando o NMAP no modo no qual é possível identificar as versões dos serviços e até o SO do alvo, as ferramentas geraram, com a execução do \textit{script} (\autoref{lst:script-nmap}), um total de 210 alertas, desses, 106 (50.5\%) foi gerado pelo Suricata e 104 (49.5\%) pelo Snort. Nesse cenário, houve quase uma equidade na taxa de detecção. No geral, nesse experimento com NMAP, o Snort teve um desempenho melhor, pois conseguiu gerar alertas no primeiro teste.
+No segundo teste de varredura, utilizando o NMAP no modo no qual é possível identificar as versões dos serviços e até o SO do alvo, as ferramentas geraram, com a execução do \textit{script}, um total de 210 alertas, desses, 106 (50.5\%) foi gerado pelo Suricata e 104 (49.5\%) pelo Snort. Nesse cenário, houve quase uma equidade na taxa de detecção. No geral, nesse experimento com NMAP, o Snort teve um desempenho melhor, pois conseguiu gerar alertas no primeiro teste.
 
-Já no teste realizado usando um \textit{scan} de vulnerabilidade (\autoref{sec:openvas}), os IDPS's geraram um total de 3071 alertas, sendo que 2142 (69.74\%) veio do Suricata e 929 (30.26\%) do Snort. Aqui, houve uma disparidade grande na taxa de detecção, assim, nesse cenário, o Suricata apresentou um desempenho melhor.
+Já no teste realizado usando um \textit{scan} de vulnerabilidade, os IDPS's geraram um total de 3071 alertas, sendo que 2142 (69.74\%) veio do Suricata e 929 (30.26\%) do Snort. Aqui, houve uma disparidade grande na taxa de detecção, assim, nesse cenário, o Suricata apresentou um desempenho melhor.
 
-Para determinar se os IDPS's tinham capacidade de identificar ataques de negação de serviço utilizou-se um módulo do \textit{Metasploit Framework} (\autoref{lst:synflood}). Nesse teste, nenhuma uma das ferramentas alertou sobre a execução desse tipo de ataque. 
+Para determinar se os IDPS's tinham capacidade de identificar ataques de negação de serviço utilizou-se um módulo do \textit{Metasploit Framework}. Nesse teste, nenhuma uma das ferramentas alertou sobre a execução desse tipo de ataque. 
 
-Por último, temos o teste utilizando \textit{framework} Pytbull (\autoref{lst:pytbull}). Para melhorar os resultados, configurou-se os IDPS's para apenas gerar alertas de eventos relacionados ao \textit{host} alvo. O resultado mostrou que houve um igualdade na taxa de detecção total, no entanto, o Suricata mostrou-se superior pois a quantidade não detectado do Snort foi maior, 81\% contra 47\% do Suricata. Abaixo segue os resultados, o gráfico é fornecido pelo próprio Pytbull ao final da execução. 
+Por último, temos o teste utilizando \textit{framework} Pytbull. Para melhorar os resultados, configurou-se os IDPS's para apenas gerar alertas de eventos relacionados ao \textit{host} alvo. O resultado mostrou que houve um igualdade na taxa de detecção total, no entanto, o Suricata mostrou-se superior pois a quantidade não detectado do Snort foi maior, 81\% contra 47\% do Suricata. Abaixo segue os resultados, o gráfico é fornecido pelo próprio Pytbull ao final da execução. 
 
 \begin{figure}[!htb]
 \centering
