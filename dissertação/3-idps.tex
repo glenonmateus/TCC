@@ -1,6 +1,8 @@
 \chapter{Sistemas de Detecção e Prevenção de Intrusão} \label{ch:idps}
 
-Os sistemas de detecção e prevenção de intrusão (\textit{Intrusion Detection and Prevention System} - IDS/IPS) são ferramentas de importância reconhecida pela comunidade da segurança da informação. Nesse capítulo, vamos apresentar os principais conceitos relacionados a IDS e IPS, uma breve descrição do funcionamento e classificação, para melhor entendimento das ferramentas que iremos apresentar e avaliar em um ambiente de real.
+Os sistemas de detecção e prevenção de intrusão (\textit{Intrusion Detection and Prevention System} - IDPS) são ferramentas de importância reconhecida pela comunidade da segurança da informação, pois elas são capazes de detectar se alguém está tentando entrar no sistema ou se algum usuário legitimo está fazendo mau uso do mesmo.
+
+Nesse capítulo, vamos apresentar os principais conceitos relacionados a IDS e IPS, uma breve descrição do funcionamento e classificação, para melhor entendimento das ferramentas que iremos apresentar e avaliar em um ambiente de real.
 
 \section{Definições de IDS/IPS} \label{sec:ipds-definicoes}
 
@@ -9,7 +11,7 @@ Os sistemas de detecção e prevenção de intrusão (\textit{Intrusion Detectio
 O \textit{Intrusion Detection Systems} (IPS) ou Sistema de Prevenção de Intrusão (SPI) possui todas as funcionalidades do IDS com uma diferença, ele é capaz de deter os incidentes, minimizando os impactos causados por sistemas comprometidos \cite{mukhopadhyay01}.
 
 %localizar a referencia
-Os IDS's são compostos basicamente por quatro componentes, temos: 
+Os IDS's são compostos basicamente por quatro componentes:
 \begin{alineas}
 \item \textbf{Sensor ou Agente}: responsável pelo monitoramento e analise do trafego capturado; 
 \item \textbf{Base de Dados}: usado como repositório das informações de eventos detectados pelo sensor e que posteriormente serão processados;
@@ -90,7 +92,7 @@ Dentre as desvantagens, temos:
 
 \subsection{Sistema de Detecção de Intrusão Distribuídos}
 
-A função de um Sistema de Detecção de Intrusão Distribuído (SDID) é de gerencia. Os sensores (pode ser NIDS, HIDS ou a combinação de ambos), localizados remotamente, reportam os alertas para um centralizador. Os \textit{logs} de ataques são, periodicamente, enviados para a estação de gerenciamento, armazenando em uma base única e centralizada, além disso, novas assinaturas de ataques podem ser enviadas para os sensores \cite{snort:andrew}.   
+A função de um Sistema de Detecção de Intrusão Distribuído (SDID) é de gerencia. Os sensores (pode ser NIDS, HIDS ou a combinação de ambos), localizados remotamente, enviam, periodicamente, os alertas para um servidor central onde todas essas informações serão armazenadas, em uma base única e centralizada. Além disso, novas assinaturas de ataques podem ser enviadas para os sensores, dessa forma, facilitando o gerenciamento \cite{snort:andrew}.
 
 \begin{figure}[!htb]
   \centering
@@ -99,7 +101,7 @@ A função de um Sistema de Detecção de Intrusão Distribuído (SDID) é de ge
   \legend{Fonte: Autoria própria}
 \end{figure}
 
-Na \autoref{fig_dids} mostra um SDID composto por dois sensores e um estação de gerenciamento centralizado. O sensor NIDS 1 e NIDS 2 estão operando em modo \textit{promiscuos} e está protegendo segmentos de rede. É recomendando que a conexão entre os sensores e o centralizado seja feita por uma rede privada, em caso de utilização de rede públicas, recomenda-se adicionar uma camada de segurança, como criptografia, ou VPN.
+A \autoref{fig_dids} mostra um SDID composto por dois sensores e um estação de gerenciamento centralizado. O sensor NIDS 1 e NIDS 2 estão operando em modo \textit{promiscuos} e está monitorando segmentos de rede. É recomendando que a conexão entre os sensores e o centralizado seja feita por uma rede privada, e em caso de utilização de rede públicas, recomenda-se adicionar uma camada de segurança, como criptografia, ou VPN.
 
 \subsection{Formas de Detecção} \label{sec:idps-formas}
 
@@ -126,13 +128,13 @@ Possui a vantagem de detectar novos ataques sem necessariamente conhecer a fundo
 
 \section{Principais Ferramentas de IDS} \label{sec:idps-ferramentas}
 
-Nesse capitulo, será apresentado as ferramentas de IDPS analisadas. A escolha dessas ferramentas deu-se devido ser de código aberto e de livre uso, e também, pela sua popularidade diante da comunidade de segurança da informação.
+Nessa seção, será apresentado as ferramentas de IDPS. A escolha dessas ferramentas deu-se devido ser de código aberto e de livre uso, e também, por essas ferramentas não precisarem, para seu funcionamento, de um \textit{hardware} robusto.
 
 \subsection{Snort} \label{sec:snort}
 
-O Snort é um sistema de detecção e prevenção de intrusão de código fonte aberto escrita na linguagem de programação C bem conhecido pela comunidade da segurança da informação. Seu primeiro \textit{release} foi lançado em 1998 e desde então passa por constantes revisões e aperfeiçoamentos, com o passar dos anos se tornou o IDS mais utilizado no mundo. Ele combina análise baseada em assinaturas e anomalias, podendo operar em três modos: \textit{sniffer}, \textit{packet logger} e de sistema de detecção de intrusão (NIDS) \cite{snort:manual}.
+O Snort é um sistema de detecção e prevenção de intrusão de código fonte aberto escrita na linguagem de programação C. Seu primeiro \textit{release} foi lançado em 1998 e desde então passa por constantes revisões e aperfeiçoamentos, com o passar dos anos se tornou o IDS mais utilizado no mundo. Ele combina análise baseada em assinaturas e anomalias, podendo operar em três modos: \textit{sniffer}, \textit{packet logger} e de sistema de detecção de intrusão (NIDS) \cite{snort:manual}.
 
-No modo \textit{Sniffer}, o Snort captura os pacotes e exibi as informações no console de forma continua. No modo \textit{Packet Logger}, além de capturar o tráfego, o Snort escreve essas informações em arquivos (chamados de logs) que são armazenados no disco. Por fim, o \textit{Network Intrusion Detection System} - NIDS, sendo o modo mais complexo e completo, permitindo capturar e analisar os pacotes de rede em tempo real \cite{snort:manual}.
+No modo \textit{Sniffer}, o Snort captura os pacotes e exibe as informações no console de forma continua. No modo \textit{Packet Logger}, além de capturar o tráfego, o Snort escreve essas informações em arquivos (chamados de logs) que são armazenados no disco. Por fim, o \textit{Network Intrusion Detection System} - NIDS, sendo o modo mais complexo e completo, permitindo capturar e analisar os pacotes de rede em tempo real \cite{snort:manual}.
 
 Existe quatro componentes no Snort: O \textit{sniffer}, o pré-processador, o motor de detecção e módulos de saída. A \autoref{fig_snort-componentes} mostra a arquitetura e disposição dos componentes \cite{snort:andrew}.
 
@@ -159,9 +161,9 @@ Assim como qualquer outra ferramenta de rede, os \textit{sniffers} podem ser usa
 
 O pré-processador pega o pacote bruto e faz uma checagem utilizando um determinado \textit{plugin}. Esses \textit{plugins} verificam se o pacote tem um tipo particular de comportamento, uma vez determinado, o pacote é enviado para o motor de detecção caso contrário é descartado.
 
-Na \autoref{fig_snort_preprocessor}, pode-se ver como o pré-processador utiliza \textit{plugins} para chegar pacotes. O Snort suporta muitos tipos de pré-processadores, cobrindo vários protocolos comumente usados como, IP \textit{fragmentation handling}, \textit{port scanning} e controle de fluxo.
+A \autoref{fig_snort_preprocessor}, apresenta como o pré-processador utiliza \textit{plugins} para checar pacotes. O Snort suporta muitos tipos de pré-processadores, cobrindo vários protocolos comumente usados como, IP \textit{fragmentation handling}, \textit{port scanning} e controle de fluxo.
 
-\begin{figure}[!htb]
+\begin{figure}[htb]
   \centering
   \caption{Uso de \textit{plugins} no pré-processador} \label{fig_snort_preprocessor}
   \includegraphics[scale=0.7]{snort_preprocessor.png}
@@ -170,9 +172,9 @@ Na \autoref{fig_snort_preprocessor}, pode-se ver como o pré-processador utiliza
 
 O uso de \textit{plugins} é uma característica muito útil para o IDS, pois os \textit{plugins} podem ser ativados e desativadas a medida do necessário, otimizando a utilização dos recursos computacionais e geração de alertas \cite{snort:andrew}.
 
-Os pacotes, após passarem por todos os pré-processador, são entregues para o motor de detecção. O motor de detecção pega esses dados e faz uma checagem utilizando uma base de regras pré-configurado pelo administrador. Se a regra for compatível com os dados do pacote, eles são enviado para o processador de alertas, caso contrário, são descartados \cite{snort:andrew}.
+Os pacotes, após passarem por todos os pré-processador, são entregues para o motor de detecção. O motor de detecção recebe esses dados e faz uma checagem utilizando uma base de regras pré-configurado pelo administrador. Se a regra for compatível com os dados do pacote, eles são enviado para o processador de alertas, caso contrário, são descartados \cite{snort:andrew}.
 
-Na \autoref{fig_snort_detecção}, temos os pacotes saindo dos pré-processadores e chegando no motor de detecção. No motor de detecção há uma base de regras configurada, os dados dos pacotes são comparados com as assinaturas da base, se coincidirem, uma ação é tomada, caso contrário, o pacote é descartado.
+Na \autoref{fig_snort_detecção}, temos os pacotes saindo dos pré-processadores e chegando no motor de detecção. No motor de detecção há uma base de regras configurada, os pacotes são comparados com as assinaturas da base, se coincidirem, uma ação é tomada, caso contrário, o pacote é descartado.
 
 \begin{figure}[!htb]
   \centering
