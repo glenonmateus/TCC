@@ -6,7 +6,7 @@ Nesse capítulo, vamos apresentar os principais conceitos relacionados a IDS e I
 
 \section{Definições de IDS/IPS} \label{sec:ipds-definicoes}
 
-\textit{Intrusion Detection Systems} (IDS) ou Sistemas de Detecção de Intrusão (SDI) são ferramentas utilizadas para monitoramento de eventos que ocorrem em redes e sistemas computacionais, analisando sinais de possíveis ataques que podem levar a uma violação das politicas de segurança da organização, alertando os administradores do sistema que estes eventos estão ocorrendo. 
+\textit{Intrusion Detection Systems} (IDS) ou Sistemas de Detecção de Intrusão (SDI) são ferramentas utilizadas para monitoramento de eventos que ocorrem em redes e sistemas computacionais, analisando sinais de possíveis ataques que podem levar a uma violação das politicas de segurança da organização, alertando os administradores do sistema que estes eventos estão ocorrendo \cite{nagahama2012ipsflow}. 
 
 O \textit{Intrusion Detection Systems} (IPS) ou Sistema de Prevenção de Intrusão (SPI) possui todas as funcionalidades do IDS com uma diferença, ele é capaz de deter os incidentes, minimizando os impactos causados por sistemas comprometidos \cite{mukhopadhyay01}.
 
@@ -92,7 +92,7 @@ Dentre as desvantagens, temos:
 
 \subsection{Sistema de Detecção de Intrusão Distribuídos}
 
-A função de um Sistema de Detecção de Intrusão Distribuído (SDID) é de gerencia. Os sensores (pode ser NIDS, HIDS ou a combinação de ambos), localizados remotamente, enviam, periodicamente, os alertas para um servidor central onde todas essas informações serão armazenadas, em uma base única e centralizada. Além disso, novas assinaturas de ataques podem ser enviadas para os sensores, dessa forma, facilitando o gerenciamento \cite{snort:andrew}.
+A função de um Sistema de Detecção de Intrusão Distribuído (SDID) é de gerencia. Os sensores (pode ser NIDS, HIDS ou a combinação de ambos), localizados remotamente, enviam, periodicamente, os alertas para um servidor central onde todas essas informações serão armazenadas, em uma base única e centralizada. Além disso, novas assinaturas de ataques podem ser enviadas para os sensores através desse servidor, dessa forma, facilitando o gerenciamento \cite{snort:andrew}.
 
 \begin{figure}[!htb]
   \centering
@@ -101,7 +101,7 @@ A função de um Sistema de Detecção de Intrusão Distribuído (SDID) é de ge
   \legend{Fonte: Autoria própria}
 \end{figure}
 
-A \autoref{fig_dids} mostra um SDID composto por dois sensores e um estação de gerenciamento centralizado. O sensor NIDS 1 e NIDS 2 estão operando em modo \textit{promiscuos} e está monitorando segmentos de rede. É recomendando que a conexão entre os sensores e o centralizado seja feita por uma rede privada, e em caso de utilização de rede públicas, recomenda-se adicionar uma camada de segurança, como criptografia, ou VPN.
+A \autoref{fig_dids} mostra um SDID composto por dois sensores e um estação de gerenciamento centralizado. O sensor NIDS 1 e NIDS 2 estão operando em modo \textit{promiscuos} e está monitorando segmentos de rede. É recomendando que a conexão entre os sensores e o centralizado seja feita por uma rede privada. Em caso de utilização de rede públicas, recomenda-se adicionar uma camada de segurança, como criptografia, ou VPN.
 
 \subsection{Formas de Detecção} \label{sec:idps-formas}
 
@@ -210,17 +210,19 @@ Abaixo temos um exemplo de regra.
 
 Com a regra acima, o Snort gerará um alerta de qualquer pacotes ICMP que estiver passando de qualquer máquina e porta origem (\textbf{any any}) para qualquer máquina e porta destino (\textbf{any any}) e enviará pacotes ICMP para a máquina de origem com as mensagens \textit{host unreachable; network unreachable}.
 
-Se um dado for compatível com uma regra um alerta é gerado. Os alertas podem ser enviados para arquivos de \textit{logs}, através da rede, através de \textit{sockets} UNIX ou Windows Popup (SMB). Os alertas também podem ser armazenados em banco de dados SQL como MySQL e Postgres. Existem vários \textit{plugins} para Perl, PHP e servidores Web para exibir os \textit{logs} através de um interface Web \cite{snort:andrew}.
+Se um dado for compatível com uma regra é gerado um alerta. Os alertas podem ser enviados para arquivos de \textit{logs}, através da rede, através de \textit{sockets} UNIX ou Windows Popup (SMB). Os alertas também podem ser armazenados em banco de dados SQL como MySQL e Postgres. Existem vários \textit{plugins} para Perl, PHP e servidores Web para exibir os \textit{logs} através de um interface Web \cite{snort:andrew}.
 
 \subsection{Suricata} \label{sec:suricata}
 
-Suricata é um NIDS de código aberto, seu primeiro \textit{release} oficial foi lançando em 2010 e foi desenvolvido e atualmente é mantido pela \textit{Open Information Security Foundation} (OISF). A OISF é uma fundação sem fins lucrativos formada por um grupo multinacional de desenvolvedores \cite{suricata}.
+Suricata é um NIDS de código aberto. Sua primeira versão oficial foi lançado em 2010 e foi desenvolvido e atualmente é mantido pela \textit{Open Information Security Foundation} (OISF). A OISF é uma fundação sem fins lucrativos formada por um grupo multinacional de desenvolvedores \cite{suricata}.
 
 Uma característica marcante desse IDS é a utilização de uma tecnologia de processamento \textit{multithread} para ter benefício dos múltiplos núcleos de um computador. Além de utilizar \textit{hardware} de aceleração para ter um melhor desempenho \cite{arquitetura:martin}.
 
 O Suricata utilizada detecção baseada em assinatura e em anomalias. As assinaturas desenhadas para o Snort funcionam no Suricata, podendo ser otimizadas para o uso em seu motor de detecção. As anomalias dos protocolos são fornecidas pelos pré-processadores, e quando implementado no modo ativo, atua na modalidade de prevenção \cite{arquitetura:martin}.
 
-Embora o código do Suricata ser original, os desenvolvedores não hesitam afirmar que a arquitetura foi inspirada no Snort. Na \autoref{fig_arquitetura-suricata} representa a mesma arquitetura do Snort porém com o mecanismo de \textit{multithread} \cite{arquitetura:martin}. Dessa forma não há necessidade de descrever os componentes pois já foram citados na \autoref{sec:snort}.
+Embora o código do Suricata ser original, os desenvolvedores não hesitam afirmar que a arquitetura foi inspirada no Snort. Na \autoref{fig_arquitetura-suricata} representa a mesma arquitetura do Snort porém com o mecanismo de \textit{multithread} \cite{arquitetura:martin}. 
+
+%Dessa forma não há necessidade de descrever os componentes pois já foram citados na \autoref{sec:snort}.
 
 \begin{figure}[!htb]
   \centering
@@ -229,9 +231,7 @@ Embora o código do Suricata ser original, os desenvolvedores não hesitam afirm
   \legend{Fonte: \cite{arquitetura:martin}}
 \end{figure}
 
-As assinaturas são de grande importância tanto no Snort quanto no Suricata. Muitas pessoas, por conveniência, utilizam conjunto de regras prontas. As mais usadas são da Emerging Threats (ET) e Talos (anteriormente chamado de VRT) \cite{suricata:rule}. 
-
-Talos é um grupo de especialistas em segurança de rede trabalhando o tempo todo para descobrir, avaliar e responder de forma proativa as últimas tendências em atividades de \textit{hacking}, tentativa de intrusão, \textit{malware} e vulnerabilidades \cite{snort:talos}. 
+As assinaturas são de grande importância tanto no Snort quanto no Suricata. Muitas pessoas, por conveniência, utilizam conjunto de regras prontas. As mais usadas são da Emerging Threats (ET) e Talos (anteriormente chamado de VRT) \cite{suricata:rule}. Talos é um grupo de especialistas em segurança de rede trabalhando o tempo todo para descobrir, avaliar e responder de forma proativa as últimas tendências em atividades de \textit{hacking}, tentativa de intrusão, \textit{malware} e vulnerabilidades \cite{snort:talos}. 
 
 A base de assinaturas ET é mantida pela Proofpoint. A Proofpoint é uma empresa especialista em segurança da informação, no site oficial há vários produtos que visam proteger pessoas e dados, detectando e bloqueando ataques e respondendo a essas ameaças \cite{et:proofpoint}.
 
