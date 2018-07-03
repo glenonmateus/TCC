@@ -216,7 +216,7 @@ Se um dado for compatível com uma regra é gerado um alerta. Os alertas podem s
 
 Suricata é um NIDS de código aberto. Sua primeira versão oficial foi lançado em 2010 e foi desenvolvido e atualmente é mantido pela \textit{Open Information Security Foundation} (OISF). A OISF é uma fundação sem fins lucrativos formada por um grupo multinacional de desenvolvedores \cite{suricata}.
 
-Uma característica marcante desse IDS é a utilização de uma tecnologia de processamento \textit{multithread} para ter benefício dos múltiplos núcleos de um computador. Além de utilizar \textit{hardware} de aceleração para ter um melhor desempenho \cite{arquitetura:martin}.
+Uma característica marcante desse IDS é a utilização de uma tecnologia de processamento \textit{multithread} para ter benefício dos múltiplos núcleos de um computador. Além de utilizar \textit{hardware} de aceleração para ter um melhor desempenho \cite{arquitetura:martin}. Este motor incorpora um normalizador HTTP e analisador que fornece um processamento avançado de fluxos HTTP, permitindo a compreensão do tráfego na camada 7 do modelo OSI \cite{analise:cleber}.
 
 O Suricata utilizada detecção baseada em assinatura e em anomalias. As assinaturas desenhadas para o Snort funcionam no Suricata, podendo ser otimizadas para o uso em seu motor de detecção. As anomalias dos protocolos são fornecidas pelos pré-processadores, e quando implementado no modo ativo, atua na modalidade de prevenção \cite{arquitetura:martin}.
 
