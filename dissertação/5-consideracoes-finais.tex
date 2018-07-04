@@ -1,5 +1,9 @@
 \chapter{Considerações Finais e Trabalhos Futuros} \label{ch:considerações}
 
+Foram encontrados vários desafios durante o desenvolvimento desse trabalho. Dentre elas, destacam-se a dificuldade de encontrar material e experimentos referente ao Suricata, a documentação oficial do sistema é pobre de conteúdo, limitando-se ao básico de instalação e algumas particularidades de configuração. 
+
+Outra dificuldade que se destaca foi com relação a configuração do cenário de teste, devido a alta complexidade e por requerer configurações em vários equipamento, no qual, em alguns casos, a gerência pertencia a terceiros. Depois de um tempo, observou-se que nem todos os pacotes da interface espelhada estava passando para as VM's, isso afetaria os resultados dos testes. Após análise, concluiu-se que era necessário uma configuração de espelhamento no \textit{openvswitch} (utilizado pelo XenServer) do \textit{host}.
+
 Diante dos resultados obtidos na \autoref{sec:resultados}, conclui-se que, apesar da ferramenta Suricata (versão 4.0.0) ter, em aspectos gerais, um desempenho melhor, justificando assim, que a arquitetura nela implementada (utilizando \textit{multithread}) ajuda na melhoria da detecção e geração de alertas. 
 
 No entanto, recomenda-se a utilização do Snort (versão 2.9.8.3) em um ambiente de produção real. Tal afirmação, é sustentada devido a um comportamento do Suricata observado durante o desenvolvimento desse trabalho, que, por algum motivo não investigado, era finalizado. Dessa forma, os alertas não eram gerados, deixando a rede um pouco desprotegida.
@@ -8,4 +12,4 @@ Além disso, caso opte-se por implantar o Suricata em um ambiente de produção,
 
 A realização desse trabalho foi de grande valor para aquisição de conhecimento na área de segurança de redes. Concluindo-se que, embora haja na rede um IDS, somente a implementação deste não é suficiente para se ter uma segurança total, e sim, que ele deva atuar em paralelo com outros sistemas de segurança, vindo assim a somar na dura batalha pela obtenção de segurança em redes. 
 
-
+Como trabalhos futuros, podemos avaliar as ferramentas em um ambiente mais controlado para tentar identificar se os alertas gerados são realmente de ataques lançado à rede. Assim, determinando a quantidade de falso negativos e falsos positivos e a precisão das ferramentas na geração de alertas.

@@ -1,8 +1,8 @@
 \chapter{Detecção de Intrusão em um Cenário Real} \label{ch:cenário-real}
 
-Este capítulo esta organizado da seguinte forma: A próxima seção apresenta o cenário de testes, descrevendo características gerais da rede selecionada para os teste. Na \autoref{sec:metodologia} será abordado a infraestrutura usada para os testes, ferramentas utilizadas e as configurações feitas. Na \autoref{sec:testes} será descrito os testes realizados com suas respectivas justificativas. Na \autoref{sec:resultados} será apresentado os resultados esperados e obtidos, problemas encontrados e a comparação das ferramentas e por último, na seção \autoref{sec:conclusão}, uma breve conclusão.
+Este capítulo esta organizado da seguinte forma: A próxima seção apresenta o cenário de testes, descrevendo características gerais da rede selecionada para os teste. Na \autoref{sec:metodologia-teste} será abordado a infraestrutura usada para os testes, ferramentas utilizadas e as configurações feitas. Na \autoref{sec:testes} será descrito os testes realizados com suas respectivas justificativas. Na \autoref{sec:resultados} será apresentado os resultados esperados e obtidos, problemas encontrados e a comparação das ferramentas e por último, na seção \autoref{sec:conclusão}, uma breve conclusão.
 
-\section{Metodologia dos Testes} \label{sec:metodologia}
+\section{Metodologia dos Testes} \label{sec:metodologia-teste}
 
 Nessa seção será descrito o cenário utilizado para a realização dos testes, descrevendo a rede onde os sensores foram instalados e algumas de suas estatísticas de uso. Posteriormente, descreve-se a infraestrutura montada para realização dos testes, os equipamentos utilizados e as ferramentas adicionais. Na \autoref{sec:testes}, será descrito os testes realizados. Na \autoref{sec:resultados} abordará os resultados esperados e obtidos com os testes. Por último, na \autoref{sec:conclusão} a conclusão.
 
@@ -160,15 +160,11 @@ sudo ./pytbull -t snort
 
 \section{Resultados} \label{sec:resultados}
 
-O Snort e Suricata são Sistemas de Detecção de Intrusão baseados em assinaturas, ambos gratuitos e multiplataformas, no entanto, caso queira uma base de assinaturas robusta e com suporte, o mesmo deve ser adquirido mediante a um pagamento. 
+O Snort e Suricata são Sistemas de Detecção de Intrusão baseados em assinaturas, ambos gratuitos e multiplataformas. No entanto, caso seja necessário uma base de assinaturas robusta e com suporte, o mesmo deve ser adquirido mediante a um pagamento. 
 
-Nada impede o desenvolvimento de uma base própria, no entanto, é necessário uma equipe altamente capacitada e dedicada para esse fim, visto que, diariamente, são lançados na rede novos ataques ou variações de ataques existentes, tornando a atualização da base de assinaturas um processo árduo e custoso.
+Nada impede o desenvolvimento de uma base própria, porém, é necessário uma equipe altamente capacitada e dedicada para esse fim. Essa equipe é necessária pois, diariamente, são lançados na rede novos ataques ou variações de ataques existentes, tornando a atualização da base de assinaturas de fundamental importância além de ser um processo árduo e custoso.
 
 O Snort encontra-se consolidado no mercado há vários anos e com muitas versões, já o Suricata surgiu em 2010 como um novo motor, com a tecnologia \texit{multithreading} (processa várias tarefas ao mesmo tempo), aproveitando o paradigma multinúcleos dos processadores. Por esse motivo, espera-se que o desempenho do Suricata seja superior ao do Snort.
-
-Foram encontrados vários desafios durante o desenvolvimento desse trabalho. Dentre elas, destacam-se a dificuldade de encontrar material e experimentos referente ao Suricata, a documentação oficial do sistema é pobre de conteúdo, limitando-se ao básico de instalação e algumas particularidades de configuração. 
-
-Outra dificuldade que se destaca foi com relação a configuração do cenário de teste, devido a alta complexidade e por requerer configurações em vários equipamento, no qual, em alguns casos, a gerência pertencia a terceiros. Depois de um tempo, observou-se que nem todos os pacotes da interface espelhada estava passando para as VM's, isso afetaria os resultados dos testes. Após análise, concluiu-se que era necessário uma configuração de espelhamento no \textit{openvswitch} (utilizado pelo XenServer) do \textit{host}. 
 
 As métricas usadas para análise e comparação das ferramentas são a utilização dos recursos de \textit{hardware} (memória, processamento), taxa de detecção, independente de ser falso positivo e falso negativo. No primeiro momento, havia a ideia de comparar utilizando essa métrica, no entanto, devido a uma quantidade muito grande de alertas e devido a rede ser grande (vários clientes), essa comparação tornou-se inviável.
 
@@ -247,10 +243,5 @@ Quanto a utilização de recurso de \textit{hardware}, conclui-se que o Snort ut
 Quanto a taxa de detecção, analisou-se os registros de alertas gerados no Kibana, selecionando um período de uma semana. Houve um total de 47.778 de alertas gerados, desses 30.097 (62.99\%) vieram do Suricata e 17.681 (37.01\%) do Snort. Assim, o Suricata teve um desempenho melhor neste cenário. Vale salientar que, não esta sendo levado em consideração se o alerta é um falso negativo ou falso positivo.
 
 \section{Conclusão} \label{sec:conclusão}
-%A ferramentas estudas apresentaram resultados semelhantes. 
-%\section{Métricas de Comparação}
-%Consumo dos Recursos de Hardware (Memória, Processamento)
-%Taxa de Detecção
-%Número de Falsos Positivos/Negativos
 
 Esse capítulo apresentou o cenário no qual as ferramentas estudas foram colocadas para análise. Descreveu-se a infraestrutura montada e os componentes envolvidos para a realização do estudo. Além disso, foi detalhado os testes realizados, simulações de ataques a uma máquina alvo dentro da rede e ao final os resultados obtidos. 
