@@ -4,13 +4,14 @@ Os sistemas de detecção e prevenção de intrusão (\textit{Intrusion Detectio
 
 Nesse capítulo, vamos apresentar os principais conceitos relacionados a IDS e IPS, uma breve descrição do funcionamento e classificação, para melhor entendimento das ferramentas que iremos apresentar e avaliar em um ambiente de real.
 
-\section{Definições de IDS/IPS} \label{sec:ipds-definicoes}
+Esse capítulo está organizado da seguinte forma: Na \autoref{sec:idps-definicoes} será apresentado os conceitos sobre IDS e IPS, seus componentes gerais, os tipos existentes e suas diferenças. Na \autoref{sec:idps-ferramentas} será apresentado as ferramentas avaliadas, suas arquiteturas e diferenças. Por ultimo, na \autoref{sec:idps-conclusao}, a conclusão do capítulo.
+
+\section{Definições de IDPS} \label{sec:idps-definicoes}
 
 \textit{Intrusion Detection Systems} (IDS) ou Sistemas de Detecção de Intrusão (SDI) são ferramentas utilizadas para monitoramento de eventos que ocorrem em redes e sistemas computacionais, analisando sinais de possíveis ataques que podem levar a uma violação das politicas de segurança da organização, alertando os administradores do sistema que estes eventos estão ocorrendo \cite{nagahama2012ipsflow}. 
 
 O \textit{Intrusion Detection Systems} (IPS) ou Sistema de Prevenção de Intrusão (SPI) possui todas as funcionalidades do IDS com uma diferença, ele é capaz de deter os incidentes, minimizando os impactos causados por sistemas comprometidos \cite{mukhopadhyay01}.
 
-%localizar a referencia
 Os IDS's são compostos basicamente por quatro componentes:
 \begin{alineas}
 \item \textbf{Sensor ou Agente}: responsável pelo monitoramento e analise do trafego capturado; 
@@ -214,15 +215,15 @@ Se um dado for compatível com uma regra é gerado um alerta. Os alertas podem s
 
 \subsection{Suricata} \label{sec:suricata}
 
-Suricata é um NIDS de código aberto. Sua primeira versão oficial foi lançado em 2010 e foi desenvolvido e atualmente é mantido pela \textit{Open Information Security Foundation} (OISF). A OISF é uma fundação sem fins lucrativos formada por um grupo multinacional de desenvolvedores \cite{suricata}.
+O Suricata é um sistema de código aberto com funções de IDS, IPS e NSM (\textit{Network Security Monitor}). Sua primeira versão oficial foi lançado em 2010 e foi desenvolvido e atualmente é mantido pela \textit{Open Information Security Foundation} (OISF). A OISF é uma fundação sem fins lucrativos formada por um grupo multinacional de desenvolvedores \cite{suricata}.
 
 Uma característica marcante desse IDS é a utilização de uma tecnologia de processamento \textit{multithread} para ter benefício dos múltiplos núcleos de um computador. Além de utilizar \textit{hardware} de aceleração para ter um melhor desempenho \cite{arquitetura:martin}. Este motor incorpora um normalizador HTTP e analisador que fornece um processamento avançado de fluxos HTTP, permitindo a compreensão do tráfego na camada 7 do modelo OSI \cite{analise:cleber}.
 
-O Suricata utilizada detecção baseada em assinatura e em anomalias. As assinaturas desenhadas para o Snort funcionam no Suricata, podendo ser otimizadas para o uso em seu motor de detecção. As anomalias dos protocolos são fornecidas pelos pré-processadores, e quando implementado no modo ativo, atua na modalidade de prevenção \cite{arquitetura:martin}.
+O Suricata utiliza detecção baseada em assinatura e em anomalias. As assinaturas desenhadas para o Snort funcionam no Suricata, podendo ser otimizadas para o uso em seu motor de detecção. As anomalias dos protocolos são fornecidas pelos pré-processadores, e quando implementado no modo ativo, atua na modalidade de prevenção \cite{arquitetura:martin}. Além disso, implementa uma completa linguagem de assinaturas ligadas a ameaças conhecidas, violação de políticas de segurança e comportamentos maliciosos de \textit{malwares} e outros ataques.
 
-Embora o código do Suricata ser original, os desenvolvedores não hesitam afirmar que a arquitetura foi inspirada no Snort. Na \autoref{fig_arquitetura-suricata} representa a mesma arquitetura do Snort porém com o mecanismo de \textit{multithread} \cite{arquitetura:martin}. 
+Embora o código do Suricata ser original, os desenvolvedores não hesitam afirmar que a arquitetura foi inspirada no Snort. Na \autoref{fig_arquitetura-suricata} representa a mesma arquitetura do Snort porém com o mecanismo de \textit{multithread}, sendo essa característica a principal diferença entre as ferramentas \cite{arquitetura:martin}. 
 
-%Dessa forma não há necessidade de descrever os componentes pois já foram citados na \autoref{sec:snort}.
+As assinaturas são de grande importância tanto no Snort quanto no Suricata. Muitas pessoas, por conveniência, utilizam conjunto de regras prontas. As mais usadas são da Emerging Threats (ET) e Talos (anteriormente chamado VRT) \cite{suricata}. Talos é um grupo de especialistas em segurança de rede trabalhando o tempo todo para descobrir, avaliar e responder de forma proativa as últimas tendencias em atividades de \textit{hacking}, tentativa de intrusão, \textit{malware} e vulnerabilidades \cite{snort:talos}.
 
 \begin{figure}[!htb]
   \centering
@@ -231,11 +232,26 @@ Embora o código do Suricata ser original, os desenvolvedores não hesitam afirm
   \legend{Fonte: \cite{arquitetura:martin}}
 \end{figure}
 
-As assinaturas são de grande importância tanto no Snort quanto no Suricata. Muitas pessoas, por conveniência, utilizam conjunto de regras prontas. As mais usadas são da Emerging Threats (ET) e Talos (anteriormente chamado de VRT) \cite{suricata:rule}. Talos é um grupo de especialistas em segurança de rede trabalhando o tempo todo para descobrir, avaliar e responder de forma proativa as últimas tendências em atividades de \textit{hacking}, tentativa de intrusão, \textit{malware} e vulnerabilidades \cite{snort:talos}. 
-
 A base de assinaturas ET é mantida pela Proofpoint. A Proofpoint é uma empresa especialista em segurança da informação, no site oficial há vários produtos que visam proteger pessoas e dados, detectando e bloqueando ataques e respondendo a essas ameaças \cite{et:proofpoint}.
 
 O fato de existir equipes dedicadas para o desenvolvimento de uma base de regras, torna o uso dessas bases confiáveis, menos custoso, tem termos de tempo, recursos financeiros e de pessoal e fácil implementação. 
+
+Conforme \cite{suricata} existem três razões para utilizar a ferramenta Suricata:
+
+\begin{alineas}
+\item \textbf{Altamente escalável:} O Suricata é \textit{multithreaded}, isso significa que é possível executar instancia do programa e equilibrar a carga de processamento em cada processador em um sensor, permitindo que o \textit{hardware} alcance velocidades de até 10 Gigabit sobre o tráfego, sem sacrificar a cobertura do conjunto de regras;
+\item \textbf{Protocolo de identificação:} Os protocolos mais comuns são reconhecidos pelo Suricata. Além disso, graças a palavra-chave dedicadas, pode combinar em campos que vão desde protocolo HTTP para um identificador de certificado SSL;
+\item \textbf{Identificação e extração de arquivos:} Esse software pode identificar milhares de tipos de arquivos durante a varredura na rede. Pode-se também marcar esse arquivo para a extração, e assim o mesmo será gravado em disco como arquivo de metadados que descreve a situação de captura e fluxo.
+\end{alineas}
+
+Além disso, o motor fornece as seguintes funcionalidades \cite{analise:cleber}:
+}nc}
+\begin{alineas}
+\item Opções de idioma (regra);
+\item Saída unificada permitindo a interação com sistemas externos de registro e gestão, por exemplo, um servidor de \textit{log} ou SIEM;
+\item Baseado em regras de reputação de IP, dessa forma otimizando e reduzindo a geração de alertas falso positivo e falso negativo;
+\item Possui biblioteca ficha-capacidade de interação com outras aplicações e a disponibilização de estatísticas de desempenho.
+\end{alineas}
 
 \section{Conclusão} \label{sec:idps-conclusao}
 
