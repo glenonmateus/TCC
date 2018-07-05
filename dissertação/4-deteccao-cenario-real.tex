@@ -168,11 +168,35 @@ O Snort encontra-se consolidado no mercado há vários anos e com muitas versõe
 
 As métricas usadas para análise e comparação das ferramentas são a utilização dos recursos de \textit{hardware} (memória, processamento), taxa de detecção, independente de ser falso positivo e falso negativo. No primeiro momento, havia a ideia de comparar utilizando essa métrica, no entanto, devido a uma quantidade muito grande de alertas e devido a rede ser grande (vários clientes), essa comparação tornou-se inviável.
 
-No primeiro experimento realizado, utilizando o NMAP no modo \textit{fast}, a execução do \textit{script}, gerou um total de 62 alertas, dos quais 100\% deles foram do Snort. O Snort teve um desempenho melhor pois ele foi capaz de detectar a execução do comando.
+No primeiro experimento realizado, utilizando o NMAP no modo \textit{fast}, a execução do \textit{script}, gerou um total de 62 alertas, dos quais 100\% deles foram do Snort (\autoref{fig:teste-nmap-fast}). O Snort teve um desempenho melhor pois ele foi capaz de detectar a execução do comando.
 
-No segundo teste de varredura, utilizando o NMAP no modo no qual é possível identificar as versões dos serviços e até o SO do alvo, as ferramentas geraram, com a execução do \textit{script}, um total de 210 alertas, desses, 106 (50.5\%) foi gerado pelo Suricata e 104 (49.5\%) pelo Snort. Nesse cenário, houve quase uma equidade na taxa de detecção. No geral, nesse experimento com NMAP, o Snort teve um desempenho melhor, pois conseguiu gerar alertas no primeiro teste.
+\begin{figure}[!htb]
+    \centering
+    \caption{Resultados do teste executando o NMAP no modo \textit{fast}}
+    \includegraphics[scale=.6]{teste-nmap-fast.png}
+    \label{fig:teste-nmap-fast}
+    \legend{Fonte: Autoria Própria}
+\end{figure}
 
-Já no teste realizado usando um \textit{scan} de vulnerabilidade, os IDPS's geraram um total de 3071 alertas, sendo que 2142 (69.74\%) veio do Suricata e 929 (30.26\%) do Snort. Aqui, houve uma disparidade grande na taxa de detecção, assim, nesse cenário, o Suricata apresentou um desempenho melhor.
+No segundo teste de varredura, utilizando o NMAP no modo no qual é possível identificar as versões dos serviços e até o SO do alvo, as ferramentas geraram, com a execução do \textit{script}, um total de 210 alertas, desses, 106 (50.5\%) foi gerado pelo Suricata e 104 (49.5\%) pelo Snort (\autoref{fig:teste-nmap-all}). Nesse cenário, houve quase uma equidade na taxa de detecção. No geral, nesse experimento com NMAP, o Snort teve um desempenho melhor, pois conseguiu gerar alertas no primeiro teste.
+
+\begin{figure}[!htb]
+    \centering
+    \caption{Resultados do teste executando o NMAP no modo de detecção do SO e versões dos serviços}
+    \includegraphics[scale=.6]{teste-nmap-all.png}
+    \label{fig:teste-nmap-all}
+    \legend{Fonte: Autoria Própria}
+\end{figure}
+
+Já no teste realizado usando um \textit{scan} de vulnerabilidade, os IDPS's geraram um total de 3071 alertas, sendo que 2142 (69.74\%) veio do Suricata e 929 (30.26\%) do Snort (\autoref{fig:teste-openvas}). Aqui, houve uma disparidade grande na taxa de detecção, assim, nesse cenário, o Suricata apresentou um desempenho melhor.
+
+\begin{figure}[!htb]
+    \centering
+    \caption{Resultados do teste executando um o \textit{scan} de vulnerabilidades}
+    \includegraphics[scale=.6]{teste-openvas.png}
+    \label{fig:teste-openvas}
+    \legend{Fonte: Autoria Própria}
+\end{figure}
 
 Para determinar se os IDPS's tinham capacidade de identificar ataques de negação de serviço utilizou-se um módulo do \textit{Metasploit Framework}. Nesse teste, nenhuma uma das ferramentas alertou sobre a execução desse tipo de ataque. 
 
@@ -240,7 +264,15 @@ Quanto a utilização de recurso de \textit{hardware}, conclui-se que o Snort ut
 \legend{Fonte: Zabbix} 
 \end{table}
 
-Quanto a taxa de detecção, analisou-se os registros de alertas gerados no Kibana, selecionando um período de uma semana. Houve um total de 47.778 de alertas gerados, desses 30.097 (62.99\%) vieram do Suricata e 17.681 (37.01\%) do Snort. Assim, o Suricata teve um desempenho melhor neste cenário. Vale salientar que, não esta sendo levado em consideração se o alerta é um falso negativo ou falso positivo.
+Quanto a taxa de detecção, analisou-se os registros de alertas gerados no Kibana, selecionando um período de uma semana. Houve um total de 47.778 de alertas gerados, desses 30.097 (62.99\%) vieram do Suricata e 17.681 (37.01\%) do Snort (\autoref{fig:taxa-de-detecção}). Assim, o Suricata teve um desempenho melhor neste cenário. Vale salientar que, não esta sendo levado em consideração se o alerta é um falso negativo ou falso positivo.
+
+\begin{figure}[!htb]
+    \centering
+    \caption{Resultados do teste executando um o \textit{scan} de vulnerabilidades}
+    \includegraphics[scale=.6]{teste-taxa-de-deteccao.png}
+    \label{fig:taxa-de-detecção}
+    \legend{Fonte: Autoria Própria}
+\end{figure}
 
 \section{Conclusão} \label{sec:conclusão}
 
