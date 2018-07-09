@@ -1,0 +1,77 @@
+% Apresentações em widescreen. Outros valores possíveis: 1610, 149, 54, 43 e 32.
+% Por padrão, as apresentações são no formato 4:3 (sem o aspectratio).
+\documentclass[aspectratio=169]{beamer}	 	
+
+\renewcommand\textbullet{\ensuremath{\bullet}}
+
+\usetheme{Pittsburgh}
+\usecolortheme{default}
+\usefonttheme[onlymath]{serif}			% para fontes matemáticas
+% Enconte mais temas e cores em http://www.hartwork.org/beamer-theme-matrix/ 
+% Veja também http://deic.uab.es/~iblanes/beamer_gallery/index.html
+% Customizações de Cores: fg significa cor do texto e bg é cor do fundo
+\setbeamercolor{normal text}{fg=black}
+\setbeamercolor{alerted text}{fg=red}
+\setbeamercolor{author}{fg=black}
+\setbeamercolor{institute}{fg=black}
+\setbeamercolor{date}{fg=black}
+\setbeamercolor{frametitle}{fg=black}
+\setbeamercolor{framesubtitle}{fg=brown}
+\setbeamercolor{block title}{bg=black, fg=white}	%Cor do título
+\setbeamercolor{block body}{bg=gray, fg=black}	%Cor do texto (bg= fundo; fg=texto)
+\setbeamercolor{section in toc}{fg=black}
+\setbeamercolor{section number projected}{bg=white,fg=black}
+\setbeamercolor{titlelike}{fg=black}
+% ---
+% PACOTES
+% ---
+\usepackage[alf]{abntex2cite}	% Citações padrão ABNT
+\usepackage[brazil]{babel}		% Idioma do documento
+\usepackage{color}				% Controle das cores
+\usepackage[T1]{fontenc}		% Selecao de codigos de fonte.
+\usepackage{graphicx}			% Inclusão de gráficos
+\usepackage[utf8]{inputenc}		% Codificacao do documento (conversão automática dos acentos)
+\usepackage{txfonts}			% Fontes virtuais
+\usepackage{bmpsize}
+\usepackage[absolute,overlay]{textpos}
+% ---
+
+% --- Informações do documento ---
+\title{Titulo}
+\author{Nome}
+%\institute{Universidade Federal do Pará \par Centro de Tecnologia da Informação e Comunicação}
+\date{\today}
+% ---
+
+% ----------------- INÍCIO DO DOCUMENTO --------------------------------------
+\begin{document}
+\usebackgroundtemplate{\includegraphics[width=1.5cm,height=\paperheight]{imagens/imagem.png}}
+% ----------------- NOVO SLIDE --------------------------------
+\begin{frame}
+\begin{minipage}{\linewidth}
+  \centering
+  \begin{tabular}{cc}
+    \begin{tabular}{c}
+      \textbf{Universidade Federal do Pará} \\ 
+      \textbf{Centro de Tecnologia da Informação e Comunicação}
+    \end{tabular}
+    &
+    \begin{tabular}{c}
+     \includegraphics[width=4cm]{imagens/ctic-logo.png}
+    \end{tabular}
+  \end{tabular}
+\end{minipage}
+\titlepage
+\end{frame}
+% ----------------- NOVO SLIDE --------------------------------
+\begin{frame}{Sumário}
+  \tableofcontents
+\end{frame}
+% ----------------- NOVO SLIDE --------------------------------
+\section{Seção}
+\subsection{Subseção}
+\begin{frame}{Titulo do Slide}
+  \framesubtitle{Sub titulo}
+\end{frame}
+% ----------------- NOVO SLIDE --------------------------------
+\end{document}
