@@ -150,11 +150,30 @@
 % ----------------- NOVO SLIDE --------------------------------
 \section{Sistemas de Detecção de Intrusão}
 \begin{frame}{Sistema de Detecção de Intrusão}
+    \framesubtitle{Definição}
+    \begin{itemize}
+        \item \textbf{IDS:} Monitoramento de eventos que ocorrem em redes e sistemas computacionais, analisando sinais de possíveis ataques, alertando os administradores;
+        \item \textbf{IPS:} todas as funcionalidades do IDS, porém é capaz de deter os incidentes;
+    \end{itemize}
 \end{frame}
 % ----------------- NOVO SLIDE --------------------------------
 \subsection{Tipos}
 \begin{frame}{Sistemas de Detecção de Intrusão}
     \framesubtitle{Tipos}
+    \begin{itemize}
+        \item \textbf{HIDS:} sensor é instalado no \textit{host}; verificação de informações relativas aos eventos e registros de \textit{logs} e sistemas de arquivos;
+        \item \textbf{NIDS:} sensor é instalado na rede; monitora e analisa o trafego do segmento de rede;
+            \begin{itemize}
+                \item \textbf{Passivo:} monitora copias dos pacotes da rede (espelhamento)
+                \item \textbf{Ativo:} trafego passa através do sensor (atuação similar a de um \textit{firewall})
+            \end{itemize}
+        \item \textbf{SDID:} envio de alertas para um servidor central (gerencia)
+        \item \textbf{Forma de Detecção:}
+            \begin{itemize}
+                \item \textbf{Assinaturas:} compara com uma base de assinaturas de ataques conhecidos;
+                \item \textbf{Anomalias:} determina um comportamento normal da rede, qualquer desvio desse comportamento gera alertas;
+            \end{itemize}
+    \end{itemize}
 \end{frame}
 % ----------------- NOVO SLIDE --------------------------------
 \subsection{Ferramentas}
