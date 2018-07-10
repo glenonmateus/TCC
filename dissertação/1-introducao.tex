@@ -2,17 +2,7 @@
 
 A Internet é um conjunto de redes físicas heterogênea (uma variedade de dispositivos conectados, \textit{smartphones}, \textit{desktops}, \textit{notebooks}, servidores, \textit{switches}, roteadores, entre outros) funcionando como uma rede lógica única de alcance mundial. O grande e contínuo crescimento da Internet gerou um aumento da sua complexidade, que a expõe a diversas vulnerabilidades. 
 
-A todo momento, novos ataques ou mesmo variações de ataques já existentes surgem e são lançados a várias redes indiscriminadamente em busca de vulnerabilidades. Em 2015, foram reportados ao Centro de Estudos, Respostas e Tratamento de Incidentes de Segurança no Brasil (CERT.br) cerca de 722.205 incidentes, em 2016, esse número diminuiu, chegando a 647.112 \cite{estatistica:cert.br}. Apesar da diminuição, esse número é considerado grande, presumindo-se que há muitos incidentes que não são reportados e/ou identificados.
-
-As empresas, de qualquer segmento e tamanho, devem ter o trabalho de manter os ativos seguros e isso vai além da utilização de anti-vírus nos computadores. Ter uma política de atualização de \textit{software} em estações de trabalho e servidores, aliados com boas práticas nas configurações de serviços, dificultam a exploração de vulnerabilidades. 
-
-A utilização de \textit{firewall}, não pode ser encarado com uma solução definitiva, passando uma falsa sensação de segurança, pois muitas portas legítimas podem estar vulneráveis, como acontece, por exemplo, com a porta 80 que hospeda \textit{websites} vulneráveis \cite{analisenessus:cleriston}.
-
-Diante desse cenário, torna-se cada vez mais importante para o administrador de rede e/ou segurança da informação o uso de ferramentas de IDPS, permitindo identificar e tratar de forma automatizada os incidentes de segurança.
-
-Para implementa tais ferramentas em uma rede, deve-se levar em consideração a flexibilidade e a administração simplificada para não resultar que a empresa/instituição fique na dependência de um único fabricante ou fornecedor da solução. Além disso, a ferramenta deve ter um bom desempenho e eficiência para não passar a falsa sensação de proteção ou degradar o desempenho da rede.
-
-O CERT.br é o grupo de resposta a incidentes de segurança para a internet brasileira, mantido Comitê Gestor da Internet no Brasil. Atua na notificação e tratamento de incidentes de segurança dando apoio no processo de resposta. Além disso, faz um trabalho de conscientização e treinamento sobre problemas de segurança no Brasil. 
+A todo momento, novos ataques ou mesmo variações de ataques já existentes surgem e são lançados a várias redes indiscriminadamente em busca de vulnerabilidades. Em 2015, foram reportados ao Centro de Estudos, Respostas e Tratamento de Incidentes de Segurança no Brasil (CERT.br) cerca de 722.205 incidentes, em 2016, esse número diminuiu, chegando a 647.112 (\autoref{fig:cert}). Apesar da diminuição, esse número é considerado grande, presumindo-se que há muitos incidentes que não são reportados e/ou identificados \cite{estatistica:cert.br}.
 
 \begin{figure}[!htb]
  \centering
@@ -21,6 +11,8 @@ O CERT.br é o grupo de resposta a incidentes de segurança para a internet bras
  \legend{Fonte: \cite{tipos-ataques:certs.br}}
  \label{fig:cert}
 \end{figure}
+
+O CERT.br é o grupo de resposta a incidentes de segurança para a internet brasileira, mantido Comitê Gestor da Internet no Brasil. Atua na notificação e tratamento de incidentes de segurança dando apoio no processo de resposta. Além disso, faz um trabalho de conscientização e treinamento sobre problemas de segurança no Brasil. 
 
 Paralelamente ao CERT.br temos o Centro de Atendimento a Incidentes de Segurança (CAIS), mantido pela Rede Nacional de Ensino e Pesquisa (RNP). O CAIS é responsável por zela pela segurança da rede Ipê (infraestrutura de rede dedicada à comunidade brasileira de ensino superior), detectando, resolvendo e prevenindo incidentes de segurança. Além disso, tem o papel de orientar (através de publicações de cartilhas) e disseminar boas práticas de segurança da informação, educando e conscientizando usuários de todos os níveis sobre os principais riscos em segurança da informação \cite{cais}.
 
@@ -33,6 +25,14 @@ Desde 2008, todas a fraudes identificadas pelo CAIS estão sendo ordenadas e dis
  \legend{Fonte: \cite{cais}}
  \label{fig:cais}
 \end{figure}
+
+As empresas, de qualquer segmento e tamanho, devem ter o trabalho de manter os ativos seguros e isso vai além da utilização de anti-vírus nos computadores. Ter uma política de atualização de \textit{software} em estações de trabalho e servidores, aliados com boas práticas nas configurações de serviços, dificultam a exploração de vulnerabilidades. 
+
+A utilização de \textit{firewall}, não pode ser encarado com uma solução definitiva, passando uma falsa sensação de segurança, pois muitas portas legítimas podem estar vulneráveis, como acontece, por exemplo, com a porta 80 que hospeda \textit{websites} vulneráveis \cite{analisenessus:cleriston}.
+
+Diante desse cenário, torna-se cada vez mais importante para o administrador de rede e/ou segurança da informação o uso de ferramentas de IDPS, permitindo identificar e tratar de forma automatizada os incidentes de segurança.
+
+Para implementa tais ferramentas em uma rede, deve-se levar em consideração a flexibilidade e a administração simplificada para não resultar que a empresa/instituição fique na dependência de um único fabricante ou fornecedor da solução. Além disso, a ferramenta deve ter um bom desempenho e eficiência para não passar a falsa sensação de proteção ou degradar o desempenho da rede.
 
 \section{Motivação} \label{sec:motivação} 
 
@@ -59,7 +59,7 @@ Este trabalho tem como objetivo geral, avaliar e fazer um comparativo entre as s
 O método de pesquisa utilizado é o qualitativo, apoiando-se em técnica de coleta e análise de dados a partir de ferramentas. O estudo foi desenvolvido a partir de:
 
 \begin{alineas}
-\item Pesquisa bibliográfica: Os conceitos e referencias teóricos para entendimento do trabalho analisados foram: "Redes de Computadores", documentação e trabalhos referentes as ferramentas em estudos e a cartilha do CERT que descreve os ataques lançados as redes;
+\item Pesquisa bibliográfica: Os conceitos e referencias teóricos para entendimento do trabalho analisados foram: "Redes de Computadores", documentação e trabalhos referentes as ferramentas em estudos e a cartilha do CERT.br que descreve os ataques lançados as redes;
 \item e a pesquisa de campo feita através da implementação de uma infraestrutura capaz de coletar dados, utilizando ferramentas auxiliares, sobre os objetos estudados.
 \end{alineas}
 
