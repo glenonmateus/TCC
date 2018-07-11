@@ -1,4 +1,4 @@
-% Apresentações em widescreen. Outros valores possíveis: 1610, 149, 54, 43 e 32.
+    % Apresentações em widescreen. Outros valores possíveis: 1610, 149, 54, 43 e 32.
 % Por padrão, as apresentações são no formato 4:3 (sem o aspectratio).
 \documentclass[aspectratio=169]{beamer}	 	
 
@@ -212,8 +212,8 @@
                 \\
                 Lançamento em 2010; \\
                 Baseado em assinaturas e anomalias; \\
-                \textit{Multithread}; \\
                 Arquitetura inspirada no Snort; \\
+                \textit{Multithread}; \\
                 \textit{Sniffer}; \textit{Packet Logger}; NIDS; NSM; \\
             \end{tabular}
             &
@@ -226,24 +226,177 @@
 % ----------------- NOVO SLIDE --------------------------------
 \section{IDS em um Cenário Real}
 \begin{frame}{IDS em um Cenário Real}
+    \framesubtitle{Cenário de Testes}
+    \begin{minipage}{\linewidth}
+        \begin{tabular}{cc}
+            \begin{tabular}{l}
+                Taxa de Transferência = 800 Mbps; \\
+                Quantidade de usuário indeterminado;
+            \end{tabular}
+            &
+            \begin{tabular}{l}
+                \includegraphics[width=7cm]{imagens/trafego-rede.png}
+            \end{tabular}
+        \end{tabular}
+    \end{minipage}
 \end{frame}
 % ----------------- NOVO SLIDE --------------------------------
 \subsection{Testes Realizados}
 \begin{frame}{IDS em um Cenário Real}
-    \framesubtitle{Testes Realizados}
+    \framesubtitle{Infraestrutura}
+    \begin{minipage}{\linewidth}
+        \begin{tabular}{c}
+            \includegraphics[width=11cm]{imagens/infra.png}
+        \end{tabular}
+    \end{minipage}
 \end{frame}
 % ----------------- NOVO SLIDE --------------------------------
 \subsection{Resultados}
 \begin{frame}{IDS em um Cenário Real}
-    \framesubtitle{Resultados}
+    \framesubtitle{Teste Realizados}
+    \begin{itemize}
+        \item \textbf{\textit{Portscanner}}
+        \begin{itemize}
+            \item nmap -F 200.239.72.19
+            \item nmap -A 200.239.72.19
+            \item execução dos comandos via \textit{script}
+        \end{itemize}
+        \item \textbf{\textit{Scan} de Vulnerabilidade} (OpenVAS)
+        \item \textbf{DoS} (Metasploit Framework)
+            \begin{itemize}
+                \item use auxiliary/dos/tcp/synflood
+            \end{itemize}        
+        \item \textbf{Pytbull}
+    \end{itemize}
 \end{frame}
 % ----------------- NOVO SLIDE --------------------------------
 \subsection{Conclusão}
 \begin{frame}{IDS em um Cenário Real}
-    \framesubtitle{Conclusão}
+    \framesubtitle{Resultados}
+    \begin{minipage}{\linewidth}
+        \begin{tabular}{cc}
+            \begin{tabular}{l}
+                \textbf{nmap -F} \\ 
+                \\
+                \hline
+                \\
+                Total = 62 alertas; \\
+                100\% do Snort;
+            \end{tabular}
+            &
+            \begin{tabular}{c}
+                \includegraphics[width=9cm]{imagens/teste-nmap-fast.png}
+            \end{tabular}
+        \end{tabular}
+    \end{minipage}
+\end{frame}
+% ----------------- NOVO SLIDE --------------------------------
+\begin{frame}{IDS em um Cenário Real}
+    \framesubtitle{Resultados}
+    \begin{minipage}{\linewidth}
+        \begin{tabular}{cc}
+            \begin{tabular}{l}
+                \textbf{nmap -A} \\ 
+                \\
+                \hline
+                \\
+                Total = 210 alertas; \\
+                50.5\% Suricata; \\
+                49.5\% Snort;
+            \end{tabular}
+            &
+            \begin{tabular}{c}
+                \includegraphics[width=9cm]{imagens/teste-nmap-all.png}
+            \end{tabular}
+        \end{tabular}
+    \end{minipage}
+\end{frame}
+% ----------------- NOVO SLIDE --------------------------------
+\begin{frame}{IDS em um Cenário Real}
+    \framesubtitle{Resultados}
+    \begin{minipage}{\linewidth}
+        \begin{tabular}{cc}
+            \begin{tabular}{l}
+                \textbf{OpenVAS} \\ 
+                \\
+                \hline
+                \\
+                Total = 3071 alertas; \\
+                69.74\% Suricata; \\
+                30.26\% Snort;
+            \end{tabular}
+            &
+            \begin{tabular}{c}
+                \includegraphics[width=9cm]{imagens/teste-openvas.png}
+            \end{tabular}
+        \end{tabular}
+    \end{minipage}
+\end{frame}
+% ----------------- NOVO SLIDE --------------------------------
+\begin{frame}{IDS em um Cenário Real}
+    \framesubtitle{Resultados}
+    \begin{minipage}{\linewidth}
+        \begin{tabular}{cc}
+            \begin{tabular}{l}
+                \textbf{Taxa de detecção} \\ 
+                \\
+                \hline
+                \\
+                Total = 47778 alertas; \\
+                62.99\% Suricata; \\
+                37.01\% Snort;
+            \end{tabular}
+            &
+            \begin{tabular}{c}
+                \includegraphics[width=9cm]{imagens/teste-taxa-de-deteccao.png}
+            \end{tabular}
+        \end{tabular}
+    \end{minipage}
+\end{frame}
+% ----------------- NOVO SLIDE --------------------------------
+\begin{frame}{IDS em um Cenário Real}
+    \framesubtitle{Resultados}
+    \begin{minipage}{\linewidth}
+        \begin{tabular}{cc}
+            \begin{tabular}{c}
+                \textbf{Suricata} \\
+                \includegraphics[width=6cm]{imagens/suricata-pytbull-report.png}
+            \end{tabular}
+            &
+            \begin{tabular}{c}
+                \textbf{Snort} \\
+                \includegraphics[width=6cm]{imagens/snort-pytbull-report.png}
+            \end{tabular}
+        \end{tabular}
+    \end{minipage}
+\end{frame}
+% ----------------- NOVO SLIDE --------------------------------
+\begin{frame}{IDS em um Cenário Real}
+    \framesubtitle{Resultados}
+    \begin{minipage}{\linewidth}
+        \begin{tabular}{c}
+            \begin{tabular}{c}
+                \textbf{Suricata} \\
+                \includegraphics[width=12cm]{imagens/suricata-cpu-load.png} \\
+                \includegraphics[width=10cm]{imagens/suricata-memory-usage.png} \\
+                \\
+                \hline
+                \\
+                \textbf{Snort} \\
+                \includegraphics[width=12cm]{imagens/snort-cpu-load.png} \\
+                \includegraphics[width=10cm]{imagens/snort-memory-usage.png} \\
+            \end{tabular}
+        \end{tabular}
+    \end{minipage}
 \end{frame}
 % ----------------- NOVO SLIDE --------------------------------
 \section{Considerações Finais}
 \begin{frame}{Considerações Finais}
+    \begin{itemize}
+        \item Documentação do Suricata;
+        \item Implantação da infraestrutura de teste;
+        \item Suricata teve um melhor desempenho porém não recomendado;
+        \item Analisar as ferramentas tendo como foco a precisão (falsos positivos e falsos negativos);
+    \end{itemize}
 \end{frame}
 \end{document}
