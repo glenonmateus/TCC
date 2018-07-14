@@ -56,12 +56,40 @@
         \vspace*{1cm}
     \end{capa}
 }
+
+\renewcommand{\folhaderostocontent}{
+    \begin{center}
+        {\ABNTEXchapterfont\large\imprimirautor}
+
+        \vspace*{\fill}\vspace*{\fill}
+        \begin{center}
+            \ABNTEXchapterfont\bfseries\Large\imprimirtitulo
+        \end{center}
+        \vspace*{\fill}
+
+        \hspace{.45\textwidth}
+        \begin{minipage}{.5\textwidth}
+            \SingleSpacing
+            \imprimirpreambulo
+        \end{minipage}%
+        \vspace*{\fill}
+
+        {\large\imprimirorientadorRotulo\imprimirorientador\par}
+
+        \vspace*{\fill}
+
+        {\large\imprimirlocal}
+        \par
+        {\large\imprimirdata}
+        \vspace*{1cm}
+    \end{center}
+}
 \titulo{Avaliação de Sistemas de Detecção de Intrusão em uma Rede Acadêmica}
 \autor{Glenon Mateus Barbosa Araújo}
 \local{Belém - PA}
 \data{\the\year}
 \orientador{Prof. Dr. Roberto Samarone dos Santos Araújo}
-%\coorientador{}
+\coorientador{teste}
 \instituicao{
   Universidade Federal do Pará - UFPA
   \par
@@ -69,7 +97,7 @@
   \par
   Faculdade de Computação}
 \tipotrabalho{Trabalho de Conclusão de Curso}
-\preambulo{Trabalho de Conclusão de Curso submetida à banca examinadora do programa de graduação em Ciência da Computação da UFPA para obtenção do grau de Bacharel em Ciência da Computação}
+\preambulo{Trabalho de conclusão de curo apresentada ao Curso de Ciência da Computação da Faculdade de Computação do Instituto de Ciências Exatas e Naturais da Universidade Federal do Pará como pré-requisito para a obtenção do título de Bacharel em Ciência da Computação}
 \definecolor{blue}{RGB}{41,5,195}
 \makeatletter
 \hypersetup{
@@ -105,9 +133,7 @@
 	\imprimirautor
 
 	\hspace{0.5cm} \imprimirtitulo  / \imprimirautor. --
-	\imprimirlocal, \imprimirdata-
-	
-        \hspace{0.5cm} \pageref{LastPage} p. : il. (algumas color.) ; 30 cm.\\
+	\imprimirlocal, \imprimirdata
 	
         \hspace{0.5cm} \imprimirorientadorRotulo~\imprimirorientador\\
 	
