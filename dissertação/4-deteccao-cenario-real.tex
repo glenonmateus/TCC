@@ -20,7 +20,7 @@ O tráfego da rede na qual os sensores foram colocados para a avaliação possui
 
 \subsection{Infraestrutura} \label{sec:infraestrutura}
 
-No ambiente de teste foi usado uma máquina Dell com 134 Megabytes (MB) de memória RAM e 40 núcleos. Foi utilizado XenServer \cite{xenserver} versão 7, sistema operacional (SO) \textit{opensource} da Citrix voltado para virtualização. Foram testados outros SOs porém somente o XenServer possuía, na época da instalação do ambiente, \textit{firmware} da placa de rede do \textit{host} compatível e que funcionava com instabilidade. 
+No ambiente de teste foi usado uma máquina Dell com 134 Gigabytes (GB) de memória RAM e 40 núcleos. Foi utilizado XenServer \cite{xenserver} versão 7, sistema operacional (SO) \textit{opensource} da Citrix voltado para virtualização. Foram testados outros SOs, porém somente o XenServer possuía, na época da instalação do ambiente, \textit{firmware} da placa de rede do \textit{host} compatível e que funcionava com estabilidade. 
  
 Outro fator importante na escolha do SO foi a experiência com a plataforma e por existir uma interface para gerencia chamada XenCenter que roda no Windows. Uma alternativa \textit{opensource} desse software é o OpenXenManager que funciona nos sistemas Unix \cite{openxenmanager}.
 
@@ -28,7 +28,7 @@ No primeiro momento, foi instalado uma máquina virtual com o sistema operaciona
 
 Essa VM foi utilizada como base para instalação de outras máquinas utilizando o recurso de \textit{snapshot}, uma cópia de uma máquina virtual rodando em um certo momento, do XenServer. O uso desse recurso foi necessário para criar um ambiente igual para as ferramentas em estudo.
 
-Foi alocado 8 MB memória RAM, 4 processadores e 100 Gigabytes(GB) de espaço em disco para o \textit{snapshot}. Esses valores foram definidos com base em um estudo \cite{mikelococo} que considera vários fatores, como largura da rede, localização do IDS e versão, tipo do capturador de tráfego e tamanho da base de assinaturas para dimensionar os recursos de memória e processamento, aplicado especificamente ao Snort. A mesma regra foi aplicada ao Suricata.
+Foi alocado 8 GB memória RAM, 4 processadores e 100 Gigabytes(GB) de espaço em disco para o \textit{snapshot}. Esses valores foram definidos com base em um estudo \cite{mikelococo} que considera vários fatores, como largura da rede, localização do IDS e versão, tipo do capturador de tráfego e tamanho da base de assinaturas para dimensionar os recursos de memória e processamento, aplicado especificamente ao Snort. A mesma regra foi aplicada ao Suricata.
 
 Para o \textit{host} obter os pacotes destinados a rede escolhida para o experimento, foi necessário uma configuração de espelhamento no roteador B (\autoref{fig:infra-ambiente}) que consiste na copia dos pacotes que saem pela porta dessa rede no roteador para a porta conectada no \textit{host} que possui uma largura de banda de 10 Gigabits. A interface de rede do \textit{host} precisou ser configurada no modo \textit{promisc}.
 
@@ -205,7 +205,7 @@ Por último, temos o teste utilizando \textit{framework} Pytbull. Para melhorar 
 \begin{figure}[!htb]
 \centering
 \caption{Resultado da execução do \textit{framework} Pytbull sobre o Suricata}
-\includegraphics[scale=.7]{suricata-pytbull-report.png}
+\includegraphics[scale=.7]{suricata-pytbull-report-modificado.png}
 \label{fig:suricata-pytbull-report}
 \legend{Fonte: Pytbull}
 \end{figure}
@@ -213,7 +213,7 @@ Por último, temos o teste utilizando \textit{framework} Pytbull. Para melhorar 
 \begin{figure}[!htb]
 \centering
 \caption{Resultado da execução do \textit{framework} Pytbull sobre o Snort}
-\includegraphics[scale=.7]{snort-pytbull-report.png}
+\includegraphics[scale=.7]{snort-pytbull-report-modificado.png}
 \label{fig:snort-pytbull-report}
 \legend{Fonte: Pytbull}
 \end{figure}
