@@ -48,9 +48,9 @@ Por outro lado, o HID possui alguns desvantagens como \cite{scarfone01}:
 
 No NIDS, o sensor é instalado na rede e a interface de rede atua em um modo especial chamado ``promíscuo'', tendo a capacidade de capturar o tráfego mesmo que os pacotes não sejam destinados ao sensor. Dessa forma, o NIDS monitora e analisa todo o trafego no segmento da rede, detectando atividades maliciosas, como ataques baseados em serviço, \textit{portscans}, entre outros, além de detectar se algum usuário legítimo está fazendo mau uso da rede \cite{nagahama2012ipsflow}.
 
-Quanto a localização o NIDS pode ser classificado como passivo ou ativo. No modo passivo (\autoref{fig_nids-ativo}), o IDS monitora copias dos pacotes da rede que passam pelo \textit{switch} ou \textit{hub} onde está conectado, ficando limitado somente a gerar notificações quando encontrado algum tráfego malicioso. 
+Quanto a localização o NIDS pode ser classificado como passivo ou ativo. No modo passivo (\autoref{fig_nids-passivo}), o IDS monitora copias dos pacotes da rede que passam pelo \textit{switch} ou \textit{hub} onde está conectado, ficando limitado somente a gerar notificações quando encontrado algum tráfego malicioso. 
 
-No entanto, no modo ativo (\autoref{fig_nids-passivo}), o IDS é instalado da forma que o tráfego da rede passe através do sensor parecendo com o fluxo de dados associado com um \textit{firewall}. Dessa forma, ele é capaz de parar ataques bloqueando o fluxo malicioso. 
+No entanto, no modo ativo (\autoref{fig_nids-ativo}), o IDS é instalado da forma que o tráfego da rede passe através do sensor parecendo com o fluxo de dados associado com um \textit{firewall}. Dessa forma, ele é capaz de parar ataques bloqueando o fluxo malicioso. 
 
 É necessário uma analise minuciosa na instalação de um IDS ativo pois um mal dimensionamento de \textit{hardware} pode degradar a rede, adicionando atrasos excessivos aos pacotes.
 
@@ -91,18 +91,17 @@ Dentre as desvantagens, temos:
  \end{minipage}
 \end{figure}
 
-\subsection{Sistema de Detecção de Intrusão Distribuídos}
+%\subsection{Sistema de Detecção de Intrusão Distribuídos}
+%A função de um Sistema de Detecção de Intrusão Distribuído (SDID) é de gerencia. Os sensores (pode ser NIDS, HIDS ou a combinação de ambos), localizados remotamente, enviam, periodicamente, os alertas para um servidor central onde todas essas informações serão armazenadas, em uma base única e centralizada. Além disso, novas assinaturas de ataques podem ser enviadas para os sensores através desse servidor, dessa forma, facilitando o gerenciamento \cite{snort:andrew}.
 
-A função de um Sistema de Detecção de Intrusão Distribuído (SDID) é de gerencia. Os sensores (pode ser NIDS, HIDS ou a combinação de ambos), localizados remotamente, enviam, periodicamente, os alertas para um servidor central onde todas essas informações serão armazenadas, em uma base única e centralizada. Além disso, novas assinaturas de ataques podem ser enviadas para os sensores através desse servidor, dessa forma, facilitando o gerenciamento \cite{snort:andrew}.
+%\begin{figure}[!htb]
+%  \centering
+%  \caption{Sistema de Detecção de Intrusão Distribuído} \label{fig_dids}
+%  \includegraphics[scale=0.7]{dids.png}
+%  \legend{Fonte: Autoria própria}
+%\end{figure}
 
-\begin{figure}[!htb]
-  \centering
-  \caption{Sistema de Detecção de Intrusão Distribuído} \label{fig_dids}
-  \includegraphics[scale=0.7]{dids.png}
-  \legend{Fonte: Autoria própria}
-\end{figure}
-
-A \autoref{fig_dids} mostra um SDID composto por dois sensores e um estação de gerenciamento centralizado. O sensor NIDS 1 e NIDS 2 estão operando em modo \textit{promiscuos} e está monitorando segmentos de rede. É recomendando que a conexão entre os sensores e o centralizado seja feita por uma rede privada. Em caso de utilização de rede públicas, recomenda-se adicionar uma camada de segurança, como criptografia, ou VPN.
+%A \autoref{fig_dids} mostra um SDID composto por dois sensores e um estação de gerenciamento centralizado. O sensor NIDS 1 e NIDS 2 estão operando em modo \textit{promiscuos} e está monitorando segmentos de rede. É recomendando que a conexão entre os sensores e o centralizado seja feita por uma rede privada. Em caso de utilização de rede públicas, recomenda-se adicionar uma camada de segurança, como criptografia, ou VPN.
 
 \subsection{Formas de Detecção} \label{sec:idps-formas}
 
@@ -154,7 +153,7 @@ Um \textit{sniffer} tem os seguintes usos:
 
 \begin{alineas}
 \item Analisador de rede e resolução de problemas;
-\item Analisador de performance e avaliação comparativa;
+\item Analisador de desempenho e avaliação comparativa;
 \item Capturar senhas em texto plano e outros dados sensíveis.
 \end{alineas}
 

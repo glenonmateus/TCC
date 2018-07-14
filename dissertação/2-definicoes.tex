@@ -1,22 +1,22 @@
 \chapter{Segurança em Redes de Computadores} \label{ch:segurança}
 
-Esse capítulo contextualiza o trabalho apresenta os principais conceitos relacionados à segurança e rede de computadores, mostrando seus principais componentes e os ataques mais utilizados contra essas redes. Ao final, foram apresentadas as ferramentas usadas para simular ataques com o intuito de avaliar o comportamento dos IDPS (Snort e Suricata).
+Esse capítulo contextualiza o trabalho e apresenta os principais conceitos relacionados à segurança e rede de computadores, mostrando seus principais componentes e os ataques mais utilizados contra essas redes. Ao final, foram apresentadas as ferramentas usadas para simular ataques com o intuito de avaliar o comportamento dos IDPS.
 
 A organização deste capítulo segue da seguinte forma: A próxima seção apresenta as definições sobre segurança da informação. Na \autoref{sec:cenario-geral} será apresentado uma topologia de rede comum, que existe nas organizações. Na \autoref{sec:pontos-vulnerabilidade} será abordado os pontos vulneráveis em uma rede. Na \autoref{sec:ataques-comuns} será apresentado o principais ataques a rede de computadores. Por fim, na \autoref{sec:ferramentas} será apresentada as ferramentas usadas para gerar os ataques.
 
 \section{Definições} \label{sec:definições}
 
-Quando se fala e segurança de sistemas computacionais, logo vem a mente da maioria dos usuários da rede, roubo de número de cartões de crédito, \textit{hackers} danificando páginas e aplicações \textit{Web} e ataques de negação de serviço. Também tens a imagem dos \textit{malwares}, como vírus, cavalos de tróia e \textit{worms}. Esses possuem maior visibilidade pois representam uma parte significativa das ameaças existentes na Internet.
+Quando se fala em segurança de sistemas computacionais, logo vem a mente da maioria dos usuários da rede, roubo de número de cartões de crédito, \textit{hackers} danificando páginas e aplicações \textit{Web} e ataques de negação de serviço. Também vem a imagem dos \textit{malwares}, como vírus, cavalos de tróia e \textit{worms}. Esses possuem maior visibilidade pois representam uma parte significativa das ameaças existentes na Internet.
 
-Porém existem outros problemas que apresentam riscos que normalmente não são levados em consideração, como administradores desonestos, funcionários descontentes e usuários que utilizam dados sigilosos de forma equivocada.
+Existem, porém, outros problemas que apresentam riscos que normalmente não são levados em consideração, como administradores desonestos, funcionários descontentes e usuários que utilizam dados sigilosos de forma equivocada.
 
 Para um melhor entendimento sobre segurança da informação, precisa-se entender alguns elementos listados abaixo \cite{esr-gestao}:
 
 \begin{alineas}
 \item \textbf{Incidente de segurança}: qualquer evento oposto a segurança; por exemplo, ataques de negação de serviços (\textit{Denial of Service} - DoS), roubo de informações, vazamento e obtenção de acesso não autorizado a informações;
- \item \textbf{Ativo}: qualquer coisa que tenha valor para a organização e para seus negócios. Alguns exemplo: banco de dados, softwares, equipamentos (computadores e notebooks), servidores, elementos de redes (roteadores, switches, entre outros), pessoas, processos e serviços;
- \item \textbf{Ameaça}: qualquer evento que explore vulnerabilidades. Causa potencial de um incidente indesejado, que pode resultar em dano para um sistema ou organização;
+ \item \textbf{Ativo}: qualquer dado, informação e equipamento que tenha valor para a organização e para seus negócios. Alguns exemplo: banco de dados, softwares, equipamentos (computadores e notebooks), servidores, elementos de redes (roteadores, switches, entre outros), pessoas, processos e serviços;
  \item \textbf{Vulnerabilidade}: qualquer fraqueza que possa ser explorada e comprometer a segurança de sistemas ou informações. Fragilidade de um ativo ou grupo de ativos que pode ser explorada por uma ou mais ameaças. Vulnerabilidades são falhas que permitem o surgimento de deficiências na segurança geral do computador ou da rede. Configurações incorretas no computador ou na segurança também permitem a criação de vulnerabilidades. A partir dessa falha, as ameaças exploram as vulnerabilidades, que, quando concretizadas, resultam em danos para o computador, para a organização ou para os dados pessoais;
+ \item \textbf{Ameaça}: qualquer evento que explore vulnerabilidades. Causa potencial de um incidente indesejado, que pode resultar em dano para um sistema ou organização;
  \item \textbf{Risco}: probabilidade de uma ameaça se concretizar;
  \item \textbf{Ataque}: qualquer ação que comprometa a segurança de uma organização;
  \item \textbf{Impacto}: consequência de um evento.
@@ -72,7 +72,7 @@ Os ataques são classificados em passivo e ativo. Em um ataque passivo não há 
 \legend{Fonte: Autoria própria} 
 \end{table}
 
-Além disso, podemos dividir os ataques em quatro categorias, que são \cite{sistemasids:joao}: 
+Além disso, pode-se dividir os ataques em quatro categorias, que são \cite{sistemasids:joao}: 
 
 \begin{alineas}
 \item \textbf{Interrupção}: Esse ataque tem como objetivo interromper ou destruir o serviço, afetando a disponibilidade da informação, como ocorre, por exemplo, nos ataques de negação de serviço (DoS) e ataques de negação de serviço distribuído (DDoS);
@@ -83,7 +83,7 @@ Além disso, podemos dividir os ataques em quatro categorias, que são \cite{sis
 
 \section{Cenário Geral} \label{sec:cenario-geral}
 
-Nessa seção será apresentado conceitos sobre redes de computadores e descrever uma topologia de rede genérica conectada a internet.
+Nessa seção serão apresentados conceitos sobre redes de computadores e descrever uma topologia de rede genérica conectada a internet.
 
 Uma rede de computadores é um conjunto de dispositivos interconectados para compartilhar recursos como \textit{hardware}, \textit{software}, interação e interatividade, onde existem máquinas que desempenham os papéis de clientes, servidores e/ou parceiros dependendo do serviços disponíveis na rede \cite{modelo:jose}.
 
@@ -129,7 +129,7 @@ Na \autoref{fig:cenario-geral} apresenta uma típica rede composta por um rotead
 
 Nessa seção será abordado os pontos fracos que uma pessoa má intencionada pode explorar para ter um ataque bem sucedido a um rede de computador.
 
-Apesar da preocupação dos administradores em proteger suas redes de ataques, devido a sua heterogeneidade, sempre haverá uma breja a ser explorada. A literatura considera o ser humano como elo mais fraco, é bastante comum o usuário cadastrar senhas fracas, por conveniência, e fácil memorização.
+Apesar da preocupação dos administradores em proteger suas redes de ataques, devido a sua heterogeneidade, sempre haverá uma fragilidade a ser explorada. A literatura considera o ser humano como elo mais fraco, é bastante comum o usuário cadastrar senhas fracas, por conveniência, e fácil memorização.
 
 Um problema muito comum é o desenvolvimento de aplicações \textit{web} sem nenhuma preocupação com segurança, podendo comprometer, não somente o serviço, mas também, em casos mais extremos, o servidor inteiro. Para tal, o atacante pode usar vários artifícios, os mais conhecidos são \textit{sql injection} e \textit{cross-site script}.
 
@@ -163,7 +163,7 @@ Uma vulnerabilidade é a fraqueza em sistemas de informação, procedimentos de 
 Normalmente, essas ferramentas funcionam em três estágios \cite{avaliacao:tania}:
 
 \begin{alineas}
- \item \textbf{Configuração}: aqui será definido o endereço IP do alvo ou a URL (Uniform Resource Locator) da aplicação Web e demais parâmetros, como, por exemplo, utilização de \textit{proxy}.
+\item \textbf{Configuração}: aqui será definido o endereço IP do alvo ou a URL (\textit{Uniform Resource Locator}) da aplicação Web e demais parâmetros, como, por exemplo, utilização de \textit{proxy}.
  \item \textbf{Rastreamento}: esse estágio, em \textit{scanners} de vulnerabilidade de aplicações web, o \textit{scanner} chama a primeira página web e então examina seu código procurando \textit{links}. Cada \textit{link} encontrado é registrado e este procedimento é repetido várias vezes até que \textit{links} e páginas não sejam mais encontrados.
  \item \textbf{Exploração}: vários testes são executados e as requisições e respostas são armazenadas e analisadas. Ao final, os resultados são exibidos ao usuário e podem ser salvos para uma análise posterior. 
 \end{alineas}
@@ -255,7 +255,7 @@ Existe uma forma mais sofisticada de ataque de DoS chamada Negação de Serviço
 
 Os \textit{malwares}, também conhecidos como \textit{softwares} maliciosos, são um grande problema para sistemas de informação, sua existência ou execução tem consequências negativas ou involuntárias. Nessa seção será apresentado os \textit{malwares} mais popularmente conhecidos que são os vírus, \textit{worms}, \textit{trojans} e, devido sua repercussão, os \textit{ransomwares}.
 
-É importante entender o funcionamento e o comportamento desses códigos maliciosos para, a partir daí, buscar soluções contra esse ataque. Existe dois tipos de análise: análise estática, requer uma verifica linha a linha do código malicioso, geralmente o código não está disponível e até mesmo se estiver, o autor do \textit{malware} muitas vezes ofusca o código, tornando esse tipo de análise difícil. Por outro lado, existe a análise dinâmica, o analista monitora a execução e o comportamento do \textit{malware}, esse tipo de análise é imune a ofuscação de código \cite{encycrypt}.
+É importante entender o funcionamento e o comportamento desses códigos maliciosos para, a partir daí, buscar soluções contra esse ataque. Existe dois tipos de análise: análise estática, requer uma verificação linha a linha do código malicioso, geralmente o código não está disponível e até mesmo se estiver, o autor do \textit{malware} muitas vezes ofusca o código, tornando esse tipo de análise difícil. Por outro lado, existe a análise dinâmica, o analista monitora a execução e o comportamento do \textit{malware}, esse tipo de análise é imune a ofuscação de código \cite{encycrypt}.
 
 O Vírus é um programa que se propaga inserindo cópias de si mesmo e se tornando parte de outros programas e arquivos. Para dar continuidade ao processo de infecção, o vírus depende da execução do programa ou arquivo hospedeiro. O principal meio de propagação desse tipo de \textit{software} malicioso são as mídias removíveis, como, por exemplo, \textit{pen-drives} \cite{certs-malwares}.
 

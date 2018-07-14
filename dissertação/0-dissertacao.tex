@@ -32,20 +32,44 @@
 	\else
 		Citado #1 vezes nas páginas #2.%
 	\fi}%
-        \titulo{Avaliando Sistemas de Detecção de Intrusão em uma Rede Acadêmica}
+\renewcommand{\imprimircapa}{%
+    \begin{capa}%
+        \center
+        \ABNTEXchapterfont\Large Universidade Fedaral do Pará \\
+        \ABNTEXchapterfont\Large Instituto de Ciências Exatas e Naturais \\
+        \ABNTEXchapterfont\Large Faculdade de Computação
+
+        \vspace*{4cm}
+
+        {\ABNTEXchapterfont\large\imprimirautor}
+
+        \vfill
+        \begin{center}
+            \ABNTEXchapterfont\bfseries\Large\imprimirtitulo
+        \end{center}
+        \vfill
+
+        \large\imprimirlocal
+        
+        \large\imprimirdata
+
+        \vspace*{1cm}
+    \end{capa}
+}
+\titulo{Avaliação de Sistemas de Detecção de Intrusão em uma Rede Acadêmica}
 \autor{Glenon Mateus Barbosa Araújo}
-\local{Brasil}
+\local{Belém - PA}
 \data{\the\year}
-\orientador{Dr. Roberto Samarone dos Santos Araújo}
+\orientador{Prof. Dr. Roberto Samarone dos Santos Araújo}
 %\coorientador{}
 \instituicao{
-  Universidade Federal do Pará -- UFPA
+  Universidade Federal do Pará - UFPA
   \par
-  Faculdade de Computação
+  Instituto de Ciências Exatas e Naturais
   \par
-  Bacharelado em Ciência da Computação}
+  Faculdade de Computação}
 \tipotrabalho{Trabalho de Conclusão de Curso}
-\preambulo{Trabalho de Conclusão de Curso submetida a graduação em Ciência da Computação da UFPA}
+\preambulo{Trabalho de Conclusão de Curso submetida à banca examinadora do programa de graduação em Ciência da Computação da UFPA para obtenção do grau de Bacharel em Ciência da Computação}
 \definecolor{blue}{RGB}{41,5,195}
 \makeatletter
 \hypersetup{
@@ -140,8 +164,8 @@
    \end{center}
    Trabalho aprovado. \imprimirlocal, 12 de julho de 2018:
    \assinatura{\textbf{\imprimirorientador} \\ Orientador} 
-   %\assinatura{\textbf{Professor} \\ Convidado 1}
-   %\assinatura{\textbf{Professor} \\ Convidado 2}
+   \assinatura{\textbf{Prof. Dr. Josivaldo de Souza Araujo} \\ Avaliador}
+   \assinatura{\textbf{Prof. Dr. Raimundo Viégas Junior} \\ Avaliador}
    %\assinatura{\textbf{Professor} \\ Convidado 3}
    %\assinatura{\textbf{Professor} \\ Convidado 4}
    \begin{center}
@@ -172,15 +196,15 @@
 
 \begin{resumo}
  
-    A todo momento novos ataques ou mesmo variações de ataques existentes surgem e são lançados a  redes. Somente a utilização de \textit{firewall} é insuficiente pois o atacante pode utilizar portas, na qual rodam serviços fornecidos pela empresa/instituição, para realizar ataques. Diante desse cenário, é indispensável, para um administrador de rede, o uso de ferramentas auxiliares como um Sistema de Detecção e Prevenção de Intrusão (IDPS), que alertam ou até mesmo bloqueiam ataques. Esse trabalho tem o objetivo de avaliar os Sistemas de Detecção de Intrusão \textit{open source} mais populares, Snort e Suricata. O Snort é um sistema de detecção lançado em 1998 por Martin Roesch foi uma das primeiras em seu segmento a realizar análise de tráfego em tempo real e registro dos pacotes de forma leve, utilizando recursos mínimos de processamento. Já o Suricata, foi lançado em 2010, e tem como principal característica utilização da tecnologia \textit{multithreading}, tirando maior proveito dos processadores, visando melhorar o desempenho. A avaliação foi realizada comparando o desempenho e as detecções de intrusões as quais foram colocadas em funcionamento em uma rede de produção real, verificando suas vantagens e desvantagens. Nos testes realizados, foram utilizados ferramentas auxiliares para simular ataques a uma máquina alvo instalada para essa finalidade. 
+A todo momento novos ataques ou mesmo variações de ataques existentes surgem e são lançados às redes. Somente a utilização de \textit{firewall} é insuficiente, pois o atacante pode utilizar portas, na qual rodam serviços fornecidos pela empresa/instituição, para realizar ataques. Diante desse cenário, é indispensável, para um administrador de rede, o uso de ferramentas auxiliares como um Sistema de Detecção e Prevenção de Intrusão (IDPS), que alertam ou até mesmo bloqueiam ataques. Esse trabalho tem o objetivo de avaliar os Sistemas de Detecção de Intrusão \textit{open source} mais populares, Snort e Suricata. O Snort é um sistema de detecção, lançado em 1998 por Martin Roesch e foi uma das primeiras em seu segmento a realizar análise de tráfego em tempo real e registro dos pacotes de forma leve, utilizando recursos mínimos de processamento. Já o Suricata, foi lançado em 2010, e tem como principal característica, a utilização da tecnologia \textit{multithreading}, tirando maior proveito dos processadores, visando melhorar o desempenho. A avaliação foi realizada comparando o desempenho e as detecções de intrusões as quais foram colocadas em funcionamento em uma rede de produção real, verificando suas vantagens e desvantagens. Nos testes realizados, foram utilizadas ferramentas auxiliares para simular ataques a uma máquina alvo instalada para essa finalidade. 
 
-\textbf{Palavras-chave}: Segurança da Informação, Suricata, Snort, Sistema de Detecção de Intrusão, Sistema de Prevenção de Intrusão, IDS, IPS.
+\textbf{Palavras-chave}: Segurança da Informação, Suricata, Snort, Sistema de Detecção de Intrusão, Sistema de Prevenção de Intrusão.
 \end{resumo}
 \begin{resumo}[Abstract]
  \begin{otherlanguage*}{english}
    \vspace{\onelineskip}
    \noindent 
-   At any moment new attacks or even variations of existing attacks arise and are launched only on networks. Only the use of firewall is insufficient because the attacker can use ports, in which services provided by the company / institution run, to execute attacks. Given this scenario, it is essential for a network administrator to use tools such as a Intrusion Detection and Prevention System that alert or even block attacks. This work aims to evaluate the most popular open source Intrusion Detection Systems, Snort and Suricata. Snort is a detection system launched in 1998 by Martin Roesch and was one of the first in its segment to perform real-time traffic analysis and package logging in a lightweight manner using minimal processing capabilities. Suricata was launched in 2010 and its main feature is the use of multithreading technology, taking advantage of processors to improve performance. The evaluation was performed comparing the performance and intrusion detections that were put into operation in an actual production network, verifying their advantages and disadvantages. In the tests performed, auxiliary tools were used to simulate attacks on a target machine installed for this purpose.
+At any moment new attacks or even variations of existing attacks arise and are launched only on networks. Only the use of firewall is insufficient, because the attacker can use ports, in which services provided by the company / institution run, to execute attacks. Given this scenario, it is essential for a network administrator to use tools such as a Intrusion Detection and Prevention System that alert or even block attacks. This work aims to evaluate the most popular open source Intrusion Detection Systems, Snort and Suricata. Snort is a detection system launched in 1998 by Martin Roesch and was one of the first in its segment to perform real-time traffic analysis and package logging in a lightweight manner using minimal processing capabilities. Suricata was launched in 2010 and its main feature is the use of multithreading technology, taking advantage of processors to improve performance. The evaluation was performed comparing the performance and intrusion detections that were put into operation in an actual production network, verifying their advantages and disadvantages. In the tests performed, auxiliary tools were used to simulate attacks on a target machine installed for this purpose.
 
    \textbf{Keywords}: Security Information, Suricata, Snort, Intrusion Detection System, Intrusion Prevention System, IDS, IPS.
  \end{otherlanguage*}
@@ -194,16 +218,16 @@
 \begin{siglas}
   \item[IDS] \textit{Intrusion Detection System}
   \item[IPS] \textit{Intrusion Prevention System}
-  \item[SDI] \textit{Sistema de Detecção de Intrusão}
-  \item[SPI] \textit{Sistema de Prevenção de Intrusão}
+  \item[SDI] Sistema de Detecção de Intrusão
+  \item[SPI] Sistema de Prevenção de Intrusão
   \item[IDPS] \textit{Intrusion Detection and Prevention System}
   \item[HIDS] \textit{Host Based Intrusion Detection Systems}
   \item[NIDS] \textit{Network Based Intrusion Detection Systems}
   \item[MB] \textit{Megabytes}
   \item[GB] \textit{Gigabytes}
-  \item[SO] \textit{Sistema Operacional}
+  \item[SO] Sistema Operacional
   \item[JSON] \textit{JavaScript Object Notation}
-  \item[CAIS] \textit{Centro de Atendimento a Incidentes de Segurança}
+  \item[CAIS] Centro de Atendimento a Incidentes de Segurança
   \item[DoS] \textit{Denial of Services}
   \item[DDoS] \textit{Distributed Denial of Services}
   \item[URL] \textit{Uniform Resource Locator}
