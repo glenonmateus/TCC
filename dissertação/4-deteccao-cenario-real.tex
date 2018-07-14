@@ -1,5 +1,6 @@
 \chapter{Detecção de Intrusão em um Cenário Real} \label{ch:cenário-real}
 
+
 Este capítulo esta organizado da seguinte forma: A próxima seção apresenta o cenário de testes, descrevendo características gerais da rede selecionada para os teste. Na \autoref{sec:metodologia-teste} será abordado a infraestrutura usada para os testes, ferramentas utilizadas e as configurações feitas. Na \autoref{sec:testes} será descrito os testes realizados com suas respectivas justificativas. Na \autoref{sec:resultados} será apresentado os resultados esperados e obtidos, problemas encontrados e a comparação das ferramentas e por último, na seção \autoref{sec:conclusão}, uma breve conclusão.
 
 \section{Metodologia dos Testes} \label{sec:metodologia-teste}
@@ -98,7 +99,7 @@ echo "\nInicio-$STARTIME"
 echo "\nFim-$ENDTIME"
 \end{lstlisting}
 
-Na primeira linha de um código em \textit{shell script}, precisamos especificar o interpretador utilizado (\#!/bin/bash). Criou-se duas variáveis, uma para armazenar a hora do inicio do \textit{script} e uma para armazenar termino, dessa forma, a pesquisa pelos alertas gerados pelas ferramentas será menos dispendiosa. O comando NMAP foi colocado dentro de um laço \textit{for}, executado 100 vezes. 
+Na primeira linha de um código em \textit{shell script}, precisamos especificar o interpretador utilizado (\#!/bin/bash). Criou-se duas variáveis, uma para armazenar a hora do inicio do \textit{script} e uma para armazenar termino, dessa forma, a pesquisa pelos alertas gerados pelas ferramentas será menos dispendiosa. O comando NMAP foi colocado dentro de um laço \textit{for}, executado 100 vezes, esse valor definido pois as ferramentas gerariam alertas suficientes para identificar a diferença entre elas em um baixo intervalo de tempo.
 
 De posse de um alvo em potencial, próximo passo seria executar um \textit{scanner} de vulnerabilidade, em busca de brechas já conhecidas, e que, geralmente por descuido do administrador, não foi fechada. Essas brechas podem ter várias origens, desde uma versão do serviço com \textit{bugs} ou uma má configuração. Para esse teste, usou-se o OpenVAS.
 
