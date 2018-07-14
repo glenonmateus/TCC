@@ -166,9 +166,10 @@ Nada impede o desenvolvimento de uma base própria, porém, é necessário uma e
 
 O Snort encontra-se consolidado no mercado há vários anos e com muitas versões, já o Suricata surgiu em 2010 como um novo motor, com a tecnologia \texit{multithreading} (processa várias tarefas ao mesmo tempo), aproveitando o paradigma multinúcleos dos processadores. Por esse motivo, espera-se que o desempenho do Suricata seja superior ao do Snort.
 
-As métricas usadas para análise e comparação das ferramentas são a utilização dos recursos de \textit{hardware} (memória, processamento), taxa de detecção, independente de ser falso positivo e falso negativo. No primeiro momento, havia a ideia de comparar utilizando essa métrica, no entanto, devido a uma quantidade muito grande de alertas e devido a rede ser grande (vários clientes), essa comparação tornou-se inviável.
+As métricas usadas para análise e comparação das ferramentas são a utilização dos recursos de \textit{hardware} (memória, processamento), taxa de detecção, independente de ser falso positivo e falso negativo. No primeiro momento, havia a ideia de comparar utilizando essa métrica, no entanto, devido a uma quantidade muito grande de alertas e devido a rede ser grande (vários clientes), essa comparação tornou-se inviável. 
 
-No primeiro experimento realizado, utilizando o NMAP no modo \textit{fast}, a execução do \textit{script}, gerou um total de 62 alertas, dos quais 100\% deles foram do Snort (\autoref{fig:teste-nmap-fast}). O Snort teve um desempenho melhor pois ele foi capaz de detectar a execução do comando.
+
+Os testes foram realizados no período de 2 de abril de 2018 à 27 de abril de 2018. No primeiro experimento realizado, utilizando o NMAP no modo \textit{fast}, a execução do \textit{script}, gerou um total de 62 alertas, dos quais 100\% deles foram do Snort (\autoref{fig:teste-nmap-fast}). O Snort teve um desempenho melhor pois ele foi capaz de detectar a execução do comando.
 
 \begin{figure}[!htb]
     \centering
