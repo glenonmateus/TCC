@@ -2,7 +2,7 @@
 
 Os sistemas de detecção e prevenção de intrusão (\textit{Intrusion Detection and Prevention System} - IDPS) são ferramentas de importância reconhecida pela comunidade da segurança da informação, pois elas são capazes de detectar se alguém está tentando entrar no sistema ou se algum usuário legitimo está fazendo mau uso do mesmo.
 
-Nesse capítulo, vamos apresentar os principais conceitos relacionados a IDS e IPS, uma breve descrição do funcionamento e classificação, para melhor entendimento das ferramentas que iremos apresentar e avaliar em um ambiente de real.
+Nesse capítulo, apresentará os principais conceitos relacionados a IDS e IPS, uma breve descrição do funcionamento e classificação, para melhor entendimento das ferramentas que iremos apresentar e avaliar em um ambiente de real.
 
 Esse capítulo está organizado da seguinte forma: Na \autoref{sec:idps-definicoes} será apresentado os conceitos sobre IDS e IPS, seus componentes gerais, os tipos existentes e suas diferenças. Na \autoref{sec:idps-ferramentas} será apresentado as ferramentas avaliadas, suas arquiteturas e diferenças. Por ultimo, na \autoref{sec:idps-conclusao}, a conclusão do capítulo.
 
@@ -220,7 +220,7 @@ Uma característica marcante desse IDS é a utilização de uma tecnologia de pr
 
 O Suricata utiliza detecção baseada em assinatura e em anomalias. As assinaturas desenhadas para o Snort funcionam no Suricata, podendo ser otimizadas para o uso em seu motor de detecção. As anomalias dos protocolos são fornecidas pelos pré-processadores, e quando implementado no modo ativo, atua na modalidade de prevenção \cite{arquitetura:martin}. Além disso, implementa uma completa linguagem de assinaturas ligadas a ameaças conhecidas, violação de políticas de segurança e comportamentos maliciosos de \textit{malwares} e outros ataques.
 
-Embora o código do Suricata ser original, os desenvolvedores não hesitam afirmar que a arquitetura foi inspirada no Snort. Na \autoref{fig_arquitetura-suricata} representa a mesma arquitetura do Snort porém com o mecanismo de \textit{multithread}, sendo essa característica a principal diferença entre as ferramentas \cite{arquitetura:martin}. 
+Embora o código do Suricata seja original, os desenvolvedores não hesitam afirmar que a arquitetura foi inspirada no Snort. Na \autoref{fig_arquitetura-suricata} representa a mesma arquitetura do Snort porém com o mecanismo de \textit{multithread}, sendo essa característica a principal diferença entre as ferramentas \cite{arquitetura:martin}. 
 
 As assinaturas são de grande importância tanto no Snort quanto no Suricata. Muitas pessoas, por conveniência, utilizam conjunto de regras prontas. As mais usadas são da Emerging Threats (ET) e Talos (anteriormente chamado VRT) \cite{suricata}. Talos é um grupo de especialistas em segurança de rede trabalhando o tempo todo para descobrir, avaliar e responder de forma proativa as últimas tendencias em atividades de \textit{hacking}, tentativa de intrusão, \textit{malware} e vulnerabilidades \cite{snort:talos}.
 
